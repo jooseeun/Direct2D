@@ -1,0 +1,20 @@
+version: 2
+type: collection
+name: WP Lever Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 13
+White_Gate0000	WP Lever Cln_White_Gate0000.png
+White_Gate0001	WP Lever Cln_White_Gate0001.png
+White_Gate0002	WP Lever Cln_White_Gate0002.png
+White_Gate0003	WP Lever Cln_White_Gate0003.png
+White_Gate0004	WP Lever Cln_White_Gate0004.png
+White_Gate0005	WP Lever Cln_White_Gate0005.png
+white_palace_simple_lever_right000	WP Lever Cln_white_palace_simple_lever_right000.png
+white_palace_simple_lever_right001	WP Lever Cln_white_palace_simple_lever_right001.png
+white_palace_simple_lever_right002	WP Lever Cln_white_palace_simple_lever_right002.png
+white_palace_simple_lever_right003	WP Lever Cln_white_palace_simple_lever_right003.png
+white_palace_simple_lever_right004	WP Lever Cln_white_palace_simple_lever_right004.png
+white_palace_simple_lever_right005	WP Lever Cln_white_palace_simple_lever_right005.png
+white_palace_simple_lever_right006	WP Lever Cln_white_palace_simple_lever_right006.png

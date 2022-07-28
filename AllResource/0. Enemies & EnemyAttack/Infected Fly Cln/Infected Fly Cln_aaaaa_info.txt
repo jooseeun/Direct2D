@@ -1,0 +1,21 @@
+version: 2
+type: collection
+name: Infected Fly Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 14
+death_v020000	Infected Fly Cln_death_v020000.png
+death_v020001	Infected Fly Cln_death_v020001.png
+death_v020002	Infected Fly Cln_death_v020002.png
+death_v020003	Infected Fly Cln_death_v020003.png
+death_v020004	Infected Fly Cln_death_v020004.png
+fly0026	Infected Fly Cln_fly0026.png
+fly0027	Infected Fly Cln_fly0027.png
+fly0028	Infected Fly Cln_fly0028.png
+fly0029	Infected Fly Cln_fly0029.png
+fly0030	Infected Fly Cln_fly0030.png
+fly0031	Infected Fly Cln_fly0031.png
+fly0032	Infected Fly Cln_fly0032.png
+fly0033	Infected Fly Cln_fly0033.png
+turn	Infected Fly Cln_turn.png

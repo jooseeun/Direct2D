@@ -1,0 +1,26 @@
+version: 2
+type: collection
+name: Infected Buzzer Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 19
+	Infected Buzzer Cln_unnamed_0.png
+	Infected Buzzer Cln_unnamed_1.png
+death_v020001	Infected Buzzer Cln_death_v020001.png
+death_v020002	Infected Buzzer Cln_death_v020002.png
+death_v020003	Infected Buzzer Cln_death_v020003.png
+death_v020004	Infected Buzzer Cln_death_v020004.png
+death0026	Infected Buzzer Cln_death0026.png
+fly0026	Infected Buzzer Cln_fly0026.png
+fly0027	Infected Buzzer Cln_fly0027.png
+fly0028	Infected Buzzer Cln_fly0028.png
+idle0026	Infected Buzzer Cln_idle0026.png
+idle0027	Infected Buzzer Cln_idle0027.png
+idle0028	Infected Buzzer Cln_idle0028.png
+idle0029	Infected Buzzer Cln_idle0029.png
+startle0026	Infected Buzzer Cln_startle0026.png
+startle0027	Infected Buzzer Cln_startle0027.png
+startle0028	Infected Buzzer Cln_startle0028.png
+turn0026	Infected Buzzer Cln_turn0026.png
+turn0027	Infected Buzzer Cln_turn0027.png

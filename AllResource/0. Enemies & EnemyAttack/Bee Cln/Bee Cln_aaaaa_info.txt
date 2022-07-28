@@ -1,0 +1,64 @@
+version: 2
+type: collection
+name: Bee Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 57
+	Bee Cln_unnamed_0.png
+	Bee Cln_unnamed_1.png
+	Bee Cln_unnamed_2.png
+	Bee Cln_unnamed_3.png
+	Bee Cln_unnamed_4.png
+	Bee Cln_unnamed_5.png
+	Bee Cln_unnamed_6.png
+	Bee Cln_unnamed_7.png
+attack_to_normal0001	Bee Cln_attack_to_normal0001.png
+attack_to_normal0002	Bee Cln_attack_to_normal0002.png
+attack_to_normal0003	Bee Cln_attack_to_normal0003.png
+bee_drill_effect00000	Bee Cln_bee_drill_effect00000.png
+bee_drill_effect00001	Bee Cln_bee_drill_effect00001.png
+bee_drill_effect00002	Bee Cln_bee_drill_effect00002.png
+bee_drill_effect00003	Bee Cln_bee_drill_effect00003.png
+death0000	Bee Cln_death0000.png
+death0001	Bee Cln_death0001.png
+death0002	Bee Cln_death0002.png
+death0003	Bee Cln_death0003.png
+death0004	Bee Cln_death0004.png
+death0005	Bee Cln_death0005.png
+death0010	Bee Cln_death0010.png
+death0011	Bee Cln_death0011.png
+fly_to_roar_to_attack0000	Bee Cln_fly_to_roar_to_attack0000.png
+fly_to_roar_to_attack0001	Bee Cln_fly_to_roar_to_attack0001.png
+fly_to_roar_to_attack0002	Bee Cln_fly_to_roar_to_attack0002.png
+fly_to_roar_to_attack0003	Bee Cln_fly_to_roar_to_attack0003.png
+fly_to_roar_to_attack0007	Bee Cln_fly_to_roar_to_attack0007.png
+fly_to_roar_to_attack0008	Bee Cln_fly_to_roar_to_attack0008.png
+fly_to_roar_to_attack0009	Bee Cln_fly_to_roar_to_attack0009.png
+fly_to_roar_to_attack0010	Bee Cln_fly_to_roar_to_attack0010.png
+fly_to_roar_to_attack0011	Bee Cln_fly_to_roar_to_attack0011.png
+fly_to_roar_to_attack0012	Bee Cln_fly_to_roar_to_attack0012.png
+fly_to_roar_to_attack0013	Bee Cln_fly_to_roar_to_attack0013.png
+fly_to_roar_to_attack0014	Bee Cln_fly_to_roar_to_attack0014.png
+fly_to_roar_to_attack0015	Bee Cln_fly_to_roar_to_attack0015.png
+fly_to_roar_to_attack0016	Bee Cln_fly_to_roar_to_attack0016.png
+fly_to_roar_to_attack0017	Bee Cln_fly_to_roar_to_attack0017.png
+fly_to_roar_to_attack0018	Bee Cln_fly_to_roar_to_attack0018.png
+fly_to_roar_to_attack0019	Bee Cln_fly_to_roar_to_attack0019.png
+fly0000	Bee Cln_fly0000.png
+fly0001	Bee Cln_fly0001.png
+fly0002	Bee Cln_fly0002.png
+fly0003	Bee Cln_fly0003.png
+fly0004	Bee Cln_fly0004.png
+fly0005	Bee Cln_fly0005.png
+spawn0000	Bee Cln_spawn0000.png
+spawn0001	Bee Cln_spawn0001.png
+spawn0002	Bee Cln_spawn0002.png
+spawn0003	Bee Cln_spawn0003.png
+spawn0004	Bee Cln_spawn0004.png
+spawn0005	Bee Cln_spawn0005.png
+spawn0006	Bee Cln_spawn0006.png
+spawn0007	Bee Cln_spawn0007.png
+turn0000	Bee Cln_turn0000.png
+turn0001	Bee Cln_turn0001.png
+turn0002	Bee Cln_turn0002.png

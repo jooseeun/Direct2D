@@ -12,9 +12,9 @@ private:
 	static GameEngineWindow* Inst_;
 
 public:
-	inline static GameEngineWindow& GetInst()
+	inline static GameEngineWindow* GetInst() 
 	{
-		return *Inst_;
+		return Inst_;
 	}
 
 	static void Destroy()
@@ -30,7 +30,7 @@ public:
 	void RegClass(HINSTANCE _hInst);
 	void CreateGameWindow(HINSTANCE _hInst, const std::string& _Title);
 	void ShowGameWindow();
-	void MessageLoop(std::function<void()> _Init, std::function<void()> _Loop);
+	void MessageLoop(std::function<void()> _Init, std::function<void()> _Loop, std::function<void()> _End);
 
 	void SetWindowScaleAndPosition(float4 _Pos, float4 _Scale);
 
@@ -41,11 +41,20 @@ public:
 		return Inst_->HDC_;
 	}
 
+	static inline HWND GetHWND()
+	{
+		return Inst_->hWnd_;
+	}
+
 	static inline float4 GetScale()
 	{
 		return Inst_->Scale_;
 	}
 
+	void SetMessageCallBack(const std::function<LRESULT(HWND, UINT, WPARAM, LPARAM)>& _MessageCallBack) 
+	{
+		MessageCallBack = _MessageCallBack;
+	}
 
 protected:
 
@@ -66,6 +75,9 @@ private:
 	GameEngineWindow(GameEngineWindow&& _Other) noexcept = delete;
 	GameEngineWindow& operator=(const GameEngineWindow& _Other) = delete;
 	GameEngineWindow& operator=(GameEngineWindow&& _Other) noexcept = delete;
+
+
+	static std::function<LRESULT(HWND, UINT, WPARAM, LPARAM)> MessageCallBack;
 
 
 	static LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

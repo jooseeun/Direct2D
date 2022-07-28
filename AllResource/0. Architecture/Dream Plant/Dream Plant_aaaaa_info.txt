@@ -1,0 +1,23 @@
+version: 2
+type: collection
+name: Dream Plant
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 16
+dream_render0000	Dream Plant_dream_render0000.png
+dream_render0001	Dream Plant_dream_render0001.png
+dream_render0002	Dream Plant_dream_render0002.png
+dream_render0003	Dream Plant_dream_render0003.png
+dream_render0004	Dream Plant_dream_render0004.png
+dream_render0005	Dream Plant_dream_render0005.png
+dream_render0006	Dream Plant_dream_render0006.png
+dream_render0007	Dream Plant_dream_render0007.png
+dream_render0008	Dream Plant_dream_render0008.png
+dream_render0009	Dream Plant_dream_render0009.png
+dream_render0010	Dream Plant_dream_render0010.png
+dream_render0011	Dream Plant_dream_render0011.png
+dream_render0012	Dream Plant_dream_render0012.png
+dream_render0013	Dream Plant_dream_render0013.png
+dream_render0014	Dream Plant_dream_render0014.png
+dream_render0015	Dream Plant_dream_render0015.png

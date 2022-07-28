@@ -1,0 +1,15 @@
+version: 2
+type: collection
+name: HUD Extras Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 8
+HUD_dream_counter0000	HUD Extras Cln_HUD_dream_counter0000.png
+HUD_dream_counter0001	HUD Extras Cln_HUD_dream_counter0001.png
+HUD_dream_counter0002	HUD Extras Cln_HUD_dream_counter0002.png
+HUD_dream_counter0003	HUD Extras Cln_HUD_dream_counter0003.png
+HUD_dream_counter0004	HUD Extras Cln_HUD_dream_counter0004.png
+HUD_dream_counter0005	HUD Extras Cln_HUD_dream_counter0005.png
+HUD_dream_counter0006	HUD Extras Cln_HUD_dream_counter0006.png
+HUD_dream_counter0007	HUD Extras Cln_HUD_dream_counter0007.png

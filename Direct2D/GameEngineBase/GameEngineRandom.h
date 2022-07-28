@@ -15,6 +15,7 @@
 class GameEngineRandom
 {
 public:
+	// 이녀석가지고 생성하면 
 	static GameEngineRandom MainRandom;
 
 private:
@@ -37,7 +38,7 @@ public:
 
 public:
 	// constrcuter destructer
-	GameEngineRandom();
+	GameEngineRandom(long long _Seed = -1);
 	~GameEngineRandom();
 
 	// delete Function

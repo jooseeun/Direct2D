@@ -1,3 +1,4 @@
+#include "PreCompile.h"
 #include "GameEngineWindow.h"
 #include "GameEngineInput.h"
 
@@ -7,13 +8,25 @@
 // WPARAM wParam
 // LPARAM lParam
 
+std::function<LRESULT(HWND, UINT, WPARAM, LPARAM)> GameEngineWindow::MessageCallBack = nullptr;
+
 LRESULT CALLBACK GameEngineWindow::MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    if (nullptr != MessageCallBack)
+    {
+        // imgui는 자신만의 메세지 처리 기능이 있기 때문에 이걸 넘기면 된다.
+        // imgui에게 넘긴다.
+        if (0 != MessageCallBack(hWnd, message, wParam, lParam))
+        {
+            return true;
+        }
+    }
+
     switch (message)
     {
     case WM_DESTROY:
     {
-        GameEngineWindow::GetInst().Off();
+        GameEngineWindow::GetInst()->Off();
         break;
     }
     case WM_PAINT:
@@ -26,7 +39,7 @@ LRESULT CALLBACK GameEngineWindow::MessageProcess(HWND hWnd, UINT message, WPARA
     }
     case WM_CLOSE:
     {
-        GameEngineWindow::GetInst().Off();
+        GameEngineWindow::GetInst()->Off();
         break;
     }
     case WM_MOUSEWHEEL:
@@ -43,7 +56,7 @@ LRESULT CALLBACK GameEngineWindow::MessageProcess(HWND hWnd, UINT message, WPARA
 
 GameEngineWindow* GameEngineWindow::Inst_ = new GameEngineWindow();
 
-GameEngineWindow::GameEngineWindow()
+GameEngineWindow::GameEngineWindow() 
     : hInst_(nullptr)
     , hWnd_(nullptr)
     , WindowOn_(true)
@@ -51,7 +64,7 @@ GameEngineWindow::GameEngineWindow()
 {
 }
 
-GameEngineWindow::~GameEngineWindow()
+GameEngineWindow::~GameEngineWindow() 
 {
     // 내가 만들어준게 아니라면 다 지워줘야 합니다.
     if (nullptr != HDC_)
@@ -67,7 +80,7 @@ GameEngineWindow::~GameEngineWindow()
     }
 }
 
-void GameEngineWindow::Off()
+void GameEngineWindow::Off() 
 {
     WindowOn_ = false;
 }
@@ -99,7 +112,7 @@ void GameEngineWindow::CreateGameWindow(HINSTANCE _hInst, const std::string& _Ti
     }
 
     Title_ = _Title;
-    // 클래스 등록은 1번만 하려고 친 코드
+        // 클래스 등록은 1번만 하려고 친 코드
     hInst_ = _hInst;
     RegClass(_hInst);
 
@@ -115,7 +128,7 @@ void GameEngineWindow::CreateGameWindow(HINSTANCE _hInst, const std::string& _Ti
     }
 }
 
-void GameEngineWindow::ShowGameWindow()
+void GameEngineWindow::ShowGameWindow() 
 {
     if (nullptr == hWnd_)
     {
@@ -129,7 +142,7 @@ void GameEngineWindow::ShowGameWindow()
 }
 
 
-void GameEngineWindow::MessageLoop(std::function<void()> _Init, std::function<void()> _Loop)
+void GameEngineWindow::MessageLoop(std::function<void()> _Init, std::function<void()> _Loop, std::function<void()> _End)
 {
     // 윈도우는 다 준비되었다.
     // 루프를 돌기전에
@@ -157,8 +170,8 @@ void GameEngineWindow::MessageLoop(std::function<void()> _Init, std::function<vo
             DispatchMessage(&msg);
         }
 
-        // 윈도우가 일하지 않는 데드 타임.
-        // 여기서 무슨게임을 돌릴까요?
+            // 윈도우가 일하지 않는 데드 타임.
+            // 여기서 무슨게임을 돌릴까요?
 
         if (nullptr == _Loop)
         {
@@ -167,11 +180,16 @@ void GameEngineWindow::MessageLoop(std::function<void()> _Init, std::function<vo
 
         _Loop();
 
+        
+    }
 
+    if (nullptr != _End)
+    {
+        _End();
     }
 }
 
-void GameEngineWindow::SetWindowScaleAndPosition(float4 _Pos, float4 _Scale)
+void GameEngineWindow::SetWindowScaleAndPosition(float4 _Pos, float4 _Scale) 
 {
     // 메뉴바 
 

@@ -1,0 +1,26 @@
+version: 2
+type: collection
+name: Knight Dream Cutscene Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 19
+dream_teleport0000	Knight Dream Cutscene Cln_dream_teleport0000.png
+dream_teleport0001	Knight Dream Cutscene Cln_dream_teleport0001.png
+dream_teleport0002	Knight Dream Cutscene Cln_dream_teleport0002.png
+dream_teleport0003	Knight Dream Cutscene Cln_dream_teleport0003.png
+dream_teleport0004	Knight Dream Cutscene Cln_dream_teleport0004.png
+dream_teleport0005	Knight Dream Cutscene Cln_dream_teleport0005.png
+dream_teleport0006	Knight Dream Cutscene Cln_dream_teleport0006.png
+dream_teleport0007	Knight Dream Cutscene Cln_dream_teleport0007.png
+dream_teleport0008	Knight Dream Cutscene Cln_dream_teleport0008.png
+dream_teleport0009	Knight Dream Cutscene Cln_dream_teleport0009.png
+dream_teleport0010	Knight Dream Cutscene Cln_dream_teleport0010.png
+dream_teleport0011	Knight Dream Cutscene Cln_dream_teleport0011.png
+dream_teleport0012	Knight Dream Cutscene Cln_dream_teleport0012.png
+dream_teleport0013	Knight Dream Cutscene Cln_dream_teleport0013.png
+dream_teleport0014	Knight Dream Cutscene Cln_dream_teleport0014.png
+dream_teleport0015	Knight Dream Cutscene Cln_dream_teleport0015.png
+dream_teleport0016	Knight Dream Cutscene Cln_dream_teleport0016.png
+dream_teleport0017	Knight Dream Cutscene Cln_dream_teleport0017.png
+dream_teleport0018	Knight Dream Cutscene Cln_dream_teleport0018.png

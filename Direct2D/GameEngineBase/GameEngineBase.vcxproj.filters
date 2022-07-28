@@ -28,81 +28,27 @@
     <Filter Include="ThirdParty\Lib">
       <UniqueIdentifier>{4e160ad7-8fc7-4b13-93cd-ded18a2bdfbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PreCompile">
+      <UniqueIdentifier>{52b469f9-8296-4201-8044-40ab2026de6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameEngineDebug.h">
-      <Filter>Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineDirectory.h">
-      <Filter>IO</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineFile.h">
-      <Filter>IO</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEnginePath.h">
-      <Filter>IO</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineReadFile.h">
-      <Filter>IO</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineWriteFile.h">
-      <Filter>IO</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineMath.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineRandom.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineTime.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineNameObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineUpdateObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineString.h">
+    <CopyFileToFolders Include="ThirdParty\bin\fmod.dll">
+      <Filter>ThirdParty\Lib</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmodL_vc.lib" />
+    <CopyFileToFolders Include="ThirdParty\bin\fmod_vc.lib" />
+    <CopyFileToFolders Include="ThirdParty\bin\fmodL.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineString.cpp">
       <Filter>String</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineInput.h">
-      <Filter>WindowsOS</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineWindow.h">
-      <Filter>WindowsOS</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineSound.h">
-      <Filter>ThirdParty\Sound</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="GameEngineDebug.cpp">
-      <Filter>Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineDirectory.cpp">
-      <Filter>IO</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineFile.cpp">
-      <Filter>IO</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEnginePath.cpp">
-      <Filter>IO</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineReadFile.cpp">
-      <Filter>IO</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineWriteFile.cpp">
-      <Filter>IO</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineMath.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineRandom.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineTime.cpp">
-      <Filter>Math</Filter>
+    <ClCompile Include="GameEngineDebugObject.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineNameObject.cpp">
       <Filter>Object</Filter>
@@ -110,35 +56,88 @@
     <ClCompile Include="GameEngineUpdateObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineString.cpp">
-      <Filter>String</Filter>
+    <ClCompile Include="GameEngineDebug.cpp">
+      <Filter>Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineInput.cpp">
-      <Filter>WindowsOS</Filter>
+    <ClCompile Include="GameEngineFile.cpp">
+      <Filter>IO</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineWindow.cpp">
-      <Filter>WindowsOS</Filter>
+    <ClCompile Include="GameEnginePath.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineDirectory.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineRandom.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineTime.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineTransform.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineTransform_Collision.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineMath.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineSound.cpp">
       <Filter>ThirdParty\Sound</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineWindow.cpp">
+      <Filter>WindowsOS</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineInput.cpp">
+      <Filter>WindowsOS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdParty\bin\fmod_vc.lib">
-      <Filter>ThirdParty\Lib</Filter>
-    </Library>
-    <Library Include="ThirdParty\bin\fmodL_vc.lib">
-      <Filter>ThirdParty\Lib</Filter>
-    </Library>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ThirdParty\bin\fmodL.dll">
-      <Filter>ThirdParty\Lib</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\bin\fmod.dll">
-      <Filter>ThirdParty\Lib</Filter>
-    </CopyFileToFolders>
+    <ClInclude Include="PreCompile.h">
+      <Filter>PreCompile</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineString.h">
+      <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineDebugObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineNameObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineDebug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineFile.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEnginePath.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineDirectory.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineRandom.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineTime.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineTransform.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineSound.h">
+      <Filter>ThirdParty\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineWindow.h">
+      <Filter>WindowsOS</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineInput.h">
+      <Filter>WindowsOS</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

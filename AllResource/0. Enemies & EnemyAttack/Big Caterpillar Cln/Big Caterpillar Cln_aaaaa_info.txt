@@ -1,0 +1,37 @@
+version: 2
+type: collection
+name: Big Caterpillar Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 30
+caterpillar_look_right000	Big Caterpillar Cln_caterpillar_look_right000.png
+caterpillar_look_right001	Big Caterpillar Cln_caterpillar_look_right001.png
+caterpillar_look_right002	Big Caterpillar Cln_caterpillar_look_right002.png
+caterpillar_look_right003	Big Caterpillar Cln_caterpillar_look_right003.png
+caterpillar_look_right004	Big Caterpillar Cln_caterpillar_look_right004.png
+caterpillar_look_right005	Big Caterpillar Cln_caterpillar_look_right005.png
+caterpiller_idle_left000	Big Caterpillar Cln_caterpiller_idle_left000.png
+caterpiller_idle_left001	Big Caterpillar Cln_caterpiller_idle_left001.png
+caterpiller_idle_left002	Big Caterpillar Cln_caterpiller_idle_left002.png
+caterpiller_idle_left003	Big Caterpillar Cln_caterpiller_idle_left003.png
+caterpiller_idle_left004	Big Caterpillar Cln_caterpiller_idle_left004.png
+caterpiller_idle_left005	Big Caterpillar Cln_caterpiller_idle_left005.png
+caterpiller_idle_left006	Big Caterpillar Cln_caterpiller_idle_left006.png
+idle0000	Big Caterpillar Cln_idle0000.png
+idle0001	Big Caterpillar Cln_idle0001.png
+idle0002	Big Caterpillar Cln_idle0002.png
+rest_to_wake0000	Big Caterpillar Cln_rest_to_wake0000.png
+rest_to_wake0001	Big Caterpillar Cln_rest_to_wake0001.png
+rest_to_wake0002	Big Caterpillar Cln_rest_to_wake0002.png
+rest_to_wake0003	Big Caterpillar Cln_rest_to_wake0003.png
+tail_idle0000	Big Caterpillar Cln_tail_idle0000.png
+tail_idle0001	Big Caterpillar Cln_tail_idle0001.png
+tail_idle0002	Big Caterpillar Cln_tail_idle0002.png
+tail_wound0000	Big Caterpillar Cln_tail_wound0000.png
+tail_wound0001	Big Caterpillar Cln_tail_wound0001.png
+tail_wound0002	Big Caterpillar Cln_tail_wound0002.png
+tail_wound0003	Big Caterpillar Cln_tail_wound0003.png
+turn_left_to_right0000	Big Caterpillar Cln_turn_left_to_right0000.png
+turn_left_to_right0001	Big Caterpillar Cln_turn_left_to_right0001.png
+turn_left_to_right0002	Big Caterpillar Cln_turn_left_to_right0002.png

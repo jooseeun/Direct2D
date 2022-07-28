@@ -1,0 +1,20 @@
+version: 2
+type: collection
+name: Fungoon Baby
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 13
+death0000	Fungoon Baby_death0000.png
+death0001	Fungoon Baby_death0001.png
+death0002	Fungoon Baby_death0002.png
+death0003	Fungoon Baby_death0003.png
+death0004	Fungoon Baby_death0004.png
+float0000	Fungoon Baby_float0000.png
+float0001	Fungoon Baby_float0001.png
+float0002	Fungoon Baby_float0002.png
+float0003	Fungoon Baby_float0003.png
+float0004	Fungoon Baby_float0004.png
+float0005	Fungoon Baby_float0005.png
+turn0000	Fungoon Baby_turn0000.png
+turn0001	Fungoon Baby_turn0001.png

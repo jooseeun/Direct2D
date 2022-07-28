@@ -18,6 +18,113 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\AR40\DIRECTX\GameEngineCore\PreCompile.cpp" />
+    <ClCompile Include="GameEngineActor.cpp" />
+    <ClCompile Include="GameEngineBlend.cpp" />
+    <ClCompile Include="GameEngineCamera.cpp" />
+    <ClCompile Include="GameEngineCameraActor.cpp" />
+    <ClCompile Include="GameEngineCollision.cpp" />
+    <ClCompile Include="GameEngineComponent.cpp" />
+    <ClCompile Include="GameEngineConstantBuffer.cpp" />
+    <ClCompile Include="GameEngineCore.cpp" />
+    <ClCompile Include="GameEngineCore_Resources.cpp" />
+    <ClCompile Include="GameEngineDefaultRenderer.cpp" />
+    <ClCompile Include="GameEngineDepthStencil.cpp" />
+    <ClCompile Include="GameEngineDepthStencilTexture.cpp" />
+    <ClCompile Include="GameEngineDevice.cpp" />
+    <ClCompile Include="GameEngineFolderTexture.cpp" />
+    <ClCompile Include="GameEngineGUI.cpp" />
+    <ClCompile Include="GameEngineIndexBuffer.cpp" />
+    <ClCompile Include="GameEngineInputLayOut.cpp" />
+    <ClCompile Include="GameEngineLevel.cpp" />
+    <ClCompile Include="GameEnginePixelShader.cpp" />
+    <ClCompile Include="GameEngineRasterizer.cpp" />
+    <ClCompile Include="GameEngineRenderer.cpp" />
+    <ClCompile Include="GameEngineRenderingPipeLine.cpp" />
+    <ClCompile Include="GameEngineRenderTarget.cpp" />
+    <ClCompile Include="GameEngineRes.cpp" />
+    <ClCompile Include="GameEngineSampler.cpp" />
+    <ClCompile Include="GameEngineShader.cpp" />
+    <ClCompile Include="GameEngineShaderResourcesHelper.cpp" />
+    <ClCompile Include="GameEngineStateManager.cpp" />
+    <ClCompile Include="GameEngineStatusWindow.cpp" />
+    <ClCompile Include="GameEngineTexture.cpp" />
+    <ClCompile Include="GameEngineTextureRenderer.cpp" />
+    <ClCompile Include="GameEngineTransformBase.cpp" />
+    <ClCompile Include="GameEngineTransformComponent.cpp" />
+    <ClCompile Include="GameEngineUIRenderer.cpp" />
+    <ClCompile Include="GameEngineVertexBuffer.cpp" />
+    <ClCompile Include="GameEngineVertexs.cpp" />
+    <ClCompile Include="GameEngineVertexShader.cpp" />
+    <ClCompile Include="GEngine.cpp" />
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_dx11.cpp" />
+    <ClCompile Include="imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui_tables.cpp" />
+    <ClCompile Include="imgui_widgets.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\AR40\DIRECTX\GameEngineCore\PreCompile.h" />
+    <ClInclude Include="CoreMinimal.h" />
+    <ClInclude Include="GameEngineActor.h" />
+    <ClInclude Include="GameEngineBlend.h" />
+    <ClInclude Include="GameEngineCamera.h" />
+    <ClInclude Include="GameEngineCameraActor.h" />
+    <ClInclude Include="GameEngineCollision.h" />
+    <ClInclude Include="GameEngineComponent.h" />
+    <ClInclude Include="GameEngineConstantBuffer.h" />
+    <ClInclude Include="GameEngineCore.h" />
+    <ClInclude Include="GameEngineDefaultRenderer.h" />
+    <ClInclude Include="GameEngineDepthStencil.h" />
+    <ClInclude Include="GameEngineDepthStencilTexture.h" />
+    <ClInclude Include="GameEngineDevice.h" />
+    <ClInclude Include="GameEngineFolderTexture.h" />
+    <ClInclude Include="GameEngineGUI.h" />
+    <ClInclude Include="GameEngineIndexBuffer.h" />
+    <ClInclude Include="GameEngineInputLayOut.h" />
+    <ClInclude Include="GameEngineLevel.h" />
+    <ClInclude Include="GameEnginePixelShader.h" />
+    <ClInclude Include="GameEngineRasterizer.h" />
+    <ClInclude Include="GameEngineRenderer.h" />
+    <ClInclude Include="GameEngineRenderingPipeLine.h" />
+    <ClInclude Include="GameEngineRenderTarget.h" />
+    <ClInclude Include="GameEngineRes.h" />
+    <ClInclude Include="GameEngineSampler.h" />
+    <ClInclude Include="GameEngineShader.h" />
+    <ClInclude Include="GameEngineShaderResourcesHelper.h" />
+    <ClInclude Include="GameEngineStateManager.h" />
+    <ClInclude Include="GameEngineStatusWindow.h" />
+    <ClInclude Include="GameEngineTexture.h" />
+    <ClInclude Include="GameEngineTextureRenderer.h" />
+    <ClInclude Include="GameEngineTransformBase.h" />
+    <ClInclude Include="GameEngineTransformComponent.h" />
+    <ClInclude Include="GameEngineUIRenderer.h" />
+    <ClInclude Include="GameEngineVertexBuffer.h" />
+    <ClInclude Include="GameEngineVertexs.h" />
+    <ClInclude Include="GameEngineVertexShader.h" />
+    <ClInclude Include="GEngine.h" />
+    <ClInclude Include="imconfig.h" />
+    <ClInclude Include="imgui.h" />
+    <ClInclude Include="imgui_impl_dx11.h" />
+    <ClInclude Include="imgui_impl_win32.h" />
+    <ClInclude Include="imgui_internal.h" />
+    <ClInclude Include="imstb_rectpack.h" />
+    <ClInclude Include="imstb_textedit.h" />
+    <ClInclude Include="imstb_truetype.h" />
+    <ClInclude Include="ThirdParty\inc\DirectXTex.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\Release\DirectXTex.lib">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -27,13 +134,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -156,18 +263,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="GameEngineStateManager.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="GameEngineStateManager.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

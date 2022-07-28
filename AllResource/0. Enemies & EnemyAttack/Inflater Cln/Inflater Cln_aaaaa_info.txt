@@ -1,0 +1,30 @@
+version: 2
+type: collection
+name: Inflater Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 23
+death0000	Inflater Cln_death0000.png
+death0001	Inflater Cln_death0001.png
+inflate_bounce0000	Inflater Cln_inflate_bounce0000.png
+inflate_bounce0001	Inflater Cln_inflate_bounce0001.png
+inflate_bounce0002	Inflater Cln_inflate_bounce0002.png
+inflate_idle0000	Inflater Cln_inflate_idle0000.png
+inflate_idle0001	Inflater Cln_inflate_idle0001.png
+inflate_idle0002	Inflater Cln_inflate_idle0002.png
+inflate_idle0003	Inflater Cln_inflate_idle0003.png
+inflate_idle0004	Inflater Cln_inflate_idle0004.png
+inflate_turn0000	Inflater Cln_inflate_turn0000.png
+inflate_turn0001	Inflater Cln_inflate_turn0001.png
+inflate0000	Inflater Cln_inflate0000.png
+inflate0001	Inflater Cln_inflate0001.png
+inflate0002	Inflater Cln_inflate0002.png
+inflate0003	Inflater Cln_inflate0003.png
+small_idle0000	Inflater Cln_small_idle0000.png
+small_idle0001	Inflater Cln_small_idle0001.png
+small_idle0002	Inflater Cln_small_idle0002.png
+small_idle0003	Inflater Cln_small_idle0003.png
+small_idle0004	Inflater Cln_small_idle0004.png
+small_turn0000	Inflater Cln_small_turn0000.png
+small_turn0001	Inflater Cln_small_turn0001.png

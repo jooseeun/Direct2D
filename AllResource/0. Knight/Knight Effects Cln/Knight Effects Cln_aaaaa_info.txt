@@ -1,0 +1,14 @@
+version: 2
+type: collection
+name: Knight Effects Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 7
+acid_armour_effect0000	Knight Effects Cln_acid_armour_effect0000.png
+acid_armour_effect0001	Knight Effects Cln_acid_armour_effect0001.png
+acid_armour_effect0002	Knight Effects Cln_acid_armour_effect0002.png
+acid_armour_effect0003	Knight Effects Cln_acid_armour_effect0003.png
+acid_armour_effect0004	Knight Effects Cln_acid_armour_effect0004.png
+acid_armour_effect0005	Knight Effects Cln_acid_armour_effect0005.png
+acid_armour_effect0006	Knight Effects Cln_acid_armour_effect0006.png

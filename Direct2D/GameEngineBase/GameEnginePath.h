@@ -4,7 +4,12 @@
 // Ό³Έν :
 class GameEnginePath
 {
+//private:
+
 public:
+	static std::string GetExtension(const std::string& _Path);
+	static std::string GetFileName(const std::string& _Path);
+
 	// constrcuter destructer
 	GameEnginePath();
 	GameEnginePath(const std::filesystem::path& _Path);
@@ -25,6 +30,7 @@ public:
 	std::string GetFileName() const;
 
 	std::string GetFullPath() const;
+
 
 protected:
 	std::filesystem::path Path_;

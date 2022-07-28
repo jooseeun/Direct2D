@@ -1,0 +1,48 @@
+version: 2
+type: collection
+name: Mantis Gates Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 41
+backboard	Mantis Gates Cln_backboard.png
+burst0000	Mantis Gates Cln_burst0000.png
+burst0001	Mantis Gates Cln_burst0001.png
+burst0002	Mantis Gates Cln_burst0002.png
+burst0003	Mantis Gates Cln_burst0003.png
+burst0004	Mantis Gates Cln_burst0004.png
+mantis_big_door0000	Mantis Gates Cln_mantis_big_door0000.png
+mantis_big_door0001	Mantis Gates Cln_mantis_big_door0001.png
+mantis_big_door0002	Mantis Gates Cln_mantis_big_door0002.png
+mantis_big_door0003	Mantis Gates Cln_mantis_big_door0003.png
+mantis_big_door0004	Mantis Gates Cln_mantis_big_door0004.png
+mantis_big_door0005	Mantis Gates Cln_mantis_big_door0005.png
+mantis_chest0000	Mantis Gates Cln_mantis_chest0000.png
+mantis_chest0001	Mantis Gates Cln_mantis_chest0001.png
+mantis_chest0002	Mantis Gates Cln_mantis_chest0002.png
+mantis_chest0003	Mantis Gates Cln_mantis_chest0003.png
+mantis_chest0004	Mantis Gates Cln_mantis_chest0004.png
+mantis_chest0005	Mantis Gates Cln_mantis_chest0005.png
+mantis_chest0006	Mantis Gates Cln_mantis_chest0006.png
+mantis_door0000	Mantis Gates Cln_mantis_door0000.png
+mantis_door0001	Mantis Gates Cln_mantis_door0001.png
+mantis_door0002	Mantis Gates Cln_mantis_door0002.png
+mantis_door0003	Mantis Gates Cln_mantis_door0003.png
+mantis_door0004	Mantis Gates Cln_mantis_door0004.png
+mantis_door0005	Mantis Gates Cln_mantis_door0005.png
+mantis_door0006	Mantis Gates Cln_mantis_door0006.png
+mantis_lever_idle0000	Mantis Gates Cln_mantis_lever_idle0000.png
+mantis_lever_idle0001	Mantis Gates Cln_mantis_lever_idle0001.png
+mantis_lever_idle0002	Mantis Gates Cln_mantis_lever_idle0002.png
+mantis_lever_idle0003	Mantis Gates Cln_mantis_lever_idle0003.png
+mantis_lever_idle0004	Mantis Gates Cln_mantis_lever_idle0004.png
+mantis_lever_switch0001	Mantis Gates Cln_mantis_lever_switch0001.png
+mantis_lever_switch0002	Mantis Gates Cln_mantis_lever_switch0002.png
+mantis_lever_switch0003	Mantis Gates Cln_mantis_lever_switch0003.png
+mantis_lever_switch0004	Mantis Gates Cln_mantis_lever_switch0004.png
+mantis_lever_switch0005	Mantis Gates Cln_mantis_lever_switch0005.png
+mantis_lever_switch0006	Mantis Gates Cln_mantis_lever_switch0006.png
+mantis_opening_floor0000	Mantis Gates Cln_mantis_opening_floor0000.png
+mantis_opening_floor0001	Mantis Gates Cln_mantis_opening_floor0001.png
+mantis_opening_floor0002	Mantis Gates Cln_mantis_opening_floor0002.png
+mantis_opening_floor0003	Mantis Gates Cln_mantis_opening_floor0003.png

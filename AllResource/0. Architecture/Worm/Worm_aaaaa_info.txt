@@ -1,0 +1,16 @@
+version: 2
+type: collection
+name: Worm
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 9
+burst_resize0000	Worm_burst_resize0000.png
+burst_resize0001	Worm_burst_resize0001.png
+burst_resize0002	Worm_burst_resize0002.png
+burst_resize0003	Worm_burst_resize0003.png
+burst_resize0004	Worm_burst_resize0004.png
+burst_resize0005	Worm_burst_resize0005.png
+idle0000	Worm_idle0000.png
+idle0001	Worm_idle0001.png
+idle0002	Worm_idle0002.png

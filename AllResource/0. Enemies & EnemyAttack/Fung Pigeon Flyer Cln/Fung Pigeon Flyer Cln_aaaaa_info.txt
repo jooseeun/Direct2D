@@ -1,0 +1,23 @@
+version: 2
+type: collection
+name: Fung Pigeon Flyer Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 16
+fly0000	Fung Pigeon Flyer Cln_fly0000.png
+fly0001	Fung Pigeon Flyer Cln_fly0001.png
+fly0002	Fung Pigeon Flyer Cln_fly0002.png
+fly0003	Fung Pigeon Flyer Cln_fly0003.png
+idle_010000	Fung Pigeon Flyer Cln_idle_010000.png
+idle_010001	Fung Pigeon Flyer Cln_idle_010001.png
+idle_010002	Fung Pigeon Flyer Cln_idle_010002.png
+idle_010003	Fung Pigeon Flyer Cln_idle_010003.png
+idle_020000	Fung Pigeon Flyer Cln_idle_020000.png
+idle_020001	Fung Pigeon Flyer Cln_idle_020001.png
+idle_020002	Fung Pigeon Flyer Cln_idle_020002.png
+idle_020003	Fung Pigeon Flyer Cln_idle_020003.png
+idle_030000	Fung Pigeon Flyer Cln_idle_030000.png
+idle_030001	Fung Pigeon Flyer Cln_idle_030001.png
+idle_030002	Fung Pigeon Flyer Cln_idle_030002.png
+idle_030003	Fung Pigeon Flyer Cln_idle_030003.png

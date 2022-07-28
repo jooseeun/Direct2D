@@ -1,0 +1,15 @@
+version: 2
+type: collection
+name: Charm Effects Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 8
+angry_effect0000	Charm Effects Cln_angry_effect0000.png
+angry_effect0001	Charm Effects Cln_angry_effect0001.png
+angry_effect0002	Charm Effects Cln_angry_effect0002.png
+angry_effect0003	Charm Effects Cln_angry_effect0003.png
+angry_effect0004	Charm Effects Cln_angry_effect0004.png
+angry_effect0005	Charm Effects Cln_angry_effect0005.png
+angry_effect0006	Charm Effects Cln_angry_effect0006.png
+angry_effect0007	Charm Effects Cln_angry_effect0007.png

@@ -1,0 +1,27 @@
+version: 2
+type: collection
+name: Jinn NPC Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 20
+Jinn0000	Jinn NPC Cln_Jinn0000.png
+Jinn0001	Jinn NPC Cln_Jinn0001.png
+Jinn0002	Jinn NPC Cln_Jinn0002.png
+Jinn0003	Jinn NPC Cln_Jinn0003.png
+Jinn0004	Jinn NPC Cln_Jinn0004.png
+Jinn0005	Jinn NPC Cln_Jinn0005.png
+Jinn0006	Jinn NPC Cln_Jinn0006.png
+Jinn0007	Jinn NPC Cln_Jinn0007.png
+Jinn0008	Jinn NPC Cln_Jinn0008.png
+Jinn0009	Jinn NPC Cln_Jinn0009.png
+Jinn0010	Jinn NPC Cln_Jinn0010.png
+Jinn0011	Jinn NPC Cln_Jinn0011.png
+Jinn0012	Jinn NPC Cln_Jinn0012.png
+Jinn0013	Jinn NPC Cln_Jinn0013.png
+Jinn0014	Jinn NPC Cln_Jinn0014.png
+Jinn0015	Jinn NPC Cln_Jinn0015.png
+Jinn0016	Jinn NPC Cln_Jinn0016.png
+Jinn0017	Jinn NPC Cln_Jinn0017.png
+Jinn0018	Jinn NPC Cln_Jinn0018.png
+Jinn0019	Jinn NPC Cln_Jinn0019.png

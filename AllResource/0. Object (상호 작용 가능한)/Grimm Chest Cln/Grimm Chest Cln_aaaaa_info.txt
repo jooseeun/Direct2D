@@ -1,0 +1,14 @@
+version: 2
+type: collection
+name: Grimm Chest Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 7
+Grimm_chest0000	Grimm Chest Cln_Grimm_chest0000.png
+Grimm_chest0001	Grimm Chest Cln_Grimm_chest0001.png
+Grimm_chest0002	Grimm Chest Cln_Grimm_chest0002.png
+Grimm_chest0003	Grimm Chest Cln_Grimm_chest0003.png
+Grimm_chest0004	Grimm Chest Cln_Grimm_chest0004.png
+Grimm_chest0005	Grimm Chest Cln_Grimm_chest0005.png
+Grimm_chest0006	Grimm Chest Cln_Grimm_chest0006.png

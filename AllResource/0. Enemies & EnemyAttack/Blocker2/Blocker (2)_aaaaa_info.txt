@@ -1,0 +1,37 @@
+version: 2
+type: collection
+name: Blocker (2)
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 30
+close0000	Blocker (2)_close0000.png
+close0001	Blocker (2)_close0001.png
+close0002	Blocker (2)_close0002.png
+close0003	Blocker (2)_close0003.png
+close0004	Blocker (2)_close0004.png
+close0005	Blocker (2)_close0005.png
+death0000	Blocker (2)_death0000.png
+death0001	Blocker (2)_death0001.png
+death0002	Blocker (2)_death0002.png
+death0003	Blocker (2)_death0003.png
+death0004	Blocker (2)_death0004.png
+death0005	Blocker (2)_death0005.png
+idle0000	Blocker (2)_idle0000.png
+idle0001	Blocker (2)_idle0001.png
+idle0002	Blocker (2)_idle0002.png
+idle0003	Blocker (2)_idle0003.png
+idle0004	Blocker (2)_idle0004.png
+idle0005	Blocker (2)_idle0005.png
+idle0006	Blocker (2)_idle0006.png
+open0000	Blocker (2)_open0000.png
+open0001	Blocker (2)_open0001.png
+open0002	Blocker (2)_open0002.png
+open0003	Blocker (2)_open0003.png
+shoot0000	Blocker (2)_shoot0000.png
+shoot0001	Blocker (2)_shoot0001.png
+shoot0002	Blocker (2)_shoot0002.png
+shoot0003	Blocker (2)_shoot0003.png
+shoot0004	Blocker (2)_shoot0004.png
+shoot0005	Blocker (2)_shoot0005.png
+shoot0006	Blocker (2)_shoot0006.png

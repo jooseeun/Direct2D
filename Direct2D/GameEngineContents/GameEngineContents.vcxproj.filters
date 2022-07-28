@@ -4,15 +4,84 @@
     <Filter Include="Contents">
       <UniqueIdentifier>{48227bca-5fac-4906-b5aa-1fd4f19b322e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{6292bde0-bc38-448d-8303-e274f6a4b192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{75dd857f-5f15-4b0d-bfd7-cd66f65f29e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{f7f98585-80fe-4089-b790-46267e1f024b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PreCompile">
+      <UniqueIdentifier>{a6eb18f1-1c3b-400b-a5e7-a212238703e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ContentsCore.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="ContentsCore.cpp">
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="HollowKnigntCore.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
+    <ClCompile Include="IntroLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial1Level.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial2Level.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial3Level.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial4Level.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="TownLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="MapSet.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PreCompile.h">
+      <Filter>PreCompile</Filter>
+    </ClInclude>
+    <ClInclude Include="HollowKnigntCore.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial1Level.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial2Level.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial3Level.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial4Level.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="TownLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalContentsValue.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="MapSet.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

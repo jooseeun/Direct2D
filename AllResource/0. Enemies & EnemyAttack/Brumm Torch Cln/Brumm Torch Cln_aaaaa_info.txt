@@ -1,0 +1,33 @@
+version: 2
+type: collection
+name: Brumm Torch Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 26
+	Brumm Torch Cln_unnamed_0.png
+brumm_brazier_open0001	Brumm Torch Cln_brumm_brazier_open0001.png
+brumm_brazier_open0002	Brumm Torch Cln_brumm_brazier_open0002.png
+brumm_brazier_open0003	Brumm Torch Cln_brumm_brazier_open0003.png
+brumm_brazier_open0004	Brumm Torch Cln_brumm_brazier_open0004.png
+brumm_brazier_open0005	Brumm Torch Cln_brumm_brazier_open0005.png
+brumm_brazier_open0006	Brumm Torch Cln_brumm_brazier_open0006.png
+brumm_brazier_open0007	Brumm Torch Cln_brumm_brazier_open0007.png
+brumm_brazier_open0008	Brumm Torch Cln_brumm_brazier_open0008.png
+brumm_brazier_open0009	Brumm Torch Cln_brumm_brazier_open0009.png
+brumm_brazier_open0010	Brumm Torch Cln_brumm_brazier_open0010.png
+brumm_world_meet0000	Brumm Torch Cln_brumm_world_meet0000.png
+brumm_world_meet0001	Brumm Torch Cln_brumm_world_meet0001.png
+brumm_world_meet0002	Brumm Torch Cln_brumm_world_meet0002.png
+brumm_world_meet0003	Brumm Torch Cln_brumm_world_meet0003.png
+brumm_world_meet0004	Brumm Torch Cln_brumm_world_meet0004.png
+brumm_world_meet0005	Brumm Torch Cln_brumm_world_meet0005.png
+brumm_world_meet0006	Brumm Torch Cln_brumm_world_meet0006.png
+brumm_world_meet0007	Brumm Torch Cln_brumm_world_meet0007.png
+brumm_world_meet0008	Brumm Torch Cln_brumm_world_meet0008.png
+brumm_world_meet0009	Brumm Torch Cln_brumm_world_meet0009.png
+brumm_world_meet0010	Brumm Torch Cln_brumm_world_meet0010.png
+brumm_world_meet0011	Brumm Torch Cln_brumm_world_meet0011.png
+brumm_world_meet0013	Brumm Torch Cln_brumm_world_meet0013.png
+brumm_world_meet0014	Brumm Torch Cln_brumm_world_meet0014.png
+brumm_world_meet0015	Brumm Torch Cln_brumm_world_meet0015.png

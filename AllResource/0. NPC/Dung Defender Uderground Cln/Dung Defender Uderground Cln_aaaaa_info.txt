@@ -1,0 +1,20 @@
+version: 2
+type: collection
+name: Dung Defender Uderground Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 13
+Dung_Def_Sit_Head0000	Dung Defender Uderground Cln_Dung_Def_Sit_Head0000.png
+Dung_Def_Sit_Head0001	Dung Defender Uderground Cln_Dung_Def_Sit_Head0001.png
+Dung_Def_Sit_Head0002	Dung Defender Uderground Cln_Dung_Def_Sit_Head0002.png
+Dung_Def_Sit_Head0003	Dung Defender Uderground Cln_Dung_Def_Sit_Head0003.png
+Dung_Def_Sit_Head0004	Dung Defender Uderground Cln_Dung_Def_Sit_Head0004.png
+Dung_Def_Sit_Head0005	Dung Defender Uderground Cln_Dung_Def_Sit_Head0005.png
+Dung_Def_Sit_Head0006	Dung Defender Uderground Cln_Dung_Def_Sit_Head0006.png
+Dung_Def_Sit_Head0007	Dung Defender Uderground Cln_Dung_Def_Sit_Head0007.png
+Dung_Def_Sit_Head0008	Dung Defender Uderground Cln_Dung_Def_Sit_Head0008.png
+Dung_Def_Sit_Head0009	Dung Defender Uderground Cln_Dung_Def_Sit_Head0009.png
+Dung_Def_Sit_Head0010	Dung Defender Uderground Cln_Dung_Def_Sit_Head0010.png
+Dung_Def_Sit_Head0011	Dung Defender Uderground Cln_Dung_Def_Sit_Head0011.png
+Dung_Def_Sit_Head0012	Dung Defender Uderground Cln_Dung_Def_Sit_Head0012.png

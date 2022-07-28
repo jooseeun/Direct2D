@@ -1,0 +1,12 @@
+version: 2
+type: collection
+name: Geo Rocks Extra 2
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 5
+giant_geo_egg0000	Geo Rocks Extra 2_giant_geo_egg0000.png
+giant_geo_egg0001	Geo Rocks Extra 2_giant_geo_egg0001.png
+giant_geo_egg0002	Geo Rocks Extra 2_giant_geo_egg0002.png
+giant_geo_egg0003	Geo Rocks Extra 2_giant_geo_egg0003.png
+giant_geo_egg0004	Geo Rocks Extra 2_giant_geo_egg0004.png

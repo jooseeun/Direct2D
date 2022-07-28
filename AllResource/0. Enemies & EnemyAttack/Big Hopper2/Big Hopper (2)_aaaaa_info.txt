@@ -1,0 +1,22 @@
+version: 2
+type: collection
+name: Big Hopper (2)
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 15
+big_hop0000	Big Hopper (2)_big_hop0000.png
+big_hop0001	Big Hopper (2)_big_hop0001.png
+big_hop0002	Big Hopper (2)_big_hop0002.png
+big_hop0003	Big Hopper (2)_big_hop0003.png
+big_hop0004	Big Hopper (2)_big_hop0004.png
+big_hop0005	Big Hopper (2)_big_hop0005.png
+big_hop0006	Big Hopper (2)_big_hop0006.png
+big_hop0007	Big Hopper (2)_big_hop0007.png
+big_hop0008	Big Hopper (2)_big_hop0008.png
+big_hop0009	Big Hopper (2)_big_hop0009.png
+death0000	Big Hopper (2)_death0000.png
+death0001	Big Hopper (2)_death0001.png
+death0002	Big Hopper (2)_death0002.png
+death0003	Big Hopper (2)_death0003.png
+death0004	Big Hopper (2)_death0004.png

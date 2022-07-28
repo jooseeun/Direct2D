@@ -1,0 +1,18 @@
+version: 2
+type: collection
+name: Knight DJump Cutscene Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 11
+collect_double_jump0000	Knight DJump Cutscene Cln_collect_double_jump0000.png
+collect_double_jump0001	Knight DJump Cutscene Cln_collect_double_jump0001.png
+collect_double_jump0002	Knight DJump Cutscene Cln_collect_double_jump0002.png
+collect_double_jump0003	Knight DJump Cutscene Cln_collect_double_jump0003.png
+collect_double_jump0004	Knight DJump Cutscene Cln_collect_double_jump0004.png
+collect_double_jump0005	Knight DJump Cutscene Cln_collect_double_jump0005.png
+collect_double_jump0006	Knight DJump Cutscene Cln_collect_double_jump0006.png
+collect_double_jump0007	Knight DJump Cutscene Cln_collect_double_jump0007.png
+collect_double_jump0008	Knight DJump Cutscene Cln_collect_double_jump0008.png
+collect_double_jump0009	Knight DJump Cutscene Cln_collect_double_jump0009.png
+collect_double_jump0010	Knight DJump Cutscene Cln_collect_double_jump0010.png

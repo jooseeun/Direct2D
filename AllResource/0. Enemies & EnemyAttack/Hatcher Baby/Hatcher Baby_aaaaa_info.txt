@@ -1,0 +1,22 @@
+version: 2
+type: collection
+name: Hatcher Baby
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 15
+death0000	Hatcher Baby_death0000.png
+death0001	Hatcher Baby_death0001.png
+death0002	Hatcher Baby_death0002.png
+death0003	Hatcher Baby_death0003.png
+death0004	Hatcher Baby_death0004.png
+fly0000	Hatcher Baby_fly0000.png
+fly0001	Hatcher Baby_fly0001.png
+fly0002	Hatcher Baby_fly0002.png
+fly0003	Hatcher Baby_fly0003.png
+fly0004	Hatcher Baby_fly0004.png
+fly0005	Hatcher Baby_fly0005.png
+fly0006	Hatcher Baby_fly0006.png
+fly0007	Hatcher Baby_fly0007.png
+turn000	Hatcher Baby_turn000.png
+turn001	Hatcher Baby_turn001.png

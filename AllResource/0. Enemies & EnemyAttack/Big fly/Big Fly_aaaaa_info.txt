@@ -1,0 +1,58 @@
+version: 2
+type: collection
+name: Big Fly
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 51
+big_bouncer_additions0000	Big Fly_big_bouncer_additions0000.png
+big_bouncer_additions0001	Big Fly_big_bouncer_additions0001.png
+big_bouncer_additions0002	Big Fly_big_bouncer_additions0002.png
+big_bouncer_additions0005	Big Fly_big_bouncer_additions0005.png
+big_bouncer_additions0006	Big Fly_big_bouncer_additions0006.png
+big_bouncer_additions0007	Big Fly_big_bouncer_additions0007.png
+big_bouncer_additions0008	Big Fly_big_bouncer_additions0008.png
+bounce0000	Big Fly_bounce0000.png
+bounce0001	Big Fly_bounce0001.png
+burst_01	Big Fly_burst_01.png
+burst_02	Big Fly_burst_02.png
+burst_03	Big Fly_burst_03.png
+burst_04	Big Fly_burst_04.png
+burst_05	Big Fly_burst_05.png
+burst_06	Big Fly_burst_06.png
+burst_07	Big Fly_burst_07.png
+charge_01	Big Fly_charge_01.png
+charge_02	Big Fly_charge_02.png
+charge_03	Big Fly_charge_03.png
+charge_04	Big Fly_charge_04.png
+charge_05	Big Fly_charge_05.png
+death_fall_01	Big Fly_death_fall_01.png
+death_fall_02	Big Fly_death_fall_02.png
+death_fall_03	Big Fly_death_fall_03.png
+fly0000	Big Fly_fly0000.png
+fly0001	Big Fly_fly0001.png
+fly0002	Big Fly_fly0002.png
+fly0003	Big Fly_fly0003.png
+fly0004	Big Fly_fly0004.png
+fly0005	Big Fly_fly0005.png
+fly0006	Big Fly_fly0006.png
+fly0007	Big Fly_fly0007.png
+gurgle_01	Big Fly_gurgle_01.png
+gurgle_02	Big Fly_gurgle_02.png
+gurgle_03	Big Fly_gurgle_03.png
+gurgle_04	Big Fly_gurgle_04.png
+slam_down	Big Fly_slam_down.png
+slam_recover	Big Fly_slam_recover.png
+slam_up	Big Fly_slam_up.png
+sleeping_01	Big Fly_sleeping_01.png
+sleeping_02	Big Fly_sleeping_02.png
+sleeping_03	Big Fly_sleeping_03.png
+sleeping_04	Big Fly_sleeping_04.png
+sleeping_05	Big Fly_sleeping_05.png
+sleeping_06	Big Fly_sleeping_06.png
+sleeping_07	Big Fly_sleeping_07.png
+sleeping_08	Big Fly_sleeping_08.png
+sleeping_09	Big Fly_sleeping_09.png
+stop_01	Big Fly_stop_01.png
+stop_02	Big Fly_stop_02.png
+stop_03	Big Fly_stop_03.png

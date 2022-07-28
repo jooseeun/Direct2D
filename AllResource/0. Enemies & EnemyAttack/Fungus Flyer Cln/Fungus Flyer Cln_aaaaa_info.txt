@@ -1,0 +1,38 @@
+version: 2
+type: collection
+name: Fungus Flyer Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 31
+death0000	Fungus Flyer Cln_death0000.png
+death0001	Fungus Flyer Cln_death0001.png
+death0002	Fungus Flyer Cln_death0002.png
+death0003	Fungus Flyer Cln_death0003.png
+death0004	Fungus Flyer Cln_death0004.png
+float0000	Fungus Flyer Cln_float0000.png
+float0001	Fungus Flyer Cln_float0001.png
+float0002	Fungus Flyer Cln_float0002.png
+float0003	Fungus Flyer Cln_float0003.png
+float0004	Fungus Flyer Cln_float0004.png
+float0005	Fungus Flyer Cln_float0005.png
+spit_effect_v020000	Fungus Flyer Cln_spit_effect_v020000.png
+spit_effect_v020001	Fungus Flyer Cln_spit_effect_v020001.png
+spit_effect_v020002	Fungus Flyer Cln_spit_effect_v020002.png
+spit_effect_v020003	Fungus Flyer Cln_spit_effect_v020003.png
+spit_effect_v020004	Fungus Flyer Cln_spit_effect_v020004.png
+spit_effect_v020005	Fungus Flyer Cln_spit_effect_v020005.png
+spit0000	Fungus Flyer Cln_spit0000.png
+spit0001	Fungus Flyer Cln_spit0001.png
+spit0002	Fungus Flyer Cln_spit0002.png
+spit0003	Fungus Flyer Cln_spit0003.png
+spit0004	Fungus Flyer Cln_spit0004.png
+spit0005	Fungus Flyer Cln_spit0005.png
+spit0006	Fungus Flyer Cln_spit0006.png
+spit0007	Fungus Flyer Cln_spit0007.png
+spit0008	Fungus Flyer Cln_spit0008.png
+spit0009	Fungus Flyer Cln_spit0009.png
+spit0010	Fungus Flyer Cln_spit0010.png
+turn0000	Fungus Flyer Cln_turn0000.png
+turn0001	Fungus Flyer Cln_turn0001.png
+turn0002	Fungus Flyer Cln_turn0002.png

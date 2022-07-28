@@ -1,0 +1,15 @@
+version: 2
+type: collection
+name: Scenery_Spa
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 8
+waterfall_v030000	Scenery_Spa_waterfall_v030000.png
+waterfall_v030001	Scenery_Spa_waterfall_v030001.png
+waterfall_v030002	Scenery_Spa_waterfall_v030002.png
+waterfall_v030003	Scenery_Spa_waterfall_v030003.png
+waterfall_v030004	Scenery_Spa_waterfall_v030004.png
+waterfall_v030005	Scenery_Spa_waterfall_v030005.png
+waterfall_v030006	Scenery_Spa_waterfall_v030006.png
+waterfall_v030007	Scenery_Spa_waterfall_v030007.png

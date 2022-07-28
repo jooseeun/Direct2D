@@ -1,0 +1,42 @@
+version: 2
+type: collection
+name: Flipper Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 35
+death0000	Flipper Cln_death0000.png
+death0001	Flipper Cln_death0001.png
+death0002	Flipper Cln_death0002.png
+death0003	Flipper Cln_death0003.png
+death0004	Flipper Cln_death0004.png
+death0005	Flipper Cln_death0005.png
+death0006	Flipper Cln_death0006.png
+death0007	Flipper Cln_death0007.png
+death0008	Flipper Cln_death0008.png
+death0009	Flipper Cln_death0009.png
+death0010	Flipper Cln_death0010.png
+death0011	Flipper Cln_death0011.png
+death0012	Flipper Cln_death0012.png
+flip0000	Flipper Cln_flip0000.png
+flip0001	Flipper Cln_flip0001.png
+flip0002	Flipper Cln_flip0002.png
+flip0003	Flipper Cln_flip0003.png
+flip0004	Flipper Cln_flip0004.png
+side_a_turn0000	Flipper Cln_side_a_turn0000.png
+side_a_turn0001	Flipper Cln_side_a_turn0001.png
+side_a_turn0002	Flipper Cln_side_a_turn0002.png
+side_b_hop0000	Flipper Cln_side_b_hop0000.png
+side_b_hop0001	Flipper Cln_side_b_hop0001.png
+side_b_hop0002	Flipper Cln_side_b_hop0002.png
+side_b_hop0003	Flipper Cln_side_b_hop0003.png
+side_b_hop0004	Flipper Cln_side_b_hop0004.png
+side_b_hop0005	Flipper Cln_side_b_hop0005.png
+side_b_hop0006	Flipper Cln_side_b_hop0006.png
+side_b_hop0007	Flipper Cln_side_b_hop0007.png
+side_b_turn0000	Flipper Cln_side_b_turn0000.png
+side_b_turn0001	Flipper Cln_side_b_turn0001.png
+up_crawl0000	Flipper Cln_up_crawl0000.png
+up_crawl0001	Flipper Cln_up_crawl0001.png
+up_crawl0002	Flipper Cln_up_crawl0002.png
+up_crawl0003	Flipper Cln_up_crawl0003.png

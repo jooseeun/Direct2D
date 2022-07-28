@@ -1,0 +1,15 @@
+version: 2
+type: collection
+name: Deepnest Mechanisms Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 8
+deepnest_gate00000	Deepnest Mechanisms Cln_deepnest_gate00000.png
+deepnest_gate00001	Deepnest Mechanisms Cln_deepnest_gate00001.png
+deepnest_gate00002	Deepnest Mechanisms Cln_deepnest_gate00002.png
+deepnest_gate00003	Deepnest Mechanisms Cln_deepnest_gate00003.png
+deepnest_gate00004	Deepnest Mechanisms Cln_deepnest_gate00004.png
+deepnest_gate00005	Deepnest Mechanisms Cln_deepnest_gate00005.png
+deepnest_gate00006	Deepnest Mechanisms Cln_deepnest_gate00006.png
+deepnest_gate00009	Deepnest Mechanisms Cln_deepnest_gate00009.png

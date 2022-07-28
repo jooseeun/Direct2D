@@ -1,0 +1,25 @@
+version: 2
+type: collection
+name: Jelly Crawler Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 18
+idle0000	Jelly Crawler Cln_idle0000.png
+idle0001	Jelly Crawler Cln_idle0001.png
+idle0002	Jelly Crawler Cln_idle0002.png
+idle0003	Jelly Crawler Cln_idle0003.png
+idle0004	Jelly Crawler Cln_idle0004.png
+idle0005	Jelly Crawler Cln_idle0005.png
+idle0006	Jelly Crawler Cln_idle0006.png
+idle0007	Jelly Crawler Cln_idle0007.png
+idle0008	Jelly Crawler Cln_idle0008.png
+idle0009	Jelly Crawler Cln_idle0009.png
+idle0010	Jelly Crawler Cln_idle0010.png
+idle0011	Jelly Crawler Cln_idle0011.png
+idle0012	Jelly Crawler Cln_idle0012.png
+idle0013	Jelly Crawler Cln_idle0013.png
+idle0014	Jelly Crawler Cln_idle0014.png
+idle0015	Jelly Crawler Cln_idle0015.png
+idle0016	Jelly Crawler Cln_idle0016.png
+idle0017	Jelly Crawler Cln_idle0017.png

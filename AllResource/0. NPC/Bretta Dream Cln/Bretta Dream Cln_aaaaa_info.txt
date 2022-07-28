@@ -1,0 +1,64 @@
+version: 2
+type: collection
+name: Bretta Dream Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 57
+audience_frond0000	Bretta Dream Cln_audience_frond0000.png
+audience_frond0001	Bretta Dream Cln_audience_frond0001.png
+audience_frond0002	Bretta Dream Cln_audience_frond0002.png
+audience_frond0003	Bretta Dream Cln_audience_frond0003.png
+audience_frond0004	Bretta Dream Cln_audience_frond0004.png
+audience_frond0005	Bretta Dream Cln_audience_frond0005.png
+audience_frond0006	Bretta Dream Cln_audience_frond0006.png
+audience_frond0007	Bretta Dream Cln_audience_frond0007.png
+audience_frond0008	Bretta Dream Cln_audience_frond0008.png
+audience_frond0009	Bretta Dream Cln_audience_frond0009.png
+audience_frond0010	Bretta Dream Cln_audience_frond0010.png
+bretta_audience_clap0000	Bretta Dream Cln_bretta_audience_clap0000.png
+bretta_audience_clap0001	Bretta Dream Cln_bretta_audience_clap0001.png
+bretta_audience_clap0002	Bretta Dream Cln_bretta_audience_clap0002.png
+bretta_audience_collapse0000	Bretta Dream Cln_bretta_audience_collapse0000.png
+bretta_audience_collapse0001	Bretta Dream Cln_bretta_audience_collapse0001.png
+bretta_audience_collapse0002	Bretta Dream Cln_bretta_audience_collapse0002.png
+bretta_audience_collapse0003	Bretta Dream Cln_bretta_audience_collapse0003.png
+bretta_audience_collapse0004	Bretta Dream Cln_bretta_audience_collapse0004.png
+bretta_audience_collapse0005	Bretta Dream Cln_bretta_audience_collapse0005.png
+bretta_audience_collapse0006	Bretta Dream Cln_bretta_audience_collapse0006.png
+bretta_audience_collapse0007	Bretta Dream Cln_bretta_audience_collapse0007.png
+bretta_audience_collapse0008	Bretta Dream Cln_bretta_audience_collapse0008.png
+bretta_audience_collapse0009	Bretta Dream Cln_bretta_audience_collapse0009.png
+bretta_audience_shock0000	Bretta Dream Cln_bretta_audience_shock0000.png
+bretta_audience_shock0001	Bretta Dream Cln_bretta_audience_shock0001.png
+bretta_audience_shock0002	Bretta Dream Cln_bretta_audience_shock0002.png
+bretta_audience_shock0003	Bretta Dream Cln_bretta_audience_shock0003.png
+idle000	Bretta Dream Cln_idle000.png
+idle001	Bretta Dream Cln_idle001.png
+idle002	Bretta Dream Cln_idle002.png
+idle003	Bretta Dream Cln_idle003.png
+idle004	Bretta Dream Cln_idle004.png
+look_left0000	Bretta Dream Cln_look_left0000.png
+look_left0001	Bretta Dream Cln_look_left0001.png
+look_left0002	Bretta Dream Cln_look_left0002.png
+look_left0003	Bretta Dream Cln_look_left0003.png
+look_left0004	Bretta Dream Cln_look_left0004.png
+look_left0005	Bretta Dream Cln_look_left0005.png
+look_right_0005	Bretta Dream Cln_look_right_0005.png
+look_right0000	Bretta Dream Cln_look_right0000.png
+look_right0001	Bretta Dream Cln_look_right0001.png
+look_right0002	Bretta Dream Cln_look_right0002.png
+look_right0003	Bretta Dream Cln_look_right0003.png
+look_right0004	Bretta Dream Cln_look_right0004.png
+zote_collapse_audience0000	Bretta Dream Cln_zote_collapse_audience0000.png
+zote_collapse_audience0001	Bretta Dream Cln_zote_collapse_audience0001.png
+zote_collapse_audience0002	Bretta Dream Cln_zote_collapse_audience0002.png
+zote_collapse_audience0003	Bretta Dream Cln_zote_collapse_audience0003.png
+zote_collapse_audience0004	Bretta Dream Cln_zote_collapse_audience0004.png
+zote_collapse_audience0005	Bretta Dream Cln_zote_collapse_audience0005.png
+zote_shock0000	Bretta Dream Cln_zote_shock0000.png
+zote_shock0001	Bretta Dream Cln_zote_shock0001.png
+zote_shock0002	Bretta Dream Cln_zote_shock0002.png
+zote_shock0003	Bretta Dream Cln_zote_shock0003.png
+zote_shock0004	Bretta Dream Cln_zote_shock0004.png
+zote_shock0005	Bretta Dream Cln_zote_shock0005.png

@@ -1,0 +1,14 @@
+version: 2
+type: collection
+name: Battle Gate Archive Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 7
+monomon_battle_gate000	Battle Gate Archive Cln_monomon_battle_gate000.png
+monomon_battle_gate001	Battle Gate Archive Cln_monomon_battle_gate001.png
+monomon_battle_gate002	Battle Gate Archive Cln_monomon_battle_gate002.png
+monomon_battle_gate003	Battle Gate Archive Cln_monomon_battle_gate003.png
+monomon_battle_gate004	Battle Gate Archive Cln_monomon_battle_gate004.png
+monomon_battle_gate005	Battle Gate Archive Cln_monomon_battle_gate005.png
+monomon_battle_gate006	Battle Gate Archive Cln_monomon_battle_gate006.png

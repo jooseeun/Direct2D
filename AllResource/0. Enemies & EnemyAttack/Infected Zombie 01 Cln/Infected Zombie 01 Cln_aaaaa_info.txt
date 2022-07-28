@@ -1,0 +1,39 @@
+version: 2
+type: collection
+name: Infected Zombie 01 Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 32
+death	Infected Zombie 01 Cln_death.png
+death_v020000	Infected Zombie 01 Cln_death_v020000.png
+death_v020001	Infected Zombie 01 Cln_death_v020001.png
+death_v020002	Infected Zombie 01 Cln_death_v020002.png
+idle_to_run0026	Infected Zombie 01 Cln_idle_to_run0026.png
+idle_to_run0027	Infected Zombie 01 Cln_idle_to_run0027.png
+idle_to_run0028	Infected Zombie 01 Cln_idle_to_run0028.png
+idle_to_run0029	Infected Zombie 01 Cln_idle_to_run0029.png
+idle_to_run0030	Infected Zombie 01 Cln_idle_to_run0030.png
+idle_to_run0031	Infected Zombie 01 Cln_idle_to_run0031.png
+idle_to_run0032	Infected Zombie 01 Cln_idle_to_run0032.png
+idle_to_run0033	Infected Zombie 01 Cln_idle_to_run0033.png
+idle0026	Infected Zombie 01 Cln_idle0026.png
+idle0027	Infected Zombie 01 Cln_idle0027.png
+idle0028	Infected Zombie 01 Cln_idle0028.png
+idle0029	Infected Zombie 01 Cln_idle0029.png
+idle0030	Infected Zombie 01 Cln_idle0030.png
+idle0031	Infected Zombie 01 Cln_idle0031.png
+run0026	Infected Zombie 01 Cln_run0026.png
+run0027	Infected Zombie 01 Cln_run0027.png
+run0028	Infected Zombie 01 Cln_run0028.png
+run0029	Infected Zombie 01 Cln_run0029.png
+run0030	Infected Zombie 01 Cln_run0030.png
+turn0026	Infected Zombie 01 Cln_turn0026.png
+turn0027	Infected Zombie 01 Cln_turn0027.png
+walk0026	Infected Zombie 01 Cln_walk0026.png
+walk0027	Infected Zombie 01 Cln_walk0027.png
+walk0028	Infected Zombie 01 Cln_walk0028.png
+walk0029	Infected Zombie 01 Cln_walk0029.png
+walk0030	Infected Zombie 01 Cln_walk0030.png
+walk0031	Infected Zombie 01 Cln_walk0031.png
+walk0032	Infected Zombie 01 Cln_walk0032.png

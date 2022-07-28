@@ -1,0 +1,52 @@
+version: 2
+type: collection
+name: Charm Slug Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 45
+idle_to_shop0026	Charm Slug Cln_idle_to_shop0026.png
+idle_to_shop0027	Charm Slug Cln_idle_to_shop0027.png
+idle_to_shop0028	Charm Slug Cln_idle_to_shop0028.png
+idle_to_shop0029	Charm Slug Cln_idle_to_shop0029.png
+idle_to_shop0030	Charm Slug Cln_idle_to_shop0030.png
+idle_to_shop0031	Charm Slug Cln_idle_to_shop0031.png
+idle_to_shop0032	Charm Slug Cln_idle_to_shop0032.png
+idle_to_shop0033	Charm Slug Cln_idle_to_shop0033.png
+idle_to_shop0034	Charm Slug Cln_idle_to_shop0034.png
+idle_to_shop0035	Charm Slug Cln_idle_to_shop0035.png
+idle_to_shop0036	Charm Slug Cln_idle_to_shop0036.png
+idle_to_shop0037	Charm Slug Cln_idle_to_shop0037.png
+idle_to_shop0038	Charm Slug Cln_idle_to_shop0038.png
+idle_to_talk0026	Charm Slug Cln_idle_to_talk0026.png
+idle_to_talk0027	Charm Slug Cln_idle_to_talk0027.png
+idle_to_talk0028	Charm Slug Cln_idle_to_talk0028.png
+idle_to_talk0029	Charm Slug Cln_idle_to_talk0029.png
+idle0026	Charm Slug Cln_idle0026.png
+idle0027	Charm Slug Cln_idle0027.png
+idle0028	Charm Slug Cln_idle0028.png
+idle0029	Charm Slug Cln_idle0029.png
+idle0030	Charm Slug Cln_idle0030.png
+idle0031	Charm Slug Cln_idle0031.png
+idle0032	Charm Slug Cln_idle0032.png
+idle0033	Charm Slug Cln_idle0033.png
+idle0034	Charm Slug Cln_idle0034.png
+idle0035	Charm Slug Cln_idle0035.png
+idle0036	Charm Slug Cln_idle0036.png
+shop0026	Charm Slug Cln_shop0026.png
+shop0027	Charm Slug Cln_shop0027.png
+shop0028	Charm Slug Cln_shop0028.png
+shop0029	Charm Slug Cln_shop0029.png
+shop0030	Charm Slug Cln_shop0030.png
+shop0031	Charm Slug Cln_shop0031.png
+shop0032	Charm Slug Cln_shop0032.png
+talk0026	Charm Slug Cln_talk0026.png
+talk0027	Charm Slug Cln_talk0027.png
+talk0028	Charm Slug Cln_talk0028.png
+talk0029	Charm Slug Cln_talk0029.png
+talk0030	Charm Slug Cln_talk0030.png
+talk0031	Charm Slug Cln_talk0031.png
+talk0032	Charm Slug Cln_talk0032.png
+talk0033	Charm Slug Cln_talk0033.png
+talk0034	Charm Slug Cln_talk0034.png
+talk0035	Charm Slug Cln_talk0035.png

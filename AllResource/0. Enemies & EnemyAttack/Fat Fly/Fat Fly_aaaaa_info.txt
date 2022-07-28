@@ -1,0 +1,25 @@
+version: 2
+type: collection
+name: Fat Fly
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 18
+attack0000	Fat Fly_attack0000.png
+attack0001	Fat Fly_attack0001.png
+attack0002	Fat Fly_attack0002.png
+attack0003	Fat Fly_attack0003.png
+attack0004	Fat Fly_attack0004.png
+attack0005	Fat Fly_attack0005.png
+attack0006	Fat Fly_attack0006.png
+attack0007	Fat Fly_attack0007.png
+death0000	Fat Fly_death0000.png
+death0001	Fat Fly_death0001.png
+fly0000	Fat Fly_fly0000.png
+fly0001	Fat Fly_fly0001.png
+fly0002	Fat Fly_fly0002.png
+fly0003	Fat Fly_fly0003.png
+fly0004	Fat Fly_fly0004.png
+fly0005	Fat Fly_fly0005.png
+fly0006	Fat Fly_fly0006.png
+fly0007	Fat Fly_fly0007.png

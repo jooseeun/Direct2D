@@ -1,0 +1,59 @@
+version: 2
+type: collection
+name: Collector Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 52
+antic000	Collector Cln_antic000.png
+antic001	Collector Cln_antic001.png
+antic002	Collector Cln_antic002.png
+hop_01000	Collector Cln_hop_01000.png
+hop_01001	Collector Cln_hop_01001.png
+hop_01002	Collector Cln_hop_01002.png
+hop_01003	Collector Cln_hop_01003.png
+hop_02000	Collector Cln_hop_02000.png
+hop_02001	Collector Cln_hop_02001.png
+hop_02002	Collector Cln_hop_02002.png
+hop_02003	Collector Cln_hop_02003.png
+hop_03000	Collector Cln_hop_03000.png
+hop_03001	Collector Cln_hop_03001.png
+hop_03002	Collector Cln_hop_03002.png
+hop_03003	Collector Cln_hop_03003.png
+idle000	Collector Cln_idle000.png
+idle001	Collector Cln_idle001.png
+idle002	Collector Cln_idle002.png
+idle003	Collector Cln_idle003.png
+idle004	Collector Cln_idle004.png
+lunge000	Collector Cln_lunge000.png
+lunge001	Collector Cln_lunge001.png
+lunge002	Collector Cln_lunge002.png
+lunge003	Collector Cln_lunge003.png
+lunge004	Collector Cln_lunge004.png
+lunge005	Collector Cln_lunge005.png
+lunge006	Collector Cln_lunge006.png
+lunge007	Collector Cln_lunge007.png
+lunge008	Collector Cln_lunge008.png
+lunge009	Collector Cln_lunge009.png
+lunge010	Collector Cln_lunge010.png
+roar000	Collector Cln_roar000.png
+roar001	Collector Cln_roar001.png
+roar002	Collector Cln_roar002.png
+wound_death000	Collector Cln_wound_death000.png
+wound_death001	Collector Cln_wound_death001.png
+wound_death002	Collector Cln_wound_death002.png
+wound_death003	Collector Cln_wound_death003.png
+wound_death004	Collector Cln_wound_death004.png
+wound_death005	Collector Cln_wound_death005.png
+wound_death006	Collector Cln_wound_death006.png
+wound_death007	Collector Cln_wound_death007.png
+wound_death008	Collector Cln_wound_death008.png
+wound_death009	Collector Cln_wound_death009.png
+wound_death010	Collector Cln_wound_death010.png
+wound_death011	Collector Cln_wound_death011.png
+wound_death012	Collector Cln_wound_death012.png
+wound_death013	Collector Cln_wound_death013.png
+wound_death014	Collector Cln_wound_death014.png
+wound_death015	Collector Cln_wound_death015.png
+wound_death016	Collector Cln_wound_death016.png
+wound_death016 1	Collector Cln_wound_death016 1.png

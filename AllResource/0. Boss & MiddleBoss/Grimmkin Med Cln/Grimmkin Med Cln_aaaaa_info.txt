@@ -1,0 +1,61 @@
+version: 2
+type: collection
+name: Grimmkin Med Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 54
+	Grimmkin Med Cln_unnamed_0.png
+	Grimmkin Med Cln_unnamed_1.png
+	Grimmkin Med Cln_unnamed_2.png
+	Grimmkin Med Cln_unnamed_3.png
+	Grimmkin Med Cln_unnamed_4.png
+	Grimmkin Med Cln_unnamed_5.png
+	Grimmkin Med Cln_unnamed_6.png
+	Grimmkin Med Cln_unnamed_7.png
+	Grimmkin Med Cln_unnamed_8.png
+	Grimmkin Med Cln_unnamed_9.png
+	Grimmkin Med Cln_unnamed_10.png
+	Grimmkin Med Cln_unnamed_11.png
+	Grimmkin Med Cln_unnamed_12.png
+Grimm_Troupe_turn0000	Grimmkin Med Cln_Grimm_Troupe_turn0000.png
+Grimm_Troupe_turn0001	Grimmkin Med Cln_Grimm_Troupe_turn0001.png
+Grimm_Troupe_turn0002	Grimmkin Med Cln_Grimm_Troupe_turn0002.png
+Grimmin_fat_throw0001	Grimmkin Med Cln_Grimmin_fat_throw0001.png
+Grimmin_fat_throw0002	Grimmkin Med Cln_Grimmin_fat_throw0002.png
+Grimmin_fat_throw0003	Grimmkin Med Cln_Grimmin_fat_throw0003.png
+Grimmin_fat_throw0004	Grimmkin Med Cln_Grimmin_fat_throw0004.png
+Grimmin_fat_throw0005	Grimmkin Med Cln_Grimmin_fat_throw0005.png
+Grimmin_fat_throw0006	Grimmkin Med Cln_Grimmin_fat_throw0006.png
+Grimmkin_fat_dash_antic0000	Grimmkin Med Cln_Grimmkin_fat_dash_antic0000.png
+Grimmkin_fat_dash_antic0001	Grimmkin Med Cln_Grimmkin_fat_dash_antic0001.png
+Grimmkin_fat_dash_antic0002	Grimmkin Med Cln_Grimmkin_fat_dash_antic0002.png
+Grimmkin_fat_dash_antic0003	Grimmkin Med Cln_Grimmkin_fat_dash_antic0003.png
+Grimmkin_fat_dash_antic0004	Grimmkin Med Cln_Grimmkin_fat_dash_antic0004.png
+Grimmkin_fat_dash0000	Grimmkin Med Cln_Grimmkin_fat_dash0000.png
+Grimmkin_fat_dash0001	Grimmkin Med Cln_Grimmkin_fat_dash0001.png
+Grimmkin_fat_dash0002	Grimmkin Med Cln_Grimmkin_fat_dash0002.png
+Grimmkin_fat_dash0003	Grimmkin Med Cln_Grimmkin_fat_dash0003.png
+Grimmkin_fat_dash0004	Grimmkin Med Cln_Grimmkin_fat_dash0004.png
+Grimmkin_fat_death0000	Grimmkin Med Cln_Grimmkin_fat_death0000.png
+Grimmkin_fat_death0001	Grimmkin Med Cln_Grimmkin_fat_death0001.png
+Grimmkin_fat_death0002	Grimmkin Med Cln_Grimmkin_fat_death0002.png
+Grimmkin_fat_idle0000	Grimmkin Med Cln_Grimmkin_fat_idle0000.png
+Grimmkin_fat_idle0001	Grimmkin Med Cln_Grimmkin_fat_idle0001.png
+Grimmkin_fat_idle0002	Grimmkin Med Cln_Grimmkin_fat_idle0002.png
+Grimmkin_fat_idle0003	Grimmkin Med Cln_Grimmkin_fat_idle0003.png
+Grimmkin_fat_idle0004	Grimmkin Med Cln_Grimmkin_fat_idle0004.png
+Grimmkin_fat_idle0005	Grimmkin Med Cln_Grimmkin_fat_idle0005.png
+Grimmkin_fat_idle0006	Grimmkin Med Cln_Grimmkin_fat_idle0006.png
+Grimmkin_fat_idle0007	Grimmkin Med Cln_Grimmkin_fat_idle0007.png
+Grimmkin_fat_idle0008	Grimmkin Med Cln_Grimmkin_fat_idle0008.png
+Grimmkin_fat_idle0009	Grimmkin Med Cln_Grimmkin_fat_idle0009.png
+Grimmkin_fat_teleport0000	Grimmkin Med Cln_Grimmkin_fat_teleport0000.png
+Grimmkin_fat_teleport0001	Grimmkin Med Cln_Grimmkin_fat_teleport0001.png
+Grimmkin_fat_teleport0002	Grimmkin Med Cln_Grimmkin_fat_teleport0002.png
+Grimmkin_fat_teleport0003	Grimmkin Med Cln_Grimmkin_fat_teleport0003.png
+Grimmkin_fat_teleport0004	Grimmkin Med Cln_Grimmkin_fat_teleport0004.png
+Grimmkin_fat_teleport0005	Grimmkin Med Cln_Grimmkin_fat_teleport0005.png
+Grimmkin_fat_teleport0006	Grimmkin Med Cln_Grimmkin_fat_teleport0006.png
+Grimmkin_fat_teleport0007	Grimmkin Med Cln_Grimmkin_fat_teleport0007.png
+Grimmkin_fat_teleport0008	Grimmkin Med Cln_Grimmkin_fat_teleport0008.png

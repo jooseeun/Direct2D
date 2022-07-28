@@ -1,0 +1,43 @@
+version: 2
+type: collection
+name: Dust Effects
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 36
+	Dust Effects_unnamed_0.png
+	Dust Effects_unnamed_1.png
+	Dust Effects_unnamed_2.png
+	Dust Effects_unnamed_3.png
+	Dust Effects_unnamed_4.png
+	Dust Effects_unnamed_5.png
+	Dust Effects_unnamed_6.png
+	Dust Effects_unnamed_7.png
+	Dust Effects_unnamed_8.png
+	Dust Effects_unnamed_9.png
+	Dust Effects_unnamed_10.png
+	Dust Effects_unnamed_11.png
+	Dust Effects_unnamed_12.png
+	Dust Effects_unnamed_13.png
+	Dust Effects_unnamed_14.png
+	Dust Effects_unnamed_15.png
+	Dust Effects_unnamed_16.png
+dash_puff0000	Dust Effects_dash_puff0000.png
+dash_puff0001	Dust Effects_dash_puff0001.png
+dash_puff0002	Dust Effects_dash_puff0002.png
+dash_puff0003	Dust Effects_dash_puff0003.png
+dash_puff0004	Dust Effects_dash_puff0004.png
+dash_puff0005	Dust Effects_dash_puff0005.png
+dash_puff0006	Dust Effects_dash_puff0006.png
+dash_puff0007	Dust Effects_dash_puff0007.png
+jump_puff0000	Dust Effects_jump_puff0000.png
+jump_puff0001	Dust Effects_jump_puff0001.png
+jump_puff0002	Dust Effects_jump_puff0002.png
+jump_puff0003	Dust Effects_jump_puff0003.png
+jump_puff0004	Dust Effects_jump_puff0004.png
+wall_puff0000	Dust Effects_wall_puff0000.png
+wall_puff0001	Dust Effects_wall_puff0001.png
+wall_puff0002	Dust Effects_wall_puff0002.png
+wall_puff0003	Dust Effects_wall_puff0003.png
+wall_puff0004	Dust Effects_wall_puff0004.png
+wall_puff0005	Dust Effects_wall_puff0005.png

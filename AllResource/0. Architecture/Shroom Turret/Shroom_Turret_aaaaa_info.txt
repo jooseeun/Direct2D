@@ -1,0 +1,53 @@
+version: 2
+type: collection
+name: Shroom_Turret
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 46
+attack0000	Shroom_Turret_attack0000.png
+attack0001	Shroom_Turret_attack0001.png
+attack0002	Shroom_Turret_attack0002.png
+attack0003	Shroom_Turret_attack0003.png
+attack0004	Shroom_Turret_attack0004.png
+attack0005	Shroom_Turret_attack0005.png
+attack0006	Shroom_Turret_attack0006.png
+death_piece	Shroom_Turret_death_piece.png
+death0000	Shroom_Turret_death0000.png
+death0001	Shroom_Turret_death0001.png
+death0002	Shroom_Turret_death0002.png
+death0003	Shroom_Turret_death0003.png
+death0004	Shroom_Turret_death0004.png
+explode0000	Shroom_Turret_explode0000.png
+explode0001	Shroom_Turret_explode0001.png
+explode0002	Shroom_Turret_explode0002.png
+explode0003	Shroom_Turret_explode0003.png
+explode0004	Shroom_Turret_explode0004.png
+explode0005	Shroom_Turret_explode0005.png
+explode0006	Shroom_Turret_explode0006.png
+explode0007	Shroom_Turret_explode0007.png
+explode0008	Shroom_Turret_explode0008.png
+idle0000	Shroom_Turret_idle0000.png
+idle0000 1	Shroom_Turret_idle0000 1.png
+idle0001	Shroom_Turret_idle0001.png
+idle0001 1	Shroom_Turret_idle0001 1.png
+idle0002	Shroom_Turret_idle0002.png
+idle0002 1	Shroom_Turret_idle0002 1.png
+idle0003	Shroom_Turret_idle0003.png
+idle0003 1	Shroom_Turret_idle0003 1.png
+idle0004	Shroom_Turret_idle0004.png
+idle0004 1	Shroom_Turret_idle0004 1.png
+idle0005	Shroom_Turret_idle0005.png
+idle0005 1	Shroom_Turret_idle0005 1.png
+idle0006	Shroom_Turret_idle0006.png
+idle0006 1	Shroom_Turret_idle0006 1.png
+idle0007	Shroom_Turret_idle0007.png
+sleep_to_idle0000	Shroom_Turret_sleep_to_idle0000.png
+sleep_to_idle0001	Shroom_Turret_sleep_to_idle0001.png
+sleep_to_idle0002	Shroom_Turret_sleep_to_idle0002.png
+sleep_to_idle0003	Shroom_Turret_sleep_to_idle0003.png
+sleep_to_idle0004	Shroom_Turret_sleep_to_idle0004.png
+stun0000	Shroom_Turret_stun0000.png
+stun0001	Shroom_Turret_stun0001.png
+stun0002	Shroom_Turret_stun0002.png
+stun0003	Shroom_Turret_stun0003.png

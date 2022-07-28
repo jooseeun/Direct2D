@@ -1,0 +1,28 @@
+version: 2
+type: collection
+name: Abyss Tendrils Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 21
+Abyss_tendrils0000	Abyss Tendrils Cln_Abyss_tendrils0000.png
+Abyss_tendrils0001	Abyss Tendrils Cln_Abyss_tendrils0001.png
+Abyss_tendrils0002	Abyss Tendrils Cln_Abyss_tendrils0002.png
+Abyss_tendrils0003	Abyss Tendrils Cln_Abyss_tendrils0003.png
+Abyss_tendrils0004	Abyss Tendrils Cln_Abyss_tendrils0004.png
+Abyss_tendrils0005	Abyss Tendrils Cln_Abyss_tendrils0005.png
+Abyss_tendrils0006	Abyss Tendrils Cln_Abyss_tendrils0006.png
+Abyss_tendrils0007	Abyss Tendrils Cln_Abyss_tendrils0007.png
+Abyss_tendrils0008	Abyss Tendrils Cln_Abyss_tendrils0008.png
+Abyss_tendrils0009	Abyss Tendrils Cln_Abyss_tendrils0009.png
+Abyss_tendrils0010	Abyss Tendrils Cln_Abyss_tendrils0010.png
+Abyss_tendrils0011	Abyss Tendrils Cln_Abyss_tendrils0011.png
+Abyss_tendrils0012	Abyss Tendrils Cln_Abyss_tendrils0012.png
+Abyss_tendrils0013	Abyss Tendrils Cln_Abyss_tendrils0013.png
+Abyss_tendrils0014	Abyss Tendrils Cln_Abyss_tendrils0014.png
+Abyss_tendrils0015	Abyss Tendrils Cln_Abyss_tendrils0015.png
+Abyss_tendrils0016	Abyss Tendrils Cln_Abyss_tendrils0016.png
+Abyss_tendrils0017	Abyss Tendrils Cln_Abyss_tendrils0017.png
+Abyss_tendrils0018	Abyss Tendrils Cln_Abyss_tendrils0018.png
+Abyss_tendrils0019	Abyss Tendrils Cln_Abyss_tendrils0019.png
+Abyss_tendrils0020	Abyss Tendrils Cln_Abyss_tendrils0020.png

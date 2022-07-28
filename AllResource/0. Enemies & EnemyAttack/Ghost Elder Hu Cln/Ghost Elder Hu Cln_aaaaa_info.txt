@@ -1,0 +1,44 @@
+version: 2
+type: collection
+name: Ghost Elder Hu Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 37
+attack0000	Ghost Elder Hu Cln_attack0000.png
+attack0001	Ghost Elder Hu Cln_attack0001.png
+attack0002	Ghost Elder Hu Cln_attack0002.png
+attack0003	Ghost Elder Hu Cln_attack0003.png
+attack0004	Ghost Elder Hu Cln_attack0004.png
+attack0005	Ghost Elder Hu Cln_attack0005.png
+attack0006	Ghost Elder Hu Cln_attack0006.png
+attack0007	Ghost Elder Hu Cln_attack0007.png
+death0000	Ghost Elder Hu Cln_death0000.png
+death0001	Ghost Elder Hu Cln_death0001.png
+Elder_Hu0000	Ghost Elder Hu Cln_Elder_Hu0000.png
+Elder_Hu0001	Ghost Elder Hu Cln_Elder_Hu0001.png
+Elder_Hu0002	Ghost Elder Hu Cln_Elder_Hu0002.png
+Elder_Hu0003	Ghost Elder Hu Cln_Elder_Hu0003.png
+Elder_Hu0004	Ghost Elder Hu Cln_Elder_Hu0004.png
+Elder_Hu0005	Ghost Elder Hu Cln_Elder_Hu0005.png
+ring_projectile_impact0000	Ghost Elder Hu Cln_ring_projectile_impact0000.png
+ring_projectile_impact0001	Ghost Elder Hu Cln_ring_projectile_impact0001.png
+ring_projectile_impact0002	Ghost Elder Hu Cln_ring_projectile_impact0002.png
+ring_projectile_impact0003	Ghost Elder Hu Cln_ring_projectile_impact0003.png
+ring_projectile_impact0004	Ghost Elder Hu Cln_ring_projectile_impact0004.png
+ring_projectile0000	Ghost Elder Hu Cln_ring_projectile0000.png
+ring_projectile0001	Ghost Elder Hu Cln_ring_projectile0001.png
+ring_projectile0002	Ghost Elder Hu Cln_ring_projectile0002.png
+ring_projectile0003	Ghost Elder Hu Cln_ring_projectile0003.png
+ring_projectile0004	Ghost Elder Hu Cln_ring_projectile0004.png
+ring_projectile0005	Ghost Elder Hu Cln_ring_projectile0005.png
+ring_projectile0006	Ghost Elder Hu Cln_ring_projectile0006.png
+ring_projectile0007	Ghost Elder Hu Cln_ring_projectile0007.png
+ring_projectile0008	Ghost Elder Hu Cln_ring_projectile0008.png
+ring_projectile0009	Ghost Elder Hu Cln_ring_projectile0009.png
+ring_projectile0010	Ghost Elder Hu Cln_ring_projectile0010.png
+ring_projectile0011	Ghost Elder Hu Cln_ring_projectile0011.png
+ring_projectile0012	Ghost Elder Hu Cln_ring_projectile0012.png
+ring_projectile0013	Ghost Elder Hu Cln_ring_projectile0013.png
+ring_projectile0014	Ghost Elder Hu Cln_ring_projectile0014.png
+ring_projectile0015	Ghost Elder Hu Cln_ring_projectile0015.png

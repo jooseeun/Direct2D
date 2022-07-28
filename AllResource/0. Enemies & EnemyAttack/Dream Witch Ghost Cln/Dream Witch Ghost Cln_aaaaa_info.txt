@@ -1,0 +1,12 @@
+version: 2
+type: collection
+name: Dream Witch Ghost Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 5
+dream_moth_silhouette0000	Dream Witch Ghost Cln_dream_moth_silhouette0000.png
+dream_moth_silhouette0001	Dream Witch Ghost Cln_dream_moth_silhouette0001.png
+dream_moth_silhouette0002	Dream Witch Ghost Cln_dream_moth_silhouette0002.png
+dream_moth_silhouette0003	Dream Witch Ghost Cln_dream_moth_silhouette0003.png
+dream_moth_silhouette0004	Dream Witch Ghost Cln_dream_moth_silhouette0004.png

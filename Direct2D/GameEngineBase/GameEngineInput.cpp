@@ -1,3 +1,4 @@
+#include "PreCompile.h"
 #include "GameEngineInput.h"
 #include "GameEngineDebug.h"
 #include "GameEngineString.h"
@@ -51,6 +52,8 @@ void GameEngineInput::GameEngineKey::Update(float _DeltaTime)
 GameEngineInput* GameEngineInput::Inst_ = new GameEngineInput();
 
 GameEngineInput::GameEngineInput()
+	: WheelValue(),
+	CurWheelValue()
 {
 }
 
@@ -81,17 +84,12 @@ void GameEngineInput::CreateKey(const std::string& _Name, int _Key)
 		return;
 	}
 
-	if ('a' <= _Key && 'z' >= _Key)
-	{
-		_Key = std::toupper(_Key);
-	}
-
 	AllInputKey_.insert(std::make_pair(UpperKey, GameEngineKey()));
 	AllInputKey_[UpperKey].Key_ = _Key;
 	AllInputKey_[UpperKey].Reset();
 }
 
-void GameEngineInput::Reset()
+void GameEngineInput::Reset() 
 {
 	CurWheelValue = 0;
 	CurWheelValue = WheelValue;
@@ -125,7 +123,7 @@ void GameEngineInput::Update(float _DeltaTime)
 	}
 }
 
-float GameEngineInput::GetTime(const std::string& _Name)
+float GameEngineInput::GetTime(const std::string& _Name) 
 {
 	std::string UpperKey = GameEngineString::ToUpperReturn(_Name);
 

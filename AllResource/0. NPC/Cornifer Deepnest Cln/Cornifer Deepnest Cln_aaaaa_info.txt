@@ -1,0 +1,18 @@
+version: 2
+type: collection
+name: Cornifer Deepnest Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 11
+cornifer_deepnest0000	Cornifer Deepnest Cln_cornifer_deepnest0000.png
+cornifer_deepnest0001	Cornifer Deepnest Cln_cornifer_deepnest0001.png
+cornifer_deepnest0002	Cornifer Deepnest Cln_cornifer_deepnest0002.png
+cornifer_deepnest0003	Cornifer Deepnest Cln_cornifer_deepnest0003.png
+cornifer_deepnest0004	Cornifer Deepnest Cln_cornifer_deepnest0004.png
+cornifer_deepnest0005	Cornifer Deepnest Cln_cornifer_deepnest0005.png
+cornifer_deepnest0006	Cornifer Deepnest Cln_cornifer_deepnest0006.png
+cornifer_deepnest0007	Cornifer Deepnest Cln_cornifer_deepnest0007.png
+cornifer_deepnest0008	Cornifer Deepnest Cln_cornifer_deepnest0008.png
+cornifer_deepnest0009	Cornifer Deepnest Cln_cornifer_deepnest0009.png
+cornifer_deepnest0010	Cornifer Deepnest Cln_cornifer_deepnest0010.png

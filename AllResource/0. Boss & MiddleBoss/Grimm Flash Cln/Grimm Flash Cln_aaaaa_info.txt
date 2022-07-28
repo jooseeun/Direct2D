@@ -1,0 +1,15 @@
+version: 2
+type: collection
+name: Grimm Flash Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 8
+Grimm_flash0001	Grimm Flash Cln_Grimm_flash0001.png
+Grimm_flash0002	Grimm Flash Cln_Grimm_flash0002.png
+Grimm_flash0003	Grimm Flash Cln_Grimm_flash0003.png
+Grimm_flash0004	Grimm Flash Cln_Grimm_flash0004.png
+Grimm_flash0005	Grimm Flash Cln_Grimm_flash0005.png
+Grimm_flash0006	Grimm Flash Cln_Grimm_flash0006.png
+Grimm_flash0007	Grimm Flash Cln_Grimm_flash0007.png
+Grimm_flash0008	Grimm Flash Cln_Grimm_flash0008.png

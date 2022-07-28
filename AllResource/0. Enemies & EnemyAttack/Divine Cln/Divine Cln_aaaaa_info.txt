@@ -1,0 +1,56 @@
+version: 2
+type: collection
+name: Divine Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 49
+divine_body_010000	Divine Cln_divine_body_010000.png
+divine_body_010001	Divine Cln_divine_body_010001.png
+divine_body_010002	Divine Cln_divine_body_010002.png
+divine_body_020000	Divine Cln_divine_body_020000.png
+divine_body_020001	Divine Cln_divine_body_020001.png
+divine_body_020002	Divine Cln_divine_body_020002.png
+divine_body_030000	Divine Cln_divine_body_030000.png
+divine_body_030001	Divine Cln_divine_body_030001.png
+divine_body_030002	Divine Cln_divine_body_030002.png
+divine_body_040000	Divine Cln_divine_body_040000.png
+divine_body_040001	Divine Cln_divine_body_040001.png
+divine_body_040002	Divine Cln_divine_body_040002.png
+divine_body_050000	Divine Cln_divine_body_050000.png
+divine_body_050001	Divine Cln_divine_body_050001.png
+divine_body_050002	Divine Cln_divine_body_050002.png
+divine_body_060000	Divine Cln_divine_body_060000.png
+divine_body_060001	Divine Cln_divine_body_060001.png
+divine_body_060002	Divine Cln_divine_body_060002.png
+divine_body_060003	Divine Cln_divine_body_060003.png
+divine_body_060004	Divine Cln_divine_body_060004.png
+divine_eat0000	Divine Cln_divine_eat0000.png
+divine_eat0001	Divine Cln_divine_eat0001.png
+divine_eat0002	Divine Cln_divine_eat0002.png
+divine_eat0003	Divine Cln_divine_eat0003.png
+divine_eat0004	Divine Cln_divine_eat0004.png
+divine_eat0005	Divine Cln_divine_eat0005.png
+divine_eat0006	Divine Cln_divine_eat0006.png
+divine_idle_ping_pong0000	Divine Cln_divine_idle_ping_pong0000.png
+divine_idle_ping_pong0001	Divine Cln_divine_idle_ping_pong0001.png
+divine_idle_ping_pong0002	Divine Cln_divine_idle_ping_pong0002.png
+divine_idle_ping_pong0003	Divine Cln_divine_idle_ping_pong0003.png
+divine_idle_ping_pong0004	Divine Cln_divine_idle_ping_pong0004.png
+divine_idle_ping_pong0005	Divine Cln_divine_idle_ping_pong0005.png
+divine_poop0000	Divine Cln_divine_poop0000.png
+divine_poop0001	Divine Cln_divine_poop0001.png
+divine_poop0002	Divine Cln_divine_poop0002.png
+divine_poop0003	Divine Cln_divine_poop0003.png
+divine_sleep_to_wake0000	Divine Cln_divine_sleep_to_wake0000.png
+divine_sleep_to_wake0001	Divine Cln_divine_sleep_to_wake0001.png
+divine_sleep_to_wake0002	Divine Cln_divine_sleep_to_wake0002.png
+divine_talk0000	Divine Cln_divine_talk0000.png
+divine_talk0001	Divine Cln_divine_talk0001.png
+divine_talk0002	Divine Cln_divine_talk0002.png
+divine_talk0003	Divine Cln_divine_talk0003.png
+divine_talk0004	Divine Cln_divine_talk0004.png
+divine_talk0005	Divine Cln_divine_talk0005.png
+divine_talk0006	Divine Cln_divine_talk0006.png
+divine_talk0007	Divine Cln_divine_talk0007.png
+divine_talk0008	Divine Cln_divine_talk0008.png

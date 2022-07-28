@@ -1,0 +1,22 @@
+version: 2
+type: collection
+name: Black Water Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 15
+splash_into_water000	Black Water Cln_splash_into_water000.png
+splash_into_water001	Black Water Cln_splash_into_water001.png
+splash_into_water002	Black Water Cln_splash_into_water002.png
+splash_into_water003	Black Water Cln_splash_into_water003.png
+splash_into_water004	Black Water Cln_splash_into_water004.png
+splash_into_water005	Black Water Cln_splash_into_water005.png
+splash_into_water006	Black Water Cln_splash_into_water006.png
+splash_out_of_water000	Black Water Cln_splash_out_of_water000.png
+splash_out_of_water001	Black Water Cln_splash_out_of_water001.png
+splash_out_of_water002	Black Water Cln_splash_out_of_water002.png
+splash_out_of_water003	Black Water Cln_splash_out_of_water003.png
+splash_out_of_water004	Black Water Cln_splash_out_of_water004.png
+splash_out_of_water005	Black Water Cln_splash_out_of_water005.png
+splash_out_of_water006	Black Water Cln_splash_out_of_water006.png
+splash_out_of_water007	Black Water Cln_splash_out_of_water007.png

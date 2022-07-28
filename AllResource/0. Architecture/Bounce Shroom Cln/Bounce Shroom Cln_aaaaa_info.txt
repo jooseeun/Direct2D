@@ -1,0 +1,33 @@
+version: 2
+type: collection
+name: Bounce Shroom Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 26
+bounce_010000	Bounce Shroom Cln_bounce_010000.png
+bounce_010001	Bounce Shroom Cln_bounce_010001.png
+bounce_010002	Bounce Shroom Cln_bounce_010002.png
+bounce_010003	Bounce Shroom Cln_bounce_010003.png
+bounce_010004	Bounce Shroom Cln_bounce_010004.png
+bounce_020000	Bounce Shroom Cln_bounce_020000.png
+bounce_020001	Bounce Shroom Cln_bounce_020001.png
+bounce_020002	Bounce Shroom Cln_bounce_020002.png
+bounce_020003	Bounce Shroom Cln_bounce_020003.png
+bounce_020004	Bounce Shroom Cln_bounce_020004.png
+bounce_shroom_BG_020000	Bounce Shroom Cln_bounce_shroom_BG_020000.png
+bounce_shroom_BG_020001	Bounce Shroom Cln_bounce_shroom_BG_020001.png
+bounce_shroom_BG_020002	Bounce Shroom Cln_bounce_shroom_BG_020002.png
+bounce_slash0000	Bounce Shroom Cln_bounce_slash0000.png
+bounce_slash0001	Bounce Shroom Cln_bounce_slash0001.png
+bounce_slash0002	Bounce Shroom Cln_bounce_slash0002.png
+bounce_slash0003	Bounce Shroom Cln_bounce_slash0003.png
+idle_010000	Bounce Shroom Cln_idle_010000.png
+idle_010001	Bounce Shroom Cln_idle_010001.png
+idle_010002	Bounce Shroom Cln_idle_010002.png
+idle_020000	Bounce Shroom Cln_idle_020000.png
+idle_020001	Bounce Shroom Cln_idle_020001.png
+idle_020002	Bounce Shroom Cln_idle_020002.png
+small_shroom_010004	Bounce Shroom Cln_small_shroom_010004.png
+small_shroom_010005	Bounce Shroom Cln_small_shroom_010005.png
+small_shroom_010006	Bounce Shroom Cln_small_shroom_010006.png

@@ -1,0 +1,29 @@
+version: 2
+type: collection
+name: Mines Crawler Cln
+consistent_sprite_size: true
+enable_borders: false
+use_sprite_name: true
+sprites: 22
+attack0000	Mines Crawler Cln_attack0000.png
+attack0001	Mines Crawler Cln_attack0001.png
+attack0002	Mines Crawler Cln_attack0002.png
+attack0003	Mines Crawler Cln_attack0003.png
+attack0004	Mines Crawler Cln_attack0004.png
+attack0005	Mines Crawler Cln_attack0005.png
+crawl0000	Mines Crawler Cln_crawl0000.png
+crawl0001	Mines Crawler Cln_crawl0001.png
+crawl0002	Mines Crawler Cln_crawl0002.png
+crawl0003	Mines Crawler Cln_crawl0003.png
+death_air0000	Mines Crawler Cln_death_air0000.png
+death_air0001	Mines Crawler Cln_death_air0001.png
+death_air0002	Mines Crawler Cln_death_air0002.png
+death_land0000	Mines Crawler Cln_death_land0000.png
+death_land0001	Mines Crawler Cln_death_land0001.png
+death_land0002	Mines Crawler Cln_death_land0002.png
+death_land0003	Mines Crawler Cln_death_land0003.png
+death_land0004	Mines Crawler Cln_death_land0004.png
+death_land0005	Mines Crawler Cln_death_land0005.png
+death_land0006	Mines Crawler Cln_death_land0006.png
+turn0000	Mines Crawler Cln_turn0000.png
+turn0001	Mines Crawler Cln_turn0001.png
