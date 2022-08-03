@@ -29,10 +29,12 @@ void Player::Start()
 {
 	if (false == GameEngineInput::GetInst()->IsKey("PlayerLeft"))
 	{
-		GameEngineInput::GetInst()->CreateKey("PlayerLeft", 'A');
-		GameEngineInput::GetInst()->CreateKey("PlayerRight", 'D');
-		GameEngineInput::GetInst()->CreateKey("PlayerUp", 'W');
-		GameEngineInput::GetInst()->CreateKey("PlayerDown", 'S');
+		GameEngineInput::GetInst()->CreateKey("PlayerLeft", VK_LEFT);
+		GameEngineInput::GetInst()->CreateKey("PlayerRight", VK_RIGHT);
+		GameEngineInput::GetInst()->CreateKey("PlayerUp", VK_UP);
+		GameEngineInput::GetInst()->CreateKey("PlayerDown", VK_DOWN);
+		GameEngineInput::GetInst()->CreateKey("PlayerJump", 'Z');
+		GameEngineInput::GetInst()->CreateKey("PlayerAttack", 'X');
 	}
 
 	GetTransform().SetLocalScale({ 1, 1, 1 });
@@ -59,13 +61,73 @@ void Player::Start()
 
 	StateManager.CreateStateMember("Idle", this, &Player::IdleUpdate, &Player::IdleStart);
 	StateManager.CreateStateMember("Move", this, &Player::MoveUpdate, &Player::MoveStart);
+	StateManager.CreateStateMember("Jump", this, &Player::JumpUpdate, &Player::JumpStart);
+	StateManager.CreateStateMember("Attack", this, &Player::AttackUpdate, &Player::AttackStart);
 	StateManager.ChangeState("Idle");
 
 	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 100.0f);
 }
 
+
+void Player::Update(float _DeltaTime)
+{
+
+
+	if (true == GetLevel()->GetMainCameraActor()->IsFreeCameraMode())
+	{
+		return;
+	}
+
+	StateManager.Update(_DeltaTime);
+	CameraCheck();
+}
+
+void Player::CameraCheck()
+{
+
+	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 100.0f);
+
+	float CameraRectX = 1920;
+	float CameraRectY = 1080;
+
+	float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
+
+	if (0 >= CurCameraPos.x- CameraRectX/2)
+	{
+		float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
+		CurCameraPos.x = CameraRectX / 2;
+
+		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
+	}
+
+	else if (MapSize.x <= CurCameraPos.x + CameraRectX / 2)
+	{
+		float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
+		CurCameraPos.x = static_cast<int>(GetLevel()->GetMainCameraActorTransform().GetLocalPosition().ix() - (GetTransform().GetLocalPosition().ix() + CameraRectX/2 - MapSize.x));
+		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
+	}
+
+
+	if (0 <= CurCameraPos.y + CameraRectY / 2)
+	{
+		float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
+		CurCameraPos.y = -CameraRectY / 2;
+		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
+	}
+
+
+
+	else if (-MapSize.y >= CurCameraPos.y - CameraRectY / 2)
+	{
+		float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
+		CurCameraPos.y = -static_cast<int>(GetLevel()->GetMainCameraActorTransform().GetLocalPosition().iy() - (GetTransform().GetLocalPosition().iy() + CameraRectY/2 - MapSize.y));
+		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
+	}
+}
+
 void Player::IdleStart(const StateInfo& _Info)
 {
+
 }
 void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -75,6 +137,16 @@ void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 		true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
 	{
 		StateManager.ChangeState("Move");
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerJump")) // 점프와 동시에 이동할 수 있어야 한다.
+	{
+		StateManager.ChangeState("Jump");
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerAttack"))
+	{
+		StateManager.ChangeState("Attack");
 	}
 }
 
@@ -110,22 +182,30 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed * _DeltaTime);
 	}
+
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
 	{
 		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed * _DeltaTime);
 	}
-	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 100.0f);
-}
 
-void Player::Update(float _DeltaTime)
+}
+void Player::JumpStart(const StateInfo& _Info)
 {
 
+}
 
-	if (true == GetLevel()->GetMainCameraActor()->IsFreeCameraMode())
-	{
-		return;
-	}
-
-	StateManager.Update(_DeltaTime);
+void Player::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
+{
 
 }
+
+void Player::AttackStart(const StateInfo& _Info)
+{
+
+}
+void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+
+}
+
+

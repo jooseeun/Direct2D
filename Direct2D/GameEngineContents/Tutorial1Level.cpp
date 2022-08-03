@@ -23,8 +23,7 @@ void Tutorial1Level::Start()
 	{
 		Camera = CreateActor<GameEngineCameraActor>();
 		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
-		Camera->GetTransform().SetLocalPosition( {0.0f,0.0f,0.0f});
-	
+		Camera->GetTransform().SetLocalPosition( { 924.0f, -4640.0f, 0 });
 	}
 
 	{
@@ -40,19 +39,19 @@ void Tutorial1Level::Start()
 		Map->Ground->GetTransform().SetLocalScale({ 7098.0f, 5322.0f, 100.0f });
 		Map->Ground->SetPivot(PIVOTMODE::LEFTTOP);
 		Map->Ground->SetTexture("King's-Pass_Terrain_1.png");
-		Map->Ground->SetOrder((int)OBJECTORDER::Ground);
+		Map->Ground->SetOrder((int)OBJECTORDER::Ground); 
 		Map->FrontObject->GetTransform().SetLocalScale({ 7098.0f, 5322.0f, 100.0f });
-		Map->FrontObject->GetTransform().SetLocalPosition({ 0, 0, -10 });
 		Map->FrontObject->SetPivot(PIVOTMODE::LEFTTOP);
 		Map->FrontObject->SetTexture("King's-Pass_FrontObject_1.png");
 		Map->FrontObject->SetOrder((int)OBJECTORDER::FrontObject);
+
+		MapSize = { 7098.0f, 5322.0f, 100.0f };
 	}
 }
 void Tutorial1Level::Update(float _DeltaTime)
 {
 	if (GameEngineInput::GetInst()->IsDown("FreeCameaOnOff"))
 	{
-		// ;
 		GetMainCameraActor()->FreeCameraModeOnOff();
 	}
 
@@ -70,6 +69,8 @@ void Tutorial1Level::OnEvent()
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
 			NewPlayer->GetTransform().SetLocalPosition({ 924.0f, -4640.0f, 0 });
 			NewPlayer->SetLevelOverOn();
+			NewPlayer->SetMapSize(MapSize);
+			GetMainCameraActorTransform().SetLocalPosition({ 924.0f, -4640.0f, 0 });
 		}
 	}
 

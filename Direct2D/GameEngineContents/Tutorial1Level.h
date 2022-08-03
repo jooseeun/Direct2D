@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
-
+#include <GameEngineBase/GameEngineMath.h>
 // Ό³Έν :
 class GameEngineCameraActor;
 class Tutorial1Level : public GameEngineLevel
@@ -25,5 +25,6 @@ protected:
 private:
 
 	GameEngineCameraActor* Camera;
+	float4 MapSize;
 };
 
