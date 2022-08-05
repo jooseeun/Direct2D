@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b90b7b1b-0913-493e-965a-0816591233a9}</ProjectGuid>
+    <ProjectGuid>{525a0f99-2910-40b0-a597-41b37ac1f027}</ProjectGuid>
     <RootNamespace>GameEngineShader</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -127,10 +127,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <FxCompile Include="..\GameEngineResource\GameEngineShader\Color.hlsl" />
-    <FxCompile Include="..\GameEngineResource\GameEngineShader\Texture.hlsl" />
-    <FxCompile Include="..\GameEngineResource\GameEngineShader\TextureAtlas.hlsl" />
-    <FxCompile Include="..\GameEngineResource\GameEngineShader\TransformHeader.fx" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\Color.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\Texture.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\TextureAtlas.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\TransformHeader.fx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

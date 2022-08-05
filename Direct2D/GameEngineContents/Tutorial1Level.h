@@ -1,9 +1,11 @@
 #pragma once
-#include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineMath.h>
+#include <GameEngineCore/GameEngineLevel.h>
+#include "PlayLevelManager.h"
 // Ό³Έν :
+
 class GameEngineCameraActor;
-class Tutorial1Level : public GameEngineLevel
+class Tutorial1Level : public PlayLevelManager
 {
 public:
 	// constrcuter destructer

@@ -14,9 +14,9 @@ void MapSet::Start()
 {
 	ColMap = CreateComponent<GameEngineTextureRenderer>();
 	BackGround = CreateComponent<GameEngineTextureRenderer>();
-	FrontObject = CreateComponent<GameEngineTextureRenderer>();
 	BackObject = CreateComponent<GameEngineTextureRenderer>();
 	Ground = CreateComponent<GameEngineTextureRenderer>();
+	FrontObject = CreateComponent<GameEngineTextureRenderer>();
 
 }
 void MapSet::Update(float _DeltaTime)

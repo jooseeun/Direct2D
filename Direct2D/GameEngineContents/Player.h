@@ -36,7 +36,7 @@ protected:
 	void End() {}
 
 	void CameraCheck();
-
+	bool MapPixelCheck();
 	GameEngineTextureRenderer* Renderer;
 
 	float4 Color;

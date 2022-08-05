@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Player.h"
+#include "PlayLevelManager.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <iostream>
 #include <GameEngineCore/GameEngineLevel.h>
@@ -42,7 +43,7 @@ void Player::Start()
 	
 	{
 		Renderer = CreateComponent<GameEngineTextureRenderer>();
-		Renderer->GetTransform().SetLocalScale({ 100, 100, 1 });
+		Renderer->GetTransform().SetLocalScale({ 100, 100, 10.0f });
 		Renderer->SetTexture("PlayerIdle.png");
 		Renderer->SetOrder((int)OBJECTORDER::Player);
 
@@ -65,7 +66,7 @@ void Player::Start()
 	StateManager.CreateStateMember("Attack", this, &Player::AttackUpdate, &Player::AttackStart);
 	StateManager.ChangeState("Idle");
 
-	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 100.0f);
+	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 500.0f);
 }
 
 
@@ -85,7 +86,7 @@ void Player::Update(float _DeltaTime)
 void Player::CameraCheck()
 {
 
-	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 100.0f);
+	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 500.0f);
 
 	float CameraRectX = 1920;
 	float CameraRectY = 1080;
@@ -123,6 +124,23 @@ void Player::CameraCheck()
 		CurCameraPos.y = -static_cast<int>(GetLevel()->GetMainCameraActorTransform().GetLocalPosition().iy() - (GetTransform().GetLocalPosition().iy() + CameraRectY/2 - MapSize.y));
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
 	}
+}
+
+bool Player::MapPixelCheck()
+{
+	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
+	if (nullptr == ColMapTexture)
+	{
+		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
+	}
+	float4 Color = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix()+10,
+		-GetTransform().GetWorldPosition().iy() - 10);
+	if (false == Color.CompareInt4D(float4(1.0f,1.0f,1.0f,0.0f)))
+	{
+		return true;
+	}
+	return false;
+
 }
 
 void Player::IdleStart(const StateInfo& _Info)
@@ -166,26 +184,42 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 		StateManager.ChangeState("Idle");
 		return;
 	}
-
+	
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
 	{
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
-		Renderer->GetTransform().PixLocalNegativeX();
+		if (false == MapPixelCheck())
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+			Renderer->GetTransform().PixLocalNegativeX();
+		}
+		
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
-		Renderer->GetTransform().PixLocalPositiveX();
+		if (false == MapPixelCheck())
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
+			Renderer->GetTransform().PixLocalPositiveX();
+		}
+	
 	}
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerUp"))
 	{
-		GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed * _DeltaTime);
+		if (false == MapPixelCheck())
+		{
+
+			GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed * _DeltaTime);
+		}
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
 	{
-		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed * _DeltaTime);
+		if (false == MapPixelCheck())
+		{
+
+			GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed * _DeltaTime);
+		}
 	}
 
 }

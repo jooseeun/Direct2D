@@ -3,7 +3,6 @@
 
 // 설명 :
 class GameEngineTextureRenderer;
-// 설명 :
 class MapSet : public GameEngineActor
 {
 public:

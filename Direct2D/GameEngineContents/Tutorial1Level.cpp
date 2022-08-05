@@ -2,10 +2,14 @@
 #include "PreCompile.h"
 #include "Player.h"
 #include "MapSet.h"
+#include "PlayLevelManager.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
-Tutorial1Level::Tutorial1Level() 
+
+Tutorial1Level::Tutorial1Level() :
+	Camera(nullptr),
+	MapSize()
 {
 }
 
@@ -15,9 +19,11 @@ Tutorial1Level::~Tutorial1Level()
 
 void Tutorial1Level::Start()
 {
-	if (false == GameEngineInput::GetInst()->IsKey("FreeCameaOnOff"))
+	if (false == GameEngineInput::GetInst()->IsKey("FreeCameraOnOff")
+		&& false == GameEngineInput::GetInst()->IsKey("CameraDebug"))
 	{
-		GameEngineInput::GetInst()->CreateKey("FreeCameaOnOff", 'O');
+		GameEngineInput::GetInst()->CreateKey("FreeCameraOnOff", 'O');
+		GameEngineInput::GetInst()->CreateKey("CameraDebug", 'P');
 	}
 
 	{
@@ -27,34 +33,26 @@ void Tutorial1Level::Start()
 	}
 
 	{
-		MapSet* Map = CreateActor<MapSet>(OBJECTORDER::Ground);
-		Map->BackGround->GetTransform().SetLocalScale({ 7098.0f, 5322.0f, 100.0f });
-		Map->BackGround->SetPivot(PIVOTMODE::LEFTTOP);
-		Map->BackGround->SetTexture("King's-Pass_Background_1.png");
-		Map->BackGround->SetOrder((int)OBJECTORDER::BackGround);
-		Map->BackObject->GetTransform().SetLocalScale({ 7098.0f, 5322.0f, 100.0f });
-		Map->BackObject->SetPivot(PIVOTMODE::LEFTTOP);
-		Map->BackObject->SetTexture("King's-Pass_Background_Object_1.png");
-		Map->BackObject->SetOrder((int)OBJECTORDER::BackObject);
-		Map->Ground->GetTransform().SetLocalScale({ 7098.0f, 5322.0f, 100.0f });
-		Map->Ground->SetPivot(PIVOTMODE::LEFTTOP);
-		Map->Ground->SetTexture("King's-Pass_Terrain_1.png");
-		Map->Ground->SetOrder((int)OBJECTORDER::Ground); 
-		Map->FrontObject->GetTransform().SetLocalScale({ 7098.0f, 5322.0f, 100.0f });
-		Map->FrontObject->SetPivot(PIVOTMODE::LEFTTOP);
-		Map->FrontObject->SetTexture("King's-Pass_FrontObject_1.png");
-		Map->FrontObject->SetOrder((int)OBJECTORDER::FrontObject);
+
+		CreateMap("King's-Pass_Background_1.png",
+			"King's-Pass_Background_Object_1.png",
+			"King's-Pass_Ground_1.png",
+			"King's-Pass_FrontObject_1.png",
+			"King's-Pass_ColMap_1.png");
 
 		MapSize = { 7098.0f, 5322.0f, 100.0f };
 	}
 }
 void Tutorial1Level::Update(float _DeltaTime)
 {
-	if (GameEngineInput::GetInst()->IsDown("FreeCameaOnOff"))
+	if (GameEngineInput::GetInst()->IsDown("FreeCameraOnOff"))
 	{
 		GetMainCameraActor()->FreeCameraModeOnOff();
 	}
-
+	if (GameEngineInput::GetInst()->IsDown("CameraDebug"))
+	{
+		SetMapONOFF();
+	}
 }
 void Tutorial1Level::End()
 {
