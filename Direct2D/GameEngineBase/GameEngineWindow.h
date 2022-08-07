@@ -12,7 +12,7 @@ private:
 	static GameEngineWindow* Inst_;
 
 public:
-	inline static GameEngineWindow* GetInst() 
+	inline static GameEngineWindow* GetInst()
 	{
 		return Inst_;
 	}
@@ -51,7 +51,7 @@ public:
 		return Inst_->Scale_;
 	}
 
-	void SetMessageCallBack(const std::function<LRESULT(HWND, UINT, WPARAM, LPARAM)>& _MessageCallBack) 
+	void SetMessageCallBack(const std::function<LRESULT(HWND, UINT, WPARAM, LPARAM)>& _MessageCallBack)
 	{
 		MessageCallBack = _MessageCallBack;
 	}

@@ -152,7 +152,7 @@ GameEngineSound* GameEngineSound::LoadRessource(const std::string& _Path, const 
 	return nullptr;
 }
 
-void GameEngineSound::AllResourcesDestroy()
+void GameEngineSound::ResourcesDestroy()
 {
 	for (std::pair<std::string, GameEngineSound*> Res : AllRes)
 	{

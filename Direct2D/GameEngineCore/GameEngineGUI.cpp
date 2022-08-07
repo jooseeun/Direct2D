@@ -6,11 +6,11 @@
 
 std::list<GameEngineGUIWindow*> GameEngineGUI::Windows;
 
-GameEngineGUI::GameEngineGUI() 
+GameEngineGUI::GameEngineGUI()
 {
 }
 
-GameEngineGUI::~GameEngineGUI() 
+GameEngineGUI::~GameEngineGUI()
 {
 }
 
@@ -18,7 +18,7 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 
 void GameEngineGUI::Initialize()
 {
-	IMGUI_CHECKVERSION();
+    IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
     (void)io;
@@ -60,7 +60,7 @@ void GameEngineGUI::GUIRender(GameEngineLevel* _Level, float _DeltaTime)
 
     for (GameEngineGUIWindow* GUIWIndow : Windows)
     {
-        if (false == GUIWIndow->IsOpen)
+        if (false == GUIWIndow->IsUpdate())
         {
             continue;
         }

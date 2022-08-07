@@ -59,11 +59,22 @@ void Player::Start()
 		Renderer->SetPivot(PIVOTMODE::BOT);
 	}
 
-
-	StateManager.CreateStateMember("Idle", this, &Player::IdleUpdate, &Player::IdleStart);
-	StateManager.CreateStateMember("Move", this, &Player::MoveUpdate, &Player::MoveStart);
-	StateManager.CreateStateMember("Jump", this, &Player::JumpUpdate, &Player::JumpStart);
-	StateManager.CreateStateMember("Attack", this, &Player::AttackUpdate, &Player::AttackStart);
+	StateManager.CreateStateMember("Idle"
+		, std::bind(&Player::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2)
+		, std::bind(&Player::IdleStart, this, std::placeholders::_1)
+	);
+	StateManager.CreateStateMember("Move"
+		, std::bind(&Player::MoveUpdate, this, std::placeholders::_1, std::placeholders::_2)
+		, std::bind(&Player::MoveStart, this, std::placeholders::_1)
+	);
+	StateManager.CreateStateMember("Jump"
+		, std::bind(&Player::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2)
+		, std::bind(&Player::JumpStart, this, std::placeholders::_1)
+	);
+	StateManager.CreateStateMember("Attack"
+		, std::bind(&Player::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2)
+		, std::bind(&Player::AttackStart, this, std::placeholders::_1)
+	);
 	StateManager.ChangeState("Idle");
 
 	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 500.0f);
@@ -133,9 +144,19 @@ bool Player::MapPixelCheck()
 	{
 		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
 	}
-	float4 Color = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix()+10,
-		-GetTransform().GetWorldPosition().iy() - 10);
-	if (false == Color.CompareInt4D(float4(1.0f,1.0f,1.0f,0.0f)))
+	float4 ColorR = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix()+32,
+		-GetTransform().GetWorldPosition().iy());
+	float4 ColorL = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix()-32,
+		-GetTransform().GetWorldPosition().iy());
+	float4 ColorU = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix(),
+		-GetTransform().GetWorldPosition().iy() + 62);
+	float4 ColorD = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix(),
+		-GetTransform().GetWorldPosition().iy() - 62);
+
+	if (false == ColorR.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)) ||
+		false == ColorL.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)) ||
+		false == ColorU.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)) ||
+		false == ColorD.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
 	{
 		return true;
 	}

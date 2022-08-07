@@ -83,7 +83,7 @@ public:
 	}
 
 protected:
-	
+
 
 private:
 	int WheelValue;

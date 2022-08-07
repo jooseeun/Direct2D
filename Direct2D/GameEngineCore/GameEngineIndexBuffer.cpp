@@ -2,13 +2,13 @@
 #include "GameEngineIndexBuffer.h"
 #include <GameEngineBase/GameEngineString.h>
 
-GameEngineIndexBuffer::GameEngineIndexBuffer() 
+GameEngineIndexBuffer::GameEngineIndexBuffer()
 	: Buffer(nullptr)
 	, Offset(0)
 {
 }
 
-GameEngineIndexBuffer::~GameEngineIndexBuffer() 
+GameEngineIndexBuffer::~GameEngineIndexBuffer()
 {
 	if (nullptr != Buffer)
 	{

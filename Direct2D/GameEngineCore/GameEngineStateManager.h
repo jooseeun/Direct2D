@@ -14,13 +14,14 @@ class GameEngineState : public GameEngineNameObject
 	friend GameEngineStateManager;
 
 public:
-	void StateUpdate(float _DeltaTime) 
+	void StateUpdate(float _DeltaTime)
 	{
 		if (nullptr == Update)
 		{
 			return;
 		}
 
+		Info.StateTime += _DeltaTime;
 		Update(_DeltaTime, Info);
 	}
 
@@ -28,7 +29,7 @@ private:
 	StateInfo Info;
 	std::function<void(const StateInfo&)> Start;
 	std::function<void(const StateInfo&)> End;
-	std::function<void(float _DeltaTime, const StateInfo&)> Update;
+	std::function<void(float, const StateInfo&)> Update;
 
 
 public:
@@ -56,13 +57,11 @@ public:
 	GameEngineStateManager& operator=(GameEngineStateManager&& _Other) noexcept = delete;
 
 	// 맴버함수만 됩니다.
-	template<typename ObjectType>
 	void CreateStateMember(const std::string& _StateName
-		, ObjectType* _Object
-		, void(ObjectType::* _Update)(float, const StateInfo&)
-		, void(ObjectType::* _Start)(const StateInfo&) = nullptr
-		, void(ObjectType::* _End)(const StateInfo&) = nullptr
-	) 
+		, std::function<void(float, const StateInfo&)> _Update
+		, std::function<void(const StateInfo&)> _Start = nullptr
+		, std::function<void(const StateInfo&)> _End = nullptr
+	)
 	{
 		if (AllState.end() != AllState.find(_StateName))
 		{
@@ -74,19 +73,29 @@ public:
 		NewState.SetName(_StateName);
 		if (nullptr != _Update)
 		{
-			NewState.Update = std::bind(_Update, _Object, std::placeholders::_1, std::placeholders::_2);
+			NewState.Update = _Update;
 		}
 		if (nullptr != _Start)
 		{
-			NewState.Start = std::bind(_Start, _Object, std::placeholders::_1);
+			NewState.Start = _Start;
 		}
 		if (nullptr != _End)
 		{
-			NewState.End = std::bind(_End, _Object, std::placeholders::_1);
+			NewState.End = _End;
 		}
 	}
 
 	void Update(float _DeltaTime);
+
+	std::string GetCurStateStateName()
+	{
+		if (nullptr == CurState)
+		{
+			return "";
+		}
+
+		return CurState->GetNameCopy();
+	}
 
 	void ChangeState(const std::string& _StateName)
 	{
@@ -116,11 +125,20 @@ public:
 		}
 	}
 
+	float GetCurStateTime()
+	{
+		if (nullptr == CurState)
+		{
+			return 0.0f;
+		}
+
+		return CurState->Info.StateTime;
+	}
+
 protected:
 
 private:
 	std::map<std::string, GameEngineState> AllState;
 	GameEngineState* CurState;
-
 };
 

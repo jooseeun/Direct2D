@@ -5,25 +5,26 @@
 #include <Windows.h>
 #include <GameEngineBase/GameEngineWindow.h>
 
+
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineIndexBuffer.h"
 
-GameEngineRenderer::GameEngineRenderer() 
+GameEngineRenderer::GameEngineRenderer()
 {
 }
 
-GameEngineRenderer::~GameEngineRenderer() 
+GameEngineRenderer::~GameEngineRenderer()
 {
 }
 
 
-void GameEngineRenderer::Start() 
+void GameEngineRenderer::Start()
 {
 }
 
 void GameEngineRenderer::PushRendererToMainCamera()
 {
-	GetActor()->GetLevel()->PushRendererToMainCamera(this);	
+	GetActor()->GetLevel()->PushRendererToMainCamera(this);
 }
 
 void GameEngineRenderer::PushRendererToUICamera()
@@ -74,3 +75,8 @@ void GameEngineRenderer::PushRendererToUICamera()
 //	//	Polygon(GameEngineWindow::GetHDC(), &DrawVertex[i], 3);
 //	//}
 //}
+
+void GameEngineRenderer::ChangeCamera(CAMERAORDER _Order)
+{
+	GetActor()->GetLevel()->PushRenderer(this, _Order);
+}

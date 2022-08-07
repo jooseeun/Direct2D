@@ -2,12 +2,12 @@
 #include "GameEngineDefaultRenderer.h"
 #include "GameEngineRenderingPipeLine.h"
 
-GameEngineDefaultRenderer::GameEngineDefaultRenderer() 
+GameEngineDefaultRenderer::GameEngineDefaultRenderer()
 	:PipeLine(nullptr)
 {
 }
 
-GameEngineDefaultRenderer::~GameEngineDefaultRenderer() 
+GameEngineDefaultRenderer::~GameEngineDefaultRenderer()
 {
 }
 
@@ -37,7 +37,7 @@ void GameEngineDefaultRenderer::SetPipeLine(const std::string& _Name)
 
 }
 
-void GameEngineDefaultRenderer::Render(float _DeltaTime) 
+void GameEngineDefaultRenderer::Render(float _DeltaTime)
 {
 	if (nullptr == PipeLine)
 	{

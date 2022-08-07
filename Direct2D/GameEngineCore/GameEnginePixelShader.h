@@ -3,7 +3,7 @@
 #include "GameEngineRes.h"
 
 // Ό³Έν :
-class GameEnginePixelShader 
+class GameEnginePixelShader
 	: public GameEngineShader
 	, public GameEngineRes<GameEnginePixelShader>
 {
@@ -12,12 +12,12 @@ class GameEnginePixelShader
 
 public:
 	static GameEnginePixelShader* Load(
-		const std::string& _Path, 
-		const std::string& _EntryPoint, 
+		const std::string& _Path,
+		const std::string& _EntryPoint,
 		UINT _VersionHigh = 5, UINT _VersionLow = 0);
 
 	static GameEnginePixelShader* Load(
-		const std::string& _Path, 
+		const std::string& _Path,
 		const std::string& _Name,
 		const std::string& _EntryPoint,
 		UINT _VersionHigh, UINT _VersionLow);

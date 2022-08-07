@@ -12,7 +12,7 @@ class GameEngineVertexBuffer : public GameEngineRes<GameEngineVertexBuffer>
 {
 public:
 	friend GameEngineRes<GameEngineVertexBuffer>;
-	
+
 public:
 	template<typename VertexType>
 	static GameEngineVertexBuffer* Create(const std::string& _Name, const std::vector<VertexType>& _Vertex)

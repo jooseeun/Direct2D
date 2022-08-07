@@ -2,13 +2,35 @@
 #include "GameEngineRenderTarget.h"
 #include "GameEngineDepthStencilTexture.h"
 
-GameEngineRenderTarget::GameEngineRenderTarget() 
+ID3D11RenderTargetView* GameEngineRenderTarget::PrevRenderTargetViews = nullptr;
+ID3D11DepthStencilView* GameEngineRenderTarget::PrevDepthStencilView = nullptr;
+
+GameEngineRenderTarget::GameEngineRenderTarget()
 	: DepthStencilView(nullptr)
 {
 }
 
-GameEngineRenderTarget::~GameEngineRenderTarget() 
+GameEngineRenderTarget::~GameEngineRenderTarget()
 {
+}
+
+void GameEngineRenderTarget::GetPrevRenderTarget()
+{
+	GameEngineDevice::GetContext()->OMGetRenderTargets(1, &PrevRenderTargetViews, &PrevDepthStencilView);
+}
+
+void GameEngineRenderTarget::SetPrevRenderTarget()
+{
+	GameEngineDevice::GetContext()->OMSetRenderTargets(1, &PrevRenderTargetViews, PrevDepthStencilView);
+	if (nullptr != PrevRenderTargetViews)
+	{
+		PrevRenderTargetViews->Release();
+	}
+
+	if (nullptr != PrevDepthStencilView)
+	{
+		PrevDepthStencilView->Release();
+	}
 }
 
 //GameEngineRenderTarget* GameEngineRenderTarget::Create(const std::string& _Name, ID3D11Texture2D* _Texture) 
@@ -21,13 +43,51 @@ GameEngineRenderTarget* GameEngineRenderTarget::Create(const std::string& _Name)
 	return CreateResName(_Name);
 }
 
+GameEngineRenderTarget* GameEngineRenderTarget::Create()
+{
+	return CreateResUnName();
+}
+
 void GameEngineRenderTarget::CreateRenderTargetTexture(ID3D11Texture2D* _Texture, float4 _Color)
 {
 	GameEngineTexture* NewTexture = GameEngineTexture::Create(_Texture);
+	CreateRenderTargetTexture(NewTexture, _Color);
+}
 
-	RenderTargets.push_back(NewTexture);
-	RenderTargetViews.push_back(NewTexture->CreateRenderTargetView());
+void GameEngineRenderTarget::CreateRenderTargetTexture(float4 _Size, float4 _Color)
+{
+	CreateRenderTargetTexture(_Size, DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT, _Color);
+}
+
+void GameEngineRenderTarget::CreateRenderTargetTexture(float4 _Size, DXGI_FORMAT _Format, float4 _Color)
+{
+	D3D11_TEXTURE2D_DESC NewData = { 0 };
+	NewData.ArraySize = 1; // 한번에 10장짜리도 만들수 있어요
+	NewData.Width = _Size.uix();
+	NewData.Height = _Size.uiy();
+	NewData.Format = _Format;
+	NewData.SampleDesc.Count = 1;
+	NewData.SampleDesc.Quality = 0;
+	NewData.MipLevels = 1;
+	NewData.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;
+	//                  여기에다가 랜더링을 할수도 있고               이걸 쉐이더에서 사용할수도 있다는 겁니다.
+	NewData.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_RENDER_TARGET | D3D11_BIND_FLAG::D3D11_BIND_SHADER_RESOURCE;
+
+	CreateRenderTargetTexture(NewData, _Color);
+}
+
+void GameEngineRenderTarget::CreateRenderTargetTexture(GameEngineTexture* _Texture, float4 _Color)
+{
+	RenderTargets.push_back(_Texture);
+	RenderTargetViews.push_back(_Texture->CreateRenderTargetView());
+	ShaderResourceViews.push_back(_Texture->CreateShaderResourceView());
 	ClearColors.push_back(_Color);
+}
+
+void GameEngineRenderTarget::CreateRenderTargetTexture(D3D11_TEXTURE2D_DESC _Data, float4 _Color)
+{
+	GameEngineTexture* NewTexture = GameEngineTexture::Create(_Data);
+	CreateRenderTargetTexture(NewTexture, _Color);
 }
 
 void GameEngineRenderTarget::Clear()
@@ -43,7 +103,7 @@ void GameEngineRenderTarget::Clear()
 	}
 }
 
-void GameEngineRenderTarget::CreateDepthTexture(int _Index) 
+void GameEngineRenderTarget::CreateDepthTexture(int _Index)
 {
 	DepthTexture = GameEngineDepthStencilTexture::Create(RenderTargets[_Index]->GetScale());
 

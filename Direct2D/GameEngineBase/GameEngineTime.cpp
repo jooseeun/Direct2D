@@ -5,21 +5,21 @@
 GameEngineTime* GameEngineTime::Inst_ = new GameEngineTime();
 
 
-GameEngineTime::GameEngineTime() 
+GameEngineTime::GameEngineTime()
 {
 }
 
-GameEngineTime::~GameEngineTime() 
+GameEngineTime::~GameEngineTime()
 {
 }
 
-void GameEngineTime::Reset() 
+void GameEngineTime::Reset()
 {
 	Prev = std::chrono::steady_clock::now();
 	Update();
 }
 
-void GameEngineTime::Update() 
+void GameEngineTime::Update()
 {
 	std::chrono::steady_clock::time_point Current = std::chrono::steady_clock::now();
 

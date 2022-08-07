@@ -41,10 +41,16 @@ public:
 
 	// Member
 	ID3D11RenderTargetView* CreateRenderTargetView();
+	ID3D11ShaderResourceView* CreateShaderResourceView();
 	ID3D11DepthStencilView* CreateDepthStencilView();
 
 	void VSSetting(int _BindPoint);
 	void PSSetting(int _BindPoint);
+
+	size_t GetCutCount()
+	{
+		return CutData.size();
+	}
 
 	float4 GetFrameData(UINT _Index)
 	{
@@ -60,12 +66,17 @@ public:
 
 		return CutData[_Index];
 	}
-	
+
 	void TextureLoad(const std::string& _Path);
 
 	float4 GetScale()
 	{								//(Metadata.width),(Metadata.height)이거쓰면 0,0되서 텍스쳐 생성에 실패함 뜸
 		return { static_cast<float>(Desc.Width), static_cast<float>(Desc.Height) };
+	}
+
+	float4 GetCutScale(int _Index)
+	{
+		return { CutData[_Index].SizeX * static_cast<float>(Desc.Width), CutData[_Index].SizeY * static_cast<float>(Desc.Height) };
 	}
 
 	void TextureCreate(const D3D11_TEXTURE2D_DESC& _Desc);

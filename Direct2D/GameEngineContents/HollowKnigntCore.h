@@ -19,7 +19,16 @@ public:
 	{
 		return "HollowKnight";
 	}
+	float4 StartWindowSize()  override 
+	{ 
+		return { 1920, 1080}; 
+	}
+	float4 StartWindowPosition() override
+	{
+		return { 0,0 };
+	}
 protected:
+
 	void Start() override;
 
 	// 이 프로그램이 어느 상황에서건 계속 Update하면서 체크할일이 있다면 여기서 한다.

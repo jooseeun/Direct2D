@@ -9,6 +9,7 @@
 #include "GameEngineGUI.h"
 #include "GameEngineCamera.h"
 #include "GameEngineCameraActor.h"
+#include "GameEngineCoreDebug.h"
 
 #pragma comment(lib, "GameEngineBase.lib")
 
@@ -18,11 +19,11 @@ GameEngineLevel* GameEngineCore::NextLevel = nullptr;
 std::map<std::string, class GameEngineLevel*> GameEngineCore::AllLevels;
 
 
-GameEngineCore::GameEngineCore() 
+GameEngineCore::GameEngineCore()
 {
 }
 
-GameEngineCore::~GameEngineCore() 
+GameEngineCore::~GameEngineCore()
 {
 }
 
@@ -58,8 +59,10 @@ void GameEngineCore::CoreStart(GameEngineCore* _UserCore)
 	// 엔진 리소스는 완성되어야 합니다.
 	EngineResourcesInitialize();
 
-// 엔진이 뭔가를 할겁니다.
-	// 준비를 먼저하고.
+	GameEngineDebug::Debug3DInitialize();
+
+	// 엔진이 뭔가를 할겁니다.
+		// 준비를 먼저하고.
 	_UserCore->Start();
 }
 
@@ -67,8 +70,6 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 {
 	if (nullptr != NextLevel)
 	{
-		
-
 		Rectangle(GameEngineWindow::GetInst()->GetHDC()
 			, 0
 			, 0
@@ -76,6 +77,7 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 
 		if (nullptr != CurrentLevel)
 		{
+			CurrentLevel->ActorOffEvent();
 			CurrentLevel->OffEvent();
 			// 넘어가려는 액터가 이때 존재해야 겠죠?
 
@@ -85,6 +87,7 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 		CurrentLevel = NextLevel;
 		NextLevel = nullptr;
 		CurrentLevel->OnEvent();
+		CurrentLevel->ActorOnEvent();
 
 		// ex) 타이틀에서 5초후 => 플레이 레벨로 이동
 		//     플레이 레벨에서 => 다시 타이틀레벨로
@@ -111,7 +114,7 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 
 }
 
-void GameEngineCore::CoreEnd(GameEngineCore* _UserCore) 
+void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 {
 	_UserCore->End();
 
@@ -141,7 +144,7 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _UserCore)
 {
 	GameEngineWindow::GetInst()->CreateGameWindow(nullptr, _Name.c_str());
-	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 0,0 }, {1920, 1080});
+	GameEngineWindow::GetInst()->SetWindowScaleAndPosition(_UserCore->StartWindowPosition(), _UserCore->StartWindowSize());
 	GameEngineWindow::GetInst()->ShowGameWindow();
 	GameEngineDevice::Initialize();
 
@@ -174,7 +177,7 @@ void GameEngineCore::InitializeLevel(GameEngineLevel* _Level, const std::string 
 
 	_Level->Start();
 	_Level->SetName(_Name);
-	
+
 	// AllLevels.insert(std::map<std::string, GameEngineLevel*>::value_type(_Name, NewLevel));
 	AllLevels.insert(std::make_pair(_Name, _Level));
 }

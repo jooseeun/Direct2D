@@ -83,14 +83,14 @@
     <ClCompile Include="GameEngineMath.cpp">
       <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineSound.cpp">
-      <Filter>ThirdParty\Sound</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngineWindow.cpp">
       <Filter>WindowsOS</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineInput.cpp">
       <Filter>WindowsOS</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineSound.cpp">
+      <Filter>ThirdParty\Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,14 +130,17 @@
     <ClInclude Include="GameEngineMath.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineSound.h">
-      <Filter>ThirdParty\Sound</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngineWindow.h">
       <Filter>WindowsOS</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineInput.h">
       <Filter>WindowsOS</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineUpdateObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineSound.h">
+      <Filter>ThirdParty\Sound</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -47,6 +47,21 @@ ID3D11RenderTargetView* GameEngineTexture::CreateRenderTargetView()
 	return RenderTargetView;
 }
 
+ID3D11ShaderResourceView* GameEngineTexture::CreateShaderResourceView()
+{
+	if (nullptr != ShaderResourceView)
+	{
+		return ShaderResourceView;
+	}
+
+	if (S_OK != GameEngineDevice::GetDevice()->CreateShaderResourceView(Texture2D, nullptr, &ShaderResourceView))
+	{
+		MsgBoxAssert("쉐이더 리소스 뷰 생성에 실패했습니다.");
+	}
+
+	return ShaderResourceView;
+}
+
 ID3D11DepthStencilView* GameEngineTexture::CreateDepthStencilView()
 {
 	if (nullptr != DepthStencilView)
@@ -114,6 +129,7 @@ void GameEngineTexture::TextureLoad(const std::string& _Path)
 
 	// GameEngineDevice::GetDevice()->쉬운텍스처함수
 
+	// 이건 라이브러리에서 지원해주는 함수이고
 	if (S_OK != DirectX::CreateShaderResourceView(
 		GameEngineDevice::GetDevice(),
 		Image.GetImages(),

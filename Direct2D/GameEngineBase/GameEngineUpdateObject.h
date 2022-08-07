@@ -132,7 +132,7 @@ public:
 
 		while (nullptr != CurObject->GetParent())
 		{
-			CurObject = GetParent();
+			CurObject = CurObject->GetParent();
 		}
 
 		return CurObject;
@@ -146,6 +146,8 @@ public:
 
 	// 이 오브젝트가 프레임구조안에서 돌고 있다.
 	virtual void Update(float _DeltaTime) = 0;
+
+	void AllUpdate(float _DeltaTime);
 
 protected:
 	// 이 오브젝트가 동작을 하기 시작했다.
@@ -163,7 +165,7 @@ protected:
 	virtual void ReleaseObject(std::list<GameEngineUpdateObject*>& _RelaseList);
 
 	template<typename ConvertType>
-	std::list<ConvertType*> GetConvertChilds() 
+	std::list<ConvertType*> GetConvertChilds()
 	{
 		std::list<ConvertType*> NewList;
 
@@ -180,6 +182,9 @@ protected:
 	}
 
 	std::list<GameEngineUpdateObject*> Childs;
+
+
+
 
 private:
 	int Order_;

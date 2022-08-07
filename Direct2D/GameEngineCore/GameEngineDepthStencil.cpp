@@ -11,13 +11,13 @@ GameEngineDepthStencil* GameEngineDepthStencil::Create(
 	return NewRes;
 }
 
-GameEngineDepthStencil::GameEngineDepthStencil() 
+GameEngineDepthStencil::GameEngineDepthStencil()
 	: State(nullptr)
 	, Desc()
 {
 }
 
-GameEngineDepthStencil::~GameEngineDepthStencil() 
+GameEngineDepthStencil::~GameEngineDepthStencil()
 {
 	if (nullptr != State)
 	{
@@ -25,7 +25,7 @@ GameEngineDepthStencil::~GameEngineDepthStencil()
 	}
 }
 
-void GameEngineDepthStencil::Setting() 
+void GameEngineDepthStencil::Setting()
 {
 	Desc;
 

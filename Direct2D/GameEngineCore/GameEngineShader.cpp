@@ -61,13 +61,13 @@ void GameEngineShader::AutoCompile(const std::string& _Path)
 
 }
 
-GameEngineShader::GameEngineShader() 
+GameEngineShader::GameEngineShader()
 	: Version("")
 	, BinaryPtr(nullptr)
 {
 }
 
-GameEngineShader::~GameEngineShader() 
+GameEngineShader::~GameEngineShader()
 {
 	if (nullptr != BinaryPtr)
 	{
@@ -103,10 +103,10 @@ void GameEngineShader::ShaderResCheck()
 	ID3D11ShaderReflection* CompileInfo = nullptr;
 
 	if (S_OK != D3DReflect(
-		BinaryPtr->GetBufferPointer(), 
+		BinaryPtr->GetBufferPointer(),
 		BinaryPtr->GetBufferSize(),
 		IID_ID3D11ShaderReflection,
-		reinterpret_cast<void**>( & CompileInfo)
+		reinterpret_cast<void**>(&CompileInfo)
 	))
 	{
 		MsgBoxAssert("쉐이더 쉐이더 리플렉션이 잘못 돼었습니다.");

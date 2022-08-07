@@ -6,11 +6,11 @@
 #include "GameEngineTexture.h"
 #include "GameEngineSampler.h"
 
-GameEngineShaderResourcesHelper::GameEngineShaderResourcesHelper() 
+GameEngineShaderResourcesHelper::GameEngineShaderResourcesHelper()
 {
 }
 
-GameEngineShaderResourcesHelper::~GameEngineShaderResourcesHelper() 
+GameEngineShaderResourcesHelper::~GameEngineShaderResourcesHelper()
 {
 }
 
@@ -49,7 +49,7 @@ void GameEngineShaderResourcesHelper::ShaderCheck(GameEngineShader* _Shader)
 	// 픽셀쉐이더와 버텍스 쉐이더에서 transform데이터 같은 중요 상수버퍼의 이름을 똑같이 해서 사용하고 싶다면??????
 	for (const std::pair<std::string, GameEngineConstantBufferSetter>& Data : _Shader->ConstantBufferMap)
 	{
-		std::multimap<std::string, GameEngineConstantBufferSetter>::iterator InsertIter = 
+		std::multimap<std::string, GameEngineConstantBufferSetter>::iterator InsertIter =
 			ConstantBufferSettingMap.insert(std::make_pair(Data.first, Data.second));
 
 		BindConstantBuffer(InsertIter->second, Data.second.Res);
@@ -58,7 +58,7 @@ void GameEngineShaderResourcesHelper::ShaderCheck(GameEngineShader* _Shader)
 	for (const std::pair<std::string, GameEngineTextureSetter>& Data : _Shader->TextureMap)
 	{
 		std::multimap<std::string, GameEngineTextureSetter>::iterator InsertIter =
-		TextureSettingMap.insert(std::make_pair(Data.first, Data.second));
+			TextureSettingMap.insert(std::make_pair(Data.first, Data.second));
 
 		BindTexture(InsertIter->second, Data.second.Res);
 
@@ -73,7 +73,7 @@ void GameEngineShaderResourcesHelper::ShaderCheck(GameEngineShader* _Shader)
 		BindSampler(InsertIter->second, Data.second.Res);
 	}
 
-	
+
 }
 
 bool GameEngineShaderResourcesHelper::IsConstantBuffer(const std::string& _Name)
@@ -129,8 +129,8 @@ void GameEngineShaderResourcesHelper::SetConstantBufferNew(const std::string& _N
 }
 
 void GameEngineShaderResourcesHelper::SetConstantBufferLink(
-	const std::string& _Name, 
-	const void* _Data, 
+	const std::string& _Name,
+	const void* _Data,
 	UINT _Size)
 {
 	if (false == IsConstantBuffer(_Name))
@@ -154,7 +154,7 @@ void GameEngineShaderResourcesHelper::SetConstantBufferLink(
 	std::multimap<std::string, GameEngineConstantBufferSetter>::iterator NameEndIter
 		= ConstantBufferSettingMap.upper_bound(Name);
 
-	for (; NameStartIter != NameEndIter ; ++NameStartIter)
+	for (; NameStartIter != NameEndIter; ++NameStartIter)
 	{
 		// 트랜스폼이 바뀌면
 		NameStartIter->second.SetData = _Data;
@@ -229,7 +229,7 @@ bool GameEngineShaderResourcesHelper::IsSampler(const std::string& _Name)
 
 GameEngineSampler* GameEngineShaderResourcesHelper::SetSampler(const std::string& _Name, const std::string& _TextureName)
 {
-	if (false == IsTexture(_Name))
+	if (false == IsSampler(_Name))
 	{
 		MsgBox("쉐이더에서 이러한 이름의 텍스처세팅를 사용한 적이 없습니다.");
 		return nullptr;
@@ -245,7 +245,7 @@ GameEngineSampler* GameEngineShaderResourcesHelper::SetSampler(const std::string
 {
 	std::string Name = GameEngineString::ToUpperReturn(_Name);
 
-	if (false == IsTexture(_Name))
+	if (false == IsSampler(_Name))
 	{
 		MsgBox("쉐이더에서 이러한 이름의 텍스처세팅를 사용한 적이 없습니다.");
 		return nullptr;

@@ -89,7 +89,7 @@ void GameEngineInput::CreateKey(const std::string& _Name, int _Key)
 	AllInputKey_[UpperKey].Reset();
 }
 
-void GameEngineInput::Reset() 
+void GameEngineInput::Reset()
 {
 	CurWheelValue = 0;
 	CurWheelValue = WheelValue;
@@ -123,7 +123,7 @@ void GameEngineInput::Update(float _DeltaTime)
 	}
 }
 
-float GameEngineInput::GetTime(const std::string& _Name) 
+float GameEngineInput::GetTime(const std::string& _Name)
 {
 	std::string UpperKey = GameEngineString::ToUpperReturn(_Name);
 

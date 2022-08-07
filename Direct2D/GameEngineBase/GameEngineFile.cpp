@@ -2,7 +2,7 @@
 #include "GameEngineFile.h"
 #include "GameEngineDebug.h"
 
-GameEngineFile::GameEngineFile() 
+GameEngineFile::GameEngineFile()
 	: FilePtr(nullptr)
 {
 
@@ -20,13 +20,13 @@ GameEngineFile::GameEngineFile(const std::filesystem::path& _Path)
 	Path_ = _Path;
 }
 
-GameEngineFile::GameEngineFile(const GameEngineFile& _Other) 
+GameEngineFile::GameEngineFile(const GameEngineFile& _Other)
 	: FilePtr(nullptr)
 {
 	Path_ = _Other.Path_;
 }
 
-GameEngineFile::~GameEngineFile() 
+GameEngineFile::~GameEngineFile()
 {
 	GameEngineFile::Close();
 }
@@ -88,7 +88,7 @@ void GameEngineFile::Open(OpenMode _OpenMode, FileMode _FileMode)
 void GameEngineFile::Write(void* _WriteData, size_t _DataSize)
 {
 	// openmode "wt"
-	
+
 	// "aaaaaaa"
 
 	// _Buffer 파일에 쓰려고 한다.

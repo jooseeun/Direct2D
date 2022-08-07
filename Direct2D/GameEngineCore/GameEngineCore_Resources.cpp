@@ -3,6 +3,7 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
+#include <GameEngineBase/GameEngineSound.h>
 #include "GameEngineLevel.h"
 #include "GameEngineVertexs.h"
 #include "GameEngineConstantBuffer.h"
@@ -18,14 +19,14 @@
 #include "GameEngineRenderTarget.h"
 #include "GameEngineDepthStencilTexture.h"
 #include "GameEngineDepthStencil.h"
+#include "GameEngineFont.h"
 
 #include "GameEngineVertexShader.h"
 #include "GameEnginePixelShader.h"
 #include "GameEngineRasterizer.h"
 #include "GameEngineBlend.h"
 #include "GameEngineRenderingPipeLine.h"
-
-void EngineInputLayOut() 
+void EngineInputLayOut()
 {
 	// 점 1개
 	// float4 Postion0
@@ -85,7 +86,7 @@ void EngineSubSetting()
 		GameEngineRasterizer::Create("EngineRasterizer", Desc);
 	}
 	{
-		D3D11_DEPTH_STENCIL_DESC Desc = {0};
+		D3D11_DEPTH_STENCIL_DESC Desc = { 0 };
 
 		Desc.DepthEnable = true;
 		Desc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS_EQUAL;
@@ -93,15 +94,15 @@ void EngineSubSetting()
 		Desc.StencilEnable = false;
 		GameEngineDepthStencil::Create("EngineBaseDepth", Desc);
 
-		
+
 	}
-	
+
 }
 
-void EngineTextureLoad() 
+void EngineTextureLoad()
 {
 	{
-		D3D11_SAMPLER_DESC Desc = {D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT};
+		D3D11_SAMPLER_DESC Desc = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
 		Desc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
 		Desc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
 		Desc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
@@ -179,15 +180,24 @@ void EngineRenderingPipeLine()
 		NewPipe->SetVertexShader("TextureAtlas.hlsl");
 		NewPipe->SetPixelShader("TextureAtlas.hlsl");
 	}
+
+	{
+		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("3DDebug");
+		NewPipe->SetInputAssembler1VertexBuffer("Box");
+		NewPipe->SetInputAssembler2IndexBuffer("Box");
+		NewPipe->SetVertexShader("Debug3D.hlsl");
+		NewPipe->SetPixelShader("Debug3D.hlsl");
+	}
+
 }
 
-void EngineMesh() 
+void EngineMesh()
 {
 
 	{
 		std::vector<GameEngineVertex> Vertex;
-		Vertex.push_back({ float4(-0.5f, 0.5f), float4(0.0f, 0.0f)}); // 왼쪽 위
-		Vertex.push_back({ float4(0.5f, 0.5f), float4(1.0f, 0.0f)});  // 오른쪽 위점
+		Vertex.push_back({ float4(-0.5f, 0.5f), float4(0.0f, 0.0f) }); // 왼쪽 위
+		Vertex.push_back({ float4(0.5f, 0.5f), float4(1.0f, 0.0f) });  // 오른쪽 위점
 		Vertex.push_back({ float4(0.5f, -0.5f), float4(1.0f, 1.0f) }); // 오른쪽 아래점
 		Vertex.push_back({ float4(-0.5f, -0.5f), float4(0.0f, 1.0f) }); // 왼쪽 아래점
 		GameEngineVertexBuffer::Create("Rect", Vertex);
@@ -224,33 +234,33 @@ void EngineMesh()
 		Vertex[3] = { float4(-0.5f, -0.5f, 0.5f) };
 
 		// 뒷면
-		Vertex[4] = {float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, 180.f)};
-		Vertex[5] = {float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, 180.f)};
-		Vertex[6] = {float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, 180.f)};
-		Vertex[7] = {float4::VectorRotationToDegreeXAxis(Vertex[3].POSITION, 180.f)};
+		Vertex[4] = { float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, 180.f) };
+		Vertex[5] = { float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, 180.f) };
+		Vertex[6] = { float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, 180.f) };
+		Vertex[7] = { float4::VectorRotationToDegreeXAxis(Vertex[3].POSITION, 180.f) };
 
 		// 왼쪽
-		Vertex[8] = {float4::VectorRotationToDegreeYAxis(Vertex[0].POSITION, -90.f) };
-		Vertex[9] = {float4::VectorRotationToDegreeYAxis(Vertex[1].POSITION, -90.f) };
+		Vertex[8] = { float4::VectorRotationToDegreeYAxis(Vertex[0].POSITION, -90.f) };
+		Vertex[9] = { float4::VectorRotationToDegreeYAxis(Vertex[1].POSITION, -90.f) };
 		Vertex[11] = { float4::VectorRotationToDegreeYAxis(Vertex[3].POSITION, -90.f) };
-		Vertex[10] ={ float4::VectorRotationToDegreeYAxis(Vertex[2].POSITION, -90.f) };
+		Vertex[10] = { float4::VectorRotationToDegreeYAxis(Vertex[2].POSITION, -90.f) };
 
 		// 오른쪽
-		Vertex[12] = {float4::VectorRotationToDegreeYAxis(Vertex[0].POSITION, 90.f)};
-		Vertex[13] = {float4::VectorRotationToDegreeYAxis(Vertex[1].POSITION, 90.f)};
-		Vertex[14] = {float4::VectorRotationToDegreeYAxis(Vertex[2].POSITION, 90.f)};
-		Vertex[15] = {float4::VectorRotationToDegreeYAxis(Vertex[3].POSITION, 90.f)};
+		Vertex[12] = { float4::VectorRotationToDegreeYAxis(Vertex[0].POSITION, 90.f) };
+		Vertex[13] = { float4::VectorRotationToDegreeYAxis(Vertex[1].POSITION, 90.f) };
+		Vertex[14] = { float4::VectorRotationToDegreeYAxis(Vertex[2].POSITION, 90.f) };
+		Vertex[15] = { float4::VectorRotationToDegreeYAxis(Vertex[3].POSITION, 90.f) };
 
 		// 위
-		Vertex[16] = {float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, -90.f)};
-		Vertex[17] = {float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, -90.f)};
-		Vertex[18] = {float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, -90.f)};
+		Vertex[16] = { float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, -90.f) };
+		Vertex[17] = { float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, -90.f) };
+		Vertex[18] = { float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, -90.f) };
 		Vertex[19] = { float4::VectorRotationToDegreeXAxis(Vertex[3].POSITION, -90.f) };
 
 		// 아래
-		Vertex[20] = {float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, 90.f)};
-		Vertex[21] = {float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, 90.f)};
-		Vertex[22] = {float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, 90.f)};
+		Vertex[20] = { float4::VectorRotationToDegreeXAxis(Vertex[0].POSITION, 90.f) };
+		Vertex[21] = { float4::VectorRotationToDegreeXAxis(Vertex[1].POSITION, 90.f) };
+		Vertex[22] = { float4::VectorRotationToDegreeXAxis(Vertex[2].POSITION, 90.f) };
 		Vertex[23] = { float4::VectorRotationToDegreeXAxis(Vertex[3].POSITION, 90.f) };
 
 
@@ -272,6 +282,8 @@ void EngineMesh()
 
 		GameEngineIndexBuffer::Create("Box", Index);
 	}
+
+	GameEngineFont::Load("돋움");
 }
 
 void GameEngineCore::EngineResourcesInitialize()
@@ -310,6 +322,8 @@ void GameEngineCore::EngineResourcesDestroy()
 	GameEngineRasterizer::ResourcesDestroy();
 	GameEngineBlend::ResourcesDestroy();
 	GameEngineConstantBuffer::ResourcesDestroy();
+	GameEngineSound::ResourcesDestroy();
+	GameEngineFont::ResourcesDestroy();
 
 	GameEngineDevice::Destroy();
 }

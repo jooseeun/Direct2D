@@ -4,12 +4,12 @@
 #include "GameEngineFile.h"
 #include "GameEngineString.h"
 
-GameEngineDirectory::GameEngineDirectory() 
+GameEngineDirectory::GameEngineDirectory()
 {
 	SetCurrentPath();
 }
 
-GameEngineDirectory::GameEngineDirectory(const char* _Path) 
+GameEngineDirectory::GameEngineDirectory(const char* _Path)
 {
 	Path_ = _Path;
 	if (false == IsExits())
@@ -37,11 +37,11 @@ GameEngineDirectory::GameEngineDirectory(const GameEngineDirectory& _Other)
 
 
 
-GameEngineDirectory::~GameEngineDirectory() 
+GameEngineDirectory::~GameEngineDirectory()
 {
 }
 
-void GameEngineDirectory::MoveParent() 
+void GameEngineDirectory::MoveParent()
 {
 	Path_ = Path_.parent_path();
 }
@@ -69,7 +69,7 @@ std::string GameEngineDirectory::PlusFilePath(const std::string& _Name)
 	return GetFullPath() + "\\" + _Name;
 }
 
-void GameEngineDirectory::Move(const std::string& _Name) 
+void GameEngineDirectory::Move(const std::string& _Name)
 {
 	std::filesystem::path CheckPath = Path_;
 
@@ -84,7 +84,7 @@ void GameEngineDirectory::Move(const std::string& _Name)
 	Path_ = CheckPath;
 }
 
-std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string& _Ext) 
+std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string& _Ext)
 {
 	std::filesystem::directory_iterator DirIter(Path_);
 
@@ -122,7 +122,7 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string& _
 		}
 
 		Return.push_back(GameEngineFile(Entry.path()));
-		
+
 	}
 
 	return Return;
@@ -200,7 +200,7 @@ bool GameEngineDirectory::MoveParentToExitsChildDirectory(const std::string& _Na
 				{
 					return true;
 				}
-				
+
 
 			}
 		}

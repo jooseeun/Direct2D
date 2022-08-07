@@ -8,7 +8,6 @@
 #include "Tutorial3Level.h"
 #include "Tutorial4Level.h"
 
-
 #pragma comment(lib, "GameEngineBase.lib")
 
 HollowKnigntCore::HollowKnigntCore() 
@@ -22,7 +21,6 @@ HollowKnigntCore::~HollowKnigntCore()
 
 void HollowKnigntCore::Start()
 {
-
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExitsChildDirectory("ContentsResources");

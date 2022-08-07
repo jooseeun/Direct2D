@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "GameEngineUpdateObject.h"
 
-GameEngineUpdateObject::GameEngineUpdateObject() 
+GameEngineUpdateObject::GameEngineUpdateObject()
 	: IsUpdate_(true)
 	, IsDeath_(false)
 	, IsReleaseUpdate_(false)
@@ -12,7 +12,7 @@ GameEngineUpdateObject::GameEngineUpdateObject()
 {
 }
 
-GameEngineUpdateObject::~GameEngineUpdateObject() 
+GameEngineUpdateObject::~GameEngineUpdateObject()
 {
 }
 
@@ -29,7 +29,7 @@ void GameEngineUpdateObject::ReleaseHierarchy()
 	delete this;
 }
 
-void GameEngineUpdateObject::SetParent(GameEngineUpdateObject* _Parent) 
+void GameEngineUpdateObject::SetParent(GameEngineUpdateObject* _Parent)
 {
 	DetachObject();
 
@@ -45,6 +45,26 @@ void GameEngineUpdateObject::DetachObject()
 	}
 }
 
+
+void GameEngineUpdateObject::AllUpdate(float _DeltaTime)
+{
+	AddAccTime(_DeltaTime);
+	ReleaseUpdate(_DeltaTime);
+	Update(GameEngineTime::GetInst()->GetTimeScale(GetOrder()) * _DeltaTime);
+
+	for (GameEngineUpdateObject* Com : Childs)
+	{
+		Com->AddAccTime(_DeltaTime);
+		Com->ReleaseUpdate(_DeltaTime);
+		if (false == Com->IsUpdate())
+		{
+			continue;
+		}
+
+		Com->AllUpdate(_DeltaTime);
+	}
+}
+
 void GameEngineUpdateObject::ReleaseObject(std::list<GameEngineUpdateObject*>& _RelaseList)
 {
 	if (true == IsDeath())
@@ -57,7 +77,7 @@ void GameEngineUpdateObject::ReleaseObject(std::list<GameEngineUpdateObject*>& _
 	std::list<GameEngineUpdateObject*>::iterator StartIter = Childs.begin();
 	std::list<GameEngineUpdateObject*>::iterator EndIter = Childs.end();
 
-	for ( ; StartIter != EndIter;)
+	for (; StartIter != EndIter;)
 	{
 		if (true == (*StartIter)->IsDeath())
 		{

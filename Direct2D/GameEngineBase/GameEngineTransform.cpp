@@ -1,14 +1,14 @@
 #include "PreCompile.h"
 #include "GameEngineTransform.h"
 
-GameEngineTransform::GameEngineTransform() 
+GameEngineTransform::GameEngineTransform()
 	: Parent(nullptr)
 	, CollisionDataObject()
 {
 	CollisionDataSetting();
 }
 
-GameEngineTransform::~GameEngineTransform() 
+GameEngineTransform::~GameEngineTransform()
 {
 }
 
@@ -27,7 +27,7 @@ void GameEngineTransform::CalculateWorld()
 		// Parent 컴포넌트일 경우에는 액터의 트랜스폼을 부모로 가지게 된다.
 		Data.WorldWorldMatrix = Data.LocalWorldMatrix * Parent->GetWorldWorld();
 	}
-	else 
+	else
 	{
 		Data.WorldWorldMatrix = Data.LocalWorldMatrix;
 	}
@@ -89,7 +89,7 @@ void GameEngineTransform::PixLocalNegativeX()
 	}
 
 	Data.LocalScaling.x = -Data.LocalScaling.x;
-	
+
 	SetLocalScale(Data.LocalScaling);
 }
 
@@ -106,7 +106,7 @@ void GameEngineTransform::PixLocalPositiveX()
 	SetLocalScale(Data.LocalScaling);
 }
 
-void GameEngineTransform::Copy(GameEngineTransform& _Trans)
+void GameEngineTransform::Copy(const GameEngineTransform& _Trans)
 {
 	Data = _Trans.Data;
 	CollisionDataObject = _Trans.CollisionDataObject;

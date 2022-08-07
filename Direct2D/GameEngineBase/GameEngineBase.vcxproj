@@ -218,6 +218,7 @@
     <ClInclude Include="GameEngineString.h" />
     <ClInclude Include="GameEngineTime.h" />
     <ClInclude Include="GameEngineTransform.h" />
+    <ClInclude Include="GameEngineUpdateObject.h" />
     <ClInclude Include="GameEngineWindow.h" />
     <ClInclude Include="PreCompile.h" />
   </ItemGroup>
