@@ -29,7 +29,7 @@ void Tutorial1Level::Start()
 	{
 		Camera = CreateActor<GameEngineCameraActor>();
 		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
-		Camera->GetTransform().SetLocalPosition( { 924.0f, -4640.0f, 0 });
+		Camera->GetTransform().SetLocalPosition( { 924.0f, -1640.0f, 0 });
 	}
 
 	{
@@ -65,10 +65,10 @@ void Tutorial1Level::OnEvent()
 		if (nullptr == Player::GetMainPlayer())
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
-			NewPlayer->GetTransform().SetLocalPosition({ 924.0f, -4640.0f, 0 });
+			NewPlayer->GetTransform().SetLocalPosition({ 924.0f, -1640.0f, 0 });
 			NewPlayer->SetLevelOverOn();
 			NewPlayer->SetMapSize(MapSize);
-			GetMainCameraActorTransform().SetLocalPosition({ 924.0f, -4640.0f, 0 });
+			GetMainCameraActorTransform().SetLocalPosition({ 924.0f, -1640.0f, 0 });
 		}
 	}
 

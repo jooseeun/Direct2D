@@ -91,6 +91,7 @@ void Player::Update(float _DeltaTime)
 	}
 
 	StateManager.Update(_DeltaTime);
+	Gravity();
 	CameraCheck();
 }
 
@@ -137,6 +138,26 @@ void Player::CameraCheck()
 	}
 }
 
+void Player::Gravity()
+{
+	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
+	if (nullptr == ColMapTexture)
+	{
+		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
+	}
+	float4 Color = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix() ,
+		-GetTransform().GetWorldPosition().iy());
+
+	if (false == Color.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+	{
+		return;
+	}
+
+	GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
+		GetTransform().GetWorldPosition().y - 500.0f * GameEngineTime::GetDeltaTime(),
+		GetTransform().GetWorldPosition().z,});
+}
+
 bool Player::MapPixelCheck()
 {
 	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
@@ -158,7 +179,7 @@ bool Player::MapPixelCheck()
 		false == ColorU.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)) ||
 		false == ColorD.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
 	{
-		return true;
+		return false;
 	}
 	return false;
 
