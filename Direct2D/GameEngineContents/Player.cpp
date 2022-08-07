@@ -17,6 +17,7 @@ Player* Player::MainPlayer = nullptr;
 Player::Player()
 	: Speed(1000.0f)
 	, Renderer(nullptr)
+	, CurDir(PLAYERDIR::Right)
 {
 	MainPlayer = this;
 }
@@ -32,8 +33,6 @@ void Player::Start()
 	{
 		GameEngineInput::GetInst()->CreateKey("PlayerLeft", VK_LEFT);
 		GameEngineInput::GetInst()->CreateKey("PlayerRight", VK_RIGHT);
-		GameEngineInput::GetInst()->CreateKey("PlayerUp", VK_UP);
-		GameEngineInput::GetInst()->CreateKey("PlayerDown", VK_DOWN);
 		GameEngineInput::GetInst()->CreateKey("PlayerJump", 'Z');
 		GameEngineInput::GetInst()->CreateKey("PlayerAttack", 'X');
 	}
@@ -146,7 +145,7 @@ void Player::Gravity()
 		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
 	}
 	float4 Color = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix() ,
-		-GetTransform().GetWorldPosition().iy());
+		-GetTransform().GetWorldPosition().iy()-1);
 
 	if (false == Color.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
 	{
@@ -165,22 +164,27 @@ bool Player::MapPixelCheck()
 	{
 		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
 	}
-	float4 ColorR = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix()+32,
-		-GetTransform().GetWorldPosition().iy());
-	float4 ColorL = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix()-32,
-		-GetTransform().GetWorldPosition().iy());
-	float4 ColorU = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix(),
-		-GetTransform().GetWorldPosition().iy() + 62);
-	float4 ColorD = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix(),
-		-GetTransform().GetWorldPosition().iy() - 62);
 
-	if (false == ColorR.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)) ||
-		false == ColorL.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)) ||
-		false == ColorU.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)) ||
-		false == ColorD.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+
+	float4 ColorR = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix()+34,
+		-GetTransform().GetWorldPosition().iy()-5);
+	float4 ColorL = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix()-34,
+		-GetTransform().GetWorldPosition().iy()-5);
+	if (CurDir == PLAYERDIR::Left)
 	{
-		return false;
+		if (false == ColorL.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+		{
+			return true;
+		}
 	}
+	if (CurDir == PLAYERDIR::Right)
+	{
+		if (false == ColorR.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+		{
+			return true;
+		}
+	}
+
 	return false;
 
 }
@@ -192,9 +196,7 @@ void Player::IdleStart(const StateInfo& _Info)
 void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft") ||
-		true == GameEngineInput::GetInst()->IsPress("PlayerRight") ||
-		true == GameEngineInput::GetInst()->IsPress("PlayerUp") ||
-		true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
+		true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
 		StateManager.ChangeState("Move");
 	}
@@ -219,9 +221,7 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
 
 	if (false == GameEngineInput::GetInst()->IsPress("PlayerLeft") &&
-		false == GameEngineInput::GetInst()->IsPress("PlayerRight") &&
-		false == GameEngineInput::GetInst()->IsPress("PlayerUp") &&
-		false == GameEngineInput::GetInst()->IsPress("PlayerDown"))
+		false == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
 		StateManager.ChangeState("Idle");
 		return;
@@ -229,6 +229,7 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 	
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
 	{
+		CurDir = PLAYERDIR::Left;
 		if (false == MapPixelCheck())
 		{
 			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
@@ -239,6 +240,7 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
+		CurDir = PLAYERDIR::Right;
 		if (false == MapPixelCheck())
 		{
 			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
@@ -246,23 +248,7 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 		}
 	
 	}
-	if (true == GameEngineInput::GetInst()->IsPress("PlayerUp"))
-	{
-		if (false == MapPixelCheck())
-		{
 
-			GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed * _DeltaTime);
-		}
-	}
-
-	if (true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
-	{
-		if (false == MapPixelCheck())
-		{
-
-			GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed * _DeltaTime);
-		}
-	}
 
 }
 void Player::JumpStart(const StateInfo& _Info)

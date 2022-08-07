@@ -43,6 +43,7 @@ protected:
 	float4 Color;
 	float4 MapSize;
 
+	PLAYERDIR CurDir;
 
 	void IdleStart(const StateInfo& _Info);
 	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);

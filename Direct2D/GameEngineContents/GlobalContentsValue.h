@@ -6,3 +6,9 @@ enum class OBJECTORDER
 	Player,
 	FrontObject
 };
+
+enum class PLAYERDIR
+{
+	Right,
+	Left
+};
