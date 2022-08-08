@@ -29,7 +29,7 @@ void Tutorial1Level::Start()
 	{
 		Camera = CreateActor<GameEngineCameraActor>();
 		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
-		Camera->GetTransform().SetLocalPosition( { 924.0f, -1640.0f, 0 });
+		Camera->GetTransform().SetLocalPosition( { 0, 0, 0 });
 	}
 
 	{

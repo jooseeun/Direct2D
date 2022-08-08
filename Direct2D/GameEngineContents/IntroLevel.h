@@ -2,6 +2,8 @@
 #include <GameEngineCore/GameEngineLevel.h>
 
 // Ό³Έν :
+class GameEngineCameraActor;
+class TitleObject;
 class IntroLevel : public GameEngineLevel
 {
 public:
@@ -23,5 +25,7 @@ protected:
 private:
 	void OnEvent() override;
 
+	TitleObject* TitleCom;
+	GameEngineCameraActor* Camera;
 };
 

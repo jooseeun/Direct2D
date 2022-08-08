@@ -49,8 +49,34 @@ void HollowKnigntCore::Start()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
-	
-	
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExitsChildDirectory("ContentsResources");
+		Dir.Move("ContentsResources");
+		Dir.Move("Texture");
+		Dir.Move("UI");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExitsChildDirectory("ContentsResources");
+		Dir.Move("ContentsResources");
+		Dir.Move("Texture");
+		Dir.Move("Intro");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
 	GameEngineTexture::Cut("PlayerWalk.png", 1, 8);
 
 
@@ -68,7 +94,7 @@ void HollowKnigntCore::Start()
 	CreateLevel<Tutorial2Level>("Tutorial2");
 	CreateLevel<Tutorial3Level>("Tutorial3");
 	CreateLevel<Tutorial4Level>("Tutorial4");
-	ChangeLevel("Tutorial1");
+	ChangeLevel("Intro");
 
 	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 

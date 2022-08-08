@@ -31,15 +31,16 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayLevelManager.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="PreCompile.cpp" />
+    <ClCompile Include="TitleObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TownLevel.cpp">
       <SubType>
       </SubType>
@@ -84,6 +85,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="TitleObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TownLevel.h">
       <SubType>
       </SubType>

@@ -42,14 +42,17 @@
     <ClCompile Include="TownLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
     <ClCompile Include="MapSet.cpp">
       <Filter>Actor</Filter>
     </ClCompile>
     <ClCompile Include="PlayLevelManager.cpp">
       <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleObject.cpp">
+      <Filter>Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="PlayLevelManager.h">
       <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleObject.h">
+      <Filter>Actor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
