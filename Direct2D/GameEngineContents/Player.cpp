@@ -37,12 +37,12 @@ void Player::Start()
 		GameEngineInput::GetInst()->CreateKey("PlayerAttack", 'X');
 	}
 
-	GetTransform().SetLocalScale({ 1, 1, 1 });
+	GetTransform().SetLocalScale({ 1., 1, 1 });
 
 	
 	{
 		Renderer = CreateComponent<GameEngineTextureRenderer>();
-		Renderer->GetTransform().SetLocalScale({ 349, 186, 10.0f });
+		Renderer->GetTransform().SetLocalScale({ 350, 186, 10.0f });
 		Renderer->SetTexture("PlayerIdle.png");
 		Renderer->SetOrder((int)OBJECTORDER::Player);
 		Renderer->SetPivot(PIVOTMODE::BOT);
@@ -60,7 +60,9 @@ void Player::Start()
 		Renderer->CreateFrameAnimationCutTexture("Roar",
 			FrameAnimation_DESC("Player_roar.png", 0, 7, 0.1f, false));
 		Renderer->CreateFrameAnimationCutTexture("Fall",
-			FrameAnimation_DESC("Player_fall.png", 0, 5, 0.1f, false));
+			FrameAnimation_DESC("Player_fall.png", 0, 5, 0.1f, true));		
+		Renderer->CreateFrameAnimationCutTexture("Jump",
+				FrameAnimation_DESC("Player_jump.png", 0, 5, 0.1f, true));
 	}
 
 
@@ -231,7 +233,7 @@ void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 		StateManager.ChangeState("Move");
 	}
 
-	if (true == GameEngineInput::GetInst()->IsPress("PlayerJump")) // 점프와 동시에 이동할 수 있어야 한다.
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerJump")) 
 	{
 		StateManager.ChangeState("Jump");
 	}
@@ -244,14 +246,23 @@ void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Player::MoveStart(const StateInfo& _Info)
 {
-	Renderer->AnimationBindEnd("PlayerWalk", std::bind(&Player::Renderer, this));
-	Renderer->ScaleToCutTexture(0);
+
 }
 
 void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	Renderer->ChangeFrameAnimation("PlayerWalk");
-	Renderer->ScaleToCutTexture(0);
+	if (_Info.StateTime > 0.5f)
+	{
+		Renderer->ChangeFrameAnimation("PlayerWalk");
+		Renderer->ScaleToCutTexture(0);
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerJump")) // 점프와 동시에 이동할 수 있어야 한다.
+	{
+		StateManager.ChangeState("Jump");
+	}
+
+
 	if (false == GameEngineInput::GetInst()->IsPress("PlayerLeft") &&
 		false == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
@@ -285,24 +296,7 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
 
 }
-void Player::MoveToRunStart(const StateInfo& _Info)
-{
 
-}
-
-void Player::MoveToRunUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-
-}
-void Player::RuntoMoveStart(const StateInfo& _Info)
-{
-
-}
-
-void Player::RuntoMoveUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-
-}
 
 void Player::FallStart(const StateInfo& _Info)
 {
@@ -312,15 +306,91 @@ void Player::FallStart(const StateInfo& _Info)
 }
 void Player::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
+	{
+		CurDir = PLAYERDIR::Left;
+		if (false == MapPixelCheck())
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+			Renderer->GetTransform().PixLocalPositiveX();
+		}
 
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
+	{
+		CurDir = PLAYERDIR::Right;
+		if (false == MapPixelCheck())
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
+			Renderer->GetTransform().PixLocalNegativeX();
+		}
+
+	}
 }
 void Player::JumpStart(const StateInfo& _Info)
 {
-
+	JumpTime = 0.0f;
+	Renderer->ChangeFrameAnimation("Jump");
+	Renderer->ScaleToCutTexture(0);
 }
 
 void Player::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	if (false == GameEngineInput::GetInst()->IsPress("PlayerJump"))
+	{
+		StateManager.ChangeState("Idle");
+		return;
+	}
+
+	JumpTime += 1.0f * _DeltaTime;
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerJump"))
+	{
+		if (JumpTime > 0.5f)
+		{
+			StateManager.ChangeState("Idle");
+		}
+
+		if (CurDir == PLAYERDIR::Left)
+		{
+			Renderer->GetTransform().PixLocalPositiveX();
+		}		
+		if (CurDir == PLAYERDIR::Right)
+		{
+			Renderer->GetTransform().PixLocalNegativeX();
+		}
+
+		if (false == MapPixelCheck())
+		{
+			GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
+GetTransform().GetWorldPosition().y + 1800.0f * GameEngineTime::GetDeltaTime(),
+GetTransform().GetWorldPosition().z, });
+		}
+
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
+	{
+		CurDir = PLAYERDIR::Left;
+		if (false == MapPixelCheck())
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+			Renderer->GetTransform().PixLocalPositiveX();
+		}
+
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
+	{
+		CurDir = PLAYERDIR::Right;
+		if (false == MapPixelCheck())
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
+			Renderer->GetTransform().PixLocalNegativeX();
+		}
+
+	}
+
 
 }
 
