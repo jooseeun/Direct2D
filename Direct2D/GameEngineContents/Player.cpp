@@ -42,21 +42,18 @@ void Player::Start()
 	
 	{
 		Renderer = CreateComponent<GameEngineTextureRenderer>();
-		Renderer->GetTransform().SetLocalScale({ 100, 100, 10.0f });
+		Renderer->GetTransform().SetLocalScale({ 349, 186, 10.0f });
 		Renderer->SetTexture("PlayerIdle.png");
 		Renderer->SetOrder((int)OBJECTORDER::Player);
-
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExitsChildDirectory("ContentsResources");
-		Dir.Move("ContentsResources");
-		Dir.Move("Texture");
-		Dir.Move("Player");
-
-		GameEngineFolderTexture::Load(Dir.GetFullPath());
-
-		Renderer->ScaleToTexture();
 		Renderer->SetPivot(PIVOTMODE::BOT);
 	}
+
+	{
+		Renderer->CreateFrameAnimationCutTexture("IdleHigh", FrameAnimation_DESC("PlayerIdleHighHealth.png", 0, 8,0.1f, true));
+		Renderer->CreateFrameAnimationCutTexture("PlayerWalk", FrameAnimation_DESC("PlayerWalk.png", 0, 7, 0.1f, true));
+
+	}
+
 
 	StateManager.CreateStateMember("Idle"
 		, std::bind(&Player::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2)
@@ -191,13 +188,16 @@ bool Player::MapPixelCheck()
 
 void Player::IdleStart(const StateInfo& _Info)
 {
-
+	Renderer->ChangeFrameAnimation("IdleHigh");
+	Renderer->ScaleToCutTexture(0);
 }
 void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft") ||
 		true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
+
+
 		StateManager.ChangeState("Move");
 	}
 
@@ -214,6 +214,8 @@ void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Player::MoveStart(const StateInfo& _Info)
 {
+	Renderer->ChangeFrameAnimation("PlayerWalk");
+	Renderer->ScaleToCutTexture(0);
 }
 
 void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -233,7 +235,7 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 		if (false == MapPixelCheck())
 		{
 			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
-			Renderer->GetTransform().PixLocalNegativeX();
+			Renderer->GetTransform().PixLocalPositiveX();
 		}
 		
 	}
@@ -244,7 +246,7 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 		if (false == MapPixelCheck())
 		{
 			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
-			Renderer->GetTransform().PixLocalPositiveX();
+			Renderer->GetTransform().PixLocalNegativeX();
 		}
 	
 	}

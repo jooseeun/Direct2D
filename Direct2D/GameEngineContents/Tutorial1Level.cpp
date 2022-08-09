@@ -28,7 +28,7 @@ void Tutorial1Level::Start()
 
 	{
 		Camera = CreateActor<GameEngineCameraActor>();
-		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
+		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
 		Camera->GetTransform().SetLocalPosition( { 0, 0, 0 });
 	}
 

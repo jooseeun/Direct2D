@@ -32,7 +32,7 @@ void IntroLevel::Start()
 	}
 
 
-
+	Camera->GetCameraComponent()->SetProjectionSize(float4{ 1980,1080 }*0.6);
 
 }
 void IntroLevel::Update(float _DeltaTime)
