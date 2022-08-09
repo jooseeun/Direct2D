@@ -57,9 +57,17 @@ protected:
 	void AttackStart(const StateInfo& _Info);
 	void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	void MoveToRunStart(const StateInfo& _Info);
+	void MoveToRunUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void RuntoMoveStart(const StateInfo& _Info);
+	void RuntoMoveUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void FallStart(const StateInfo& _Info);
+	void FallUpdate(float _DeltaTime, const StateInfo& _Info);
+
 private:
 	float Speed;
-	float Time;
 	GameEngineStateManager StateManager;
 };
 

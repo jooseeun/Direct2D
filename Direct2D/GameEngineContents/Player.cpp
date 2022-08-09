@@ -57,6 +57,10 @@ void Player::Start()
 			FrameAnimation_DESC("Player_idle_to_run.png", 0, 4, 0.1f, false));
 		Renderer->CreateFrameAnimationCutTexture("Player_run_to_idle",
 			FrameAnimation_DESC("Player_run_to_idle.png", 0, 5, 0.1f, false));
+		Renderer->CreateFrameAnimationCutTexture("Roar",
+			FrameAnimation_DESC("Player_roar.png", 0, 7, 0.1f, false));
+		Renderer->CreateFrameAnimationCutTexture("Fall",
+			FrameAnimation_DESC("Player_fall.png", 0, 5, 0.1f, false));
 	}
 
 
@@ -76,7 +80,11 @@ void Player::Start()
 		, std::bind(&Player::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2)
 		, std::bind(&Player::AttackStart, this, std::placeholders::_1)
 	);
-	StateManager.ChangeState("Idle");
+	StateManager.CreateStateMember("Fall"
+		, std::bind(&Player::FallUpdate, this, std::placeholders::_1, std::placeholders::_2)
+		, std::bind(&Player::FallStart, this, std::placeholders::_1)
+	);
+	StateManager.ChangeState("Fall");
 
 	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 500.0f);
 }
@@ -146,17 +154,31 @@ void Player::Gravity()
 	{
 		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
 	}
-	float4 Color = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix() ,
-		-GetTransform().GetWorldPosition().iy()-1);
+	float4 Color = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix(),
+		-GetTransform().GetWorldPosition().iy() - 1);
 
 	if (false == Color.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
 	{
+		if (StateManager.GetCurStateStateName() == "Fall")
+		{
+			Renderer->ChangeFrameAnimation("Roar");
+			Renderer->ScaleToCutTexture(0);
+			StateManager.ChangeState("Idle");
+		}
+
 		return;
 	}
+	else
+	{
+		if (StateManager.GetCurStateStateName() == "Idle")
+		{
+			StateManager.ChangeState("Fall");
+		}
+		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
+	GetTransform().GetWorldPosition().y - 800.0f * GameEngineTime::GetDeltaTime(),
+	GetTransform().GetWorldPosition().z, });
+	}
 
-	GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
-		GetTransform().GetWorldPosition().y - 500.0f * GameEngineTime::GetDeltaTime(),
-		GetTransform().GetWorldPosition().z,});
 }
 
 bool Player::MapPixelCheck()
@@ -197,21 +219,15 @@ void Player::IdleStart(const StateInfo& _Info)
 }
 void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	if (Time < 6.0f)
-	{
-		Time += 1.0f * GameEngineTime::GetDeltaTime();
-	}
-	if (Time >= 6.0f)
-	{
-		Renderer->ChangeFrameAnimation("IdleHigh");
-		Renderer->ScaleToCutTexture(0);
-	}
+
+	Renderer->AnimationBindEnd("IdleHigh", std::bind(&Player::Renderer,this));
+	Renderer->ScaleToCutTexture(0);
 
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft") ||
 		true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
-
-
+		Renderer->ChangeFrameAnimation("Player_idle_to_run");
+		Renderer->ScaleToCutTexture(0);
 		StateManager.ChangeState("Move");
 	}
 
@@ -228,27 +244,17 @@ void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Player::MoveStart(const StateInfo& _Info)
 {
-	Time = 0.0f;
-	Renderer->ChangeFrameAnimation("Player_idle_to_run");
+	Renderer->AnimationBindEnd("PlayerWalk", std::bind(&Player::Renderer, this));
 	Renderer->ScaleToCutTexture(0);
 }
 
 void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	if(Time < 5.0f)
-	{
-		Time += 1.0f * GameEngineTime::GetDeltaTime();
-	}
-	if (Time >= 5.0f)
-	{
-		Renderer->ChangeFrameAnimation("PlayerWalk");
-		Renderer->ScaleToCutTexture(0);
-	}
-
+	Renderer->ChangeFrameAnimation("PlayerWalk");
+	Renderer->ScaleToCutTexture(0);
 	if (false == GameEngineInput::GetInst()->IsPress("PlayerLeft") &&
 		false == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
-		Time = 0.0f;
 		Renderer->ChangeFrameAnimation("Player_run_to_idle");
 		Renderer->ScaleToCutTexture(0);
 		StateManager.ChangeState("Idle");
@@ -277,6 +283,35 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 	
 	}
 
+
+}
+void Player::MoveToRunStart(const StateInfo& _Info)
+{
+
+}
+
+void Player::MoveToRunUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+
+}
+void Player::RuntoMoveStart(const StateInfo& _Info)
+{
+
+}
+
+void Player::RuntoMoveUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+
+}
+
+void Player::FallStart(const StateInfo& _Info)
+{
+	Renderer->ChangeFrameAnimation("Fall");
+	Renderer->ScaleToCutTexture(0);
+	Renderer->GetTransform().PixLocalNegativeX();
+}
+void Player::FallUpdate(float _DeltaTime, const StateInfo& _Info)
+{
 
 }
 void Player::JumpStart(const StateInfo& _Info)

@@ -32,7 +32,7 @@ void Tutorial1Level::Start()
 		Camera->GetTransform().SetLocalPosition( { 0, 0, 0 });
 
 
-		GetMainCamera()->SetProjectionSize(float4{ 1920 , 1080 });
+		GetMainCamera()->SetProjectionSize(float4{ 1920*0.9 , 1080 * 0.9 });
 	}
 
 	{
