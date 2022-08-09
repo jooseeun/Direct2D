@@ -30,6 +30,9 @@ void Tutorial1Level::Start()
 		Camera = CreateActor<GameEngineCameraActor>();
 		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
 		Camera->GetTransform().SetLocalPosition( { 0, 0, 0 });
+
+
+		GetMainCamera()->SetProjectionSize(float4{ 1920 , 1080 });
 	}
 
 	{
@@ -40,7 +43,7 @@ void Tutorial1Level::Start()
 			"King's-Pass_FrontObject_1.png",
 			"King's-Pass_ColMap_1.png");
 
-		MapSize = { 7098.0f, 5322.0f, 100.0f };
+		MapSize = { 7098.0f, 4800.0f, 100.0f };
 	}
 }
 void Tutorial1Level::Update(float _DeltaTime)

@@ -19,6 +19,7 @@ void IntroLevel::Start()
 	{
 		GameEngineInput::GetInst()->CreateKey("FreeCameraOnOff", 'O');
 		GameEngineInput::GetInst()->CreateKey("CameraDebug", 'P');
+		GameEngineInput::GetInst()->CreateKey("GameStart", VK_SPACE);
 	}
 
 
@@ -27,12 +28,13 @@ void IntroLevel::Start()
 
 	{
 		Camera = CreateActor<GameEngineCameraActor>();
-		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
+		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
 		Camera->GetTransform().SetLocalPosition({ 0, 0, 0 });
+
 	}
 
 
-	Camera->GetCameraComponent()->SetProjectionSize(float4{ 1980,1080 }*0.6);
+	GetMainCamera()->SetProjectionSize(float4{ 1920 , 1080 });
 
 }
 void IntroLevel::Update(float _DeltaTime)
@@ -42,7 +44,10 @@ void IntroLevel::Update(float _DeltaTime)
 	{
 		GetMainCameraActor()->FreeCameraModeOnOff();
 	}
-
+	if (GameEngineInput::GetInst()->IsDown("GameStart"))
+	{
+		GEngine::ChangeLevel("Tutorial1");
+	}
 
 }
 void IntroLevel::End()

@@ -59,6 +59,7 @@ protected:
 
 private:
 	float Speed;
+	float Time;
 	GameEngineStateManager StateManager;
 };
 

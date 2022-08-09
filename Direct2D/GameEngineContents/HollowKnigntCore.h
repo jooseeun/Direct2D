@@ -21,11 +21,11 @@ public:
 	}
 	float4 StartWindowSize()  override 
 	{ 
-		return { 1920*0.6, 1080*0.6}; 
+		return { 1920*0.7, 1080*0.7}; 
 	}
 	float4 StartWindowPosition() override
 	{
-		return { 0,0 };
+		return { 100,100 };
 	}
 protected:
 

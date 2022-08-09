@@ -79,6 +79,9 @@ void HollowKnigntCore::Start()
 	}
 	GameEngineTexture::Cut("PlayerWalk.png", 8, 1);
 	GameEngineTexture::Cut("PlayerIdleHighHealth.png", 9, 1);
+	GameEngineTexture::Cut("Player_run.png", 8, 1);
+	GameEngineTexture::Cut("Player_idle_to_run.png", 5, 1);
+	GameEngineTexture::Cut("Player_run_to_idle.png", 6, 1);
 
 	if (false == GameEngineInput::GetInst()->IsKey("LevelChangeKey"))
 	{
@@ -94,7 +97,7 @@ void HollowKnigntCore::Start()
 	CreateLevel<Tutorial2Level>("Tutorial2");
 	CreateLevel<Tutorial3Level>("Tutorial3");
 	CreateLevel<Tutorial4Level>("Tutorial4");
-	ChangeLevel("Tutorial1");
+	ChangeLevel("Intro");
 
 	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 

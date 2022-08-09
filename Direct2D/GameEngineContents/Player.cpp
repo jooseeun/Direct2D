@@ -49,9 +49,14 @@ void Player::Start()
 	}
 
 	{
-		Renderer->CreateFrameAnimationCutTexture("IdleHigh", FrameAnimation_DESC("PlayerIdleHighHealth.png", 0, 8,0.1f, true));
-		Renderer->CreateFrameAnimationCutTexture("PlayerWalk", FrameAnimation_DESC("PlayerWalk.png", 0, 7, 0.1f, true));
-
+		Renderer->CreateFrameAnimationCutTexture("IdleHigh", 
+			FrameAnimation_DESC("PlayerIdleHighHealth.png", 0, 8,0.1f, true));
+		Renderer->CreateFrameAnimationCutTexture("PlayerWalk",
+			FrameAnimation_DESC("Player_run.png", 0, 7, 0.1f, true));
+		Renderer->CreateFrameAnimationCutTexture("Player_idle_to_run",
+			FrameAnimation_DESC("Player_idle_to_run.png", 0, 4, 0.1f, false));
+		Renderer->CreateFrameAnimationCutTexture("Player_run_to_idle",
+			FrameAnimation_DESC("Player_run_to_idle.png", 0, 5, 0.1f, false));
 	}
 
 
@@ -188,11 +193,20 @@ bool Player::MapPixelCheck()
 
 void Player::IdleStart(const StateInfo& _Info)
 {
-	Renderer->ChangeFrameAnimation("IdleHigh");
-	Renderer->ScaleToCutTexture(0);
+
 }
 void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	if (Time < 6.0f)
+	{
+		Time += 1.0f * GameEngineTime::GetDeltaTime();
+	}
+	if (Time >= 6.0f)
+	{
+		Renderer->ChangeFrameAnimation("IdleHigh");
+		Renderer->ScaleToCutTexture(0);
+	}
+
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft") ||
 		true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
@@ -214,17 +228,29 @@ void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Player::MoveStart(const StateInfo& _Info)
 {
-	Renderer->ChangeFrameAnimation("PlayerWalk");
+	Time = 0.0f;
+	Renderer->ChangeFrameAnimation("Player_idle_to_run");
 	Renderer->ScaleToCutTexture(0);
 }
 
 void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-
+	if(Time < 5.0f)
+	{
+		Time += 1.0f * GameEngineTime::GetDeltaTime();
+	}
+	if (Time >= 5.0f)
+	{
+		Renderer->ChangeFrameAnimation("PlayerWalk");
+		Renderer->ScaleToCutTexture(0);
+	}
 
 	if (false == GameEngineInput::GetInst()->IsPress("PlayerLeft") &&
 		false == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
+		Time = 0.0f;
+		Renderer->ChangeFrameAnimation("Player_run_to_idle");
+		Renderer->ScaleToCutTexture(0);
 		StateManager.ChangeState("Idle");
 		return;
 	}
