@@ -40,7 +40,7 @@ public:
 	}
 
 	// ¿ÞÂÊ À§°¡ 0,0
-	float4 GetScreenPosition();
+	float4 GetMouseScreenPosition();
 
 	float4 GetMouseWorldPosition();
 

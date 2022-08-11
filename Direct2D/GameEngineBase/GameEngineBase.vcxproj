@@ -220,6 +220,9 @@
     <ClInclude Include="GameEngineTransform.h" />
     <ClInclude Include="GameEngineUpdateObject.h" />
     <ClInclude Include="GameEngineWindow.h" />
+    <ClInclude Include="magic_enum.hpp" />
+    <ClInclude Include="magic_enum_format.hpp" />
+    <ClInclude Include="magic_enum_fuse.hpp" />
     <ClInclude Include="PreCompile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

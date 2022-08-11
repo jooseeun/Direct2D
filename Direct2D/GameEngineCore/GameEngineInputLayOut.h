@@ -7,7 +7,7 @@ class GameEngineLayOutDesc;
 class GameEngineVertexShader;
 class GameEngineInputLayOut : public GameEngineRes<GameEngineInputLayOut>
 {
-	
+
 
 public:
 	// constrcuter destructer
@@ -29,6 +29,6 @@ protected:
 private:
 	ID3D11InputLayout* InputLayOut;
 
-	
+
 };
 

@@ -32,6 +32,15 @@ void FrameAnimation::Update(float _Delta)
 
 	if (Info.Inter <= Info.FrameTime)
 	{
+		if (Info.CurFrame == (Info.Frames.size() - 1)
+			&& false == bOnceEnd
+			&& nullptr != End)
+		{
+			End(Info);
+			bOnceEnd = true;
+			bOnceStart = false;
+		}
+
 		++Info.CurFrame;
 		if (nullptr != Frame)
 		{
@@ -40,12 +49,6 @@ void FrameAnimation::Update(float _Delta)
 
 		if (Info.CurFrame >= Info.Frames.size())
 		{
-			if (false == bOnceEnd && nullptr != End)
-			{
-				End(Info);
-				bOnceEnd = true;
-				bOnceStart = false;
-			}
 
 			if (true == Info.Loop)
 			{
@@ -276,10 +279,13 @@ void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _Animati
 		if (nullptr != CurAni->Texture)
 		{
 			SetTexture(CurAni->Texture, CurAni->Info.Frames[CurAni->Info.CurFrame]);
+			ScaleToCutTexture(CurAni->Info.CurFrame);
 		}
 		else if (nullptr != CurAni->FolderTexture)
 		{
 			SetTexture(CurAni->FolderTexture->GetTexture(CurAni->Info.Frames[CurAni->Info.CurFrame]));
+			ScaleToTexture();
+
 		}
 	}
 }

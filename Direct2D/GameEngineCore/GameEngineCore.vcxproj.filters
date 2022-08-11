@@ -76,6 +76,9 @@
     <Filter Include="Resources\Font">
       <UniqueIdentifier>{7e97e641-003f-4220-9f66-952bc430276e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{78411cb5-8f28-421d-ad5c-ffc3da25b654}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineStateManager.cpp">
@@ -218,7 +221,7 @@
       <Filter>Resources\Font</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineCoreDebug.cpp">
-      <Filter>Core</Filter>
+      <Filter>Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -368,25 +371,19 @@
     <ClInclude Include="GameEngineFont.h">
       <Filter>Resources\Font</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineCoreDebug.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="ThirdParty\inc\FW1FontWrapper.h">
       <Filter>ThirdParty\Inc</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineCoreDebug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="portable-file-dialogs.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
-      <Filter>ThirdParty\Lib\Debug</Filter>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\bin\Release\DirectXTex.lib">
       <Filter>ThirdParty\Lib\Release</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\bin\Debug\FW1FontWrapper.dll">
-      <Filter>ThirdParty\Lib\Debug</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\bin\Debug\FW1FontWrapper.lib">
-      <Filter>ThirdParty\Lib\Debug</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\bin\Release\FW1FontWrapper.dll">
       <Filter>ThirdParty\Lib\Release</Filter>
@@ -394,5 +391,18 @@
     <CopyFileToFolders Include="ThirdParty\bin\Release\FW1FontWrapper.lib">
       <Filter>ThirdParty\Lib\Release</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
+      <Filter>ThirdParty\Lib\Debug</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ThirdParty\bin\Debug\FW1FontWrapper.lib">
+      <Filter>ThirdParty\Lib\Debug</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThirdParty\bin\Debug\FW1FontWrapper.dll">
+      <Filter>ThirdParty\Lib\Debug</Filter>
+    </None>
   </ItemGroup>
 </Project>

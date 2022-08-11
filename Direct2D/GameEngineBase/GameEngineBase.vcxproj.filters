@@ -31,6 +31,9 @@
     <Filter Include="PreCompile">
       <UniqueIdentifier>{52b469f9-8296-4201-8044-40ab2026de6e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enum">
+      <UniqueIdentifier>{3daf6f0c-11b0-40a3-88db-df21f1339b02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="ThirdParty\bin\fmod.dll">
@@ -141,6 +144,15 @@
     </ClInclude>
     <ClInclude Include="GameEngineSound.h">
       <Filter>ThirdParty\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="magic_enum_fuse.hpp">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="magic_enum_format.hpp">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="magic_enum.hpp">
+      <Filter>Enum</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

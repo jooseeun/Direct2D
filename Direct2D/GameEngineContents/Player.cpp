@@ -156,7 +156,7 @@ void Player::Gravity()
 	{
 		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
 	}
-	float4 Color = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix(),
+	float4 Color = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
 		-GetTransform().GetWorldPosition().iy() - 1);
 
 	if (false == Color.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
@@ -192,9 +192,9 @@ bool Player::MapPixelCheck()
 	}
 
 
-	float4 ColorR = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix()+34,
+	float4 ColorR = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix()+34,
 		-GetTransform().GetWorldPosition().iy()-5);
-	float4 ColorL = ColMapTexture->GetPixel(GetTransform().GetWorldPosition().ix()-34,
+	float4 ColorL = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix()-34,
 		-GetTransform().GetWorldPosition().iy()-5);
 	if (CurDir == PLAYERDIR::Left)
 	{

@@ -174,8 +174,7 @@ void GameEngineShader::ShaderResCheck()
 			NewSetter.ParentShader = this;
 			NewSetter.SetName(Name);
 			NewSetter.ShaderType = ShaderSettingType;
-			NewSetter.Res = GameEngineSampler::Find("EngineSamplerPoint");
-			// 라이너로 바꾸고 텍스처아틀라스를 0~0.999 로 바꿔라
+			NewSetter.Res = GameEngineSampler::Find("EngineSamplerLinear");
 			NewSetter.BindPoint = ResInfo.BindPoint;
 			SamplerMap.insert(std::make_pair(Name, NewSetter));
 			break;

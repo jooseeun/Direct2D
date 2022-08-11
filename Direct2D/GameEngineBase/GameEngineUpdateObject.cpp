@@ -54,8 +54,8 @@ void GameEngineUpdateObject::AllUpdate(float _DeltaTime)
 
 	for (GameEngineUpdateObject* Com : Childs)
 	{
-		Com->AddAccTime(_DeltaTime);
-		Com->ReleaseUpdate(_DeltaTime);
+		//Com->AddAccTime(_DeltaTime);
+		//Com->ReleaseUpdate(_DeltaTime);
 		if (false == Com->IsUpdate())
 		{
 			continue;
@@ -64,6 +64,37 @@ void GameEngineUpdateObject::AllUpdate(float _DeltaTime)
 		Com->AllUpdate(_DeltaTime);
 	}
 }
+
+void GameEngineUpdateObject::AllOnEvent()
+{
+	/*this->*/OnEvent();
+
+	for (GameEngineUpdateObject* Com : Childs)
+	{
+		if (false == Com->IsUpdate())
+		{
+			continue;
+		}
+
+		Com->AllOnEvent();
+	}
+}
+
+void GameEngineUpdateObject::AllOffEvent()
+{
+	/*this->*/OffEvent();
+
+	for (GameEngineUpdateObject* Com : Childs)
+	{
+		if (false == Com->IsUpdate())
+		{
+			continue;
+		}
+
+		Com->AllOffEvent();
+	}
+}
+
 
 void GameEngineUpdateObject::ReleaseObject(std::list<GameEngineUpdateObject*>& _RelaseList)
 {

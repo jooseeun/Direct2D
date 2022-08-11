@@ -54,7 +54,13 @@ protected:
 
 	static ResType* CreateResName(const std::string& _Name = "")
 	{
+		if (NamedRes.end() != NamedRes.find(GameEngineString::ToUpperReturn(_Name)))
+		{
+			MsgBoxAssertString("같은 이름의 리소스를 또 생성했습니다." + _Name);
+		}
+
 		ResType* Res = CreateRes(_Name);
+
 		NamedRes.insert(std::make_pair(Res->GetNameCopy(), Res));
 		return Res;
 	}

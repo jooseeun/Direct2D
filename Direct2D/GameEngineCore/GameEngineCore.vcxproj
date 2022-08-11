@@ -131,13 +131,11 @@
     <ClInclude Include="imstb_rectpack.h" />
     <ClInclude Include="imstb_textedit.h" />
     <ClInclude Include="imstb_truetype.h" />
+    <ClInclude Include="portable-file-dialogs.h" />
     <ClInclude Include="ThirdParty\inc\DirectXTex.h" />
     <ClInclude Include="ThirdParty\inc\FW1FontWrapper.h" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\bin\Release\DirectXTex.lib">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <FileType>Document</FileType>
@@ -147,9 +145,6 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\bin\Debug\FW1FontWrapper.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\bin\Release\FW1FontWrapper.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <FileType>Document</FileType>
@@ -159,9 +154,6 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\bin\Debug\FW1FontWrapper.lib">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\bin\Release\FW1FontWrapper.lib">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <FileType>Document</FileType>
@@ -169,6 +161,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <Library Include="ThirdParty\bin\Debug\FW1FontWrapper.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThirdParty\bin\Debug\FW1FontWrapper.dll" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

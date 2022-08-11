@@ -7,6 +7,7 @@
 class GameEngineCore
 {
 	friend class GEngine;
+	friend class GameEngineStatusWindow;
 
 public:
 	template<typename CoreType>
