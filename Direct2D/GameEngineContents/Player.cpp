@@ -60,7 +60,7 @@ void Player::Start()
 		Renderer->CreateFrameAnimationCutTexture("Roar",
 			FrameAnimation_DESC("Player_roar.png", 0, 7, 0.1f, false));
 		Renderer->CreateFrameAnimationCutTexture("Fall",
-			FrameAnimation_DESC("Player_fall.png", 0, 5, 0.1f, true));		
+			FrameAnimation_DESC("Player_fall.png", 3, 5, 0.1f, true));		
 		Renderer->CreateFrameAnimationCutTexture("Jump",
 				FrameAnimation_DESC("Player_jump.png", 0, 5, 0.1f, true));
 	}
@@ -306,6 +306,9 @@ void Player::FallStart(const StateInfo& _Info)
 }
 void Player::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+
+
+
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
 	{
 		CurDir = PLAYERDIR::Left;
@@ -326,6 +329,15 @@ void Player::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 			Renderer->GetTransform().PixLocalNegativeX();
 		}
 
+	}
+
+	if (CurDir == PLAYERDIR::Left)
+	{
+		Renderer->GetTransform().PixLocalPositiveX();
+	}
+	if (CurDir == PLAYERDIR::Right)
+	{
+		Renderer->GetTransform().PixLocalNegativeX();
 	}
 }
 void Player::JumpStart(const StateInfo& _Info)
