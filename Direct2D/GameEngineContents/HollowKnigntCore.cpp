@@ -85,6 +85,9 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Player_roar.png", 8, 1);
 	GameEngineTexture::Cut("Player_fall.png", 6, 1);
 	GameEngineTexture::Cut("Player_jump.png", 6, 1);
+	GameEngineTexture::Cut("Player_slash_longer.png", 11, 1);
+	GameEngineTexture::Cut("Player_land.png", 3, 1);
+	GameEngineTexture::Cut("Player_land_hard.png", 5, 1);
 
 	if (false == GameEngineInput::GetInst()->IsKey("LevelChangeKey"))
 	{

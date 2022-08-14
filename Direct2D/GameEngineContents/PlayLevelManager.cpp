@@ -53,7 +53,7 @@ void PlayLevelManager::CreateMap(const std::string _BackGround
 		100.0f });
 	Map->FrontObject->GetTransform().SetLocalPosition(
 		float4{ Map->FrontObject->GetCurTexture()->GetScale().x / 2,
-		-Map->FrontObject->GetCurTexture()->GetScale().y / 2, -5.00.0f });
+		-Map->FrontObject->GetCurTexture()->GetScale().y / 2, -5.0f });
 	Map->FrontObject->SetPivot(PIVOTMODE::CUSTOM);
 	Map->FrontObject->SetOrder(static_cast<int>(OBJECTORDER::FrontObject));
 

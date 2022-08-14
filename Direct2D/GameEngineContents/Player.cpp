@@ -18,6 +18,7 @@ Player::Player()
 	: Speed(1000.0f)
 	, Renderer(nullptr)
 	, CurDir(PLAYERDIR::Right)
+	, AttackNum(1)
 {
 	MainPlayer = this;
 }
@@ -63,6 +64,14 @@ void Player::Start()
 			FrameAnimation_DESC("Player_fall.png", 3, 5, 0.1f, true));		
 		Renderer->CreateFrameAnimationCutTexture("Jump",
 				FrameAnimation_DESC("Player_jump.png", 0, 5, 0.1f, true));
+		Renderer->CreateFrameAnimationCutTexture("Attack1",
+			FrameAnimation_DESC("Player_slash_longer.png", 0, 5, 0.08f, false));
+		Renderer->CreateFrameAnimationCutTexture("Attack2",
+			FrameAnimation_DESC("Player_slash_longer.png", 5, 10, 0.08f, false));
+		Renderer->CreateFrameAnimationCutTexture("Land",
+			FrameAnimation_DESC("Player_land.png", 0, 2, 0.08f, false));
+		Renderer->CreateFrameAnimationCutTexture("HardLand",
+			FrameAnimation_DESC("Player_land_hard.png", 0, 4, 0.08f, false));
 	}
 
 
@@ -73,6 +82,10 @@ void Player::Start()
 	StateManager.CreateStateMember("Move"
 		, std::bind(&Player::MoveUpdate, this, std::placeholders::_1, std::placeholders::_2)
 		, std::bind(&Player::MoveStart, this, std::placeholders::_1)
+	);
+	StateManager.CreateStateMember("MoveToIdle"
+		, std::bind(&Player::MoveToIdleUpdate, this, std::placeholders::_1, std::placeholders::_2)
+		, std::bind(&Player::MoveToIdleStart, this, std::placeholders::_1)
 	);
 	StateManager.CreateStateMember("Jump"
 		, std::bind(&Player::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2)
@@ -85,6 +98,10 @@ void Player::Start()
 	StateManager.CreateStateMember("Fall"
 		, std::bind(&Player::FallUpdate, this, std::placeholders::_1, std::placeholders::_2)
 		, std::bind(&Player::FallStart, this, std::placeholders::_1)
+	);
+	StateManager.CreateStateMember("HardLand"
+		, std::bind(&Player::HardLandUpdate, this, std::placeholders::_1, std::placeholders::_2)
+		, std::bind(&Player::HardLandStart, this, std::placeholders::_1)
 	);
 	StateManager.ChangeState("Fall");
 
@@ -163,7 +180,7 @@ void Player::Gravity()
 	{
 		if (StateManager.GetCurStateStateName() == "Fall")
 		{
-			Renderer->ChangeFrameAnimation("Roar");
+			Renderer->ChangeFrameAnimation("Land");
 			Renderer->ScaleToCutTexture(0);
 			StateManager.ChangeState("Idle");
 		}
@@ -221,9 +238,20 @@ void Player::IdleStart(const StateInfo& _Info)
 }
 void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	if (_Info.PrevState == "Fall")
+	{
+		Renderer->AnimationBindEnd("Land", [=](const FrameAnimation_DESC& _Info)
+		{
+			Renderer->ChangeFrameAnimation("IdleHigh");
+			Renderer->ScaleToCutTexture(0);
+		});
+	}
+	else
+	{
+		Renderer->ChangeFrameAnimation("IdleHigh");
+		Renderer->ScaleToCutTexture(0);
+	}
 
-	Renderer->AnimationBindEnd("IdleHigh", std::bind(&Player::Renderer,this));
-	Renderer->ScaleToCutTexture(0);
 
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft") ||
 		true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
@@ -238,7 +266,7 @@ void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 		StateManager.ChangeState("Jump");
 	}
 
-	if (true == GameEngineInput::GetInst()->IsPress("PlayerAttack"))
+	if (true == GameEngineInput::GetInst()->IsDown("PlayerAttack"))
 	{
 		StateManager.ChangeState("Attack");
 	}
@@ -251,7 +279,15 @@ void Player::MoveStart(const StateInfo& _Info)
 
 void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	if (_Info.StateTime > 0.5f)
+	if (_Info.PrevState == "Idle")
+	{
+		Renderer->AnimationBindEnd("Player_idle_to_run", [=](const FrameAnimation_DESC& _Info)
+		{
+			Renderer->ChangeFrameAnimation("PlayerWalk");
+			Renderer->ScaleToCutTexture(0);
+		});
+	}
+	else
 	{
 		Renderer->ChangeFrameAnimation("PlayerWalk");
 		Renderer->ScaleToCutTexture(0);
@@ -261,14 +297,16 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		StateManager.ChangeState("Jump");
 	}
-
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerAttack")) // 점프와 동시에 이동할 수 있어야 한다.
+	{
+		StateManager.ChangeState("Attack");
+	}
 
 	if (false == GameEngineInput::GetInst()->IsPress("PlayerLeft") &&
 		false == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 	{
-		Renderer->ChangeFrameAnimation("Player_run_to_idle");
-		Renderer->ScaleToCutTexture(0);
-		StateManager.ChangeState("Idle");
+
+		StateManager.ChangeState("MoveToIdle");
 		return;
 	}
 	
@@ -296,13 +334,40 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
 
 }
+void Player::MoveToIdleStart(const StateInfo& _Info)
+{
+	Renderer->ChangeFrameAnimation("Player_run_to_idle");
+	Renderer->ScaleToCutTexture(0);
 
+}
+void Player::MoveToIdleUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	Renderer->AnimationBindEnd("Player_run_to_idle", [=](const FrameAnimation_DESC& _Info)
+	{
+		StateManager.ChangeState("Idle");
+	});
+	if (CurDir == PLAYERDIR::Left)
+	{
+		Renderer->GetTransform().PixLocalPositiveX();
+	}
+	if (CurDir == PLAYERDIR::Right)
+	{
+		Renderer->GetTransform().PixLocalNegativeX();
+	}
+}
 
 void Player::FallStart(const StateInfo& _Info)
 {
 	Renderer->ChangeFrameAnimation("Fall");
-	Renderer->ScaleToCutTexture(0);
-	Renderer->GetTransform().PixLocalNegativeX();
+	Renderer->ScaleToCutTexture(0);		
+	if (CurDir == PLAYERDIR::Left)
+	{
+		Renderer->GetTransform().PixLocalPositiveX();
+	}
+	if (CurDir == PLAYERDIR::Right)
+	{
+		Renderer->GetTransform().PixLocalNegativeX();
+	}
 }
 void Player::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -339,6 +404,28 @@ void Player::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		Renderer->GetTransform().PixLocalNegativeX();
 	}
+}	
+void Player::HardLandStart(const StateInfo& _Info)
+{
+	Renderer->ChangeFrameAnimation("HardLand");
+	Renderer->ScaleToCutTexture(0);
+}
+void Player::HardLandUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+
+	Renderer->AnimationBindEnd("HardLand", [=](const FrameAnimation_DESC& _Info)
+	{
+		StateManager.ChangeState("Idle");
+	});
+	if (CurDir == PLAYERDIR::Left)
+	{
+		Renderer->GetTransform().PixLocalPositiveX();
+	}
+	if (CurDir == PLAYERDIR::Right)
+	{
+		Renderer->GetTransform().PixLocalNegativeX();
+	}
+
 }
 void Player::JumpStart(const StateInfo& _Info)
 {
@@ -408,10 +495,74 @@ GetTransform().GetWorldPosition().z, });
 
 void Player::AttackStart(const StateInfo& _Info)
 {
-
-}
+	if (AttackNum == 1)
+	{
+		Renderer->ChangeFrameAnimation("Attack1");
+		Renderer->ScaleToCutTexture(0);
+		AttackNum = 2;
+	}
+	else if (AttackNum == 2)
+	{
+		Renderer->ChangeFrameAnimation("Attack2");
+		Renderer->ScaleToCutTexture(0);
+		AttackNum = 1;
+	}
+} 
 void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	Renderer->AnimationBindEnd("Attack1", [=](const FrameAnimation_DESC& _Info)
+	{
+		if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft")
+			|| true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
+		{
+			StateManager.ChangeState("Move");
+		}
+		else
+		{
+			StateManager.ChangeState("Idle");
+		}
+	});
+	Renderer->AnimationBindEnd("Attack2", [=](const FrameAnimation_DESC& _Info)
+	{
+		if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft")
+			|| true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
+		{
+			StateManager.ChangeState("Move");
+		}
+		else
+		{
+			StateManager.ChangeState("Idle");
+		}
+	});
+	if (CurDir == PLAYERDIR::Left)
+	{
+		Renderer->GetTransform().PixLocalPositiveX();
+	}
+	if (CurDir == PLAYERDIR::Right)
+	{
+		Renderer->GetTransform().PixLocalNegativeX();
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
+	{
+		CurDir = PLAYERDIR::Left;
+		if (false == MapPixelCheck())
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+			Renderer->GetTransform().PixLocalPositiveX();
+		}
+
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
+	{
+		CurDir = PLAYERDIR::Right;
+		if (false == MapPixelCheck())
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
+			Renderer->GetTransform().PixLocalNegativeX();
+		}
+	}
 
 }
 

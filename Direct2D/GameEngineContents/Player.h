@@ -51,6 +51,9 @@ protected:
 	void MoveStart(const StateInfo& _Info);
 	void MoveUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	void MoveToIdleStart(const StateInfo& _Info);
+	void MoveToIdleUpdate(float _DeltaTime, const StateInfo& _Info);
+
 	void JumpStart(const StateInfo& _Info);
 	void JumpUpdate(float _DeltaTime, const StateInfo& _Info);
 
@@ -60,9 +63,12 @@ protected:
 	void FallStart(const StateInfo& _Info);
 	void FallUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	void HardLandStart(const StateInfo& _Info);
+	void HardLandUpdate(float _DeltaTime, const StateInfo& _Info);
 private:
 	float Speed;
 	float JumpTime;
+	int AttackNum;
 	GameEngineStateManager StateManager;
 };
 
