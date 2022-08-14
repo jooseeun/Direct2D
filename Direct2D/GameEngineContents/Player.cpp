@@ -24,6 +24,7 @@ Player::Player()
 	, StateManager()
 	, JumpTime(0)
 	, SkilRenderer(nullptr)
+	, FallTime(0)
 {
 	MainPlayer = this;
 }
@@ -45,7 +46,7 @@ void Player::Start()
 		GameEngineInput::GetInst()->CreateKey("PlayerAttack", 'X');
 	}
 
-	GetTransform().SetLocalScale({ 1., 1, 1 });
+	GetTransform().SetLocalScale({ 1, 1, 1 });
 
 	
 	{
@@ -92,11 +93,15 @@ void Player::Start()
 	}
 	{
 		SkilRenderer->CreateFrameAnimationCutTexture("Idle",
-			FrameAnimation_DESC("Player_slash_effect.png", 0, 0, 0.08f, false));
+			FrameAnimation_DESC("Player_slash_effect.png", 0, 0, 0.1f, false));
 		SkilRenderer->CreateFrameAnimationCutTexture("Attack1",
-			FrameAnimation_DESC("Player_slash_effect.png", 0, 3, 0.08f, false));
+			FrameAnimation_DESC("Player_slash_effect.png", 0, 3, 0.1f, false));
 		SkilRenderer->CreateFrameAnimationCutTexture("Attack2",
-			FrameAnimation_DESC("Player_slash_effect.png", 4, 7, 0.08f, false));
+			FrameAnimation_DESC("Player_slash_effect.png", 4, 7, 0.1f, false));
+		SkilRenderer->CreateFrameAnimationCutTexture("UpAttack",
+			FrameAnimation_DESC("Player_Upslash_effect.png", 0, 2, 0.1f, false));
+		SkilRenderer->CreateFrameAnimationCutTexture("DownAttack",
+				FrameAnimation_DESC("Player_Downslash_effect.png", 0, 3, 0.1f, false));
 	}
 
 
@@ -213,6 +218,11 @@ void Player::Gravity()
 	{
 		if (StateManager.GetCurStateStateName() == "Fall")
 		{
+			if (FallTime > 1.5f)
+			{
+				StateManager.ChangeState("HardLand");
+				return;
+			}
 			PlayerRenderer->ChangeFrameAnimation("Land");
 			PlayerRenderer->ScaleToCutTexture(0);
 			StateManager.ChangeState("Idle");
@@ -267,6 +277,7 @@ bool Player::MapPixelCheck()
 
 void Player::IdleStart(const StateInfo& _Info)
 {
+	FallTime = 0.0f;
 	SkilRenderer->ChangeFrameAnimation("Idle");
 	SkilRenderer->ScaleToCutTexture(0);
 }
@@ -415,11 +426,12 @@ void Player::FallStart(const StateInfo& _Info)
 	{
 		PlayerRenderer->GetTransform().PixLocalNegativeX();
 	}
+	FallTime = 0.0f;
 }
 void Player::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 
-
+	FallTime += 1.0f * _DeltaTime;
 
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
 	{
@@ -621,17 +633,21 @@ void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 void Player::UpAttackStart(const StateInfo& _Info)
 {
 	PlayerRenderer->ChangeFrameAnimation("UpAttack");
-	PlayerRenderer->ScaleToCutTexture(0);
+	PlayerRenderer->ScaleToCutTexture(0);	
+	SkilRenderer->ChangeFrameAnimation("UpAttack");
+	SkilRenderer->ScaleToCutTexture(0);
 }
 void Player::UpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	if (CurDir == PLAYERDIR::Left)
 	{
 		PlayerRenderer->GetTransform().PixLocalPositiveX();
+		SkilRenderer->GetTransform().PixLocalPositiveX();
 	}
 	if (CurDir == PLAYERDIR::Right)
 	{
 		PlayerRenderer->GetTransform().PixLocalNegativeX();
+		SkilRenderer->GetTransform().PixLocalNegativeX();
 	}
 	PlayerRenderer->AnimationBindEnd("UpAttack", [=](const FrameAnimation_DESC& _Info)
 	{
@@ -653,6 +669,7 @@ void Player::UpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		{
 			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
 			PlayerRenderer->GetTransform().PixLocalPositiveX();
+			SkilRenderer->GetTransform().PixLocalPositiveX();
 		}
 
 	}
@@ -664,6 +681,7 @@ void Player::UpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		{
 			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
 			PlayerRenderer->GetTransform().PixLocalNegativeX();
+			SkilRenderer->GetTransform().PixLocalNegativeX();
 		}
 	}
 }
@@ -672,6 +690,8 @@ void Player::DownAttackStart(const StateInfo& _Info)
 {
 	PlayerRenderer->ChangeFrameAnimation("DownAttack");
 	PlayerRenderer->ScaleToCutTexture(0);
+	SkilRenderer->ChangeFrameAnimation("DownAttack");
+	SkilRenderer->ScaleToCutTexture(0);
 }
 void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -691,10 +711,12 @@ void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	if (CurDir == PLAYERDIR::Left)
 	{
 		PlayerRenderer->GetTransform().PixLocalPositiveX();
+		SkilRenderer->GetTransform().PixLocalPositiveX();
 	}
 	if (CurDir == PLAYERDIR::Right)
 	{
 		PlayerRenderer->GetTransform().PixLocalNegativeX();
+		SkilRenderer->GetTransform().PixLocalNegativeX();
 	}
 
 
@@ -705,6 +727,7 @@ void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		{
 			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
 			PlayerRenderer->GetTransform().PixLocalPositiveX();
+			SkilRenderer->GetTransform().PixLocalPositiveX();
 		}
 
 	}
@@ -716,6 +739,7 @@ void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		{
 			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
 			PlayerRenderer->GetTransform().PixLocalNegativeX();
+			SkilRenderer->GetTransform().PixLocalNegativeX();
 		}
 	}
 }

@@ -76,6 +76,7 @@ protected:
 private:
 	float Speed;
 	float JumpTime;
+	float FallTime;
 	int AttackNum;
 	GameEngineStateManager StateManager;
 };
