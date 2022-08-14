@@ -38,7 +38,8 @@ protected:
 	void CameraCheck();
 	bool MapPixelCheck();
 	void Gravity();
-	GameEngineTextureRenderer* Renderer;
+	GameEngineTextureRenderer* PlayerRenderer;
+	GameEngineTextureRenderer* SkilRenderer;
 
 	float4 Color;
 	float4 MapSize;
