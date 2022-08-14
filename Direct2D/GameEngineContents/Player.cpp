@@ -284,10 +284,9 @@ void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		if (true == GameEngineInput::GetInst()->IsPress("PlayerUp"))
 		{
-
 			StateManager.ChangeState("UpAttack");
 		}
-		if (true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
+		else if (true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
 		{
 
 			StateManager.ChangeState("DownAttack");
