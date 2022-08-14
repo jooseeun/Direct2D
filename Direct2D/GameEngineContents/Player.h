@@ -60,11 +60,18 @@ protected:
 	void AttackStart(const StateInfo& _Info);
 	void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	void UpAttackStart(const StateInfo& _Info);
+	void UpAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void DownAttackStart(const StateInfo& _Info);
+	void DownAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+
 	void FallStart(const StateInfo& _Info);
 	void FallUpdate(float _DeltaTime, const StateInfo& _Info);
 
 	void HardLandStart(const StateInfo& _Info);
 	void HardLandUpdate(float _DeltaTime, const StateInfo& _Info);
+
 private:
 	float Speed;
 	float JumpTime;
