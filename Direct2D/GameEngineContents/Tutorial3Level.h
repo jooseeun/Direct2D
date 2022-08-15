@@ -1,8 +1,11 @@
 #pragma once
 
+#include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineCore/GameEngineLevel.h>
+#include "PlayLevelManager.h"
 // Ό³Έν :
-class Tutorial3Level : public GameEngineLevel
+class GameEngineCameraActor;
+class Tutorial3Level : public PlayLevelManager
 {
 public:
 	// constrcuter destructer
@@ -20,7 +23,11 @@ protected:
 	void Update(float _DeltaTime) override;
 	void End() override;
 	void OnEvent() override;
+
 private:
+
+	GameEngineCameraActor* Camera;
+	float4 MapSize;
 
 };
 

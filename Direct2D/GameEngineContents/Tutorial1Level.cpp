@@ -68,11 +68,11 @@ void Tutorial1Level::OnEvent()
 		if (nullptr == Player::GetMainPlayer())
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
-			NewPlayer->GetTransform().SetLocalPosition({ 924.0f, -1640.0f, 0 });
-			NewPlayer->SetLevelOverOn();
-			NewPlayer->SetMapSize(MapSize);
-			GetMainCameraActorTransform().SetLocalPosition({ 924.0f, -1640.0f, 0 });
 		}
+		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 924.0f, -1640.0f, 0 });
+		Player::GetMainPlayer()->SetLevelOverOn();
+		Player::GetMainPlayer()->SetMapSize(MapSize);
+		GetMainCameraActorTransform().SetLocalPosition({ 924.0f, -1640.0f, 0 });
 	}
 
 }
