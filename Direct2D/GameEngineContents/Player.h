@@ -3,6 +3,7 @@
 
 // Ό³Έν :
 class GameEngineTextureRenderer;
+class GameEngineCollision;
 class Player : public GameEngineActor
 {
 private:
@@ -40,6 +41,9 @@ protected:
 	void Gravity();
 	GameEngineTextureRenderer* PlayerRenderer;
 	GameEngineTextureRenderer* SkilRenderer;
+	GameEngineCollision* PlayerCol;
+	GameEngineCollision* RightSkilCol;
+	GameEngineCollision* LeftSkilCol;
 
 	float4 Color;
 	float4 MapSize;

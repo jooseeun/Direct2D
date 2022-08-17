@@ -25,6 +25,9 @@ Player::Player()
 	, JumpTime(0)
 	, SkilRenderer(nullptr)
 	, FallTime(0)
+	, LeftSkilCol(nullptr)
+	, RightSkilCol(nullptr)
+	, PlayerCol(nullptr)
 {
 	MainPlayer = this;
 }
@@ -62,6 +65,26 @@ void Player::Start()
 		SkilRenderer->SetTexture("PlayerIdle.png");
 		SkilRenderer->SetOrder((int)OBJECTORDER::Player);
 		SkilRenderer->SetPivot(PIVOTMODE::BOT);
+	}
+	{
+		PlayerCol = CreateComponent<GameEngineCollision>();
+		PlayerCol->GetTransform().SetLocalScale({ 66.0f,125.0f,100.0f });
+		PlayerCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
+			float4{ 0,62.5f,0 });
+	}
+	{
+		LeftSkilCol = CreateComponent<GameEngineCollision>();
+		LeftSkilCol->GetTransform().SetLocalScale({ 175.0f , 92.f, 100.0f });
+		LeftSkilCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
+			float4{ -50,62.5f,0 });
+		LeftSkilCol->Off();
+	}
+	{
+		RightSkilCol = CreateComponent<GameEngineCollision>();
+		RightSkilCol->GetTransform().SetLocalScale({ 175.0f , 92.f, 100.0f });
+		RightSkilCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
+			float4{ 50,62.5f,0 });
+		RightSkilCol->Off();
 	}
 	{
 		PlayerRenderer->CreateFrameAnimationCutTexture("IdleHigh",
@@ -593,6 +616,15 @@ GetTransform().GetWorldPosition().z, });
 
 void Player::AttackStart(const StateInfo& _Info)
 {
+
+	if (CurDir == PLAYERDIR::Left)
+	{
+		LeftSkilCol->On();
+	}
+	if (CurDir == PLAYERDIR::Right)
+	{
+		RightSkilCol->On();
+	}
 	if (AttackNum == 1)
 	{
 		PlayerRenderer->ChangeFrameAnimation("Attack1");
@@ -617,10 +649,16 @@ void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft")
 			|| true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 		{
+
+			LeftSkilCol->Off();
+			RightSkilCol->Off();
 			StateManager.ChangeState("Move");
 		}
 		else
 		{
+
+			LeftSkilCol->Off();
+			RightSkilCol->Off();
 			StateManager.ChangeState("Idle");
 		}
 	});
@@ -629,10 +667,15 @@ void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft")
 			|| true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
 		{
+
+			LeftSkilCol->Off();
+			RightSkilCol->Off();
 			StateManager.ChangeState("Move");
 		}
 		else
 		{
+			LeftSkilCol->Off();
+			RightSkilCol->Off();
 			StateManager.ChangeState("Idle");
 		}
 	});
@@ -640,11 +683,13 @@ void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		SkilRenderer->GetTransform().PixLocalPositiveX();
 		PlayerRenderer->GetTransform().PixLocalPositiveX();
+
 	}
 	if (CurDir == PLAYERDIR::Right)
 	{
 		SkilRenderer->GetTransform().PixLocalNegativeX();
 		PlayerRenderer->GetTransform().PixLocalNegativeX();
+
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
@@ -749,6 +794,7 @@ void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 	if (CurDir == PLAYERDIR::Left)
 	{
+
 		PlayerRenderer->GetTransform().PixLocalPositiveX();
 		SkilRenderer->GetTransform().PixLocalPositiveX();
 	}
