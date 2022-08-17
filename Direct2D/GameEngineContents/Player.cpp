@@ -412,6 +412,36 @@ void Player::MoveToIdleUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		PlayerRenderer->GetTransform().PixLocalNegativeX();
 	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft") ||
+		true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
+	{
+		PlayerRenderer->ChangeFrameAnimation("Player_idle_to_run");
+		PlayerRenderer->ScaleToCutTexture(0);
+		StateManager.ChangeState("Move");
+	}
+
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerJump"))
+	{
+		StateManager.ChangeState("Jump");
+	}
+
+	if (true == GameEngineInput::GetInst()->IsDown("PlayerAttack"))
+	{
+		if (true == GameEngineInput::GetInst()->IsPress("PlayerUp"))
+		{
+			StateManager.ChangeState("UpAttack");
+		}
+		else if (true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
+		{
+
+			StateManager.ChangeState("DownAttack");
+		}
+		else
+		{
+			StateManager.ChangeState("Attack");
+		}
+	}
 }
 
 void Player::FallStart(const StateInfo& _Info)
