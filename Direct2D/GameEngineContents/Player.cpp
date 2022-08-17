@@ -256,6 +256,13 @@ bool Player::MapPixelCheck()
 		-GetTransform().GetWorldPosition().iy()-5);
 	float4 ColorL = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix()-34,
 		-GetTransform().GetWorldPosition().iy()-5);
+	float4 ColorUp = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
+		-GetTransform().GetWorldPosition().iy() - 125);
+	if (false == ColorUp.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+	{
+		return true;
+	}
+
 	if (CurDir == PLAYERDIR::Left)
 	{
 		if (false == ColorL.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
@@ -263,6 +270,7 @@ bool Player::MapPixelCheck()
 			return true;
 		}
 	}
+
 	if (CurDir == PLAYERDIR::Right)
 	{
 		if (false == ColorR.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
@@ -270,6 +278,7 @@ bool Player::MapPixelCheck()
 			return true;
 		}
 	}
+
 
 	return false;
 
