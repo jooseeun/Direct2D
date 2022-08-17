@@ -1,8 +1,12 @@
 #include "Tutorial1Level.h"
 #include "PreCompile.h"
-#include "Player.h"
+
 #include "MapSet.h"
+#include "Player.h"
+#include "Crawler.h"
+
 #include "PlayLevelManager.h"
+
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
@@ -44,6 +48,11 @@ void Tutorial1Level::Start()
 			"King's-Pass_ColMap_1.png");
 
 		MapSize = { 7098.0f, 4800.0f, 100.0f };
+	}
+
+	{
+		Crawler* NewCrawler = CreateActor<Crawler>(OBJECTORDER::Monster);
+		NewCrawler->GetTransform().SetLocalPosition({ 4709, -4653, 0 });
 	}
 }
 void Tutorial1Level::Update(float _DeltaTime)

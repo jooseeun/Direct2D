@@ -77,6 +77,20 @@ void HollowKnigntCore::Start()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExitsChildDirectory("ContentsResources");
+		Dir.Move("ContentsResources");
+		Dir.Move("Texture");
+		Dir.Move("Monster");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
 	GameEngineTexture::Cut("PlayerWalk.png", 8, 1);
 	GameEngineTexture::Cut("PlayerIdleHighHealth.png", 9, 1);
 	GameEngineTexture::Cut("Player_run.png", 8, 1);
@@ -96,6 +110,8 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Player_land.png", 3, 1);
 	GameEngineTexture::Cut("Player_land_hard.png", 5, 1);
 
+	///Monster ¸®¼Ò½º
+	GameEngineTexture::Cut("Crawler_walk.png", 4, 1);
 	if (false == GameEngineInput::GetInst()->IsKey("LevelChangeKey"))
 	{
 		GameEngineInput::GetInst()->CreateKey("LevelChangeKey", 'P');

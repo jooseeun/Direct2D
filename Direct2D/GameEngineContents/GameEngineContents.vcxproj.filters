@@ -16,6 +16,12 @@
     <Filter Include="PreCompile">
       <UniqueIdentifier>{a6eb18f1-1c3b-400b-a5e7-a212238703e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Actor\Monster">
+      <UniqueIdentifier>{9da749d6-1ece-423e-bb03-c1183cf5c812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Player">
+      <UniqueIdentifier>{6751c2b0-f8e5-45b4-89a6-ce50e72f4781}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -48,11 +54,14 @@
     <ClCompile Include="PlayLevelManager.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
     <ClCompile Include="TitleObject.cpp">
       <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Crawler.cpp">
+      <Filter>Actor\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Actor\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,9 +89,6 @@
     <ClInclude Include="TownLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Actor</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalContentsValue.h">
       <Filter>Global</Filter>
     </ClInclude>
@@ -94,6 +100,12 @@
     </ClInclude>
     <ClInclude Include="TitleObject.h">
       <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Crawler.h">
+      <Filter>Actor\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Actor\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
