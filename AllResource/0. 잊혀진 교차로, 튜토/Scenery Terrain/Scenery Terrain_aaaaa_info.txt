@@ -1,9 +1,0 @@
-version: 2
-type: collection
-name: Scenery Terrain
-consistent_sprite_size: true
-enable_borders: false
-use_sprite_name: true
-sprites: 2
-loose_floor_030000	Scenery Terrain_loose_floor_030000.png
-loose_floor_030001	Scenery Terrain_loose_floor_030001.png
