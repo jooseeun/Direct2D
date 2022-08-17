@@ -5,6 +5,7 @@ enum class OBJECTORDER
 	Ground,
 	Player,
 	Monster,
+	Skill,
 	FrontObject
 };
 

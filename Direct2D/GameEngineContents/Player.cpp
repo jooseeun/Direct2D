@@ -23,7 +23,7 @@ Player::Player()
 	, MapSize(0)
 	, StateManager()
 	, JumpTime(0)
-	, SkilRenderer(nullptr)
+	, SkillRenderer(nullptr)
 	, FallTime(0)
 	, LeftSkilCol(nullptr)
 	, RightSkilCol(nullptr)
@@ -60,24 +60,27 @@ void Player::Start()
 		PlayerRenderer->SetPivot(PIVOTMODE::BOT);
 	}
 	{
-		SkilRenderer = CreateComponent<GameEngineTextureRenderer>();
-		SkilRenderer->GetTransform().SetLocalScale({ 350, 186, 10.0f });
-		SkilRenderer->SetTexture("PlayerIdle.png");
-		SkilRenderer->SetOrder((int)OBJECTORDER::Player);
-		SkilRenderer->SetPivot(PIVOTMODE::BOT);
+		SkillRenderer = CreateComponent<GameEngineTextureRenderer>();
+		SkillRenderer->GetTransform().SetLocalScale({ 350, 186, 10.0f });
+		SkillRenderer->SetTexture("PlayerIdle.png");
+		SkillRenderer->SetOrder((int)OBJECTORDER::Player);
+		SkillRenderer->SetPivot(PIVOTMODE::BOT);
 	}
 	{
 		PlayerCol = CreateComponent<GameEngineCollision>();
 		PlayerCol->GetTransform().SetLocalScale({ 66.0f,125.0f,100.0f });
 		PlayerCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ 0,62.5f,0 });
+		PlayerCol->SetOrder((int)OBJECTORDER::Player);
 	}
 	{
 		LeftSkilCol = CreateComponent<GameEngineCollision>();
 		LeftSkilCol->GetTransform().SetLocalScale({ 175.0f , 92.f, 100.0f });
 		LeftSkilCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ -50,62.5f,0 });
+		LeftSkilCol->SetOrder((int)OBJECTORDER::Skill);
 		LeftSkilCol->Off();
+
 	}
 	{
 		RightSkilCol = CreateComponent<GameEngineCollision>();
@@ -115,15 +118,15 @@ void Player::Start()
 			FrameAnimation_DESC("Player_land_hard.png", 0, 4, 0.08f, false));
 	}
 	{
-		SkilRenderer->CreateFrameAnimationCutTexture("Idle",
+		SkillRenderer->CreateFrameAnimationCutTexture("Idle",
 			FrameAnimation_DESC("Player_slash_effect.png", 0, 0, 0.1f, false));
-		SkilRenderer->CreateFrameAnimationCutTexture("Attack1",
+		SkillRenderer->CreateFrameAnimationCutTexture("Attack1",
 			FrameAnimation_DESC("Player_slash_effect.png", 0, 3, 0.1f, false));
-		SkilRenderer->CreateFrameAnimationCutTexture("Attack2",
+		SkillRenderer->CreateFrameAnimationCutTexture("Attack2",
 			FrameAnimation_DESC("Player_slash_effect.png", 4, 7, 0.1f, false));
-		SkilRenderer->CreateFrameAnimationCutTexture("UpAttack",
+		SkillRenderer->CreateFrameAnimationCutTexture("UpAttack",
 			FrameAnimation_DESC("Player_Upslash_effect.png", 0, 2, 0.1f, false));
-		SkilRenderer->CreateFrameAnimationCutTexture("DownAttack",
+		SkillRenderer->CreateFrameAnimationCutTexture("DownAttack",
 				FrameAnimation_DESC("Player_Downslash_effect.png", 0, 3, 0.1f, false));
 	}
 
@@ -177,6 +180,11 @@ void Player::Update(float _DeltaTime)
 	if (true == GetLevel()->GetMainCameraActor()->IsFreeCameraMode())
 	{
 		return;
+	}
+
+	if (true == PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D))
+	{
+		int a = 0;
 	}
 
 	StateManager.Update(_DeltaTime);
@@ -307,11 +315,26 @@ bool Player::MapPixelCheck()
 
 }
 
+
+bool Player::MonsterColCheck()
+{
+	if (true == PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D))
+	{
+		int a = 0;
+	}
+	return false;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////
+//////////////////플레이어 StateManager 함수들/////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 void Player::IdleStart(const StateInfo& _Info)
 {
 	FallTime = 0.0f;
-	SkilRenderer->ChangeFrameAnimation("Idle");
-	SkilRenderer->ScaleToCutTexture(0);
+	SkillRenderer->ChangeFrameAnimation("Idle");
+	SkillRenderer->ScaleToCutTexture(0);
 }
 void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -629,16 +652,16 @@ void Player::AttackStart(const StateInfo& _Info)
 	{
 		PlayerRenderer->ChangeFrameAnimation("Attack1");
 		PlayerRenderer->ScaleToCutTexture(0);
-		SkilRenderer->ChangeFrameAnimation("Attack1");
-		SkilRenderer->ScaleToCutTexture(0);
+		SkillRenderer->ChangeFrameAnimation("Attack1");
+		SkillRenderer->ScaleToCutTexture(0);
 		AttackNum = 2;
 	}
 	else if (AttackNum == 2)
 	{
 		PlayerRenderer->ChangeFrameAnimation("Attack2");
 		PlayerRenderer->ScaleToCutTexture(0);
-		SkilRenderer->ChangeFrameAnimation("Attack2");
-		SkilRenderer->ScaleToCutTexture(0);
+		SkillRenderer->ChangeFrameAnimation("Attack2");
+		SkillRenderer->ScaleToCutTexture(0);
 		AttackNum = 1;
 	}
 } 
@@ -681,13 +704,13 @@ void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	});
 	if (CurDir == PLAYERDIR::Left)
 	{
-		SkilRenderer->GetTransform().PixLocalPositiveX();
+		SkillRenderer->GetTransform().PixLocalPositiveX();
 		PlayerRenderer->GetTransform().PixLocalPositiveX();
 
 	}
 	if (CurDir == PLAYERDIR::Right)
 	{
-		SkilRenderer->GetTransform().PixLocalNegativeX();
+		SkillRenderer->GetTransform().PixLocalNegativeX();
 		PlayerRenderer->GetTransform().PixLocalNegativeX();
 
 	}
@@ -718,20 +741,20 @@ void Player::UpAttackStart(const StateInfo& _Info)
 {
 	PlayerRenderer->ChangeFrameAnimation("UpAttack");
 	PlayerRenderer->ScaleToCutTexture(0);	
-	SkilRenderer->ChangeFrameAnimation("UpAttack");
-	SkilRenderer->ScaleToCutTexture(0);
+	SkillRenderer->ChangeFrameAnimation("UpAttack");
+	SkillRenderer->ScaleToCutTexture(0);
 }
 void Player::UpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	if (CurDir == PLAYERDIR::Left)
 	{
 		PlayerRenderer->GetTransform().PixLocalPositiveX();
-		SkilRenderer->GetTransform().PixLocalPositiveX();
+		SkillRenderer->GetTransform().PixLocalPositiveX();
 	}
 	if (CurDir == PLAYERDIR::Right)
 	{
 		PlayerRenderer->GetTransform().PixLocalNegativeX();
-		SkilRenderer->GetTransform().PixLocalNegativeX();
+		SkillRenderer->GetTransform().PixLocalNegativeX();
 	}
 	PlayerRenderer->AnimationBindEnd("UpAttack", [=](const FrameAnimation_DESC& _Info)
 	{
@@ -753,7 +776,7 @@ void Player::UpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		{
 			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
 			PlayerRenderer->GetTransform().PixLocalPositiveX();
-			SkilRenderer->GetTransform().PixLocalPositiveX();
+			SkillRenderer->GetTransform().PixLocalPositiveX();
 		}
 
 	}
@@ -765,7 +788,7 @@ void Player::UpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		{
 			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
 			PlayerRenderer->GetTransform().PixLocalNegativeX();
-			SkilRenderer->GetTransform().PixLocalNegativeX();
+			SkillRenderer->GetTransform().PixLocalNegativeX();
 		}
 	}
 }
@@ -774,8 +797,8 @@ void Player::DownAttackStart(const StateInfo& _Info)
 {
 	PlayerRenderer->ChangeFrameAnimation("DownAttack");
 	PlayerRenderer->ScaleToCutTexture(0);
-	SkilRenderer->ChangeFrameAnimation("DownAttack");
-	SkilRenderer->ScaleToCutTexture(0);
+	SkillRenderer->ChangeFrameAnimation("DownAttack");
+	SkillRenderer->ScaleToCutTexture(0);
 }
 void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -796,12 +819,12 @@ void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 
 		PlayerRenderer->GetTransform().PixLocalPositiveX();
-		SkilRenderer->GetTransform().PixLocalPositiveX();
+		SkillRenderer->GetTransform().PixLocalPositiveX();
 	}
 	if (CurDir == PLAYERDIR::Right)
 	{
 		PlayerRenderer->GetTransform().PixLocalNegativeX();
-		SkilRenderer->GetTransform().PixLocalNegativeX();
+		SkillRenderer->GetTransform().PixLocalNegativeX();
 	}
 
 
@@ -812,7 +835,7 @@ void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		{
 			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
 			PlayerRenderer->GetTransform().PixLocalPositiveX();
-			SkilRenderer->GetTransform().PixLocalPositiveX();
+			SkillRenderer->GetTransform().PixLocalPositiveX();
 		}
 
 	}
@@ -824,7 +847,7 @@ void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		{
 			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
 			PlayerRenderer->GetTransform().PixLocalNegativeX();
-			SkilRenderer->GetTransform().PixLocalNegativeX();
+			SkillRenderer->GetTransform().PixLocalNegativeX();
 		}
 	}
 }

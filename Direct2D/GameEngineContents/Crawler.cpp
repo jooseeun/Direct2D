@@ -30,6 +30,7 @@ void Crawler::Start()
 		MonsterCollision->GetTransform().SetLocalScale({ 108,80,100.0f });
 		MonsterCollision->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ 0,40.0f,0 });
+		MonsterCollision->SetOrder((int)(OBJECTORDER::Monster));
 	}
 	{
 		TriggerCollision = CreateComponent<GameEngineCollision>();

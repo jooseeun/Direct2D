@@ -39,8 +39,10 @@ protected:
 	void CameraCheck();
 	bool MapPixelCheck();
 	void Gravity();
+	bool MonsterColCheck();
+
 	GameEngineTextureRenderer* PlayerRenderer;
-	GameEngineTextureRenderer* SkilRenderer;
+	GameEngineTextureRenderer* SkillRenderer;
 	GameEngineCollision* PlayerCol;
 	GameEngineCollision* RightSkilCol;
 	GameEngineCollision* LeftSkilCol;
