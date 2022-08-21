@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 #include <list>
-#include "GameEngineTime.h"
-#include "GameEngineDebugObject.h"
+#include <GameEngineBase/GameEngineTime.h>
+#include <GameEngineBase/GameEngineDebugObject.h>
 
 
 class GameEngineUpdateObject : public GameEngineDebugObject
@@ -27,16 +27,19 @@ public:
 	inline void On()
 	{
 		IsUpdate_ = true;
+		AllOnEvent();
 	}
 
 	inline void Off()
 	{
 		IsUpdate_ = false;
+		AllOffEvent();
 	}
 
 	inline void OnOffSwitch()
 	{
 		IsUpdate_ = !IsUpdate_;
+		IsUpdate_ == true ? OnEvent() : OffEvent();
 	}
 
 	inline bool IsUpdate()
@@ -154,11 +157,17 @@ public:
 
 	void AllUpdate(float _DeltaTime);
 
-	void AllOnEvent();
 
-	void AllOffEvent();
+	virtual void LevelStartEvent() {}
+	virtual void LevelEndEvent() { }
 
 protected:
+	void AllLevelStartEvent();
+	void AllLevelEndEvent();
+
+	void AllOnEvent();
+	void AllOffEvent();
+
 	// 이 오브젝트가 동작을 하기 시작했다.
 	virtual void OnEvent() {}//레벨체인지 스타트
 												//레벨에선 이런개념 액터나 컴포넌트도 갖고있다.
@@ -174,7 +183,7 @@ protected:
 	virtual void ReleaseObject(std::list<GameEngineUpdateObject*>& _RelaseList);
 
 	template<typename ConvertType>
-	std::list<ConvertType*> GetConvertChilds()
+	std::list<ConvertType*> GetConvertChilds() 
 	{
 		std::list<ConvertType*> NewList;
 

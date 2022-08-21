@@ -4,11 +4,11 @@
 std::map<std::string, std::map<int, GameEngineConstantBuffer*>> GameEngineConstantBuffer::NamedRes;
 
 
-GameEngineConstantBuffer::GameEngineConstantBuffer()
+GameEngineConstantBuffer::GameEngineConstantBuffer() 
 {
 }
 
-GameEngineConstantBuffer::~GameEngineConstantBuffer()
+GameEngineConstantBuffer::~GameEngineConstantBuffer() 
 {
 	if (nullptr != Buffer)
 	{
@@ -64,7 +64,7 @@ void GameEngineConstantBuffer::ChangeData(const void* _Data, size_t _Size) const
 
 	memcpy_s(SettingResources.pData, BufferDesc.ByteWidth, _Data, BufferDesc.ByteWidth);
 
-
+	
 	// 무조건 다시 닫아줘야 합니다.
 	GameEngineDevice::GetContext()->Unmap(Buffer, 0);
 }

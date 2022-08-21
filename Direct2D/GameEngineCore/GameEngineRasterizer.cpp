@@ -1,12 +1,12 @@
 #include "PreCompile.h"
 #include "GameEngineRasterizer.h"
 
-GameEngineRasterizer::GameEngineRasterizer()
+GameEngineRasterizer::GameEngineRasterizer() 
 	: Desc{}
 {
 }
 
-GameEngineRasterizer::~GameEngineRasterizer()
+GameEngineRasterizer::~GameEngineRasterizer() 
 {
 	if (nullptr != State)
 	{
@@ -15,7 +15,7 @@ GameEngineRasterizer::~GameEngineRasterizer()
 }
 
 
-void GameEngineRasterizer::Setting()
+void GameEngineRasterizer::Setting() 
 {
 
 	if (nullptr == State)

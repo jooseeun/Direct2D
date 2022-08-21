@@ -5,11 +5,11 @@
 
 bool GEngine::CollisionDebug = false;
 
-GEngine::GEngine()
+GEngine::GEngine() 
 {
 }
 
-GEngine::~GEngine()
+GEngine::~GEngine() 
 {
 }
 

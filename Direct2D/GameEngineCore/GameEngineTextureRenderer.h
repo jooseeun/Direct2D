@@ -28,7 +28,7 @@ struct ColorData
 	}
 };
 
-class FrameAnimation_DESC
+class FrameAnimation_DESC 
 {
 public:
 	std::string TextureName;
@@ -74,7 +74,7 @@ public:
 		, Frames(_Frames)
 		, FrameTime(0.0f)
 	{
-
+		
 	}
 
 
@@ -101,6 +101,7 @@ class FrameAnimation : public GameEngineNameObject
 	GameEngineTexture* Texture;
 	GameEngineFolderTexture* FolderTexture;
 
+	bool Pause;
 	bool bOnceStart;
 	bool bOnceEnd;
 	std::function<void(const FrameAnimation_DESC&)> Frame;
@@ -108,14 +109,17 @@ class FrameAnimation : public GameEngineNameObject
 	std::function<void(const FrameAnimation_DESC&)> Start;
 	std::function<void(const FrameAnimation_DESC&, float)> Time;
 
+	void PauseSwtich();
+
 	void Reset();
 
 	void Update(float _DeltaTime);
 
 public:
-	FrameAnimation()
+	FrameAnimation() 
 		: bOnceStart(true)
 		, bOnceEnd(false)
+		, Pause(false)
 	{
 
 	}
@@ -145,12 +149,12 @@ public:
 		ScaleMode = SCALEMODE::IMAGE;
 	}
 
-	void SetScaleRatio(float _Scale)
+	void SetScaleRatio(float _Scale) 
 	{
 		ScaleRatio = _Scale;
 	}
 
-	float GetScaleRatio()
+	float GetScaleRatio() 
 	{
 		return ScaleRatio;
 	}
@@ -182,11 +186,13 @@ public:
 
 	void ScaleToCutTexture(int _Index);
 
+	void CurAnimationPauseSwitch();
+
 	void CurAnimationReset();
 
 	void CurAnimationSetStartPivotFrame(int SetFrame);
 
-	ColorData& GetColorData()
+	ColorData& GetColorData() 
 	{
 		return ColorData;
 	}

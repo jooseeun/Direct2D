@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngineBase/GameEngineMath.h>
 
-class GameEngineLayOutDesc
+class GameEngineLayOutDesc 
 {
 	// 일반적인 맴버변수를 가지면 안됩니다.
 
@@ -29,7 +29,7 @@ public:
 	}
 };
 
-struct GameEngineVertex
+struct GameEngineVertex 
 {
 public:
 	static GameEngineLayOutDesc LayOut;

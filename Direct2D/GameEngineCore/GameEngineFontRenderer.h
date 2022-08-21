@@ -3,6 +3,20 @@
 #include "GameEngineDefaultRenderer.h"
 #include "GameEngineRenderTarget.h"
 
+enum class LeftAndRightSort
+{
+	LEFT = 0x0,
+	CENTER = 0x1,
+	RIGHT = 0x2,
+};
+
+enum class TopAndBotSort
+{
+	TOP = 0x0,
+	VCENTER = 0x4,
+	BOTTOM = 0x8,
+};
+
 // Ό³Έν :
 class GameEngineDevice;
 class GameEngineFontRenderer : public GameEngineDefaultRenderer
@@ -21,9 +35,22 @@ public:
 	GameEngineFontRenderer& operator=(const GameEngineFontRenderer& _Other) = delete;
 	GameEngineFontRenderer& operator=(GameEngineFontRenderer&& _Other) noexcept = delete;
 
+	//LeftAndRightSort LR;
+	//TopAndBotSort TB;
+
+	void SetLeftAndRightSort(LeftAndRightSort _Value)
+	{
+		LR = _Value;
+	}
+
+	void SetTopAndBotSort(TopAndBotSort _Value)
+	{
+		TB = _Value;
+	}
+
 	void SetText(const std::string& _Text, const std::string& _Font = "µΈΏς");
 
-	std::string GetText()
+	std::string GetText() 
 	{
 		return Text;
 	}
@@ -53,5 +80,8 @@ protected:
 	float FontSize;
 	float4 Color;
 	float4 ScreenPostion;
+
+	LeftAndRightSort LR;
+	TopAndBotSort TB;
 };
 

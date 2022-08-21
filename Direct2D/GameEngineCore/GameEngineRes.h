@@ -9,14 +9,30 @@
 template<typename ResType>
 class GameEngineRes : public GameEngineNameObject
 {
+protected:
+	bool Original;
+
+public:
+	bool IsOriginal() 
+	{
+		return Original;
+	}
 
 public:
 	// constrcuter destructer
-	GameEngineRes() {}
+	GameEngineRes() 
+		: Original(true)
+	{
+	}
 	virtual ~GameEngineRes() {}
 
 	// delete Function
-	GameEngineRes(const GameEngineRes& _Other) = delete;
+	GameEngineRes(const GameEngineRes& _Other) 
+		: Original(false)
+	{
+
+	}
+
 	GameEngineRes(GameEngineRes&& _Other) noexcept = delete;
 	GameEngineRes& operator=(const GameEngineRes& _Other) = delete;
 	GameEngineRes& operator=(GameEngineRes&& _Other) noexcept = delete;
@@ -25,17 +41,17 @@ public:
 	{
 		std::string UpperName = GameEngineString::ToUpperReturn(_Name);
 
-		typename std::map<std::string, ResType*>::iterator Iter = NamedRes.find(UpperName);
+		typename std::map<std::string, ResType*>::iterator Iter =  NamedRes.find(UpperName);
 
 		if (NamedRes.end() == Iter)
 		{
 			return nullptr;
 		}
-
+		
 		return Iter->second;
 	}
 
-	static void ResourcesDestroy()
+	static void ResourcesDestroy() 
 	{
 		for (auto& Res : UnNamedRes)
 		{
@@ -52,7 +68,7 @@ protected:
 	static std::map<std::string, ResType*> NamedRes;
 	static std::list<ResType*> UnNamedRes;
 
-	static ResType* CreateResName(const std::string& _Name = "")
+	static ResType* CreateResName(const std::string& _Name = "") 
 	{
 		if (NamedRes.end() != NamedRes.find(GameEngineString::ToUpperReturn(_Name)))
 		{

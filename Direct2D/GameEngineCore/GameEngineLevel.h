@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngineBase/GameEngineNameObject.h>
-#include <GameEngineBase/GameEngineUpdateObject.h>
+#include "GameEngineUpdateObject.h"
 #include <list>
 #include <map>
 
@@ -27,7 +27,7 @@ class GameEngineTransform;
 class GameEngineCollision;
 class GameEngineCameraActor;
 class GameEngineLevel :
-	public GameEngineNameObject,
+	public GameEngineNameObject ,
 	public GameEngineUpdateObject
 {
 	friend GameEngineCore;
@@ -48,7 +48,7 @@ public:
 	GameEngineLevel& operator=(const GameEngineLevel& _Other) = delete;
 	GameEngineLevel& operator=(GameEngineLevel&& _Other) noexcept = delete;
 
-	GameEngineCamera* GetMainCamera()
+	GameEngineCamera* GetMainCamera() 
 	{
 		return Cameras[static_cast<int>(CAMERAORDER::MAINCAMERA)];
 	}
@@ -135,21 +135,16 @@ public:
 	void AllClear();
 
 protected:
-
+	
 
 
 
 private:
-	void PushActor(GameEngineActor* _Actor, int _ObjectGroupIndex)
-	{
-		std::list<GameEngineActor*>& Group = AllActors[_ObjectGroupIndex];
+	void PushActor(GameEngineActor* _Actor, int _ObjectGroupIndex);
 
-		Group.push_back(_Actor);
-	}
+	void ActorLevelStartEvent();
 
-	void ActorOnEvent();
-
-	void ActorOffEvent();
+	void ActorLevelEndEvent();
 
 	void ActorUpdate(float _DelataTime);
 
@@ -159,7 +154,7 @@ private:
 
 	void OverChildMove(GameEngineLevel* _NextLevel);
 
-	void PushCamera(GameEngineCamera* _Camera, CAMERAORDER _Order)
+	void PushCamera(GameEngineCamera* _Camera, CAMERAORDER _Order) 
 	{
 		PushCamera(_Camera, static_cast<int>(_Order));
 	}
@@ -174,7 +169,7 @@ private:
 		PushRenderer(_Renderer, static_cast<int>(CAMERAORDER::UICAMERA));
 	}
 
-	void PushRenderer(GameEngineRenderer* _Renderer, CAMERAORDER _Order)
+	void PushRenderer(GameEngineRenderer* _Renderer, CAMERAORDER _Order) 
 	{
 		PushRenderer(_Renderer, static_cast<int>(_Order));
 	}

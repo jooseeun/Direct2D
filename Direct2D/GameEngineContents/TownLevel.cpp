@@ -23,6 +23,6 @@ void TownLevel::End()
 
 }
 
-void TownLevel::OnEvent()
+void TownLevel::LevelStartEvent()
 {
 }

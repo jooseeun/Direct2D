@@ -32,7 +32,12 @@ public:
 
 	static inline float GetDeltaTime()
 	{
-		return Inst_->DeltaTimef;
+		if (0.05f <= Inst_->DeltaTimef)
+		{
+			Inst_->DeltaTimef = 0.05f;
+		}
+
+		return Inst_->DeltaTimef * Inst_->GlobalScale;
 	}
 
 	template<typename EnumType>
@@ -68,6 +73,11 @@ public:
 		return TimeScale_[_Key];
 	}
 
+	void SetGlobalScale(float _GlobalScale) 
+	{
+		GlobalScale = _GlobalScale;
+	}
+
 protected:
 
 private:
@@ -76,6 +86,7 @@ private:
 	double DeltaTimed;
 	float DeltaTimef;
 	std::map<int, float> TimeScale_;
+	float GlobalScale;
 
 	GameEngineTime();
 	~GameEngineTime();

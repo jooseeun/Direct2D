@@ -8,7 +8,7 @@
 // Ό³Έν :
 namespace GameEngineDebug
 {
-	//public:
+//public:
 	void LeakCheckOn();
 	void ConsoleOpen();
 
@@ -16,19 +16,19 @@ namespace GameEngineDebug
 
 	void Destroy();
 
-	// protected:
+// protected:
 
-	// private:
-		// static HANDLE hConsole;
-		// constrcuter destructer
-		//GameEngineDebug();
-		//~GameEngineDebug();
+// private:
+	// static HANDLE hConsole;
+	// constrcuter destructer
+	//GameEngineDebug();
+	//~GameEngineDebug();
 
-		//// delete Function
-		//GameEngineDebug(const GameEngineDebug& _Other) = delete;
-		//GameEngineDebug(GameEngineDebug&& _Other) noexcept = delete;
-		//GameEngineDebug& operator=(const GameEngineDebug& _Other) = delete;
-		//GameEngineDebug& operator=(GameEngineDebug&& _Other) noexcept = delete;
+	//// delete Function
+	//GameEngineDebug(const GameEngineDebug& _Other) = delete;
+	//GameEngineDebug(GameEngineDebug&& _Other) noexcept = delete;
+	//GameEngineDebug& operator=(const GameEngineDebug& _Other) = delete;
+	//GameEngineDebug& operator=(GameEngineDebug&& _Other) noexcept = delete;
 
 };
 

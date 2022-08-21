@@ -16,7 +16,7 @@ public:
 	static bool IsCollisionDebug();
 
 	static GameEngineLevel* GetCurrentLevel();
-
+	
 
 protected:
 
@@ -32,4 +32,3 @@ private:
 
 };
 
- 

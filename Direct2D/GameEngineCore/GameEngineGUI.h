@@ -14,13 +14,13 @@ class GameEngineGUIWindow : public GameEngineNameObject, public GameEngineUpdate
 
 
 private:
-	void Begin()
+	void Begin() 
 	{
 		std::string Name = GameEngineString::AnsiToUTF8Return(GetNameConstPtr());
 		ImGui::Begin(Name.c_str(), &IsUpdateRef());
 	}
 
-	void End()
+	void End() 
 	{
 		ImGui::End();
 	}

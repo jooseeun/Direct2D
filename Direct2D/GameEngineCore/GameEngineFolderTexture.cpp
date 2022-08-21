@@ -2,11 +2,11 @@
 #include "GameEngineFolderTexture.h"
 #include <GameEngineBase/GameEnginePath.h>
 
-GameEngineFolderTexture::GameEngineFolderTexture()
+GameEngineFolderTexture::GameEngineFolderTexture() 
 {
 }
 
-GameEngineFolderTexture::~GameEngineFolderTexture()
+GameEngineFolderTexture::~GameEngineFolderTexture() 
 {
 	for (size_t i = 0; i < Textures.size(); i++)
 	{

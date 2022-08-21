@@ -4,7 +4,7 @@
 // Ό³Έν :
 class GameEnginePath
 {
-	//private:
+//private:
 
 public:
 	static std::string GetExtension(const std::string& _Path);

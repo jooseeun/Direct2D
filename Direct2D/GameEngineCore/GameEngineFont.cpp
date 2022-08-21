@@ -23,19 +23,19 @@ public:
 
 GameEngineFontInit Inst;
 
-GameEngineFont::GameEngineFont()
+GameEngineFont::GameEngineFont() 
 	: FontWrapper(nullptr)
 {
 }
 
-GameEngineFont::~GameEngineFont()
+GameEngineFont::~GameEngineFont() 
 {
 	if (nullptr != FontWrapper)
 	{
 		FontWrapper->Release();
 		FontWrapper = nullptr;
 	}
-
+	
 }
 
 

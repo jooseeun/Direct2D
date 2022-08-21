@@ -63,6 +63,7 @@
     <ClCompile Include="GameEngineTransformBase.cpp" />
     <ClCompile Include="GameEngineTransformComponent.cpp" />
     <ClCompile Include="GameEngineUIRenderer.cpp" />
+    <ClCompile Include="GameEngineUpdateObject.cpp" />
     <ClCompile Include="GameEngineVertexBuffer.cpp" />
     <ClCompile Include="GameEngineVertexs.cpp" />
     <ClCompile Include="GameEngineVertexShader.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="GameEngineTransformBase.h" />
     <ClInclude Include="GameEngineTransformComponent.h" />
     <ClInclude Include="GameEngineUIRenderer.h" />
+    <ClInclude Include="GameEngineUpdateObject.h" />
     <ClInclude Include="GameEngineVertexBuffer.h" />
     <ClInclude Include="GameEngineVertexs.h" />
     <ClInclude Include="GameEngineVertexShader.h" />

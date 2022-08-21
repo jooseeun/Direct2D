@@ -29,7 +29,7 @@ void IntroLevel::Start()
 	{
 		Camera = CreateActor<GameEngineCameraActor>();
 		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
-		Camera->GetTransform().SetLocalPosition({ 0, 0, 0 });
+		Camera->GetTransform().SetLocalPosition({ 1024.0f, -900.0f, 0.0f });
 
 	}
 
@@ -55,7 +55,7 @@ void IntroLevel::End()
 
 }
 
-void IntroLevel::OnEvent()
+void IntroLevel::LevelStartEvent()
 {
 
 	GetMainCameraActorTransform().SetLocalPosition({ 1024.0f, -900.0f, 0.0f });

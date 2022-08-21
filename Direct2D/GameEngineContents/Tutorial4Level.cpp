@@ -24,7 +24,7 @@ void Tutorial4Level::End()
 
 }
 
-void Tutorial4Level::OnEvent()
+void Tutorial4Level::LevelStartEvent()
 {
 
 }

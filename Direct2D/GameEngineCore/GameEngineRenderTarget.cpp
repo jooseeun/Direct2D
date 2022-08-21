@@ -5,12 +5,12 @@
 ID3D11RenderTargetView* GameEngineRenderTarget::PrevRenderTargetViews = nullptr;
 ID3D11DepthStencilView* GameEngineRenderTarget::PrevDepthStencilView = nullptr;
 
-GameEngineRenderTarget::GameEngineRenderTarget()
+GameEngineRenderTarget::GameEngineRenderTarget() 
 	: DepthStencilView(nullptr)
 {
 }
 
-GameEngineRenderTarget::~GameEngineRenderTarget()
+GameEngineRenderTarget::~GameEngineRenderTarget() 
 {
 }
 
@@ -61,7 +61,7 @@ void GameEngineRenderTarget::CreateRenderTargetTexture(float4 _Size, float4 _Col
 
 void GameEngineRenderTarget::CreateRenderTargetTexture(float4 _Size, DXGI_FORMAT _Format, float4 _Color)
 {
-	D3D11_TEXTURE2D_DESC NewData = { 0 };
+	D3D11_TEXTURE2D_DESC NewData = {0};
 	NewData.ArraySize = 1; // 한번에 10장짜리도 만들수 있어요
 	NewData.Width = _Size.uix();
 	NewData.Height = _Size.uiy();
@@ -103,7 +103,7 @@ void GameEngineRenderTarget::Clear()
 	}
 }
 
-void GameEngineRenderTarget::CreateDepthTexture(int _Index)
+void GameEngineRenderTarget::CreateDepthTexture(int _Index) 
 {
 	DepthTexture = GameEngineDepthStencilTexture::Create(RenderTargets[_Index]->GetScale());
 

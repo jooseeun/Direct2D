@@ -53,6 +53,7 @@ protected:
 		, const std::string _FrontObject
 		, const std::string _ColMap);
 private:
+
 	MapSet* Map;
 };
 

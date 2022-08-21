@@ -8,13 +8,13 @@ GameEngineSampler* GameEngineSampler::Create(const std::string& _Name, const D3D
 	return NewRes;
 }
 
-GameEngineSampler::GameEngineSampler()
+GameEngineSampler::GameEngineSampler() 
 	: State(nullptr)
 	, Desc{}
 {
 }
 
-GameEngineSampler::~GameEngineSampler()
+GameEngineSampler::~GameEngineSampler() 
 {
 	if (nullptr != State)
 	{

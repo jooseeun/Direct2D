@@ -14,7 +14,7 @@ class GameEngineState : public GameEngineNameObject
 	friend GameEngineStateManager;
 
 public:
-	void StateUpdate(float _DeltaTime)
+	void StateUpdate(float _DeltaTime) 
 	{
 		if (nullptr == Update)
 		{
@@ -61,7 +61,7 @@ public:
 		, std::function<void(float, const StateInfo&)> _Update
 		, std::function<void(const StateInfo&)> _Start = nullptr
 		, std::function<void(const StateInfo&)> _End = nullptr
-	)
+	) 
 	{
 		if (AllState.end() != AllState.find(_StateName))
 		{
@@ -125,7 +125,7 @@ public:
 		}
 	}
 
-	float GetCurStateTime()
+	float GetCurStateTime() 
 	{
 		if (nullptr == CurState)
 		{

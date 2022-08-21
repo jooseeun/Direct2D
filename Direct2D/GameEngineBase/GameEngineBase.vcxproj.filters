@@ -56,9 +56,6 @@
     <ClCompile Include="GameEngineNameObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineUpdateObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngineDebug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
@@ -138,9 +135,6 @@
     </ClInclude>
     <ClInclude Include="GameEngineInput.h">
       <Filter>WindowsOS</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineUpdateObject.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineSound.h">
       <Filter>ThirdParty\Sound</Filter>

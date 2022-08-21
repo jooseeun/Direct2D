@@ -1,12 +1,12 @@
 #include "PreCompile.h"
 #include "GameEngineDebugObject.h"
 
-GameEngineDebugObject::GameEngineDebugObject()
+GameEngineDebugObject::GameEngineDebugObject() 
 	: IsDebug_(false)
 {
 }
 
-GameEngineDebugObject::~GameEngineDebugObject()
+GameEngineDebugObject::~GameEngineDebugObject() 
 {
 }
 

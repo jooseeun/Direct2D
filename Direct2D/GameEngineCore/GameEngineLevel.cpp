@@ -9,7 +9,7 @@
 #include "GameEngineCoreDebug.h"
 #include "GEngine.h"
 
-GameEngineLevel::GameEngineLevel()
+GameEngineLevel::GameEngineLevel() 
 {
 	Cameras.resize(static_cast<unsigned int>(CAMERAORDER::UICAMERA));
 
@@ -28,7 +28,7 @@ GameEngineLevel::GameEngineLevel()
 	}
 }
 
-GameEngineLevel::~GameEngineLevel()
+GameEngineLevel::~GameEngineLevel() 
 {
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
@@ -62,7 +62,7 @@ void GameEngineLevel::ActorUpdate(float _DeltaTime)
 	}
 }
 
-void GameEngineLevel::ActorOnEvent()
+void GameEngineLevel::ActorLevelStartEvent() 
 {
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
@@ -74,12 +74,12 @@ void GameEngineLevel::ActorOnEvent()
 				continue;
 			}
 			// 루트 액터만 뭔가를 하는거죠?
-			Actor->AllOnEvent();
+			Actor->AllLevelStartEvent();
 		}
 	}
 }
 
-void GameEngineLevel::ActorOffEvent()
+void GameEngineLevel::ActorLevelEndEvent()
 {
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
@@ -90,7 +90,7 @@ void GameEngineLevel::ActorOffEvent()
 			{
 				continue;
 			}
-			Actor->AllOffEvent();
+			Actor->AllLevelEndEvent();
 		}
 	}
 }
@@ -182,6 +182,19 @@ void GameEngineLevel::Render(float _DelataTime)
 	GameEngineDevice::RenderEnd();
 }
 
+void GameEngineLevel::PushActor(GameEngineActor* _Actor, int _ObjectGroupIndex)
+{
+	if (nullptr != _Actor->GetParent())
+	{
+		MsgBoxAssert("부모가 존재하는 오브젝트는 루트가 될수 없습니다.");
+	}
+
+	std::list<GameEngineActor*>& Group = AllActors[_ObjectGroupIndex];
+
+	Group.push_back(_Actor);
+}
+
+
 void GameEngineLevel::Release(float _DelataTime)
 {
 	for (GameEngineUpdateObject* Object : DeleteObject)
@@ -241,11 +254,11 @@ void GameEngineLevel::Release(float _DelataTime)
 			{
 				GroupStart = Group.erase(GroupStart);
 			}
-			else
+			else 
 			{
 				++GroupStart;
 			}
-
+			
 		}
 	}
 
@@ -292,7 +305,7 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 	}
 
 	// 플레이 레벨
-
+	
 	// 로그인 레벨
 	// _NextLevel
 	{
@@ -378,7 +391,7 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 	}
 }
 
-void GameEngineLevel::AllClear()
+void GameEngineLevel::AllClear() 
 {
 	{
 		std::map<int, std::list<GameEngineActor*>>::iterator StartGroupIter = AllActors.begin();
@@ -393,7 +406,7 @@ void GameEngineLevel::AllClear()
 			std::list<GameEngineActor*>::iterator GroupEnd = Group.end();
 			for (; GroupStart != GroupEnd; ++GroupStart)
 			{
-				delete* GroupStart;
+				delete *GroupStart;
 			}
 		}
 	}

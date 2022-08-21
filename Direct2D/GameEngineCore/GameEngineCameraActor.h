@@ -25,7 +25,7 @@ public:
 
 	void FreeCameraModeOnOff();
 
-	inline bool IsFreeCameraMode()
+	inline bool IsFreeCameraMode() 
 	{
 		return FreeCameraMode;
 	}

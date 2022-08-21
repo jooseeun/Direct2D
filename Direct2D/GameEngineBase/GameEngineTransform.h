@@ -2,15 +2,14 @@
 #include "GameEngineMath.h"
 #include <DirectXCollision.h>
 #include <GameEngineBase/GameEngineDebugObject.h>
-#include <GameEngineBase/GameEngineUpdateObject.h>
 #include <list>
 
 enum class CollisionType
 {
 	CT_POINT2D,
-	CT_SPHERE2D,
-	CT_AABB2D,
-	CT_OBB2D,
+	CT_SPHERE2D, 
+	CT_AABB2D, 
+	CT_OBB2D, 
 	CT_POINT,
 	CT_SPHERE, // 정방원
 	CT_AABB, // 회전하지 않은 박스
@@ -22,14 +21,14 @@ class CollisionData
 {
 	friend class GameEngineTransform;
 
-	union
+	union 
 	{
 		DirectX::BoundingSphere SPHERE;
 		DirectX::BoundingBox AABB;
 		DirectX::BoundingOrientedBox OBB;
 	};
 
-	CollisionData()
+	CollisionData() 
 		: OBB()
 	{
 
@@ -309,7 +308,6 @@ private:
 			Data.WorldScaling = Data.LocalScaling;
 		}
 
-		CollisionScaleSetting();
 
 		Data.LocalScalingMatrix.Scale(Data.LocalScaling);
 		CalculateWorld();
@@ -320,6 +318,7 @@ private:
 			Child->CalculateWorldPosition(Child->Data.LocalPosition);
 		}
 
+		CollisionDataSetting();
 	}
 	void CalculateWorldRotation(const float4& _Local)
 	{
@@ -335,8 +334,6 @@ private:
 			Data.WorldRotation = Data.LocalRotation;
 		}
 
-		CollisionRotationSetting();
-
 		Data.LocalRotationMatrix.RotationDegree(Data.LocalRotation);
 		CalculateWorld();
 
@@ -345,6 +342,8 @@ private:
 			Child->CalculateWorldRotation(Child->Data.LocalRotation);
 			Child->CalculateWorldPosition(Child->Data.LocalPosition);
 		}
+
+		CollisionDataSetting();
 	}
 
 	void CalculateWorldPosition(const float4& _Local)
@@ -361,8 +360,6 @@ private:
 			Data.WorldPosition = Data.LocalPosition;
 		}
 
-		CollisionPositionSetting();
-
 		Data.LocalPositionMatrix.Position(Data.LocalPosition);
 		CalculateWorld();
 
@@ -370,6 +367,8 @@ private:
 		{
 			Child->CalculateWorldPosition(Child->Data.LocalPosition);
 		}
+
+		CollisionDataSetting();
 	}
 
 	CollisionData CollisionDataObject;
@@ -384,7 +383,7 @@ private:
 	virtual void End() {}
 
 
-	/////////////////////////// 충돌관련
+/////////////////////////// 충돌관련
 public:
 	static bool SphereToSphere(const GameEngineTransform& _Left, const GameEngineTransform& _Right);
 

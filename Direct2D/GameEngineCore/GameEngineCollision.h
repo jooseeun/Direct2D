@@ -33,7 +33,7 @@ public:
 	template<typename EnumType>
 	bool IsCollision(CollisionType _ThisType, EnumType _GroupOrder
 		, CollisionType _OtherCollision
-		, std::function<bool(GameEngineCollision* _This, GameEngineCollision* _Other)> _Function = nullptr)
+		, std::function<bool(GameEngineCollision* _This, GameEngineCollision* _Other)> _Function = nullptr) 
 	{
 		return IsCollision(_ThisType, static_cast<int>(_GroupOrder), _OtherCollision, _Function);
 	}
@@ -44,7 +44,7 @@ public:
 		, CollisionType _OtherType
 		, std::function<bool(GameEngineCollision* _This, GameEngineCollision* _Other)> _Function = nullptr);
 
-	void SetDebugSetting(CollisionType _DebugType, float4 _Color)
+	void SetDebugSetting(CollisionType _DebugType, float4 _Color) 
 	{
 		DebugType = _DebugType;
 		Color = _Color;

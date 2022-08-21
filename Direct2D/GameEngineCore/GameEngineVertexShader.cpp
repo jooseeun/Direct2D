@@ -2,13 +2,13 @@
 #include "GameEngineVertexShader.h"
 #include <GameEngineBase/GameEngineString.h>
 
-GameEngineVertexShader::GameEngineVertexShader()
+GameEngineVertexShader::GameEngineVertexShader() 
 	: ShaderPtr(nullptr)
 {
 	ShaderSettingType = ShaderType::Vertex;
 }
 
-GameEngineVertexShader::~GameEngineVertexShader()
+GameEngineVertexShader::~GameEngineVertexShader() 
 {
 	if (nullptr != ShaderPtr)
 	{

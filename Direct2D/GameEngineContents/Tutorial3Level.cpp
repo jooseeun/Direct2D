@@ -62,7 +62,7 @@ void Tutorial3Level::End()
 
 }
 
-void Tutorial3Level::OnEvent()
+void Tutorial3Level::LevelStartEvent()
 {
 	{
 		if (nullptr == Player::GetMainPlayer())

@@ -8,9 +8,9 @@ class GameEngineShaderResourcesHelper
 {
 	friend GameEngineShader;
 
-	// 리소스 세팅함수들 정리
+// 리소스 세팅함수들 정리
 
-		// 이 상수버퍼가 이녀석 안에 있어?
+	// 이 상수버퍼가 이녀석 안에 있어?
 
 
 public:
@@ -32,9 +32,9 @@ public:
 	bool IsConstantBuffer(const std::string& _Name);
 
 	template<typename Res>
-	void SetConstantBufferLink(const std::string& _Name, const Res& Data)
+	void SetConstantBufferLink(const std::string& _Name, const Res& Data) 
 	{
-		SetConstantBufferLink(_Name, &Data, sizeof(Res));
+		SetConstantBufferLink(_Name , &Data, sizeof(Res));
 	}
 
 	void SetConstantBufferLink(const std::string& _Name, const void* Data, UINT _Size);

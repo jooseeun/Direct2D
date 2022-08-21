@@ -6,7 +6,7 @@
 #include <GameEngineBase/GameEngineNameObject.h>
 
 // Ό³Έν :
-class GameEngineConstantBuffer : public GameEngineNameObject
+class GameEngineConstantBuffer :  public GameEngineNameObject
 {
 private:
 
@@ -35,8 +35,8 @@ public:
 	}
 
 	static GameEngineConstantBuffer* Create(
-		const std::string& _Name,
-		D3D11_SHADER_BUFFER_DESC _Desc,
+		const std::string& _Name, 
+		D3D11_SHADER_BUFFER_DESC _Desc, 
 		ID3D11ShaderReflectionConstantBuffer* _CBufferPtr
 	)
 	{

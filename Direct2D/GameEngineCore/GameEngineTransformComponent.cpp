@@ -1,15 +1,15 @@
 #include "PreCompile.h"
 #include "GameEngineTransformComponent.h"
 
-GameEngineTransformComponent::GameEngineTransformComponent()
+GameEngineTransformComponent::GameEngineTransformComponent() 
 {
 }
 
-GameEngineTransformComponent::~GameEngineTransformComponent()
+GameEngineTransformComponent::~GameEngineTransformComponent() 
 {
 }
 
-void GameEngineTransformComponent::DetachObject()
+void GameEngineTransformComponent::DetachObject() 
 {
 	// 오브젝트에서 떼내고
 	GameEngineUpdateObject::DetachObject();
@@ -18,7 +18,7 @@ void GameEngineTransformComponent::DetachObject()
 	GetTransform().DetachTransform();
 }
 
-void GameEngineTransformComponent::SetParent(GameEngineUpdateObject* _Object)
+void GameEngineTransformComponent::SetParent(GameEngineUpdateObject* _Object) 
 {
 	GameEngineUpdateObject::SetParent(_Object);
 

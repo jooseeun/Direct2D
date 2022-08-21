@@ -47,6 +47,11 @@ protected:
 	static GameEngineLevel* CreateLevel(const std::string& _Name)
 	{
 		std::string UpperName = GameEngineString::ToUpperReturn(_Name);
+		if (AllLevels.end() != AllLevels.find(UpperName))
+		{
+			MsgBoxAssert("존재하는 레벨을 또 만들려고 했습니다");
+		}
+
 		GameEngineLevel* NewLevel = new LevelType();
 		InitializeLevel(NewLevel, UpperName);
 		return NewLevel;

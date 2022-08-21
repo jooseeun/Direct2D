@@ -22,7 +22,7 @@ public:
 	std::function<void()> SettingFunction;
 
 public:
-	ShaderResSetter()
+	ShaderResSetter() 
 		: ShaderType(ShaderType::MAX)
 		, BindPoint(-1)
 		, ParentShader(nullptr)
@@ -49,7 +49,7 @@ public:
 	void Setting() const;
 
 public:
-	GameEngineConstantBufferSetter()
+	GameEngineConstantBufferSetter() 
 		: Res(nullptr)
 		, SetData(nullptr)
 		, Size(-1)
@@ -83,7 +83,7 @@ public:
 
 // Ό³Έν :
 class GameEngineShaderResourcesHelper;
-class GameEngineShader
+class GameEngineShader 
 {
 	friend GameEngineShaderResourcesHelper;
 

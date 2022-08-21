@@ -200,7 +200,6 @@
     <ClCompile Include="GameEngineTime.cpp" />
     <ClCompile Include="GameEngineTransform.cpp" />
     <ClCompile Include="GameEngineTransform_Collision.cpp" />
-    <ClCompile Include="GameEngineUpdateObject.cpp" />
     <ClCompile Include="GameEngineWindow.cpp" />
     <ClCompile Include="PreCompile.cpp" />
   </ItemGroup>
@@ -218,7 +217,6 @@
     <ClInclude Include="GameEngineString.h" />
     <ClInclude Include="GameEngineTime.h" />
     <ClInclude Include="GameEngineTransform.h" />
-    <ClInclude Include="GameEngineUpdateObject.h" />
     <ClInclude Include="GameEngineWindow.h" />
     <ClInclude Include="magic_enum.hpp" />
     <ClInclude Include="magic_enum_format.hpp" />
