@@ -91,6 +91,8 @@ void HollowKnigntCore::Start()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
+
+	//player 府家胶
 	GameEngineTexture::Cut("PlayerWalk.png", 8, 1);
 	GameEngineTexture::Cut("PlayerIdleHighHealth.png", 9, 1);
 	GameEngineTexture::Cut("Player_run.png", 8, 1);
@@ -112,10 +114,16 @@ void HollowKnigntCore::Start()
 
 	///Monster 府家胶
 	GameEngineTexture::Cut("Crawler_walk.png", 4, 1);
+
+	//UI 府家胶
+	GameEngineTexture::Cut("EnergyUI.png", 6, 1);
+	GameEngineTexture::Cut("FullHealthUI.png", 6, 1);
+
 	if (false == GameEngineInput::GetInst()->IsKey("LevelChangeKey"))
 	{
 		GameEngineInput::GetInst()->CreateKey("LevelChangeKey", 'P');
 	}
+
 
 	// 府家胶甫 肺靛窍绰单.
 

@@ -6,7 +6,8 @@ enum class OBJECTORDER
 	Player,
 	Monster,
 	Skill,
-	FrontObject
+	FrontObject,
+	UI=1000
 };
 
 enum class PLAYERDIR

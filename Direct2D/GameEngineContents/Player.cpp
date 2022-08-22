@@ -57,10 +57,12 @@ void Player::Start()
 		PlayerRenderer->SetOrder((int)OBJECTORDER::Player);
 		PlayerRenderer->SetPivot(PIVOTMODE::BOT);
 	}
+
 	{
 		SkillRenderer = CreateComponent<GameEngineTextureRenderer>();
 		SkillRenderer->SetOrder((int)OBJECTORDER::Player);
 		SkillRenderer->SetPivot(PIVOTMODE::BOT);
+		SkillRenderer->Off();
 	}
 	{
 		PlayerCol = CreateComponent<GameEngineCollision>();
@@ -86,6 +88,7 @@ void Player::Start()
 		LeftSkilCol->ChangeOrder((int)OBJECTORDER::Skill);
 		RightSkilCol->Off();
 	}
+
 	{
 		PlayerRenderer->CreateFrameAnimationCutTexture("IdleHigh",
 			FrameAnimation_DESC("PlayerIdleHighHealth.png", 0, 8,0.1f, true));

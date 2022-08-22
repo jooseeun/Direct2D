@@ -58,6 +58,7 @@ void TitleObject::Start()
 		GameStartFont->GetTransform().SetLocalPosition({ 1010.0f, -1000.0f, 0 });
 
 	}
+
 	{
 		GameStartCol = CreateComponent<GameEngineCollision>();
 		GameStartCol->GetTransform().SetLocalScale({ 134, 42, 100.0f });

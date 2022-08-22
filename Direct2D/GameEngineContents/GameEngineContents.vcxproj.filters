@@ -22,6 +22,9 @@
     <Filter Include="Actor\Player">
       <UniqueIdentifier>{6751c2b0-f8e5-45b4-89a6-ce50e72f4781}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Actor\UI">
+      <UniqueIdentifier>{7231ae4d-d06c-4090-8922-9f9f15746602}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -65,6 +68,12 @@
     </ClCompile>
     <ClCompile Include="GlobalContentsValue.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TopUI.cpp">
+      <Filter>Actor\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +121,12 @@
     </ClInclude>
     <ClInclude Include="GlobalContentsValue.h">
       <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TopUI.h">
+      <Filter>Actor\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

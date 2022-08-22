@@ -1,4 +1,5 @@
 #include "PlayLevelManager.h"
+#include "TopUI.h"
 #include "PreCompile.h"
 
 PlayLevelManager::PlayLevelManager() 
