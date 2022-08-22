@@ -1,6 +1,7 @@
 #include "Crawler.h"
 #include "PreCompile.h"
 #include "PlayLevelManager.h"
+#include "Player.h"
 #include <iostream>
 
 Crawler::Crawler() 
@@ -27,21 +28,21 @@ void Crawler::Start()
 	}
 	{
 		MonsterCollision = CreateComponent<GameEngineCollision>();
-		MonsterCollision->GetTransform().SetLocalScale({ 108,80,100.0f });
+		MonsterCollision->GetTransform().SetLocalScale({ 108,80,1000.0f });
 		MonsterCollision->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ 0,40.0f,0 });
 		MonsterCollision->SetOrder((int)(OBJECTORDER::Monster));
 	}
 	{
 		TriggerCollision = CreateComponent<GameEngineCollision>();
-		TriggerCollision->GetTransform().SetLocalScale({ 108,200,100.0f });
+		TriggerCollision->GetTransform().SetLocalScale({ 1000,80,1000.0f });
 		TriggerCollision->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ 0,40.0f,0 });
 	}
 	{
 		MonsterRenderer->CreateFrameAnimationCutTexture("Idle",
 			FrameAnimation_DESC("Crawler_walk.png", 0, 0, 0.1f, false));
-		MonsterRenderer->CreateFrameAnimationCutTexture("Walk",
+		MonsterRenderer->CreateFrameAnimationCutTexture("Move",
 			FrameAnimation_DESC("Crawler_walk.png", 0, 3, 0.1f, true));
 	}
 
@@ -64,9 +65,19 @@ void Crawler::Start()
 		StateManager.ChangeState("Idle");
 	}
 }
+bool Crawler::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
 
+	StateManager.ChangeState("Move");
+	return true;
+}
 void Crawler::Update(float _DeltaTime)
 {
+
+	TriggerCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
+		std::bind(&Crawler::CheckTrigger, this, std::placeholders::_1, std::placeholders::_2)
+	);
+
 	Gravity();
 	StateManager.Update(_DeltaTime);
 }
@@ -83,10 +94,26 @@ void Crawler::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Crawler::MoveStart(const StateInfo& _Info)
 {
-
+	MonsterRenderer->ChangeFrameAnimation("Move");
+	MonsterRenderer->ScaleToCutTexture(0);
 }
 void Crawler::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	float4 MovePos = Player::GetMainPlayer()->GetTransform().GetLocalPosition() - GetTransform().GetLocalPosition();
+	float MoveLen = MovePos.Length();
+	if (MovePos.x < 0.0f)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+		MonsterRenderer->GetTransform().PixLocalPositiveX();
+
+	}
+	if (MovePos.x >= 0.0f)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
+		MonsterRenderer->GetTransform().PixLocalNegativeX();
+
+	}
+
 
 }
 

@@ -168,10 +168,16 @@
     <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
       <FileType>Document</FileType>
     </CopyFileToFolders>
-    <Library Include="ThirdParty\bin\Debug\FW1FontWrapper.lib" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ThirdParty\bin\Debug\FW1FontWrapper.dll" />
+    <CopyFileToFolders Include="ThirdParty\bin\Debug\FW1FontWrapper.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\bin\Debug\FW1FontWrapper.lib">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

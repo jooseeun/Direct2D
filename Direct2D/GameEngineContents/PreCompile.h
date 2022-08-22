@@ -41,5 +41,5 @@
 
 
 
-#include "GlobalContentsValue.h"
+#include "ContentsEnum.h"
 

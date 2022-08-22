@@ -54,39 +54,36 @@ void Player::Start()
 	
 	{
 		PlayerRenderer = CreateComponent<GameEngineTextureRenderer>();
-		PlayerRenderer->GetTransform().SetLocalScale({ 350, 186, 10.0f });
-		PlayerRenderer->SetTexture("PlayerIdle.png");
 		PlayerRenderer->SetOrder((int)OBJECTORDER::Player);
 		PlayerRenderer->SetPivot(PIVOTMODE::BOT);
 	}
 	{
 		SkillRenderer = CreateComponent<GameEngineTextureRenderer>();
-		SkillRenderer->GetTransform().SetLocalScale({ 350, 186, 10.0f });
-		SkillRenderer->SetTexture("PlayerIdle.png");
 		SkillRenderer->SetOrder((int)OBJECTORDER::Player);
 		SkillRenderer->SetPivot(PIVOTMODE::BOT);
 	}
 	{
 		PlayerCol = CreateComponent<GameEngineCollision>();
-		PlayerCol->GetTransform().SetLocalScale({ 66.0f,125.0f,100.0f });
+		PlayerCol->GetTransform().SetLocalScale({ 66.0f,125.0f,1000.0f });
 		PlayerCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ 0,62.5f,0 });
-		PlayerCol->SetOrder((int)OBJECTORDER::Player);
+		PlayerCol->ChangeOrder((int)OBJECTORDER::Player);
 	}
 	{
 		LeftSkilCol = CreateComponent<GameEngineCollision>();
-		LeftSkilCol->GetTransform().SetLocalScale({ 175.0f , 92.f, 100.0f });
+		LeftSkilCol->GetTransform().SetLocalScale({ 175.0f , 92.f, 1000.0f });
 		LeftSkilCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ -50,62.5f,0 });
-		LeftSkilCol->SetOrder((int)OBJECTORDER::Skill);
+		LeftSkilCol->ChangeOrder((int)OBJECTORDER::Skill);
 		LeftSkilCol->Off();
 
 	}
 	{
 		RightSkilCol = CreateComponent<GameEngineCollision>();
-		RightSkilCol->GetTransform().SetLocalScale({ 175.0f , 92.f, 100.0f });
+		RightSkilCol->GetTransform().SetLocalScale({ 175.0f , 92.f, 1000.0f });
 		RightSkilCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ 50,62.5f,0 });
+		LeftSkilCol->ChangeOrder((int)OBJECTORDER::Skill);
 		RightSkilCol->Off();
 	}
 	{
@@ -190,6 +187,8 @@ void Player::Update(float _DeltaTime)
 	StateManager.Update(_DeltaTime);
 	Gravity();
 	CameraCheck();
+
+
 }
 
 void Player::CameraCheck()
@@ -242,6 +241,15 @@ void Player::Gravity()
 	{
 		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
 	}
+
+	float4 CurColor = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
+		-GetTransform().GetWorldPosition().iy() );
+	if (false == CurColor.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+	{
+		GetTransform().SetWorldUpMove(1.0f, GameEngineTime::GetDeltaTime());
+	}
+
+
 	float4 Color = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
 		-GetTransform().GetWorldPosition().iy() - 1);
 
@@ -283,10 +291,10 @@ bool Player::MapPixelCheck()
 	}
 
 
-	float4 ColorR = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix()+34,
-		-GetTransform().GetWorldPosition().iy()-5);
-	float4 ColorL = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix()-34,
-		-GetTransform().GetWorldPosition().iy()-5);
+	float4 ColorR = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() + 34,
+		-GetTransform().GetWorldPosition().iy() - 5);
+	float4 ColorL = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() - 34,
+		-GetTransform().GetWorldPosition().iy() - 5);
 	float4 ColorUp = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
 		-GetTransform().GetWorldPosition().iy() - 125);
 	if (false == ColorUp.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))

@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngineCore/CoreMinimal.h>
-#include "GlobalContentsValue.h"
+#include "ContentsEnum.h"
 
 class Crawler : public GameEngineActor
 {
@@ -23,6 +23,7 @@ protected:
 
 	void Gravity();
 	bool MapPixelCheck();
+	bool CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other);
 	
 	void IdleStart(const StateInfo& _Info);
 	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);

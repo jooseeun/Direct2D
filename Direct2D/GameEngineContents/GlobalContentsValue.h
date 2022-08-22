@@ -1,21 +1,8 @@
 #pragma once
+#include "Player.h"
 
-enum class OBJECTORDER
-{
-	Ground,
-	Player,
-	Monster,
-	Skill,
-	FrontObject
-};
 
-enum class PLAYERDIR
+class GlobalContentsValue
 {
-	Right,
-	Left
-};
-enum class MonsterDIR
-{
-	Right,
-	Left
+
 };

@@ -63,6 +63,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Actor\Player</Filter>
     </ClCompile>
+    <ClCompile Include="GlobalContentsValue.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -89,7 +92,7 @@
     <ClInclude Include="TownLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalContentsValue.h">
+    <ClInclude Include="ContentsEnum.h">
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="MapSet.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Actor\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalContentsValue.h">
+      <Filter>Global</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

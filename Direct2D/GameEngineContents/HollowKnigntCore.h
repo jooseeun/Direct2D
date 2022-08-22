@@ -25,7 +25,7 @@ public:
 	}
 	float4 StartWindowPosition() override
 	{
-		return { 100,100 };
+		return { 10,10 };
 	}
 protected:
 

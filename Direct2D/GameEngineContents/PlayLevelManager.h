@@ -38,6 +38,7 @@ public:
 		return Map->ColMap;
 	}
 
+
 	inline void SetMapONOFF() const
 	{
 		Map->Ground->OnOffSwitch();
@@ -45,6 +46,7 @@ public:
 		Map->BackObject->OnOffSwitch();
 		Map->FrontObject->OnOffSwitch();
 	}
+
 
 protected:
 	void CreateMap(const std::string _BackGround

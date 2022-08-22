@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/CoreMinimal.h>
+#include "ContentsEnum.h"
 
 // Ό³Έν :
 class GameEngineTextureRenderer;
@@ -43,7 +44,6 @@ protected:
 
 	GameEngineTextureRenderer* PlayerRenderer;
 	GameEngineTextureRenderer* SkillRenderer;
-	GameEngineTextureRenderer* ColMap;
 	GameEngineCollision* PlayerCol;
 	GameEngineCollision* RightSkilCol;
 	GameEngineCollision* LeftSkilCol;

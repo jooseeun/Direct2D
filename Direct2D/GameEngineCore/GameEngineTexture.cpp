@@ -448,7 +448,16 @@ PixelColor GameEngineTexture::GetPixelToPixelColor(int _x, int _y)
 	case DXGI_FORMAT_B5G5R5A1_UNORM:
 		break;
 	case DXGI_FORMAT_B8G8R8A8_UNORM:
+	{
+		int Index = _y * static_cast<int>(Image.GetMetadata().width) + _x;
+		Color = Color + (Index * 4);
+
+		ReturnColor.r = Color[0];
+		ReturnColor.g = Color[1];
+		ReturnColor.b = Color[2];
+		ReturnColor.a = Color[3];
 		break;
+	}
 	case DXGI_FORMAT_B8G8R8X8_UNORM:
 		break;
 	case DXGI_FORMAT_R10G10B10_XR_BIAS_A2_UNORM:
