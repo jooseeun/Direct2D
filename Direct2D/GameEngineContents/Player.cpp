@@ -28,7 +28,7 @@ Player::Player()
 	, LeftSkilCol(nullptr)
 	, RightSkilCol(nullptr)
 	, PlayerCol(nullptr)
-	, PlayerHealth(2)
+	, PlayerHealth(5)
 	, PlayerFullHealth(5)
 {
 	MainPlayer = this;
@@ -193,7 +193,9 @@ void Player::Update(float _DeltaTime)
 	Gravity();
 	CameraCheck();
 
-
+	PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
+		std::bind(&Player ::MonsterColCheck, this, std::placeholders::_1, std::placeholders::_2)
+	);
 }
 
 void Player::CameraCheck()
@@ -329,14 +331,17 @@ bool Player::MapPixelCheck()
 }
 
 
-bool Player::MonsterColCheck()
+bool Player::MonsterColCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	if (true == PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D))
+
+	if (PlayerHealth == 0)
 	{
-		int a = 0;
+		return true;
 	}
-	return false;
+	PlayerHealth -= 1;
+	return true;
 }
+
 
 
 

@@ -32,6 +32,8 @@ void TopUI::Start()
 			Health[i] = CreateComponent<GameEngineUIRenderer>();
 			Health[i]->CreateFrameAnimationCutTexture("FullHealth",
 				FrameAnimation_DESC("FullHealthUI.png", 0, 0, 0.1f, false));
+			Health[i]->CreateFrameAnimationCutTexture("BreakHealth",
+				FrameAnimation_DESC("BreakHealthUI.png", 0, 5, 0.1f, false));
 			Health[i]->ChangeFrameAnimation("FullHealth");
 			Health[i]->ScaleToCutTexture(0);
 			Health[i]->GetTransform().SetLocalPosition({ -590.0f + i * 74.0f, 350.0f, 1 });
@@ -66,11 +68,20 @@ void TopUI::HealthUpdate()
 		}
 		for (int i = Player::GetMainPlayer()->PlayerHealth; i < Player::GetMainPlayer()->PlayerFullHealth; i++)
 		{
-			Health[i]->Off();
-			EmpthyHealth[i]->On();
+			Health[i]->ChangeFrameAnimation("BreakHealth");
+			Health[i]->ScaleToCutTexture(0);
 		}
 
 		CurHealth = Player::GetMainPlayer()->PlayerHealth;
+	}
+
+	for (int i = Player::GetMainPlayer()->PlayerHealth; i < Player::GetMainPlayer()->PlayerFullHealth; i++)
+	{
+		Health[i]->AnimationBindEnd("BreakHealth", [=](const FrameAnimation_DESC& _Info)
+		{
+			Health[i]->Off();
+			EmpthyHealth[i]->On();
+		});
 	}
 
 

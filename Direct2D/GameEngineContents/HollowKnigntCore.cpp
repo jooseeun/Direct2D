@@ -118,6 +118,7 @@ void HollowKnigntCore::Start()
 	//UI ¸®¼Ò½º
 	GameEngineTexture::Cut("EnergyUI.png", 6, 1);
 	GameEngineTexture::Cut("FullHealthUI.png", 6, 1);
+	GameEngineTexture::Cut("BreakHealthUI.png", 6, 1);
 
 	if (false == GameEngineInput::GetInst()->IsKey("LevelChangeKey"))
 	{
