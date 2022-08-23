@@ -87,7 +87,7 @@ void Player::Start()
 		RightSkilCol->GetTransform().SetLocalScale({ 175.0f , 92.f, 1000.0f });
 		RightSkilCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ 50,62.5f,0 });
-		LeftSkilCol->ChangeOrder((int)OBJECTORDER::Skill);
+		RightSkilCol->ChangeOrder((int)OBJECTORDER::Skill);
 		RightSkilCol->Off();
 	}
 
@@ -249,12 +249,12 @@ void Player::Gravity()
 		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
 	}
 
-	float4 CurColor = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
-		-GetTransform().GetWorldPosition().iy() );
-	if (false == CurColor.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
-	{
-		GetTransform().SetWorldUpMove(1.0f, GameEngineTime::GetDeltaTime());
-	}
+	//float4 CurColor = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
+	//	-GetTransform().GetWorldPosition().iy()-1 );
+	//if (false == CurColor.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+	//{
+	//	GetTransform().SetWorldUpMove(1.0f, GameEngineTime::GetDeltaTime());
+	//}
 
 
 	float4 Color = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),

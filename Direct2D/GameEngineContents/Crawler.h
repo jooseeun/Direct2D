@@ -24,21 +24,24 @@ protected:
 	void Gravity();
 	bool MapPixelCheck();
 	bool CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other);
-	
+	bool CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
 	void IdleStart(const StateInfo& _Info);
 	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
 
 	void MoveStart(const StateInfo& _Info);
 	void MoveUpdate(float _DeltaTime, const StateInfo& _Info);
 
-	void AttackStart(const StateInfo& _Info);
-	void AttackUpdate(float _DeltaTime, const StateInfo& _Info);
+	void BackStart(const StateInfo& _Info);
+	void BackUpdate(float _DeltaTime, const StateInfo& _Info);
 
 	void DeathStart(const StateInfo& _Info);
 	void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
 
 	MonsterDIR CurDir;
 	float Speed;
+	float FallTime;
+	bool OnGround;
+	int Health;
 private:
 
 	GameEngineTextureRenderer* MonsterRenderer;

@@ -4,12 +4,15 @@
 #include "Player.h"
 #include <iostream>
 
-Crawler::Crawler() 
+Crawler::Crawler()
 	: MonsterRenderer(nullptr)
 	, MonsterCollision(nullptr)
 	, TriggerCollision(nullptr)
 	, StateManager()
 	, Speed(100)
+	, Health(3)
+	, FallTime(0)
+	, OnGround(false)
 {
 }
 
@@ -28,7 +31,7 @@ void Crawler::Start()
 	}
 	{
 		MonsterCollision = CreateComponent<GameEngineCollision>();
-		MonsterCollision->GetTransform().SetLocalScale({ 108,80,1000.0f });
+		MonsterCollision->GetTransform().SetLocalScale({ 108,120,1000.0f });
 		MonsterCollision->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ 0,40.0f,0 });
 		MonsterCollision->ChangeOrder((int)(OBJECTORDER::Monster));
@@ -44,6 +47,8 @@ void Crawler::Start()
 			FrameAnimation_DESC("Crawler_walk.png", 0, 0, 0.1f, false));
 		MonsterRenderer->CreateFrameAnimationCutTexture("Move",
 			FrameAnimation_DESC("Crawler_walk.png", 0, 3, 0.1f, true));
+		MonsterRenderer->CreateFrameAnimationCutTexture("Death",
+			FrameAnimation_DESC("Crawler_Death.png", 0, 4, 0.1f, false));
 	}
 
 
@@ -56,14 +61,33 @@ void Crawler::Start()
 			, std::bind(&Crawler::MoveUpdate, this, std::placeholders::_1, std::placeholders::_2)
 			, std::bind(&Crawler::MoveStart, this, std::placeholders::_1)
 		);
-		StateManager.CreateStateMember("Attack"
-			, std::bind(&Crawler::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2)
-			, std::bind(&Crawler::AttackStart, this, std::placeholders::_1)
+		StateManager.CreateStateMember("Back"
+			, std::bind(&Crawler::BackUpdate, this, std::placeholders::_1, std::placeholders::_2)
+			, std::bind(&Crawler::BackStart, this, std::placeholders::_1)
+		);
+		StateManager.CreateStateMember("Death"
+			, std::bind(&Crawler::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2)
+			, std::bind(&Crawler::DeathStart, this, std::placeholders::_1)
 		);
 
 
 		StateManager.ChangeState("Idle");
 	}
+}
+bool Crawler::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	if (Health == 0)
+	{
+		StateManager.ChangeState("Death"); 
+		return true;
+	}
+	if (StateManager.GetCurStateStateName() == "Move")
+	{
+		Health -= 1;
+		StateManager.ChangeState("Back");
+	}
+
+	return true;
 }
 bool Crawler::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
@@ -71,69 +95,25 @@ bool Crawler::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Oth
 	StateManager.ChangeState("Move");
 	return true;
 }
+
 void Crawler::Update(float _DeltaTime)
 {
+	if (StateManager.GetCurStateStateName() == "Idle")
+	{
+		TriggerCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
+			std::bind(&Crawler::CheckTrigger, this, std::placeholders::_1, std::placeholders::_2)
+		);
+	}
 
-	TriggerCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
-		std::bind(&Crawler::CheckTrigger, this, std::placeholders::_1, std::placeholders::_2)
+	MonsterCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Skill, CollisionType::CT_OBB2D,
+		std::bind(&Crawler::CheckDemage, this, std::placeholders::_1, std::placeholders::_2)
 	);
-
 	Gravity();
 	StateManager.Update(_DeltaTime);
 }
 
-void Crawler::IdleStart(const StateInfo& _Info)
-{
-	MonsterRenderer->ChangeFrameAnimation("Idle");
-	MonsterRenderer->ScaleToCutTexture(0);
-}
-void Crawler::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
-{
 
-}
-
-void Crawler::MoveStart(const StateInfo& _Info)
-{
-	MonsterRenderer->ChangeFrameAnimation("Move");
-	MonsterRenderer->ScaleToCutTexture(0);
-}
-void Crawler::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-	float4 MovePos = Player::GetMainPlayer()->GetTransform().GetLocalPosition() - GetTransform().GetLocalPosition();
-	float MoveLen = MovePos.Length();
-	if (MovePos.x < 0.0f)
-	{
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
-		MonsterRenderer->GetTransform().PixLocalPositiveX();
-
-	}
-	if (MovePos.x >= 0.0f)
-	{
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
-		MonsterRenderer->GetTransform().PixLocalNegativeX();
-
-	}
-
-
-}
-
-void Crawler::AttackStart(const StateInfo& _Info)
-{
-
-}
-void Crawler::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-
-}
-void Crawler::DeathStart(const StateInfo& _Info)
-{
-
-}
-void Crawler::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-
-}
-
+/////////픽셀충돌 중력 함수/////////////////////////////
 void Crawler::Gravity()
 {
 	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
@@ -146,11 +126,12 @@ void Crawler::Gravity()
 
 	if (false == Color.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
 	{
-
+		OnGround = true;
 		return;
 	}
 	else
 	{
+		OnGround = false;
 		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
 	GetTransform().GetWorldPosition().y - 800.0f * GameEngineTime::GetDeltaTime(),
 	GetTransform().GetWorldPosition().z, });
@@ -197,5 +178,90 @@ bool Crawler::MapPixelCheck()
 
 
 	return false;
+
+}
+
+
+///////////State 함수//////////////////////////////////////
+
+void Crawler::IdleStart(const StateInfo& _Info)
+{
+	MonsterRenderer->ChangeFrameAnimation("Idle");
+	MonsterRenderer->ScaleToCutTexture(0);
+}
+void Crawler::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+
+}
+
+void Crawler::MoveStart(const StateInfo& _Info)
+{
+	MonsterRenderer->ChangeFrameAnimation("Move");
+	MonsterRenderer->ScaleToCutTexture(0);
+}
+void Crawler::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	float4 MovePos = Player::GetMainPlayer()->GetTransform().GetLocalPosition() - GetTransform().GetLocalPosition();
+	float MoveLen = MovePos.Length();
+	if (MovePos.x < 0.0f)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+		MonsterRenderer->GetTransform().PixLocalPositiveX();
+
+	}
+	if (MovePos.x >= 0.0f)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
+		MonsterRenderer->GetTransform().PixLocalNegativeX();
+
+	}
+
+
+}
+
+void Crawler::BackStart(const StateInfo& _Info)
+{
+	FallTime = 0.7f;
+}
+void Crawler::BackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	if (OnGround == true && FallTime < 0.0f)
+	{
+		StateManager.ChangeState("Move");
+	}
+
+	float4 MovePos = Player::GetMainPlayer()->GetTransform().GetLocalPosition() - GetTransform().GetLocalPosition();
+	float MoveLen = MovePos.Length();
+	if (FallTime > 0.0f)
+	{
+		FallTime -= 1.0f * _DeltaTime;
+		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
+	GetTransform().GetWorldPosition().y + 700.0f * GameEngineTime::GetDeltaTime(),
+	GetTransform().GetWorldPosition().z, });
+
+	}
+
+	if (MovePos.x < 0.0f)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed  * _DeltaTime);
+		MonsterRenderer->GetTransform().PixLocalPositiveX();
+
+	}
+	if (MovePos.x >= 0.0f)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed  * _DeltaTime);
+		MonsterRenderer->GetTransform().PixLocalNegativeX();
+
+	}
+}
+
+void Crawler::DeathStart(const StateInfo& _Info)
+{
+	MonsterRenderer->ChangeFrameAnimation("Death");
+	MonsterRenderer->ScaleToCutTexture(0);
+	MonsterCollision->Off();
+}
+void Crawler::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
+{
 
 }
