@@ -28,10 +28,13 @@ public:
 
 protected:
 	void Start() override;
-	void Update(float _DeltaTime) {}
+	void Update(float _DeltaTime) override;
 	void End() {}
 private:
 	GameEngineUIRenderer* EnergyUI;
 	GameEngineUIRenderer* Health[5];
+	GameEngineUIRenderer* EmpthyHealth[5];
+	int CurHealth;
+	void HealthUpdate();
 };
 

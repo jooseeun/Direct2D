@@ -16,6 +16,11 @@ public:
 		return MainPlayer;
 	}
 
+//플레이어 정보
+public:
+	int PlayerHealth;
+	int PlayerFullHealth;
+
 public:
 	// constrcuter destructer
 	Player();

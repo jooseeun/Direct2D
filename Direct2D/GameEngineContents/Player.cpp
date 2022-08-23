@@ -28,6 +28,8 @@ Player::Player()
 	, LeftSkilCol(nullptr)
 	, RightSkilCol(nullptr)
 	, PlayerCol(nullptr)
+	, PlayerHealth(2)
+	, PlayerFullHealth(5)
 {
 	MainPlayer = this;
 }
