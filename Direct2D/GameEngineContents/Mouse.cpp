@@ -15,6 +15,8 @@ Mouse::~Mouse()
 
 void Mouse::Start()
 {
+	ShowCursor(false);
+
 	if (false == GameEngineInput::GetInst()->IsKey("MouseClick"))
 	{
 		GameEngineInput::GetInst()->CreateKey("MouseClick", VK_LBUTTON);

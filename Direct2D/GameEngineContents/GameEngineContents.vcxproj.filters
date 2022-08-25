@@ -25,6 +25,12 @@
     <Filter Include="Actor\UI">
       <UniqueIdentifier>{7231ae4d-d06c-4090-8922-9f9f15746602}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Actor\Map">
+      <UniqueIdentifier>{69bce9d9-4e4e-4250-8220-600ef35bd7c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Title">
+      <UniqueIdentifier>{2ac2af46-b94d-4a77-920b-ed222531e11a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -51,14 +57,8 @@
     <ClCompile Include="TownLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="MapSet.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
     <ClCompile Include="PlayLevelManager.cpp">
       <Filter>Level</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleObject.cpp">
-      <Filter>Actor</Filter>
     </ClCompile>
     <ClCompile Include="Crawler.cpp">
       <Filter>Actor\Monster</Filter>
@@ -72,8 +72,17 @@
     <ClCompile Include="TopUI.cpp">
       <Filter>Actor\UI</Filter>
     </ClCompile>
+    <ClCompile Include="MapSet.cpp">
+      <Filter>Actor\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleObject.cpp">
+      <Filter>Actor\Title</Filter>
+    </ClCompile>
     <ClCompile Include="Mouse.cpp">
-      <Filter>Actor\UI</Filter>
+      <Filter>Actor\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MapMoveCollision.cpp">
+      <Filter>Actor\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,14 +113,8 @@
     <ClInclude Include="ContentsEnum.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="MapSet.h">
-      <Filter>Actor</Filter>
-    </ClInclude>
     <ClInclude Include="PlayLevelManager.h">
       <Filter>Level</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleObject.h">
-      <Filter>Actor</Filter>
     </ClInclude>
     <ClInclude Include="Crawler.h">
       <Filter>Actor\Monster</Filter>
@@ -125,8 +128,17 @@
     <ClInclude Include="TopUI.h">
       <Filter>Actor\UI</Filter>
     </ClInclude>
+    <ClInclude Include="MapSet.h">
+      <Filter>Actor\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleObject.h">
+      <Filter>Actor\Title</Filter>
+    </ClInclude>
     <ClInclude Include="Mouse.h">
-      <Filter>Actor\UI</Filter>
+      <Filter>Actor\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MapMoveCollision.h">
+      <Filter>Actor\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

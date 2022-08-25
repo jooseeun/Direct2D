@@ -1,5 +1,6 @@
 #include "Tutorial1Level.h"
 #include "PreCompile.h"
+#include "MapMoveCollision.h"
 
 #include "MapSet.h"
 #include "Player.h"
@@ -56,6 +57,13 @@ void Tutorial1Level::Start()
 		Crawler* NewCrawler = CreateActor<Crawler>(OBJECTORDER::Monster);
 		NewCrawler->GetTransform().SetLocalPosition({ 4709, -4653, 0 });
 	}
+	{
+		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
+		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });
+		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 6849,-4527,100 });
+		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
+		MapMoveCol->MoveLevel1 = "Tutorial2";
+	}
 }
 void Tutorial1Level::Update(float _DeltaTime)
 {
@@ -90,7 +98,5 @@ void Tutorial1Level::LevelStartEvent()
 		{
 			TopUI* NewUI = CreateActor<TopUI>(OBJECTORDER::UI);
 		}
-
 	}
-
 }
