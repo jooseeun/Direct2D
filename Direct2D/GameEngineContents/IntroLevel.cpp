@@ -1,6 +1,7 @@
 #include "IntroLevel.h"
 #include "PreCompile.h"
 #include "TitleObject.h"
+#include "Mouse.h"
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineBase/GameEngineInput.h>
 
@@ -25,16 +26,15 @@ void IntroLevel::Start()
 
 	TitleCom = CreateActor<TitleObject>();
 
-
 	{
 		Camera = CreateActor<GameEngineCameraActor>();
 		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
-		Camera->GetTransform().SetLocalPosition({ 1024.0f, -900.0f, 0.0f });
+		Camera->GetTransform().SetLocalPosition({ 1024.0f, -900.0f, 100.0f });
 
+		GetMainCamera()->SetProjectionSize(float4{ 1920 , 1080 });
+		GetUICamera()->SetProjectionSize(float4{ 1920* 0.7, 1080 * 0.7 });
 	}
 
-
-	GetMainCamera()->SetProjectionSize(float4{ 1920 , 1080 });
 
 }
 void IntroLevel::Update(float _DeltaTime)
@@ -57,6 +57,10 @@ void IntroLevel::End()
 
 void IntroLevel::LevelStartEvent()
 {
+	if (nullptr == Mouse::MainMouse)
+	{
+		Mouse* MainMouse = CreateActor<Mouse>(OBJECTORDER::UI);
+	}
 
 	GetMainCameraActorTransform().SetLocalPosition({ 1024.0f, -900.0f, 0.0f });
 }

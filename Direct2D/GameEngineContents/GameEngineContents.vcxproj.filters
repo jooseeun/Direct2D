@@ -72,6 +72,9 @@
     <ClCompile Include="TopUI.cpp">
       <Filter>Actor\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Actor\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -120,6 +123,9 @@
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="TopUI.h">
+      <Filter>Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
       <Filter>Actor\UI</Filter>
     </ClInclude>
   </ItemGroup>
