@@ -26,6 +26,7 @@ protected:
 private:
 
 	float4 GetMouseWorldRePosition(float4 ReSize);
+	void CheckClickCollision();
 
 	bool CheckStart(GameEngineCollision* _This, GameEngineCollision* _Other);
 	bool CheckEnd(GameEngineCollision* _This, GameEngineCollision* _Other);

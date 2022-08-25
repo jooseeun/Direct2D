@@ -20,7 +20,6 @@ void IntroLevel::Start()
 	{
 		GameEngineInput::GetInst()->CreateKey("FreeCameraOnOff", 'O');
 		GameEngineInput::GetInst()->CreateKey("CameraDebug", 'P');
-		GameEngineInput::GetInst()->CreateKey("GameStart", VK_SPACE);
 	}
 
 
@@ -43,10 +42,6 @@ void IntroLevel::Update(float _DeltaTime)
 	if (GameEngineInput::GetInst()->IsDown("FreeCameraOnOff"))
 	{
 		GetMainCameraActor()->FreeCameraModeOnOff();
-	}
-	if (GameEngineInput::GetInst()->IsDown("GameStart"))
-	{
-		GEngine::ChangeLevel("Tutorial1");
 	}
 
 }

@@ -15,7 +15,11 @@ Mouse::~Mouse()
 
 void Mouse::Start()
 {
+	if (false == GameEngineInput::GetInst()->IsKey("MouseClick"))
+	{
+		GameEngineInput::GetInst()->CreateKey("MouseClick", VK_LBUTTON);
 
+	}
 	{
 		MouseRenderer = CreateComponent<GameEngineUIRenderer>();
 		MouseRenderer->SetTexture("Cursor.png");
@@ -38,7 +42,11 @@ void Mouse::Update(float _DeltaTime)
 
 	MouseRenderer->GetTransform().SetLocalPosition(GetMouseWorldRePosition(float4{ 1920*0.7 , 1080*0.7 }));
 	MouseCol->GetTransform().SetLocalPosition(GetMouseWorldRePosition(float4{ 1920 * 0.7 , 1080 * 0.7 }) + float4{ 1024.0f, -900.0f, 100.0f });
-
+	
+	if (true == GameEngineInput::GetInst()->IsDown("MouseClick"))
+	{
+		CheckClickCollision();
+	}
 }
 
 float4 Mouse::GetMouseWorldRePosition(float4 ReSize)
@@ -56,7 +64,15 @@ float4 Mouse::GetMouseWorldRePosition(float4 ReSize)
 
 	return Pos;
 }
-
+void Mouse::CheckClickCollision()
+{
+	MouseCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::GameStartUI, CollisionType::CT_OBB2D,
+		std::bind(&Mouse::CheckStart, this, std::placeholders::_1, std::placeholders::_2)
+	);
+	MouseCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::GameEndUI, CollisionType::CT_OBB2D,
+		std::bind(&Mouse::CheckEnd, this, std::placeholders::_1, std::placeholders::_2)
+	);
+}
 bool Mouse::CheckStart(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	GEngine::ChangeLevel("Tutorial1");
