@@ -32,7 +32,7 @@ void IntroLevel::Start()
 		Camera->GetTransform().SetLocalPosition({ 1024.0f, -900.0f, 100.0f });
 
 		GetMainCamera()->SetProjectionSize(float4{ 1920 , 1080 });
-		GetUICamera()->SetProjectionSize(float4{ 1920* 0.7, 1080 * 0.7 });
+		GetUICamera()->SetProjectionSize(float4{ 1920, 1080 });
 	}
 
 

@@ -46,6 +46,7 @@ public:
 
 	float4 GetMouseWorldPositionToActor();
 
+
 	inline float4x4 GetView() 
 	{
 		return View;
@@ -102,7 +103,6 @@ private:
 	void Render(float _DeltaTime);
 
 	void PushRenderer(GameEngineRenderer* _Renderer);
-
 	void Release(float _DelataTime);
 
 	void Update(float _DeltaTime) override;

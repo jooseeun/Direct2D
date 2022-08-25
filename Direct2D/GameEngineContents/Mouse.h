@@ -24,6 +24,13 @@ protected:
 	void Update(float _DeltaTime);
 	void End() {}
 private:
+
+	float4 GetMouseWorldRePosition(float4 ReSize);
+
+	bool CheckStart(GameEngineCollision* _This, GameEngineCollision* _Other);
+	bool CheckEnd(GameEngineCollision* _This, GameEngineCollision* _Other);
+	//bool CheckSet(GameEngineCollision* _This, GameEngineCollision* _Other);
+
 	GameEngineUIRenderer* MouseRenderer;
 	GameEngineCollision* MouseCol;
 };

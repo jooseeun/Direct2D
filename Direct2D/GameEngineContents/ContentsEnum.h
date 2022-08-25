@@ -7,6 +7,9 @@ enum class OBJECTORDER
 	Monster,
 	Skill,
 	FrontObject,
+	GameStartUI=997,
+	GameSetUI=998,
+	GameEndUI=999,
 	UI=1000
 };
 

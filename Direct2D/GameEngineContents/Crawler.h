@@ -25,6 +25,7 @@ protected:
 	bool MapPixelCheck();
 	bool CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other);
 	bool CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
+
 	void IdleStart(const StateInfo& _Info);
 	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
 

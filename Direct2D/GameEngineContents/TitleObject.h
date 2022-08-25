@@ -3,6 +3,7 @@
 
 // Ό³Έν :
 class GameEngineCollision;
+class GameEngineFontRenderer;
 class GameEngineTextureRenderer;
 class TitleObject : public GameEngineActor
 {
@@ -25,14 +26,14 @@ protected:
 	void End();
 private:
 	GameEngineCollision* GameStartCol;
-
-
+	GameEngineCollision* GameSetCol;
+	GameEngineCollision* GameEndCol;
 
 	GameEngineTextureRenderer* BackGround;
 	GameEngineTextureRenderer* TitleLogo;
-	GameEngineTextureRenderer* GameStartFont;
-	GameEngineTextureRenderer* GameSet;
-	GameEngineTextureRenderer* GameExit;
+	GameEngineFontRenderer* GameStartFont;
+	GameEngineFontRenderer* GameSet;
+	GameEngineFontRenderer* GameExit;
 	GameEngineTextureRenderer* LeftArrow;
 	GameEngineTextureRenderer* RightArrow;
 };

@@ -25,9 +25,9 @@ void TitleObject::Start()
 	BackGround = CreateComponent<GameEngineTextureRenderer>();
 	TitleLogo = CreateComponent< GameEngineTextureRenderer>();
 
-	GameStartFont = CreateComponent<GameEngineTextureRenderer>();
-	GameSet = CreateComponent<GameEngineTextureRenderer>();
-	GameExit = CreateComponent<GameEngineTextureRenderer>();
+	GameStartFont = CreateComponent<GameEngineFontRenderer>();
+	GameSet = CreateComponent<GameEngineFontRenderer>();
+	GameExit = CreateComponent<GameEngineFontRenderer>();
 
 	{
 		BackGround->SetTexture("MenuBackGround.png");
@@ -47,27 +47,48 @@ void TitleObject::Start()
 		TitleLogo->SetPivot(PIVOTMODE::CENTER);
 		TitleLogo->GetTransform().SetLocalPosition({ 1024.0f, -650.0f, 0 });
 	}
-
 	{
-		GameStartFont->SetTexture("GameStart.png");
-		GameStartFont->GetTransform().SetLocalScale({
-			GameStartFont->GetCurTexture()->GetScale().x,
-			GameStartFont->GetCurTexture()->GetScale().y,
-			100.0f });
-		GameStartFont->SetPivot(PIVOTMODE::CENTER);
-		GameStartFont->GetTransform().SetLocalPosition({ 1010.0f, -1000.0f, 0 });
-
+		GameStartFont->SetText("게임시작", "NotoSerifCJKsc-Regular #2788163.otf");
+		GameStartFont->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+		GameStartFont->SetSize(24.0f);
+		GameStartFont->SetScreenPostion({ 1920*0.7/2-60, 1080*0.7/2 + 50, 1 });
+		GameStartFont->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
-
+	{
+		GameSet->SetText("게임설정", "NotoSerifCJKsc-Regular #2788163.otf");
+		GameSet->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+		GameSet->SetSize(24.0f);
+		GameSet->SetScreenPostion({ 1920 * 0.7 / 2 - 60, 1080 * 0.7 / 2 + 120, 1 });
+		GameSet->ChangeCamera(CAMERAORDER::UICAMERA);
+	}
+	{
+		GameExit->SetText("게임종료", "NotoSerifCJKsc-Regular #2788163.otf");
+		GameExit->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+		GameExit->SetSize(24.0f);
+		GameExit->SetScreenPostion({ 1920 * 0.7 / 2 - 60, 1080 * 0.7 / 2 + 190, 1 });
+		GameExit->ChangeCamera(CAMERAORDER::UICAMERA);
+	}
 	{
 		GameStartCol = CreateComponent<GameEngineCollision>();
-		GameStartCol->GetTransform().SetLocalScale({ 134, 42, 100.0f });
-		GameStartCol->ChangeOrder(OBJECTORDER::FrontObject);
+		GameStartCol->GetTransform().SetLocalScale({ 140, 50, 100.0f });
+		GameStartCol->GetTransform().SetLocalPosition({ 1010.0f, -1000.0f, 0 });
+		GameStartCol->ChangeOrder(OBJECTORDER::GameStartUI);
 
 	}
+	{
+		GameSetCol = CreateComponent<GameEngineCollision>();
+		GameSetCol->GetTransform().SetLocalScale({ 140, 50, 100.0f });
+		GameSetCol->GetTransform().SetLocalPosition({ 1010.0f, -1100.0f, 0 });
+		GameSetCol->ChangeOrder(OBJECTORDER::GameSetUI);
 
-	//GameEngineUIRenderer* Mouse = CreateComponent<GameEngineUIRenderer>();
-	//Mouse->SetTexture();
+	}
+	{
+		GameEndCol = CreateComponent<GameEngineCollision>();
+		GameEndCol->GetTransform().SetLocalScale({ 140, 50, 100.0f });
+		GameEndCol->GetTransform().SetLocalPosition({ 1010.0f, -1200.0f, 0 });
+		GameEndCol->ChangeOrder(OBJECTORDER::GameEndUI);
+	}
+
 
 }
 void TitleObject::Update(float _DeltaTime)
