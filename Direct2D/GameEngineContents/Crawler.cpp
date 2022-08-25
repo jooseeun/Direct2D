@@ -221,7 +221,7 @@ void Crawler::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Crawler::BackStart(const StateInfo& _Info)
 {
-	FallTime = 0.7f;
+	FallTime = 0.3f;
 }
 void Crawler::BackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -236,20 +236,20 @@ void Crawler::BackUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		FallTime -= 1.0f * _DeltaTime;
 		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
-	GetTransform().GetWorldPosition().y + 700.0f * GameEngineTime::GetDeltaTime(),
+	GetTransform().GetWorldPosition().y + 1000.0f * GameEngineTime::GetDeltaTime(),
 	GetTransform().GetWorldPosition().z, });
 
 	}
 
 	if (MovePos.x < 0.0f)
 	{
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed  * _DeltaTime);
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * 2.5f  * _DeltaTime);
 		MonsterRenderer->GetTransform().PixLocalPositiveX();
 
 	}
 	if (MovePos.x >= 0.0f)
 	{
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed  * _DeltaTime);
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * 2.5f * _DeltaTime);
 		MonsterRenderer->GetTransform().PixLocalNegativeX();
 
 	}

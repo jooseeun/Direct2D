@@ -64,7 +64,6 @@ void Player::Start()
 		SkillRenderer = CreateComponent<GameEngineTextureRenderer>();
 		SkillRenderer->SetOrder((int)OBJECTORDER::Player);
 		SkillRenderer->SetPivot(PIVOTMODE::BOT);
-		SkillRenderer->Off();
 	}
 	{
 		PlayerCol = CreateComponent<GameEngineCollision>();
