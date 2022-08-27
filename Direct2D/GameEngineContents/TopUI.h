@@ -3,6 +3,7 @@
 
 // Ό³Έν :
 class GameEngineUIRenderer;
+class GameEngineFontRenderer;
 class TopUI : public GameEngineActor
 {
 public:
@@ -32,8 +33,10 @@ protected:
 	void End() {}
 private:
 	GameEngineUIRenderer* EnergyUI;
+	GameEngineUIRenderer* MoneyUI;
 	GameEngineUIRenderer* Health[5];
 	GameEngineUIRenderer* EmpthyHealth[5];
+	GameEngineFontRenderer* MoneyFont;
 	int CurHealth;
 	void HealthUpdate();
 };

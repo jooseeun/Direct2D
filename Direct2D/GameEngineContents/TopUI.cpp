@@ -9,6 +9,7 @@ TopUI::TopUI()
 	, Health()
 	, EmpthyHealth()
 	, CurHealth(5)
+	, MoneyUI(nullptr)
 {
 }
 
@@ -25,6 +26,14 @@ void TopUI::Start()
 		EnergyUI->SetFrame(5);
 		EnergyUI->GetTransform().SetLocalPosition({ -650, 350.0f, 1 });
 		EnergyUI->ChangeCamera(CAMERAORDER::UICAMERA);
+	}
+	{
+		MoneyUI = CreateComponent<GameEngineUIRenderer>();
+		MoneyUI->SetTexture("TopUICoin.png");
+		MoneyUI->ScaleToCutTexture(0);
+		MoneyUI->SetFrame(1);
+		MoneyUI->GetTransform().SetLocalPosition({ -590, 300.0f, 1 });
+		MoneyUI->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
 		for (int i = 0; i < 5 ; i++)

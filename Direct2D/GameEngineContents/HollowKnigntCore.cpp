@@ -125,7 +125,7 @@ void HollowKnigntCore::Start()
 
 	GameEngineTexture::Cut("Player_land.png", 3, 1);
 	GameEngineTexture::Cut("Player_land_hard.png", 5, 1);
-
+	
 	///Monster ¸®¼Ò½º
 	GameEngineTexture::Cut("Crawler_walk.png", 4, 1);
 	GameEngineTexture::Cut("Crawler_Death.png", 5, 1);
@@ -134,6 +134,7 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("EnergyUI.png", 6, 1);
 	GameEngineTexture::Cut("FullHealthUI.png", 6, 1);
 	GameEngineTexture::Cut("BreakHealthUI.png", 6, 1);
+	GameEngineTexture::Cut("TopUICoin.png", 3, 1);
 
 	if (false == GameEngineInput::GetInst()->IsKey("LevelChangeKey"))
 	{
