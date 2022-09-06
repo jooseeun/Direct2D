@@ -57,6 +57,11 @@ void Tutorial1Level::Start()
 		Crawler* NewCrawler = CreateActor<Crawler>(OBJECTORDER::Monster);
 		NewCrawler->GetTransform().SetLocalPosition({ 4709, -4653, 0 });
 	}
+
+	{
+		Crawler* NewCrawler = CreateActor<Crawler>(OBJECTORDER::Monster);
+		NewCrawler->GetTransform().SetLocalPosition({ 6109, -4653, 0 });
+	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });
