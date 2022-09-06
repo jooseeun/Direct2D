@@ -4,6 +4,7 @@
 // Ό³Έν :
 class GameEngineUIRenderer;
 class GameEngineFontRenderer;
+class GameEngineMyRenderer;
 class TopUI : public GameEngineActor
 {
 public:
@@ -37,6 +38,7 @@ private:
 	GameEngineUIRenderer* Health[5];
 	GameEngineUIRenderer* EmpthyHealth[5];
 	GameEngineFontRenderer* MoneyFont;
+	GameEngineMyRenderer* Energy;
 	int CurHealth;
 	void HealthUpdate();
 };

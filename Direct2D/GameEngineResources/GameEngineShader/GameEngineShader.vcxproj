@@ -18,6 +18,17 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\Blur.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\Color.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\Debug3D.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\DebugTexture.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\RenderOption.fx" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\TargetMerge.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\Texture.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\TextureAtlas.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\TransformHeader.fx" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -126,17 +137,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <FxCompile Include="Blur.hlsl" />
-    <FxCompile Include="Color.hlsl" />
-    <FxCompile Include="Debug3D.hlsl" />
-    <FxCompile Include="DebugTexture.hlsl" />
-    <FxCompile Include="RenderOption.fx" />
-    <FxCompile Include="TargetMerge.hlsl" />
-    <FxCompile Include="Texture.hlsl" />
-    <FxCompile Include="TextureAtlas.hlsl" />
-    <FxCompile Include="TransformHeader.fx" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

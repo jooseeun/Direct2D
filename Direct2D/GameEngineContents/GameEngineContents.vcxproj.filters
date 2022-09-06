@@ -4,35 +4,35 @@
     <Filter Include="Contents">
       <UniqueIdentifier>{48227bca-5fac-4906-b5aa-1fd4f19b322e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor">
-      <UniqueIdentifier>{6292bde0-bc38-448d-8303-e274f6a4b192}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Global">
-      <UniqueIdentifier>{75dd857f-5f15-4b0d-bfd7-cd66f65f29e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Level">
-      <UniqueIdentifier>{f7f98585-80fe-4089-b790-46267e1f024b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PreCompile">
       <UniqueIdentifier>{a6eb18f1-1c3b-400b-a5e7-a212238703e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Monster">
+    <Filter Include="MyRenderer">
+      <UniqueIdentifier>{e6595562-29a5-49c2-91e2-18a49b842c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Actor">
+      <UniqueIdentifier>{6292bde0-bc38-448d-8303-e274f6a4b192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Actor\Monster">
       <UniqueIdentifier>{9da749d6-1ece-423e-bb03-c1183cf5c812}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Player">
+    <Filter Include="Contents\Actor\Player">
       <UniqueIdentifier>{6751c2b0-f8e5-45b4-89a6-ce50e72f4781}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\UI">
+    <Filter Include="Contents\Actor\UI">
       <UniqueIdentifier>{7231ae4d-d06c-4090-8922-9f9f15746602}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Map">
+    <Filter Include="Contents\Actor\Map">
       <UniqueIdentifier>{69bce9d9-4e4e-4250-8220-600ef35bd7c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Title">
+    <Filter Include="Contents\Actor\Title">
       <UniqueIdentifier>{2ac2af46-b94d-4a77-920b-ed222531e11a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shader">
-      <UniqueIdentifier>{e6595562-29a5-49c2-91e2-18a49b842c82}</UniqueIdentifier>
+    <Filter Include="Contents\Level">
+      <UniqueIdentifier>{f7f98585-80fe-4089-b790-46267e1f024b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Global">
+      <UniqueIdentifier>{75dd857f-5f15-4b0d-bfd7-cd66f65f29e9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,49 +43,52 @@
       <Filter>Contents</Filter>
     </ClCompile>
     <ClCompile Include="IntroLevel.cpp">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="Tutorial1Level.cpp">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="Tutorial2Level.cpp">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="Tutorial3Level.cpp">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="Tutorial4Level.cpp">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="TownLevel.cpp">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="PlayLevelManager.cpp">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="Crawler.cpp">
-      <Filter>Actor\Monster</Filter>
+      <Filter>Contents\Actor\Monster</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Actor\Player</Filter>
+      <Filter>Contents\Actor\Player</Filter>
     </ClCompile>
     <ClCompile Include="GlobalContentsValue.cpp">
-      <Filter>Global</Filter>
+      <Filter>Contents\Global</Filter>
     </ClCompile>
     <ClCompile Include="TopUI.cpp">
-      <Filter>Actor\UI</Filter>
+      <Filter>Contents\Actor\UI</Filter>
     </ClCompile>
     <ClCompile Include="MapSet.cpp">
-      <Filter>Actor\Map</Filter>
+      <Filter>Contents\Actor\Map</Filter>
     </ClCompile>
     <ClCompile Include="TitleObject.cpp">
-      <Filter>Actor\Title</Filter>
+      <Filter>Contents\Actor\Title</Filter>
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
-      <Filter>Actor\Title</Filter>
+      <Filter>Contents\Actor\Title</Filter>
     </ClCompile>
     <ClCompile Include="MapMoveCollision.cpp">
-      <Filter>Actor\Map</Filter>
+      <Filter>Contents\Actor\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineMyRenderer.cpp">
+      <Filter>MyRenderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,52 +99,55 @@
       <Filter>Contents</Filter>
     </ClInclude>
     <ClInclude Include="IntroLevel.h">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="Tutorial1Level.h">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="Tutorial2Level.h">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="Tutorial3Level.h">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="Tutorial4Level.h">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="TownLevel.h">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h">
-      <Filter>Global</Filter>
+      <Filter>Contents\Global</Filter>
     </ClInclude>
     <ClInclude Include="PlayLevelManager.h">
-      <Filter>Level</Filter>
+      <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="Crawler.h">
-      <Filter>Actor\Monster</Filter>
+      <Filter>Contents\Actor\Monster</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Actor\Player</Filter>
+      <Filter>Contents\Actor\Player</Filter>
     </ClInclude>
     <ClInclude Include="GlobalContentsValue.h">
-      <Filter>Global</Filter>
+      <Filter>Contents\Global</Filter>
     </ClInclude>
     <ClInclude Include="TopUI.h">
-      <Filter>Actor\UI</Filter>
+      <Filter>Contents\Actor\UI</Filter>
     </ClInclude>
     <ClInclude Include="MapSet.h">
-      <Filter>Actor\Map</Filter>
+      <Filter>Contents\Actor\Map</Filter>
     </ClInclude>
     <ClInclude Include="TitleObject.h">
-      <Filter>Actor\Title</Filter>
+      <Filter>Contents\Actor\Title</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h">
-      <Filter>Actor\Title</Filter>
+      <Filter>Contents\Actor\Title</Filter>
     </ClInclude>
     <ClInclude Include="MapMoveCollision.h">
-      <Filter>Actor\Map</Filter>
+      <Filter>Contents\Actor\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineMyRenderer.h">
+      <Filter>MyRenderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

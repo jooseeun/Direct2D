@@ -1,7 +1,7 @@
 #include "TopUI.h"
 #include "PreCompile.h"
 #include "Player.h"
-
+#include "GameEngineMyRenderer.h"
 TopUI* TopUI::MainTopUI = nullptr;
 
 TopUI::TopUI() 
@@ -19,6 +19,7 @@ TopUI::~TopUI()
 
 void TopUI::Start()
 {
+	
 	{
 		EnergyUI = CreateComponent<GameEngineUIRenderer>();
 		EnergyUI->SetTexture("EnergyUI.png");
@@ -60,6 +61,16 @@ void TopUI::Start()
 			EmpthyHealth[i]->Off();
 		}
 	}
+	{
+		Energy = CreateComponent<GameEngineMyRenderer>();
+		Energy->SetMaskingTexture("HUD_Soulorb_fills_soul_idle0000-Sheet.png","HUD Cln_soul_orb_shape.png",0);
+		Energy->GetTransform().SetLocalScale({ 257, 164, 1 });
+		Energy->GetTransform().SetLocalPosition({ -650, 350.0f, 1 });
+		Energy->ChangeCamera(CAMERAORDER::UICAMERA);
+	}
+
+
+
 }
 
 void TopUI::Update(float _DeltaTime)

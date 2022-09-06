@@ -4,6 +4,7 @@
 #include <string>
 #include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngineBase/GameEngineString.h>
+#include <GameEngineBase/GameEngineDebug.h>
 
 // Ό³Έν :
 template<typename ResType>

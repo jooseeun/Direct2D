@@ -23,6 +23,7 @@
     <FxCompile Include="..\GameEngineResources\GameEngineShader\Color.hlsl" />
     <FxCompile Include="..\GameEngineResources\GameEngineShader\Debug3D.hlsl" />
     <FxCompile Include="..\GameEngineResources\GameEngineShader\DebugTexture.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\TextureMask.hlsl" />
     <FxCompile Include="..\GameEngineResources\GameEngineShader\RenderOption.fx" />
     <FxCompile Include="..\GameEngineResources\GameEngineShader\TargetMerge.hlsl" />
     <FxCompile Include="..\GameEngineResources\GameEngineShader\Texture.hlsl" />
