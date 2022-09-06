@@ -18,15 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Blur.hlsl" />
-    <FxCompile Include="Color.hlsl" />
-    <FxCompile Include="Debug3D.hlsl" />
-    <FxCompile Include="DebugTexture.hlsl" />
-    <FxCompile Include="TargetMerge.hlsl" />
-    <FxCompile Include="Texture.hlsl" />
-    <FxCompile Include="TextureAtlas.hlsl" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -135,6 +126,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <FxCompile Include="Color.hlsl" />
+    <FxCompile Include="Debug3D.hlsl" />
+    <FxCompile Include="Texture.hlsl" />
+    <FxCompile Include="TextureAtlas.hlsl" />
+    <FxCompile Include="TransformHeader.fx" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
