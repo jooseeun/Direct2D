@@ -1,6 +1,6 @@
 #include "PreCompile.h"
 #include "GameEngineRenderTarget.h"
-#include "GameEngineDepthStencilTexture.h"
+#include "GameEngineRenderSet.h"
 
 ID3D11RenderTargetView* GameEngineRenderTarget::PrevRenderTargetViews = nullptr;
 ID3D11DepthStencilView* GameEngineRenderTarget::PrevDepthStencilView = nullptr;
@@ -8,10 +8,18 @@ ID3D11DepthStencilView* GameEngineRenderTarget::PrevDepthStencilView = nullptr;
 GameEngineRenderTarget::GameEngineRenderTarget() 
 	: DepthStencilView(nullptr)
 {
+	MergePipeLine = GameEngineRenderingPipeLine::Find("TargetMerge");
+	MergeShaderResourcesHelper.ResourcesCheck(MergePipeLine);
 }
 
 GameEngineRenderTarget::~GameEngineRenderTarget() 
 {
+	for (GameEnginePostEffect* Effect : Effects)
+	{
+		delete Effect;
+	}
+
+	Effects.clear();
 }
 
 void GameEngineRenderTarget::GetPrevRenderTarget()
@@ -48,6 +56,45 @@ GameEngineRenderTarget* GameEngineRenderTarget::Create()
 	return CreateResUnName();
 }
 
+GameEngineTexture* GameEngineRenderTarget::GetRenderTargetTexture(size_t _Index)
+{
+	if (RenderTargets.size() <= _Index)
+	{
+		MsgBoxAssert("랜더타겟 인덱스를 오버했습니다. 존재하지 않는 랜더타겟을 사용하려고 했습니다.");
+		return nullptr;
+	}
+
+	return RenderTargets[_Index];
+}
+
+void GameEngineRenderTarget::Copy(GameEngineRenderTarget* _Other, int _Index )
+{
+	Clear();
+
+	MergeShaderResourcesHelper.SetTexture("Tex", _Other->GetRenderTargetTexture(_Index));
+
+	Effect(GameEngineRenderingPipeLine::Find("TargetMerge"), &MergeShaderResourcesHelper);
+}
+
+void GameEngineRenderTarget::Merge(GameEngineRenderTarget* _Other, int _Index)
+{
+	MergeShaderResourcesHelper.SetTexture("Tex", _Other->GetRenderTargetTexture(_Index));
+
+	Effect(GameEngineRenderingPipeLine::Find("TargetMerge"), &MergeShaderResourcesHelper);
+}
+
+void GameEngineRenderTarget::Effect(GameEngineRenderSet& _RenderSet)
+{
+	Effect(_RenderSet.PipeLine, &_RenderSet.ShaderResources);
+}
+
+void GameEngineRenderTarget::Effect(GameEngineRenderingPipeLine* _Other, GameEngineShaderResourcesHelper* _ShaderResourcesHelper)
+{
+	Setting();
+	_ShaderResourcesHelper->AllResourcesSetting();
+	_Other->Rendering();
+}
+
 void GameEngineRenderTarget::CreateRenderTargetTexture(ID3D11Texture2D* _Texture, float4 _Color)
 {
 	GameEngineTexture* NewTexture = GameEngineTexture::Create(_Texture);
@@ -57,6 +104,12 @@ void GameEngineRenderTarget::CreateRenderTargetTexture(ID3D11Texture2D* _Texture
 void GameEngineRenderTarget::CreateRenderTargetTexture(float4 _Size, float4 _Color)
 {
 	CreateRenderTargetTexture(_Size, DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT, _Color);
+}
+
+void GameEngineRenderTarget::SettingDepthTexture(GameEngineTexture* _Texture)
+{
+	DepthTexture = _Texture;
+	DepthStencilView = DepthTexture->CreateDepthStencilView();
 }
 
 void GameEngineRenderTarget::CreateRenderTargetTexture(float4 _Size, DXGI_FORMAT _Format, float4 _Color)
@@ -105,7 +158,22 @@ void GameEngineRenderTarget::Clear()
 
 void GameEngineRenderTarget::CreateDepthTexture(int _Index) 
 {
-	DepthTexture = GameEngineDepthStencilTexture::Create(RenderTargets[_Index]->GetScale());
+	D3D11_TEXTURE2D_DESC Desc = { 0 };
+	Desc.ArraySize = 1;
+	Desc.Width = RenderTargets[_Index]->GetScale().uix();
+	Desc.Height = RenderTargets[_Index]->GetScale().uiy();
+	//             24비트 float + 8비트 unsigned int
+	Desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	Desc.SampleDesc.Count = 1;
+	Desc.SampleDesc.Quality = 0;
+	// 할수 있다면 쓰겠다는것
+	Desc.MipLevels = 1;
+	Desc.Usage = D3D11_USAGE_DEFAULT;
+	// cpu에서는 접근 못함
+	Desc.CPUAccessFlags = 0;
+	Desc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
+
+	DepthTexture = GameEngineTexture::Create(Desc);
 
 	DepthStencilView = DepthTexture->CreateDepthStencilView();
 }
@@ -122,4 +190,15 @@ void GameEngineRenderTarget::Setting()
 	}
 
 	GameEngineDevice::GetContext()->OMSetRenderTargets(static_cast<UINT>(RenderTargetViews.size()), &RenderTargetViews[0], DepthStencilView);
+}
+
+
+void GameEngineRenderTarget::EffectProcess()
+{
+	// Setting();
+
+	for (GameEnginePostEffect* Effect : Effects)
+	{
+		Effect->Effect(this);
+	}
 }

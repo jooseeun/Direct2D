@@ -19,9 +19,8 @@ struct Output
 {
     // 레스터라이저한테 뷰포트를 곱해서 이녀석으로 픽셀을 건져내줘.
     float4 Pos : SV_POSITION;
-    
     // 레스터라이저한테 뷰포트를 곱해서 이녀석으로 픽셀을 건져내줘.
-    float4 PosLocal : POSITION;
+    float4 PosWorld : POSITION;
 };
 
 //cbuffer ResultColor : register(b2)
@@ -47,7 +46,8 @@ Output Debug3D_VS(Input _Input)
     // 쉐이더의 경우에는 대부분의 상황에서 형변환이 가능하다.
     Output NewOutPut = (Output)0;
     NewOutPut.Pos = mul(_Input.Pos, WorldViewProjection);
-    NewOutPut.PosLocal = _Input.Pos;
+    NewOutPut.PosWorld.xyz = _Input.Pos.xyz;
+    NewOutPut.PosWorld.w = 1.0f;
     return NewOutPut;
 }
 
@@ -61,6 +61,13 @@ float4 Debug3D_PS(Output _Input) : SV_Target0
 {
     // 원을 그리거나
     // 박스를 그릴수도 있죠?
+    
+    
+    if (Type.x == 0 && length(_Input.PosWorld.xyz) > 0.7f)
+    {
+        clip(-1);
+    }
+        
     
     return Color;
 }

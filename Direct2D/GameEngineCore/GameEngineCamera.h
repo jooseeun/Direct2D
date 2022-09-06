@@ -9,12 +9,20 @@ enum class CAMERAPROJECTIONMODE
 	Orthographic,
 };
 
+class RenderingInstancing
+{
+
+};
+
 // 설명 :
 class GameEngineLevel;
 class GameEngineCamera;
+class GameEngineRenderTarget;
+class GameEngineRenderingPipeLine;
 class GameEngineCamera : public GameEngineTransformComponent
 {
 	friend GameEngineLevel;
+	friend GameEngineRenderer;
 
 public:
 	// constrcuter destructer
@@ -27,14 +35,19 @@ public:
 	GameEngineCamera& operator=(const GameEngineCamera& _Other) = delete;
 	GameEngineCamera& operator=(GameEngineCamera&& _Other) noexcept = delete;
 
-	CAMERAPROJECTIONMODE GetProjectionMode()
+	inline CAMERAPROJECTIONMODE GetProjectionMode()
 	{
 		return Mode;
 	}
 
+	inline GameEngineRenderTarget* GetCameraRenderTarget()
+	{
+		return CameraRenderTarget;
+	}
+
 	void SetCameraOrder(CAMERAORDER _Order);
 
-	void SetProjectionMode(CAMERAPROJECTIONMODE _Mode)
+	inline void SetProjectionMode(CAMERAPROJECTIONMODE _Mode)
 	{
 		Mode = _Mode;
 	}
@@ -45,7 +58,6 @@ public:
 	float4 GetMouseWorldPosition();
 
 	float4 GetMouseWorldPositionToActor();
-
 
 	inline float4x4 GetView() 
 	{
@@ -72,14 +84,28 @@ public:
 		return Size;
 	}
 
-	// 뷰포트는 계속 달라질수가 있으므로 다르게
-	// float4 GetMouseViewPortPosition();
-
-
 protected:
 	void Start();
 
+	void ChangeRenderingOrder(GameEngineRenderer* _Renderer, int _ChangeOrder);
+
 private:
+	void Render(float _DeltaTime);
+
+	void PushRenderer(GameEngineRenderer* _Renderer);
+
+	void Release(float _DelataTime);
+
+	void Update(float _DeltaTime) override;
+
+	void OverRenderer(GameEngineCamera* _NextOver);
+
+	class GameEngineRenderTarget* CameraRenderTarget;
+
+	std::map<int, std::list<class GameEngineRenderer*>> AllRenderer_;
+
+	std::map<GameEngineRenderingPipeLine*, RenderingInstancing*> InstancingMap;
+
 	float4x4 View; // 바라보는것
 	float4x4 Projection;
 	float4x4 ViewPort;
@@ -97,16 +123,5 @@ private:
 
 	// Perspective
 	float Fov;
-
-	std::map<int, std::list<class GameEngineRenderer*>> AllRenderer_;
-
-	void Render(float _DeltaTime);
-
-	void PushRenderer(GameEngineRenderer* _Renderer);
-	void Release(float _DelataTime);
-
-	void Update(float _DeltaTime) override;
-
-	void OverRenderer(GameEngineCamera* _NextOver);
 };
 

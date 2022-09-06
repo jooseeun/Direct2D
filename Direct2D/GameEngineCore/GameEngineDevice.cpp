@@ -29,6 +29,57 @@ void GameEngineDevice::Destroy()
 	}
 }
 
+IDXGIAdapter* GameEngineDevice::GetHighPerformanceAdapter() 
+{
+	/*
+* typedef struct DXGI_ADAPTER_DESC
+  {
+	WCHAR Description[ 128 ];			//	어댑터 설명
+	UINT VendorId;						//	하드웨어 공급업체의 PCI ID
+	UINT DeviceId;						//	하드웨어 장치의 PCI ID
+	UINT SubSysId;						//	서브시스템의 PCI ID
+	UINT Revision;						//	어댑터 개정(revision) 번호의 PCI ID
+	SIZE_T DedicatedVideoMemory;		//	CPU와 공유되지 않는 전용 비디오 메모리의 바이트 수
+	SIZE_T DedicatedSystemMemory;		//	CPU와 공유되지 않는 전용 시스템 메모리 바이트 수
+	SIZE_T SharedSystemMemory;			//	공유 시스템 메모리의 바이트 수
+	LUID AdapterLuid;					//	어댑터를 식별하는 고유값(Locally Unique Identifier)
+   } 	DXGI_ADAPTER_DESC;
+*/
+	IDXGIFactory* pF = nullptr;
+	IDXGIAdapter* pA = nullptr;
+	HRESULT HR = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&pF);
+
+	size_t prevAdapterVideoMemory = 0;
+
+	for (UINT adapterIndex = 0; ; ++adapterIndex)
+	{
+		IDXGIAdapter* pA1 = nullptr;
+		pF->EnumAdapters(adapterIndex, &pA1);
+		if (nullptr == pA1)
+		{
+			break;
+		}
+
+		DXGI_ADAPTER_DESC adapterDesc;
+		pA1->GetDesc(&adapterDesc);
+		if (prevAdapterVideoMemory <= adapterDesc.DedicatedVideoMemory)
+		{
+			prevAdapterVideoMemory = adapterDesc.DedicatedVideoMemory;
+			if (nullptr != pA)
+			{
+				pA->Release();
+			}
+			pA = pA1;
+			continue;
+		}
+
+		pA1->Release();
+	}
+
+	pF->Release();
+	return pA;
+}
+
 void GameEngineDevice::DeviceCreate()
 {
 	if (nullptr == GameEngineWindow::GetHWND())
@@ -46,13 +97,17 @@ void GameEngineDevice::DeviceCreate()
 	// 
 	D3D_FEATURE_LEVEL Level = D3D_FEATURE_LEVEL::D3D_FEATURE_LEVEL_11_0;
 
+	IDXGIAdapter* pA = GetHighPerformanceAdapter();
+
 	// soft
 	if (
 		S_OK != D3D11CreateDevice(
 			// 내가 코딩한 그래픽카드 드라이버 방법이 있나요?
-			nullptr,
+			pA,
 			// 일반적인 표준하에서 만들어지는 그래픽카드를 사용할겁니다.
-			D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_HARDWARE,
+			D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN,
+			// 일반적인 표준하에서 만들어지는 그래픽카드를 사용할겁니다.
+			// D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_HARDWARE,
 			nullptr,
 			iFlag,
 			nullptr,
@@ -65,6 +120,12 @@ void GameEngineDevice::DeviceCreate()
 		)
 	{
 		MsgBoxAssert("디바이스 생성이 실패했습니다.");
+	}
+
+	if (nullptr != pA)
+	{
+		pA->Release();
+		pA = nullptr;
 	}
 
 	if (Level != D3D_FEATURE_LEVEL::D3D_FEATURE_LEVEL_11_0)
@@ -162,7 +223,7 @@ void GameEngineDevice::CreateSwapChain()
 void GameEngineDevice::Initialize() 
 {
 	DeviceCreate();
-	CreateSwapChain();
+	// CreateSwapChain();
 }
 
 void GameEngineDevice::RenderStart()

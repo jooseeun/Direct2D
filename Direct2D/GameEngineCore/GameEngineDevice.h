@@ -38,6 +38,8 @@ public:
 		return BackBufferTarget;
 	}
 
+	static IDXGIAdapter* GetHighPerformanceAdapter();
+
 	static void Destroy();
 
 protected:

@@ -50,11 +50,20 @@ public:
 		Color = _Color;
 	}
 
-	void DebugRender();
+	virtual void DebugRender();
+
+	void SetUIDebugCamera();
+
+	void SetDebugCamera(CAMERAORDER _Order)
+	{
+		DebugCameraOrder = _Order;
+	}
 
 protected:
 
 private:
+	CAMERAORDER DebugCameraOrder;
+
 	CollisionType DebugType;
 	float4 Color;
 

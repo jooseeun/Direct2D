@@ -228,7 +228,6 @@ void GameEngineRenderingPipeLine::OutputMergerDepthStencilSetting()
 
 void GameEngineRenderingPipeLine::Draw()
 {
-
 	GameEngineDevice::GetContext()->DrawIndexed(IndexBuffer->GetIndexCount(), 0, 0);
 }
 
@@ -243,5 +242,4 @@ void GameEngineRenderingPipeLine::Copy(GameEngineRenderingPipeLine* _Original)
 	PixelShader			= _Original->PixelShader;
 	DepthStencil			= _Original->DepthStencil;
 	Blend					= _Original->Blend;
-
 }

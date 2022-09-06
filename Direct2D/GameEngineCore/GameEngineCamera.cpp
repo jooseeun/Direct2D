@@ -3,6 +3,7 @@
 #include "GameEngineRenderer.h"
 #include "GameEngineActor.h"
 #include "GameEngineLevel.h"
+#include "GameEngineRenderTarget.h"
 #include <GameEngineBase/GameEngineWindow.h>
 
 GameEngineCamera::GameEngineCamera() 
@@ -20,8 +21,6 @@ GameEngineCamera::GameEngineCamera()
 	ViewPortDesc.Height = Size.y;
 	ViewPortDesc.MinDepth = 0.0f;
 	ViewPortDesc.MaxDepth = 1.0f;
-
-	
 }
 
 GameEngineCamera::~GameEngineCamera() 
@@ -35,6 +34,9 @@ bool ZSort(GameEngineRenderer* _Left, GameEngineRenderer* _Right)
 
 void GameEngineCamera::Render(float _DeltaTime)
 {
+	CameraRenderTarget->Clear();
+	CameraRenderTarget->Setting();
+
 	// 순서적으로보면 레스터라이저 단계이지만 변경이 거의 없을거기 때문에.
 	GameEngineDevice::GetContext()->RSSetViewports(1, &ViewPortDesc);
 
@@ -88,12 +90,17 @@ void GameEngineCamera::SetCameraOrder(CAMERAORDER _Order)
 
 void GameEngineCamera::Start()
 {
-	// GetActor()->GetLevel()->PushCamera(this);
+	CameraRenderTarget = GameEngineRenderTarget::Create();
+
+	CameraRenderTarget->CreateRenderTargetTexture(GameEngineWindow::GetScale(), DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT, float4::ZERO);
+
+	CameraRenderTarget->SettingDepthTexture(GameEngineDevice::GetBackBuffer()->GetDepthTexture());
+	// CameraRenderTarget->CreateDepthTexture()
 }
 
 void GameEngineCamera::PushRenderer(GameEngineRenderer* _Renderer)
 {
-	AllRenderer_[_Renderer->GetOrder()].push_back(_Renderer);
+	AllRenderer_[_Renderer->RenderingOrder].push_back(_Renderer);
 }
 
 void GameEngineCamera::Release(float _DelataTime)
@@ -164,6 +171,17 @@ float4 GameEngineCamera::GetMouseWorldPosition()
 float4 GameEngineCamera::GetMouseWorldPositionToActor()
 {
 	return GetTransform().GetWorldPosition() + GetMouseWorldPosition();
+}
+
+void GameEngineCamera::ChangeRenderingOrder(GameEngineRenderer* _Renderer, int _ChangeOrder)
+{
+	// 0번째에서 삭제되고
+	AllRenderer_[_Renderer->GetRenderingOrder()].remove(_Renderer);
+
+	_Renderer->RenderingOrder = _ChangeOrder;
+
+	// 10000번째로 이동한다.
+	AllRenderer_[_Renderer->GetRenderingOrder()].push_back(_Renderer);
 }
 
 void GameEngineCamera::OverRenderer(GameEngineCamera* _NextCamera) 

@@ -5,6 +5,9 @@ std::map<std::string, std::map<int, GameEngineConstantBuffer*>> GameEngineConsta
 
 
 GameEngineConstantBuffer::GameEngineConstantBuffer() 
+		: Buffer(nullptr)
+		, BufferDesc()
+		, ShaderDesc()
 {
 }
 

@@ -34,6 +34,11 @@ void GameEngineShaderResourcesHelper::AllResourcesSetting()
 
 void GameEngineShaderResourcesHelper::ResourcesCheck(GameEngineRenderingPipeLine* _Line)
 {
+	if (nullptr == _Line)
+	{
+		MsgBoxAssert("파이프라인이 nullptr 입니다 정상적인 파이프라인을 넣어주세요");
+	}
+
 	ShaderCheck(_Line->GetVertexShader());
 	ShaderCheck(_Line->GetPixelShader());
 
@@ -133,7 +138,7 @@ void GameEngineShaderResourcesHelper::SetConstantBufferLink(
 	const void* _Data, 
 	UINT _Size)
 {
-	if (false == IsConstantBuffer(_Name))
+ 	if (false == IsConstantBuffer(_Name))
 	{
 		MsgBoxAssertString(_Name + "쉐이더에서 이러한 이름의 상수버퍼를 사용한 적이 없습니다.");
 		return;
