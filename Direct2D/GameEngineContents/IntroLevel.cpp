@@ -2,6 +2,8 @@
 #include "PreCompile.h"
 #include "TitleObject.h"
 #include "Mouse.h"
+
+#include <GameEngineCore/GameEngineBlur.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineBase/GameEngineInput.h>
 
@@ -15,6 +17,9 @@ IntroLevel::~IntroLevel()
 
 void IntroLevel::Start()
 {
+	GameEngineDevice::GetBackBuffer()->AddEffect<GameEngineBlur>();
+	GetMainCamera()->GetCameraRenderTarget()->AddEffect<GameEngineBlur>();
+
 	if (false == GameEngineInput::GetInst()->IsKey("FreeCameraOnOff")
 		&& false == GameEngineInput::GetInst()->IsKey("CameraDebug"))
 	{
@@ -33,6 +38,7 @@ void IntroLevel::Start()
 		GetMainCamera()->SetProjectionSize(float4{ 1920 , 1080 });
 		GetUICamera()->SetProjectionSize(float4{ 1920, 1080 });
 	}
+
 
 
 }

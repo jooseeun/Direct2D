@@ -31,6 +31,9 @@
     <Filter Include="Actor\Title">
       <UniqueIdentifier>{2ac2af46-b94d-4a77-920b-ed222531e11a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{e6595562-29a5-49c2-91e2-18a49b842c82}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">

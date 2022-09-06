@@ -48,21 +48,21 @@ void TitleObject::Start()
 		TitleLogo->GetTransform().SetLocalPosition({ 1024.0f, -650.0f, 0 });
 	}
 	{
-		GameStartFont->SetText("게임시작", "NotoSerifCJKsc-Regular #2788163.otf");
+		GameStartFont->SetText("게임시작", "Noto Serif KR");
 		GameStartFont->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 		GameStartFont->SetSize(24.0f);
 		GameStartFont->SetScreenPostion({ 1920*0.7/2-60, 1080*0.7/2 + 50, 1 });
 		GameStartFont->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
-		GameSet->SetText("게임설정", "NotoSerifCJKsc-Regular #2788163.otf");
+		GameSet->SetText("게임설정", "Noto Serif KR");
 		GameSet->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 		GameSet->SetSize(24.0f);
 		GameSet->SetScreenPostion({ 1920 * 0.7 / 2 - 60, 1080 * 0.7 / 2 + 120, 1 });
 		GameSet->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
-		GameExit->SetText("게임종료", "NotoSerifCJKsc-Regular #2788163.otf");
+		GameExit->SetText("게임종료", "Noto Serif KR");
 		GameExit->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 		GameExit->SetSize(24.0f);
 		GameExit->SetScreenPostion({ 1920 * 0.7 / 2 - 60, 1080 * 0.7 / 2 + 190, 1 });

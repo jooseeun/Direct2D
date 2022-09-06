@@ -20,6 +20,8 @@ Tutorial2Level::~Tutorial2Level()
 
 void Tutorial2Level::Start()
 {
+
+
 	if (false == GameEngineInput::GetInst()->IsKey("FreeCameraOnOff")
 		&& false == GameEngineInput::GetInst()->IsKey("CameraDebug"))
 	{
