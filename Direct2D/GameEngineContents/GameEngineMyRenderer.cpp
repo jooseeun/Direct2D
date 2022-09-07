@@ -230,7 +230,12 @@ void GameEngineMyRenderer::SetTexture(GameEngineTexture* _Texture)
 	CurTex = _Texture;
 	ShaderResources.SetTexture("Tex", _Texture);
 }
-
+void GameEngineMyRenderer::SetMaskingTexture(GameEngineTexture* _Texture, const std::string& _MaskingImageName)
+{
+	CurTex = _Texture;
+	ShaderResources.SetTexture("Tex", _Texture);
+	CurMaskingTex = ShaderResources.SetTexture("Mask", _MaskingImageName);
+}
 void GameEngineMyRenderer::SetTexture(const std::string& _Name)
 {
 	CurTex = ShaderResources.SetTexture("Tex", _Name);
@@ -239,7 +244,7 @@ void GameEngineMyRenderer::SetTexture(const std::string& _Name)
 void GameEngineMyRenderer::SetMaskingTexture(const std::string& _Name, const std::string& _MaskingImageName)
 {
 	CurTex = ShaderResources.SetTexture("Tex", _Name);
-	CurMaskingTex = ShaderResources.SetTexture("Tex", _MaskingImageName);
+	CurMaskingTex = ShaderResources.SetTexture("Mask", _MaskingImageName);
 }
 
 
@@ -275,7 +280,17 @@ void GameEngineMyRenderer::SetTexture(GameEngineTexture* _Texture, UINT _Index)
 	SetTexture(_Texture);
 	SetFrame(_Index);
 }
+void GameEngineMyRenderer::SetMaskingTexture(GameEngineTexture* _Texture, UINT _Index, const std::string& _MaskingImageName)
+{
+	if (nullptr == _Texture)
+	{
+		MsgBoxAssert("존재하지 않는 텍스처를 사용하려고 했습니다.");
+		return;
+	}
 
+	SetMaskingTexture(_Texture, _MaskingImageName);
+	SetFrame(_Index);
+}
 void GameEngineMyRenderer::SetFolderTextureToIndex(const std::string& _Text, UINT _Index)
 {
 	GameEngineFolderTexture* FolderTexture = GameEngineFolderTexture::Find(_Text);
@@ -357,6 +372,38 @@ void GameEngineMyRenderer::ChangeFrameAnimation(const std::string& _AnimationNam
 		else if (nullptr != CurAni->FolderTexture)
 		{
 			SetTexture(CurAni->FolderTexture->GetTexture(CurAni->Info.Frames[CurAni->Info.CurFrame]));
+			if (ScaleMode == MYSCALEMODE::IMAGE)
+			{
+				ScaleToTexture();
+			}
+		}
+	}
+}
+void GameEngineMyRenderer::ChangeMaskFrameAnimation(const std::string& _AnimationName, const std::string& _MaskImage)
+{
+	std::string Name = GameEngineString::ToUpperReturn(_AnimationName);
+
+	if (FrameAni.end() == FrameAni.find(Name))
+	{
+		MsgBoxAssert("존재하지 않는 애니메이션으로 체인지 하려고 했습니다.");
+		return;
+	}
+
+	if (CurAni != &FrameAni[Name])
+	{
+		CurAni = &FrameAni[Name];
+		CurAni->Reset();
+		if (nullptr != CurAni->Texture)
+		{
+			SetMaskingTexture(CurAni->Texture, CurAni->Info.Frames[CurAni->Info.CurFrame], _MaskImage);
+			if (ScaleMode == MYSCALEMODE::IMAGE)
+			{
+				ScaleToCutTexture(CurAni->Info.CurFrame);
+			}
+		}
+		else if (nullptr != CurAni->FolderTexture)
+		{
+			SetMaskingTexture(CurAni->FolderTexture->GetTexture(CurAni->Info.Frames[CurAni->Info.CurFrame]), _MaskImage);
 			if (ScaleMode == MYSCALEMODE::IMAGE)
 			{
 				ScaleToTexture();

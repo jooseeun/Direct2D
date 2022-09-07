@@ -58,8 +58,8 @@ float4 TextureMask_PS(Output _Input) : SV_Target0
 {
     if (1 == IsMask)
     {
-        float4 MskColor = Tex.Sample(Smp, _Input.Tex1.xy);
-        if (1.0f == MskColor.a) // 조건 내가 정한다.
+        float4 MskColor = Mask.Sample(Smp, _Input.Tex1.xy);
+        if (1.0f != MskColor.a) // 조건 내가 정한다.
         {
             clip(-1);
         }

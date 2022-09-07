@@ -63,16 +63,18 @@ void TopUI::Start()
 	}
 	{
 		Energy = CreateComponent<GameEngineMyRenderer>();
-		Energy->SetMaskingTexture("HUD_Soulorb_fills_soul_idle0000-Sheet.png","HUD Cln_soul_orb_shape.png",0);
-		Energy->GetTransform().SetLocalScale({ 257, 164, 1 });
-		Energy->GetTransform().SetLocalPosition({ -650, 350.0f, 1 });
+		Energy->CreateFrameAnimationCutTexture("IdleEnergy", MyFrameAnimation_DESC("HUD_Soulorb_fills_soul_idle0000-Sheet.png", 0, 5, 0.1f, true));
+		Energy->ChangeMaskFrameAnimation("IdleEnergy", "HUD Cln_soul_orb_shape.png");
+		Energy->Option.IsMask = 1;
+		Energy->ScaleToCutTexture(0);
+		Energy->GetTransform().SetLocalPosition({ -703, 335.0f, 1 });
 		Energy->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 
 
 
 }
-
+ 
 void TopUI::Update(float _DeltaTime)
 {
 	HealthUpdate();

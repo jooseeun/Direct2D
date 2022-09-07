@@ -195,9 +195,10 @@ public:
 	GameEngineTexture* GetCurTexture();
 
 	void SetTexture(const std::string& _Name, UINT _Index);
-
+	void SetMaskingTexture(GameEngineTexture* _Texture, const std::string& _MaskingImageName);
 	void SetMaskingTexture(const std::string& _Name, const std::string& _MaskingImageName);
 	void SetMaskingTexture(const std::string& _Name, const std::string& _MaskingImageName, UINT _Index);
+	void SetMaskingTexture(GameEngineTexture* _Texture, UINT _Index, const std::string& _MaskingImageName);
 	void SetPivot();
 
 	void SetPivot(MYPIVOTMODE _Mode);
@@ -211,7 +212,9 @@ public:
 	void CreateFrameAnimationFolder(const std::string& _AnimationName, const MyFrameAnimation_DESC& _Desc);
 
 	void CreateFrameAnimationCutTexture(const std::string& _AnimationName, const MyFrameAnimation_DESC& _Desc);
+
 	void ChangeFrameAnimation(const std::string& _AnimationName);
+	void ChangeMaskFrameAnimation(const std::string& _AnimationName, const std::string& _MaskImage);
 
 	void ScaleToTexture();
 
