@@ -64,9 +64,10 @@ void TopUI::Start()
 	{
 		Energy = CreateComponent<GameEngineMyRenderer>();
 		Energy->CreateFrameAnimationCutTexture("IdleEnergy", MyFrameAnimation_DESC("HUD_Soulorb_fills_soul_idle0000-Sheet.png", 0, 5, 0.1f, true));
+		Energy->CreateFrameAnimationCutTexture("FullEnergy", MyFrameAnimation_DESC("HUD Cln_soul_orb_glow0000.png", 0, 0, 0.1f, false));
 		Energy->ChangeMaskFrameAnimation("IdleEnergy", "HUD Cln_soul_orb_shape.png");
 		Energy->Option.IsMask = 1;
-		Energy->Option.EnergyGage = -0.3;
+		Energy->Option.EnergyGage = 0.0;
 		Energy->ScaleToCutTexture(0);
 		Energy->GetTransform().SetLocalPosition({ -703, 335.0f, 1 });
 		Energy->ChangeCamera(CAMERAORDER::UICAMERA);
@@ -79,6 +80,21 @@ void TopUI::Start()
 void TopUI::Update(float _DeltaTime)
 {
 	HealthUpdate();
+	EnergyUpdate();
+}
+void TopUI::EnergyUpdate()
+{
+	Energy->Option.EnergyGage = Player::GetMainPlayer()->PlayerEnergyGage;
+	if (Energy->Option.EnergyGage <= 0.0f)
+	{
+		Energy->ChangeMaskFrameAnimation("FullEnergy", "HUD Cln_soul_orb_shape.png");
+		Energy->ScaleToTexture();
+	}
+	else
+	{
+		Energy->ChangeMaskFrameAnimation("IdleEnergy", "HUD Cln_soul_orb_shape.png");
+		Energy->ScaleToCutTexture(0);
+	}
 }
 void TopUI::HealthUpdate()
 {

@@ -153,7 +153,8 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("BreakHealthUI.png", 6, 1);
 	GameEngineTexture::Cut("TopUICoin.png", 3, 1);
 	GameEngineTexture::Cut("HUD_Soulorb_fills_soul_idle0000-Sheet.png", 6, 1);
-
+	GameEngineTexture::Cut("HUD Cln_soul_orb_glow0000.png", 1, 1);
+	
 	if (false == GameEngineInput::GetInst()->IsKey("LevelChangeKey"))
 	{
 		GameEngineInput::GetInst()->CreateKey("LevelChangeKey", 'P');

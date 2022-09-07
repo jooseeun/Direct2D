@@ -41,5 +41,6 @@ private:
 	GameEngineMyRenderer* Energy;
 	int CurHealth;
 	void HealthUpdate();
+	void EnergyUpdate();
 };
 

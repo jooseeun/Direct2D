@@ -30,6 +30,7 @@ Player::Player()
 	, PlayerCol(nullptr)
 	, PlayerHealth(5)
 	, PlayerFullHealth(5)
+	, PlayerEnergyGage(0.2f)
 {
 	MainPlayer = this;
 }

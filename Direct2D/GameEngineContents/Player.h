@@ -20,6 +20,7 @@ public:
 public:
 	int PlayerHealth;
 	int PlayerFullHealth;
+	float PlayerEnergyGage;
 
 public:
 	// constrcuter destructer
