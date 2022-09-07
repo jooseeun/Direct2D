@@ -31,6 +31,7 @@ Player::Player()
 	, PlayerHealth(5)
 	, PlayerFullHealth(5)
 	, PlayerEnergyGage(0.2f)
+	, GlobalTimeScale(1.0f)
 {
 	MainPlayer = this;
 }
@@ -118,6 +119,8 @@ void Player::Start()
 			FrameAnimation_DESC("Player_land.png", 0, 2, 0.08f, false));
 		PlayerRenderer->CreateFrameAnimationCutTexture("HardLand",
 			FrameAnimation_DESC("Player_land_hard.png", 0, 4, 0.08f, false));
+		PlayerRenderer->CreateFrameAnimationCutTexture("Stun",
+			FrameAnimation_DESC("Player_stun.png", 0, 4, 0.03f, false));
 	}
 	{
 		SkillRenderer->CreateFrameAnimationCutTexture("Idle",
@@ -169,6 +172,10 @@ void Player::Start()
 		, std::bind(&Player::HardLandUpdate, this, std::placeholders::_1, std::placeholders::_2)
 		, std::bind(&Player::HardLandStart, this, std::placeholders::_1)
 	);
+	StateManager.CreateStateMember("Stun"
+		, std::bind(&Player::StunUpdate, this, std::placeholders::_1, std::placeholders::_2)
+		, std::bind(&Player::StunStart, this, std::placeholders::_1)
+	);
 	StateManager.ChangeState("Fall");
 
 	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 500.0f);
@@ -177,25 +184,17 @@ void Player::Start()
 
 void Player::Update(float _DeltaTime)
 {
-
-
 	if (true == GetLevel()->GetMainCameraActor()->IsFreeCameraMode())
 	{
 		return;
 	}
 
-	if (true == PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D))
-	{
-		int a = 0;
-	}
-
 	StateManager.Update(_DeltaTime);
 	Gravity();
 	CameraCheck();
+	MonsterColCheck();
 
-	PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
-		std::bind(&Player ::MonsterColCheck, this, std::placeholders::_1, std::placeholders::_2)
-	);
+
 }
 
 void Player::CameraCheck()
@@ -289,6 +288,16 @@ void Player::Gravity()
 
 }
 
+void Player::MonsterColCheck()
+{
+	if (StateManager.GetCurStateStateName() != "Stun")
+	{
+		PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
+			std::bind(&Player::PlayerStun, this, std::placeholders::_1, std::placeholders::_2)
+		);
+	}
+}
+
 bool Player::MapPixelCheck()
 {
 	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
@@ -331,14 +340,14 @@ bool Player::MapPixelCheck()
 }
 
 
-bool Player::MonsterColCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+bool Player::PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-
 	if (PlayerHealth == 0)
 	{
+		//Death
 		return true;
 	}
-	PlayerHealth -= 1;
+	StateManager.ChangeState("Stun");
 	return true;
 }
 
@@ -870,3 +879,54 @@ void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	}
 }
 
+void Player::StunStart(const StateInfo& _Info)
+{
+	PlayerRenderer->ChangeFrameAnimation("Stun");
+	PlayerRenderer->ScaleToCutTexture(0);
+	PlayerHealth -= 1;
+	if (CurDir == PLAYERDIR::Left)
+	{
+		PlayerRenderer->GetTransform().PixLocalPositiveX();
+	}
+	if (CurDir == PLAYERDIR::Right)
+	{
+		PlayerRenderer->GetTransform().PixLocalNegativeX();
+	}
+	FallTime = 0.05f;
+	GlobalTimeScale = 0.1f;
+}
+void Player::StunUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	GameEngineTime::GetInst()->SetGlobalScale(GlobalTimeScale);
+
+	PlayerRenderer->AnimationBindEnd("Stun", [=](const FrameAnimation_DESC& _Info)
+	{
+		StateManager.ChangeState("Fall");
+	});
+
+	if (FallTime > 0.0f)
+	{
+		FallTime -= 1.0f * _DeltaTime;
+		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
+	GetTransform().GetWorldPosition().y + 500.0f * _DeltaTime,
+	GetTransform().GetWorldPosition().z, });
+	}
+	else
+	{
+		GlobalTimeScale += 0.5f * _DeltaTime * 10;
+		if (GlobalTimeScale >= 1.0f)
+		{
+			GlobalTimeScale = 1.0f;
+		}
+		GameEngineTime::GetInst()->SetGlobalScale(GlobalTimeScale);
+	}
+	if (CurDir == PLAYERDIR::Left)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * 1800.0f * _DeltaTime);
+	}
+	if (CurDir == PLAYERDIR::Right)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * 1800.0f *  _DeltaTime);
+	}
+
+}

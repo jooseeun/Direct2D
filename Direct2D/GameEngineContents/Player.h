@@ -46,7 +46,9 @@ protected:
 	void CameraCheck();
 	bool MapPixelCheck();
 	void Gravity();
-	bool MonsterColCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+
+	void MonsterColCheck();
+	bool PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 	GameEngineTextureRenderer* PlayerRenderer;
 	GameEngineTextureRenderer* SkillRenderer;
@@ -56,6 +58,8 @@ protected:
 
 	float4 Color;
 	float4 MapSize;
+	float GlobalTimeScale;
+
 
 	PLAYERDIR CurDir;
 
@@ -85,6 +89,9 @@ protected:
 
 	void HardLandStart(const StateInfo& _Info);
 	void HardLandUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void StunStart(const StateInfo& _Info);
+	void StunUpdate(float _DeltaTime, const StateInfo& _Info);
 
 private:
 	float Speed;
