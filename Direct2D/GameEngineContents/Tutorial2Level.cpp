@@ -4,6 +4,7 @@
 #include "MapSet.h"
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
+#include "TopUI.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
@@ -85,5 +86,11 @@ void Tutorial2Level::LevelStartEvent()
 		Player::GetMainPlayer()->SetMapSize(MapSize);
 		GetMainCameraActorTransform().SetLocalPosition({ 632, -1734, 0 });
 	}
-
+	{
+		if (nullptr == TopUI::GetMainTopUI())
+		{
+			TopUI* NewUI = CreateActor<TopUI>(OBJECTORDER::UI);
+		}
+		TopUI::GetMainTopUI()->SetLevelOverOn();
+	}
 }

@@ -7,7 +7,7 @@ class GameEngineFontRenderer;
 class GameEngineMyRenderer;
 class TopUI : public GameEngineActor
 {
-public:
+private:
 	static TopUI* MainTopUI;
 
 public:

@@ -44,6 +44,7 @@ void Tutorial1Level::Start()
 		GetMainCamera()->SetProjectionSize(float4{ 1920*0.85 , 1080 * 0.85 });
 		GetUICamera()->SetProjectionSize(float4{ 1920 * 0.85 , 1080 * 0.85 });
 	}
+	
 
 	{
 
@@ -101,10 +102,9 @@ void Tutorial1Level::LevelStartEvent()
 		Player::GetMainPlayer()->SetMapSize(MapSize);
 		GetMainCameraActorTransform().SetLocalPosition({ 924.0f, -1640.0f, 0 });
 	}
+	if (nullptr == TopUI::GetMainTopUI())
 	{
-		if (nullptr == TopUI::GetMainTopUI())
-		{
-			TopUI* NewUI = CreateActor<TopUI>(OBJECTORDER::UI);
-		}
+		TopUI* NewUI = CreateActor<TopUI>(OBJECTORDER::UI);
 	}
+	TopUI::GetMainTopUI()->SetLevelOverOn();
 }

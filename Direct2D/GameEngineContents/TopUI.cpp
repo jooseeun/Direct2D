@@ -2,6 +2,7 @@
 #include "PreCompile.h"
 #include "Player.h"
 #include "GameEngineMyRenderer.h"
+
 TopUI* TopUI::MainTopUI = nullptr;
 
 TopUI::TopUI() 
@@ -12,6 +13,7 @@ TopUI::TopUI()
 	, MoneyUI(nullptr)
 	, AniTime(4.0f)
 {
+	MainTopUI = this;
 }
 
 TopUI::~TopUI() 
@@ -20,7 +22,9 @@ TopUI::~TopUI()
 
 void TopUI::Start()
 {
-	
+
+	GetTransform().SetLocalScale({ 1, 1, 1 });
+
 	{
 		EnergyUI = CreateComponent<GameEngineUIRenderer>();
 		EnergyUI->SetTexture("EnergyUI.png");

@@ -925,7 +925,6 @@ void Player::StunStart(const StateInfo& _Info)
 		StunEffect1Renderer->On();
 		StunEffect1Renderer->CurAnimationReset();
 		StunEffect1Renderer->ScaleToCutTexture(0);
-
 	}
 }
 void Player::StunUpdate(float _DeltaTime, const StateInfo& _Info)
