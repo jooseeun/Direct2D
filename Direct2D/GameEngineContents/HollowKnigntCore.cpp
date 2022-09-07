@@ -22,33 +22,14 @@ HollowKnigntCore::~HollowKnigntCore()
 
 void HollowKnigntCore::Start()
 {
+	//Shader
+	{
+		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("TextureMask");
+		NewPipe->SetVertexShader("TextureMask.hlsl");
+		NewPipe->SetPixelShader("TextureMask.hlsl");
+	}
 
-	//{
-	//	// 1, 1, 1, 1 * ¹º°¡ + 0, 0¤¿, * ¹º°¡
-
-	//	D3D11_BLEND_DESC Desc = { 0 };
-
-	//	Desc.AlphaToCoverageEnable = FALSE;
-	//	Desc.IndependentBlendEnable = FALSE;
-	//	Desc.RenderTarget[0].BlendEnable = true;
-	//	Desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-	//	Desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP::D3D11_BLEND_OP_MAX;
-	//	Desc.RenderTarget[0].SrcBlend = D3D11_BLEND::D3D11_BLEND_ONE;
-	//	Desc.RenderTarget[0].DestBlend = D3D11_BLEND::D3D11_BLEND_ONE;
-	//	// Desc.RenderTarget[0].DestBlend = D3D11_BLEND::D3D11_BLEND_DEST_COLOR;
-	//	Desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP::D3D11_BLEND_OP_ADD;
-	//	Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND::D3D11_BLEND_ZERO;
-	//	Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND::D3D11_BLEND_ONE;
-	//	//blendStateDescription.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;
-	//	//blendStateDescription.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-	//	//blendStateDescription.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-	//	//blendStateDescription.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-	//	//blendStateDescription.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
-	//	//blendStateDescription.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-	//	//blendStateDescription.RenderTarget[0].RenderTargetWriteMask = 0x0f;
-	//	GameEngineBlend::Create("Mask", Desc);
-	//}
-
+	///Resource
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExitsChildDirectory("ContentsResources");
@@ -119,7 +100,20 @@ void HollowKnigntCore::Start()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExitsChildDirectory("ContentsResources");
+		Dir.Move("ContentsResources");
+		Dir.Move("Texture");
+		Dir.Move("Effect");
 
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
 
 	GameEngineFont::Load("Noto Serif KR");
 
@@ -155,6 +149,11 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("TopUICoin.png", 3, 1);
 	GameEngineTexture::Cut("HUD_Soulorb_fills_soul_idle0000-Sheet.png", 6, 1);
 	GameEngineTexture::Cut("HUD Cln_soul_orb_glow0000.png", 1, 1);
+
+	//Effect ¸®¼Ò½º
+	GameEngineTexture::Cut("Hit_crack_simple.png", 3, 1);
+	GameEngineTexture::Cut("Stun_impact_effect.png", 7, 1);
+
 	
 	if (false == GameEngineInput::GetInst()->IsKey("LevelChangeKey"))
 	{

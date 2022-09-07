@@ -132,11 +132,7 @@ GameEngineMyRenderer::~GameEngineMyRenderer()
 
 void GameEngineMyRenderer::SetTextureRendererSetting()
 {
-	{
-		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("TextureMask");
-		NewPipe->SetVertexShader("TextureMask.hlsl");
-		NewPipe->SetPixelShader("TextureMask.hlsl");
-	}
+
 
 	SetPipeLine("TextureMask");
 

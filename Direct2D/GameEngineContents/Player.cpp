@@ -32,6 +32,8 @@ Player::Player()
 	, PlayerFullHealth(5)
 	, PlayerEnergyGage(0.2f)
 	, GlobalTimeScale(1.0f)
+	, StunEffect1Renderer(nullptr)
+	, StunEffect2Renderer(nullptr)
 {
 	MainPlayer = this;
 }
@@ -66,6 +68,16 @@ void Player::Start()
 		SkillRenderer = CreateComponent<GameEngineTextureRenderer>();
 		SkillRenderer->SetOrder((int)OBJECTORDER::Player);
 		SkillRenderer->SetPivot(PIVOTMODE::BOT);
+	}
+	{
+		StunEffect1Renderer = CreateComponent<GameEngineTextureRenderer>();
+		StunEffect1Renderer->SetOrder((int)OBJECTORDER::Player);
+		StunEffect1Renderer->SetPivot(PIVOTMODE::BOT);
+	}
+	{
+		StunEffect2Renderer = CreateComponent<GameEngineTextureRenderer>();
+		StunEffect2Renderer->SetOrder((int)OBJECTORDER::Player);
+		StunEffect2Renderer->SetPivot(PIVOTMODE::BOT);
 	}
 	{
 		PlayerCol = CreateComponent<GameEngineCollision>();
@@ -134,7 +146,12 @@ void Player::Start()
 		SkillRenderer->CreateFrameAnimationCutTexture("DownAttack",
 				FrameAnimation_DESC("Player_Downslash_effect.png", 0, 3, 0.1f, false));
 	}
-
+	{
+		StunEffect1Renderer->CreateFrameAnimationCutTexture("StunEffect",
+			FrameAnimation_DESC("Hit_crack_simple.png", 0, 2, 0.03f, false));
+		StunEffect2Renderer->CreateFrameAnimationCutTexture("StunEffect",
+			FrameAnimation_DESC("Stun_impact_effect.png", 0, 6, 0.01f, false));
+	}
 
 	StateManager.CreateStateMember("Idle"
 		, std::bind(&Player::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2)
@@ -177,6 +194,16 @@ void Player::Start()
 		, std::bind(&Player::StunStart, this, std::placeholders::_1)
 	);
 	StateManager.ChangeState("Fall");
+
+	{
+		StunEffect1Renderer->ChangeFrameAnimation("StunEffect");
+		StunEffect1Renderer->ScaleToCutTexture(0);
+		StunEffect2Renderer->ChangeFrameAnimation("StunEffect");
+		StunEffect2Renderer->ScaleToCutTexture(0);
+		StunEffect1Renderer->Off();
+		StunEffect2Renderer->Off();
+	}
+
 
 	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 500.0f);
 }
@@ -894,14 +921,26 @@ void Player::StunStart(const StateInfo& _Info)
 	}
 	FallTime = 0.05f;
 	GlobalTimeScale = 0.1f;
+	{
+		StunEffect1Renderer->On();
+		StunEffect1Renderer->CurAnimationReset();
+		StunEffect1Renderer->ScaleToCutTexture(0);
+
+	}
 }
 void Player::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	GameEngineTime::GetInst()->SetGlobalScale(GlobalTimeScale);
 
+	StunEffect1Renderer->AnimationBindEnd("StunEffect", [=](const FrameAnimation_DESC& _Info)
+	{
+		StunEffect1Renderer->Off();
+	});
+
 	PlayerRenderer->AnimationBindEnd("Stun", [=](const FrameAnimation_DESC& _Info)
 	{
 		StateManager.ChangeState("Fall");
+		GameEngineTime::GetInst()->SetGlobalScale(1.0f);
 	});
 
 	if (FallTime > 0.0f)
@@ -918,7 +957,7 @@ void Player::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 		{
 			GlobalTimeScale = 1.0f;
 		}
-		GameEngineTime::GetInst()->SetGlobalScale(GlobalTimeScale);
+		GameEngineTime::GetInst()->SetGlobalScale(1.0f);
 	}
 	if (CurDir == PLAYERDIR::Left)
 	{
