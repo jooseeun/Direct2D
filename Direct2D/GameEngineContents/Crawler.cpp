@@ -84,6 +84,7 @@ bool Crawler::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Othe
 	if (StateManager.GetCurStateStateName() == "Move")
 	{
 		Health -= 1;
+		Player::GetMainPlayer()->PlayerEnergyGage += 0.05f;
 		StateManager.ChangeState("Back");
 	}
 
