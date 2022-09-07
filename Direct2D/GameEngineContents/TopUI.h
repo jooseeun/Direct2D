@@ -40,6 +40,7 @@ private:
 	GameEngineFontRenderer* MoneyFont;
 	GameEngineMyRenderer* Energy;
 	int CurHealth;
+	float AniTime;
 	void HealthUpdate();
 	void EnergyUpdate();
 };

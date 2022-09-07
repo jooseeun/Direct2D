@@ -10,6 +10,7 @@ TopUI::TopUI()
 	, EmpthyHealth()
 	, CurHealth(5)
 	, MoneyUI(nullptr)
+	, AniTime(4.0f)
 {
 }
 
@@ -41,7 +42,7 @@ void TopUI::Start()
 		{
 			Health[i] = CreateComponent<GameEngineUIRenderer>();
 			Health[i]->CreateFrameAnimationCutTexture("FullHealth",
-				FrameAnimation_DESC("FullHealthUI.png", 0, 0, 0.1f, false));
+				FrameAnimation_DESC("FullHealthUI.png", 0, 5, 0.1f, false));
 			Health[i]->CreateFrameAnimationCutTexture("BreakHealth",
 				FrameAnimation_DESC("BreakHealthUI.png", 0, 5, 0.1f, false));
 			Health[i]->ChangeFrameAnimation("FullHealth");
@@ -98,6 +99,17 @@ void TopUI::EnergyUpdate()
 }
 void TopUI::HealthUpdate()
 {
+	AniTime -= 1.0f * GameEngineTime::GetDeltaTime();
+	if (AniTime < 0.0f)
+	{
+		for (int i = 0; i < Player::GetMainPlayer()->PlayerHealth; i++)
+		{
+			Health[i]->CurAnimationReset();
+			AniTime = 10.0f;
+		}
+	}
+
+	
 	if (CurHealth != Player::GetMainPlayer()->PlayerHealth)
 	{
 		for (int i = 0; i < Player::GetMainPlayer()->PlayerHealth; i++)
