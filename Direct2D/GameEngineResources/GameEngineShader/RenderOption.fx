@@ -2,8 +2,8 @@ cbuffer RenderOption : register(b10)
 {
     float DeltaTime;
     int IsMask;
+    float EnergyGage;
     int IsJump;
-    int Option00;
     int Option01;
     int Option02;
     int Option03;

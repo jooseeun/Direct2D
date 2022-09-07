@@ -218,7 +218,7 @@ void Player::CameraCheck()
 	else if (MapSize.x <= CurCameraPos.x + CameraRectX / 2)
 	{
 		float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
-		CurCameraPos.x = static_cast<int>(GetLevel()->GetMainCameraActorTransform().GetLocalPosition().ix() - (GetTransform().GetLocalPosition().ix() + CameraRectX/2 - MapSize.x));
+		CurCameraPos.x = static_cast<float>(GetLevel()->GetMainCameraActorTransform().GetLocalPosition().ix() - (GetTransform().GetLocalPosition().ix() + CameraRectX/2 - MapSize.x));
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
 	}
 
@@ -235,7 +235,7 @@ void Player::CameraCheck()
 	else if (-MapSize.y >= CurCameraPos.y - CameraRectY / 2)
 	{
 		float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
-		CurCameraPos.y = -static_cast<int>(GetLevel()->GetMainCameraActorTransform().GetLocalPosition().iy() - (GetTransform().GetLocalPosition().iy() + CameraRectY/2 - MapSize.y));
+		CurCameraPos.y = -static_cast<float>(GetLevel()->GetMainCameraActorTransform().GetLocalPosition().iy() - (GetTransform().GetLocalPosition().iy() + CameraRectY/2 - MapSize.y));
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
 	}
 }

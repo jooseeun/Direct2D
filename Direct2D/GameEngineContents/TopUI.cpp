@@ -66,6 +66,7 @@ void TopUI::Start()
 		Energy->CreateFrameAnimationCutTexture("IdleEnergy", MyFrameAnimation_DESC("HUD_Soulorb_fills_soul_idle0000-Sheet.png", 0, 5, 0.1f, true));
 		Energy->ChangeMaskFrameAnimation("IdleEnergy", "HUD Cln_soul_orb_shape.png");
 		Energy->Option.IsMask = 1;
+		Energy->Option.EnergyGage = -0.3;
 		Energy->ScaleToCutTexture(0);
 		Energy->GetTransform().SetLocalPosition({ -703, 335.0f, 1 });
 		Energy->ChangeCamera(CAMERAORDER::UICAMERA);

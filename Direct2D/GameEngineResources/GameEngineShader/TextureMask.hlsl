@@ -63,6 +63,7 @@ float4 TextureMask_PS(Output _Input) : SV_Target0
         {
             clip(-1);
         }
+        _Input.Tex0.y += EnergyGage;
         float4 RenderColor = (Tex.Sample(Smp, _Input.Tex0.xy) * MulColor) + PlusColor;
         return RenderColor;
     }
