@@ -5,18 +5,18 @@
 #include "PlayLevelManager.h"
 // Ό³Έν :
 class GameEngineCameraActor;
-class TownLevel : public PlayLevelManager
+class Town3Level : public PlayLevelManager
 {
 public:
 	// constrcuter destructer
-	TownLevel();
-	~TownLevel();
+	Town3Level();
+	~Town3Level();
 
 	// delete Function
-	TownLevel(const TownLevel& _Other) = delete;
-	TownLevel(TownLevel&& _Other) noexcept = delete;
-	TownLevel& operator=(const TownLevel& _Other) = delete;
-	TownLevel& operator=(TownLevel&& _Other) noexcept = delete;
+	Town3Level(const Town3Level& _Other) = delete;
+	Town3Level(Town3Level&& _Other) noexcept = delete;
+	Town3Level& operator=(const Town3Level& _Other) = delete;
+	Town3Level& operator=(Town3Level&& _Other) noexcept = delete;
 
 protected:
 	void Start() override;

@@ -2,7 +2,9 @@
 #include "PreCompile.h"
 
 #include "IntroLevel.h"
-#include "TownLevel.h"
+#include "Town1Level.h"
+#include "Town2Level.h"
+#include "Town3Level.h"
 #include "Tutorial1Level.h"
 #include "Tutorial2Level.h"
 #include "Tutorial3Level.h"
@@ -165,7 +167,9 @@ void HollowKnigntCore::Start()
 
 	// RTTI 런 타임 타입 인포메이션
 	CreateLevel<IntroLevel>("Intro");
-	CreateLevel<TownLevel>("Town");
+	CreateLevel<Town1Level>("Town1");
+	CreateLevel<Town2Level>("Town2");
+	CreateLevel<Town3Level>("Town3");
 	CreateLevel<Tutorial1Level>("Tutorial1");
 	CreateLevel<Tutorial2Level>("Tutorial2");
 	CreateLevel<Tutorial3Level>("Tutorial3");

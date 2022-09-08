@@ -4,6 +4,7 @@
 #include "MapSet.h"
 #include "TopUI.h"
 #include "PlayLevelManager.h"
+#include "MapMoveCollision.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
@@ -48,6 +49,14 @@ void Tutorial3Level::Start()
 			"King's-Pass_ColMap_3.png");
 
 		MapSize = { 5183, 3947, 100.0f };
+	}
+
+	{
+		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
+		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });
+		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 3511,-1154,100 });
+		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
+		MapMoveCol->MoveLevel1 = "Tutorial4";
 	}
 }
 void Tutorial3Level::Update(float _DeltaTime)

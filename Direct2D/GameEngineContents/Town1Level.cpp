@@ -1,24 +1,25 @@
-#include "TownLevel.h"
+#include "Town1Level.h"
 #include "PreCompile.h"
 #include "Player.h"
 #include "MapSet.h"
 #include "TopUI.h"
 #include "PlayLevelManager.h"
+#include "MapMoveCollision.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
 
-TownLevel::TownLevel() :
+Town1Level::Town1Level() :
 	Camera(nullptr),
 	MapSize()
 {
 }
 
-TownLevel::~TownLevel()
+Town1Level::~Town1Level()
 {
 }
 
-void TownLevel::Start()
+void Town1Level::Start()
 {
 
 
@@ -40,16 +41,23 @@ void TownLevel::Start()
 	}
 
 	{
-		CreateMap("Dirtmouth_Background.png",
-			"Dirtmouth_Background_Object.png",
-			"Dirtmouth_Ground.png",
-			"Dirtmouth_FrontObject.png",
-			"Dirtmouth_ColMap.png");
+		CreateMap("Dirtmouth_Background_1.png",
+			"Dirtmouth_Background_Obj_1.png",
+			"Dirtmouth_Ground_1.png",
+			"Dirtmouth_FrontObject_1.png",
+			"Dirtmouth_ColMap_1.png");
 
-		MapSize = { 16658, 3822, 100.0f };
+		MapSize = { 3700, 3418, 100.0f };
+	}
+	{
+		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
+		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });
+		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 3593,-3096,100 });
+		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
+		MapMoveCol->MoveLevel1 = "Town2";
 	}
 }
-void TownLevel::Update(float _DeltaTime)
+void Town1Level::Update(float _DeltaTime)
 {
 	if (GameEngineInput::GetInst()->IsDown("FreeCameraOnOff"))
 	{
@@ -60,12 +68,12 @@ void TownLevel::Update(float _DeltaTime)
 		SetMapONOFF();
 	}
 }
-void TownLevel::End()
+void Town1Level::End()
 {
 
 }
 
-void TownLevel::LevelStartEvent()
+void Town1Level::LevelStartEvent()
 {
 	{
 		if (nullptr == Player::GetMainPlayer())

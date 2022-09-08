@@ -45,6 +45,7 @@ protected:
 
 	void CameraCheck();
 	bool MapPixelCheck();
+	bool MapPixelJumpCheck();
 	void Gravity();
 
 	void MonsterColCheck();

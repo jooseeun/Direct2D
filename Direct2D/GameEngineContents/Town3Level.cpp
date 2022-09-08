@@ -1,25 +1,24 @@
-#include "Tutorial4Level.h"
+#include "Town3Level.h"
 #include "PreCompile.h"
 #include "Player.h"
 #include "MapSet.h"
 #include "TopUI.h"
 #include "PlayLevelManager.h"
-#include "MapMoveCollision.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
 
-Tutorial4Level::Tutorial4Level() :
+Town3Level::Town3Level() :
 	Camera(nullptr),
 	MapSize()
 {
 }
 
-Tutorial4Level::~Tutorial4Level()
+Town3Level::~Town3Level()
 {
 }
 
-void Tutorial4Level::Start()
+void Town3Level::Start()
 {
 
 
@@ -41,23 +40,16 @@ void Tutorial4Level::Start()
 	}
 
 	{
-		CreateMap("King's-Pass_Background_4.png",
-			"King's-Pass_Background_Object_4.png",
-			"King's-Pass_Ground_4.png",
-			"King's-Pass_FrontObject_4.png",
-			"King's-Pass_ColMap_4.png");
+		CreateMap("Dirtmouth_Background_3.png",
+			"Dirtmouth_Background_Obj_3.png",
+			"Dirtmouth_Ground_3.png",
+			"Dirtmouth_FrontObject_3.png",
+			"Dirtmouth_ColMap_3.png");
 
-		MapSize = { 6210, 3271, 100.0f };
-	}
-	{
-		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
-		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });
-		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 6009,-1110,100 });
-		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
-		MapMoveCol->MoveLevel1 = "Town1";
+		MapSize = { 3700, 3418, 100.0f };
 	}
 }
-void Tutorial4Level::Update(float _DeltaTime)
+void Town3Level::Update(float _DeltaTime)
 {
 	if (GameEngineInput::GetInst()->IsDown("FreeCameraOnOff"))
 	{
@@ -68,22 +60,22 @@ void Tutorial4Level::Update(float _DeltaTime)
 		SetMapONOFF();
 	}
 }
-void Tutorial4Level::End()
+void Town3Level::End()
 {
 
 }
 
-void Tutorial4Level::LevelStartEvent()
+void Town3Level::LevelStartEvent()
 {
 	{
 		if (nullptr == Player::GetMainPlayer())
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
 		}
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 290, -1080, 0 });
+		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 617, -883, 0 });
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
-		GetMainCameraActorTransform().SetLocalPosition({ 290, -1080, 0 });
+		GetMainCameraActorTransform().SetLocalPosition({ 617, -883, 0 });
 	}
 
 	{

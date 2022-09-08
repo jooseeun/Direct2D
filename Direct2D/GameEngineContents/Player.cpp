@@ -284,7 +284,7 @@ void Player::Gravity()
 
 
 	float4 Color = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
-		-GetTransform().GetWorldPosition().iy() - 1);
+		-GetTransform().GetWorldPosition().iy()-1);
 
 	if (false == Color.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
 	{
@@ -335,15 +335,10 @@ bool Player::MapPixelCheck()
 
 
 	float4 ColorR = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() + 34,
-		-GetTransform().GetWorldPosition().iy() - 5);
+		-GetTransform().GetWorldPosition().iy() - 40);
 	float4 ColorL = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() - 34,
-		-GetTransform().GetWorldPosition().iy() - 5);
-	float4 ColorUp = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
-		-GetTransform().GetWorldPosition().iy() - 125);
-	if (false == ColorUp.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
-	{
-		return true;
-	}
+		-GetTransform().GetWorldPosition().iy() - 40);
+
 
 	if (CurDir == PLAYERDIR::Left)
 	{
@@ -365,7 +360,25 @@ bool Player::MapPixelCheck()
 	return false;
 
 }
+bool Player::MapPixelJumpCheck()
+{
+	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
+	if (nullptr == ColMapTexture)
+	{
+		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
+	}
 
+	float4 ColorUp = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
+		-GetTransform().GetWorldPosition().iy() - 60);
+	if (false == ColorUp.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+	{
+		return true;
+	}
+
+
+	return false;
+
+}
 
 bool Player::PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
@@ -657,7 +670,7 @@ void Player::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 			PlayerRenderer->GetTransform().PixLocalNegativeX();
 		}
 
-		if (false == MapPixelCheck())
+		if (false == MapPixelJumpCheck())
 		{
 			GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
 GetTransform().GetWorldPosition().y + 1800.0f * GameEngineTime::GetDeltaTime(),

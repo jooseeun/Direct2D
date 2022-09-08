@@ -57,7 +57,7 @@
     <ClCompile Include="Tutorial4Level.cpp">
       <Filter>Contents\Level</Filter>
     </ClCompile>
-    <ClCompile Include="TownLevel.cpp">
+    <ClCompile Include="Town1Level.cpp">
       <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="PlayLevelManager.cpp">
@@ -90,6 +90,12 @@
     <ClCompile Include="GameEngineMyRenderer.cpp">
       <Filter>MyRenderer</Filter>
     </ClCompile>
+    <ClCompile Include="Town2Level.cpp">
+      <Filter>Contents\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Town3Level.cpp">
+      <Filter>Contents\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -113,7 +119,7 @@
     <ClInclude Include="Tutorial4Level.h">
       <Filter>Contents\Level</Filter>
     </ClInclude>
-    <ClInclude Include="TownLevel.h">
+    <ClInclude Include="Town1Level.h">
       <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h">
@@ -148,6 +154,12 @@
     </ClInclude>
     <ClInclude Include="GameEngineMyRenderer.h">
       <Filter>MyRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Town2Level.h">
+      <Filter>Contents\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Town3Level.h">
+      <Filter>Contents\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

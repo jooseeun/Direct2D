@@ -1,4 +1,4 @@
-#include "Tutorial4Level.h"
+#include "Town2Level.h"
 #include "PreCompile.h"
 #include "Player.h"
 #include "MapSet.h"
@@ -9,17 +9,17 @@
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
 
-Tutorial4Level::Tutorial4Level() :
+Town2Level::Town2Level() :
 	Camera(nullptr),
 	MapSize()
 {
 }
 
-Tutorial4Level::~Tutorial4Level()
+Town2Level::~Town2Level()
 {
 }
 
-void Tutorial4Level::Start()
+void Town2Level::Start()
 {
 
 
@@ -41,23 +41,29 @@ void Tutorial4Level::Start()
 	}
 
 	{
-		CreateMap("King's-Pass_Background_4.png",
-			"King's-Pass_Background_Object_4.png",
-			"King's-Pass_Ground_4.png",
-			"King's-Pass_FrontObject_4.png",
-			"King's-Pass_ColMap_4.png");
+		CreateMap("Dirtmouth_Background_2.png",
+			"Dirtmouth_Background_Obj_2.png",
+			"Dirtmouth_Ground_2.png",
+			"Dirtmouth_FrontObject_2.png",
+			"Dirtmouth_ColMap_2.png");
 
-		MapSize = { 6210, 3271, 100.0f };
+		MapSize = { 6646, 3822, 100.0f };
 	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });
-		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 6009,-1110,100 });
+		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 114,-3065,100 });
 		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveLevel1 = "Town1";
+
+		MapMoveCol->MoveCol2->GetTransform().SetLocalScale({ 250,300,1000.0f });
+		MapMoveCol->MoveCol2->GetTransform().SetLocalPosition({ 6505,-3065,100 });
+		MapMoveCol->MoveCol2->ChangeOrder(OBJECTORDER::MoveCol2);
+		MapMoveCol->MoveLevel2 = "Town3";
 	}
+
 }
-void Tutorial4Level::Update(float _DeltaTime)
+void Town2Level::Update(float _DeltaTime)
 {
 	if (GameEngineInput::GetInst()->IsDown("FreeCameraOnOff"))
 	{
@@ -68,22 +74,22 @@ void Tutorial4Level::Update(float _DeltaTime)
 		SetMapONOFF();
 	}
 }
-void Tutorial4Level::End()
+void Town2Level::End()
 {
 
 }
 
-void Tutorial4Level::LevelStartEvent()
+void Town2Level::LevelStartEvent()
 {
 	{
 		if (nullptr == Player::GetMainPlayer())
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
 		}
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 290, -1080, 0 });
+		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 400,-3065,0 });
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
-		GetMainCameraActorTransform().SetLocalPosition({ 290, -1080, 0 });
+		GetMainCameraActorTransform().SetLocalPosition({ 400,-3065,0 });
 	}
 
 	{
