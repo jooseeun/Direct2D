@@ -26,12 +26,12 @@ float4 BlueLight_PS(Output _Input) : SV_Target0
 {
     float4 Color = Tex.Sample(Smp, _Input.Tex.xy);
     float Total = Color.r + Color.g + Color.b;
-    if (0.0 < Total <2.5f)
-    {
-        Color.b += 0.01f;
-        Color.g += 0.002f;
-        Color.r += 0.001f;
-    }
+    //if (0.0 < Total <2.5f)
+    //{
+    //    Color.b += 0.01f;
+    //    Color.g += 0.002f; 
+    //    Color.r += 0.001f;
+    //}
 
     if (Color.a <= 0.0f)
     {

@@ -66,7 +66,7 @@ void Player::Start()
 		PlayerLightRenderer->GetTransform().SetLocalScale({ 256.0f * 4.0f,216.0f * 4.0f,100.0f });
 		PlayerLightRenderer->GetTransform().SetLocalPosition({ 0.0f ,50.0f,50.0f });
 		PlayerLightRenderer->GetPipeLine()->SetOutputMergerBlend("AlphaBlend");
-		PlayerLightRenderer->GetPixelData().MulColor.a = 0.4;
+		PlayerLightRenderer->GetPixelData().MulColor.a = 0.5;
 	}
 	{
 		PlayerRenderer = CreateComponent<GameEngineTextureRenderer>();

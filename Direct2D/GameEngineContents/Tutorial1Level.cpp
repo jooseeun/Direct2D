@@ -54,7 +54,7 @@ void Tutorial1Level::Start()
 			"King's-Pass_FrontObject_1.png",
 			"King's-Pass_ColMap_1.png");
 
-		MapSize = { 7098.0f, 4800.0f, 100.0f };
+		MapSize = { 7098.0f, 5000.0f, 100.0f };
 	}
 
 	{
