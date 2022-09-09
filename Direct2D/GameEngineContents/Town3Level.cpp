@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "MapSet.h"
 #include "TopUI.h"
+#include "MapMoveCollision.h"
 #include "PlayLevelManager.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
@@ -46,7 +47,14 @@ void Town3Level::Start()
 			"Dirtmouth_FrontObject_3.png",
 			"Dirtmouth_ColMap_3.png");
 
-		MapSize = { 3700, 3418, 100.0f };
+		MapSize = { 6468, 3600, 100.0f };
+	}
+	{
+		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
+		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 25,300,1000.0f });
+		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 10,-3021,100 });
+		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
+		MapMoveCol->MoveLevel1 = "Town2";
 	}
 }
 void Town3Level::Update(float _DeltaTime)
@@ -72,10 +80,10 @@ void Town3Level::LevelStartEvent()
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
 		}
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 617, -883, 0 });
+		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 101, -3021, 0 });
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
-		GetMainCameraActorTransform().SetLocalPosition({ 617, -883, 0 });
+		GetMainCameraActorTransform().SetLocalPosition({ 101, -3021, 0 });
 	}
 
 	{

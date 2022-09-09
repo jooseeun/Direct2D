@@ -47,12 +47,12 @@ void Town2Level::Start()
 			"Dirtmouth_FrontObject_2.png",
 			"Dirtmouth_ColMap_2.png");
 
-		MapSize = { 6646, 3822, 100.0f };
+		MapSize = { 6646, 3400, 100.0f };
 	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
-		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });
-		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 114,-3065,100 });
+		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 25,300,1000.0f });
+		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 10,-3065,100 });
 		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveLevel1 = "Town1";
 
@@ -86,10 +86,10 @@ void Town2Level::LevelStartEvent()
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
 		}
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 400,-3065,0 });
+		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 200,-3065,0 });
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
-		GetMainCameraActorTransform().SetLocalPosition({ 400,-3065,0 });
+		GetMainCameraActorTransform().SetLocalPosition({ 200,-3065,0 });
 	}
 
 	{

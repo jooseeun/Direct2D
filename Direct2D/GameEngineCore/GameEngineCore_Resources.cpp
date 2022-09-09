@@ -240,6 +240,8 @@ void EngineRenderingPipeLine()
 		NewPipe->SetVertexShader("Blur.hlsl");
 		NewPipe->SetPixelShader("Blur.hlsl");
 	}
+
+
 }
 
 void EngineMesh() 

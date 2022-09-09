@@ -30,6 +30,14 @@ void HollowKnigntCore::Start()
 		NewPipe->SetVertexShader("TextureMask.hlsl");
 		NewPipe->SetPixelShader("TextureMask.hlsl");
 	}
+	//PostEffect
+	{
+		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("BlueLight");
+		NewPipe->SetInputAssembler1VertexBuffer("FullRect");
+		NewPipe->SetInputAssembler2IndexBuffer("FullRect");
+		NewPipe->SetVertexShader("BlueLight.hlsl");
+		NewPipe->SetPixelShader("BlueLight.hlsl");
+	}
 
 	///Resource
 	{

@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BlueLight.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Crawler.cpp">
       <SubType>
       </SubType>
@@ -89,6 +93,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlueLight.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Crawler.h">
       <SubType>
       </SubType>

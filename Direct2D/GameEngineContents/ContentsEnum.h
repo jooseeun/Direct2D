@@ -2,6 +2,10 @@
 
 enum class OBJECTORDER
 {
+	ColMap,
+	BackGround,
+	BackGroundObject,
+	LightEffect,
 	Ground,
 	Player,
 	Monster,

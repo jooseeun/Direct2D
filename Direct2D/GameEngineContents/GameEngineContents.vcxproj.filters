@@ -7,9 +7,6 @@
     <Filter Include="PreCompile">
       <UniqueIdentifier>{a6eb18f1-1c3b-400b-a5e7-a212238703e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyRenderer">
-      <UniqueIdentifier>{e6595562-29a5-49c2-91e2-18a49b842c82}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\Actor">
       <UniqueIdentifier>{6292bde0-bc38-448d-8303-e274f6a4b192}</UniqueIdentifier>
     </Filter>
@@ -33,6 +30,15 @@
     </Filter>
     <Filter Include="Contents\Global">
       <UniqueIdentifier>{75dd857f-5f15-4b0d-bfd7-cd66f65f29e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effect">
+      <UniqueIdentifier>{cd2a260b-397f-44c6-820e-ebbe6de28007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effect\MyRenderer">
+      <UniqueIdentifier>{e6595562-29a5-49c2-91e2-18a49b842c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effect\PostEffect">
+      <UniqueIdentifier>{4c398ac4-c9d4-40b1-936e-88d28d6275f9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -88,13 +94,16 @@
       <Filter>Contents\Actor\Map</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineMyRenderer.cpp">
-      <Filter>MyRenderer</Filter>
+      <Filter>Effect\MyRenderer</Filter>
     </ClCompile>
     <ClCompile Include="Town2Level.cpp">
       <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="Town3Level.cpp">
       <Filter>Contents\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="BlueLight.cpp">
+      <Filter>Effect\PostEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -153,13 +162,16 @@
       <Filter>Contents\Actor\Map</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineMyRenderer.h">
-      <Filter>MyRenderer</Filter>
+      <Filter>Effect\MyRenderer</Filter>
     </ClInclude>
     <ClInclude Include="Town2Level.h">
       <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="Town3Level.h">
       <Filter>Contents\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="BlueLight.h">
+      <Filter>Effect\PostEffect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -34,6 +34,7 @@ Player::Player()
 	, GlobalTimeScale(1.0f)
 	, StunEffect1Renderer(nullptr)
 	, StunEffect2Renderer(nullptr)
+	, PlayerLightRenderer(nullptr)
 {
 	MainPlayer = this;
 }
@@ -57,7 +58,16 @@ void Player::Start()
 
 	GetTransform().SetLocalScale({ 1, 1, 1 });
 
-	
+	{
+		PlayerLightRenderer = CreateComponent<GameEngineTextureRenderer>();
+		PlayerLightRenderer->SetOrder((int)OBJECTORDER::LightEffect);
+		PlayerLightRenderer->SetPivot(PIVOTMODE::CENTER);
+		PlayerLightRenderer->SetTexture("white_light.png");
+		PlayerLightRenderer->GetTransform().SetLocalScale({ 256.0f * 4.0f,216.0f * 4.0f,100.0f });
+		PlayerLightRenderer->GetTransform().SetLocalPosition({ 0.0f ,50.0f,50.0f });
+		PlayerLightRenderer->GetPipeLine()->SetOutputMergerBlend("AlphaBlend");
+		PlayerLightRenderer->GetPixelData().MulColor.a = 0.4;
+	}
 	{
 		PlayerRenderer = CreateComponent<GameEngineTextureRenderer>();
 		PlayerRenderer->SetOrder((int)OBJECTORDER::Player);
@@ -79,6 +89,7 @@ void Player::Start()
 		StunEffect2Renderer->SetOrder((int)OBJECTORDER::Player);
 		StunEffect2Renderer->SetPivot(PIVOTMODE::BOT);
 	}
+
 	{
 		PlayerCol = CreateComponent<GameEngineCollision>();
 		PlayerCol->GetTransform().SetLocalScale({ 66.0f,125.0f,1000.0f });

@@ -55,6 +55,7 @@ protected:
 	GameEngineTextureRenderer* SkillRenderer;
 	GameEngineTextureRenderer* StunEffect1Renderer;
 	GameEngineTextureRenderer* StunEffect2Renderer;
+	GameEngineTextureRenderer* PlayerLightRenderer;
 	GameEngineCollision* PlayerCol;
 	GameEngineCollision* RightSkilCol;
 	GameEngineCollision* LeftSkilCol;
