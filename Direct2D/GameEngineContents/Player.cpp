@@ -62,11 +62,11 @@ void Player::Start()
 		PlayerLightRenderer = CreateComponent<GameEngineTextureRenderer>();
 		PlayerLightRenderer->SetOrder((int)OBJECTORDER::LightEffect);
 		PlayerLightRenderer->SetPivot(PIVOTMODE::CENTER);
-		PlayerLightRenderer->SetTexture("white_light.png");
+		PlayerLightRenderer->SetTexture("light_effect_v02.png");
 		PlayerLightRenderer->GetTransform().SetLocalScale({ 256.0f * 4.0f,216.0f * 4.0f,100.0f });
 		PlayerLightRenderer->GetTransform().SetLocalPosition({ 0.0f ,50.0f,50.0f });
 		PlayerLightRenderer->GetPipeLine()->SetOutputMergerBlend("AlphaBlend");
-		PlayerLightRenderer->GetPixelData().MulColor.a = 0.5;
+		PlayerLightRenderer->GetPixelData().MulColor.a = 0.4;
 	}
 	{
 		PlayerRenderer = CreateComponent<GameEngineTextureRenderer>();
