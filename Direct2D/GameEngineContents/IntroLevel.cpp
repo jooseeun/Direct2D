@@ -35,7 +35,7 @@ void IntroLevel::Start()
 	{
 		Camera = CreateActor<GameEngineCameraActor>();
 		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
-		Camera->GetTransform().SetLocalPosition({ 1024.0f, -900.0f, 100.0f });
+		Camera->GetTransform().SetLocalPosition({ 960.0f, -900.0f, 100.0f });
 
 		GetMainCamera()->SetProjectionSize(float4{ 1920 , 1080 });
 		GetUICamera()->SetProjectionSize(float4{ 1920, 1080 });
@@ -65,5 +65,5 @@ void IntroLevel::LevelStartEvent()
 		Mouse* MainMouse = CreateActor<Mouse>(OBJECTORDER::UI);
 	}
 
-	GetMainCameraActorTransform().SetLocalPosition({ 1024.0f, -900.0f, 0.0f });
+	GetMainCameraActorTransform().SetLocalPosition({ 960.0f, -900.0f, 0.0f });
 }

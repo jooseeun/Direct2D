@@ -18,7 +18,8 @@ enum class OBJECTORDER
 	GameStartUI=997,
 	GameSetUI=998,
 	GameEndUI=999,
-	UI=1000
+	UI=1000,
+	Mouse=1111
 };
 
 enum class PLAYERDIR

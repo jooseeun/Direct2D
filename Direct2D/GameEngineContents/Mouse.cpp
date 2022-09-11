@@ -34,7 +34,7 @@ void Mouse::Start()
 		MouseCol = CreateComponent<GameEngineCollision>();
 		MouseCol->GetTransform().SetLocalScale({ 15, 15, 1000 });
 		MouseCol->GetTransform().SetLocalPosition(GetMouseWorldRePosition(float4{ 1920 * 0.7 , 1080 * 0.7 }) + float4{ 1024.0f, -900.0f, 100.0f });
-
+		MouseCol->ChangeOrder(OBJECTORDER::Mouse);
 	}
 
 }
