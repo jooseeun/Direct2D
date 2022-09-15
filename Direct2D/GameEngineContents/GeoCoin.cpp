@@ -61,13 +61,12 @@ void GeoCoin::Gravity()
 	{
 		GeoCoinRenderer->ChangeFrameAnimation("Idle");
 		GeoCoinRenderer->ScaleToCutTexture(0);
-	
 		return;
 	}
 	else
 	{
 		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
-	GetTransform().GetWorldPosition().y - 800.0f * GameEngineTime::GetDeltaTime(),
+	GetTransform().GetWorldPosition().y - 500.0f * GameEngineTime::GetDeltaTime(),
 	GetTransform().GetWorldPosition().z, });
 	}
 
@@ -75,10 +74,10 @@ void GeoCoin::Gravity()
 
 void GeoCoin::Up()
 {
-	UpTime -= 0.1f * GameEngineTime::GetDeltaTime();
+	UpTime -= 1.0f * GameEngineTime::GetDeltaTime();
 
 	GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
-GetTransform().GetWorldPosition().y + 1000.0f * GameEngineTime::GetDeltaTime(),
+GetTransform().GetWorldPosition().y + 2000.0 * GameEngineTime::GetDeltaTime(),
 GetTransform().GetWorldPosition().z, });
 }
 bool GeoCoin::MapPixelCheck()
