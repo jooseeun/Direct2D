@@ -20,7 +20,7 @@ public:
 public:
 	int PlayerHealth;
 	int PlayerFullHealth;
-	int Money;
+	int PlayerGeoCoin;
 	float PlayerEnergyGage;
 
 public:
@@ -50,14 +50,25 @@ protected:
 	void Gravity();
 
 	void MonsterColCheck();
+	void CoinColCheck();
 	void ShakeCamera();
+	void EffectOffCheck();
+
 	bool CameraShake;
 	bool ShakeRight;
 	float ShakeTime;
-	bool PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other);
 
+
+
+	bool CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other);
+	bool PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other);
+	bool MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other);
 	GameEngineTextureRenderer* PlayerRenderer;
+	GameEngineTextureRenderer* CoinEffectRenderer;
 	GameEngineTextureRenderer* SkillRenderer;
+	GameEngineTextureRenderer* HitRenderer1;
+	GameEngineTextureRenderer* HitRenderer2;
+
 	GameEngineTextureRenderer* StunEffect1Renderer;
 	GameEngineTextureRenderer* StunEffect2Renderer;
 	GameEngineTextureRenderer* PlayerLightRenderer;

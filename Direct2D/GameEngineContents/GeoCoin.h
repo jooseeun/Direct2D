@@ -24,7 +24,9 @@ protected:
 	int SpringNum;
 	void Up();
 	void Gravity();
-	bool MapPixelCheck();
+	void DeathCheck();
+	bool DeathCoin(GameEngineCollision* _This, GameEngineCollision* _Other);
+
 private:
 
 	GameEngineTextureRenderer* GeoCoinRenderer;

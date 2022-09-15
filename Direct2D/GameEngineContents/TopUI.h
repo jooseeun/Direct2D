@@ -37,11 +37,15 @@ private:
 	GameEngineUIRenderer* MoneyUI;
 	GameEngineUIRenderer* Health[5];
 	GameEngineUIRenderer* EmpthyHealth[5];
-	GameEngineFontRenderer* MoneyFont;
+	GameEngineFontRenderer* GeoCoinFont;
 	GameEngineMyRenderer* Energy;
+
+	std::string CurGeoCoin;
+	int CurCoin;
 	int CurHealth;
 	float AniTime;
 	void HealthUpdate();
+	void CoinUpdate();
 	void EnergyUpdate();
 };
 

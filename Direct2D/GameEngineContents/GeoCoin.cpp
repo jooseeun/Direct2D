@@ -19,12 +19,12 @@ void GeoCoin::Start()
 
 	{
 		GeoCoinRenderer = CreateComponent< GameEngineTextureRenderer>();
-		GeoCoinRenderer->GetTransform().SetLocalScale({ 30,30,100 });
+		GeoCoinRenderer->GetTransform().SetLocalScale({ 40,40,100 });
 		GeoCoinRenderer->SetPivot(PIVOTMODE::BOT);
 	}
 	{
 		GeoCoinCol = CreateComponent<GameEngineCollision>();
-		GeoCoinCol->GetTransform().SetLocalScale({ 30,30,100 });
+		GeoCoinCol->GetTransform().SetLocalScale({ 40,40,100 });
 		GeoCoinCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ 0,15,0 });
 		GeoCoinCol->ChangeOrder((int)(OBJECTORDER::Coin));
@@ -45,6 +45,7 @@ void GeoCoin::Update(float _DeltaTime)
 	}
 
 	Gravity();
+	DeathCheck();
 }
 
 void GeoCoin::Gravity()
@@ -77,43 +78,18 @@ void GeoCoin::Up()
 	UpTime -= 1.0f * GameEngineTime::GetDeltaTime();
 
 	GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
-GetTransform().GetWorldPosition().y + 2000.0 * GameEngineTime::GetDeltaTime(),
+GetTransform().GetWorldPosition().y + 1000.0f * GameEngineTime::GetDeltaTime(),
 GetTransform().GetWorldPosition().z, });
 }
-bool GeoCoin::MapPixelCheck()
+void GeoCoin::DeathCheck()
 {
-	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
-	if (nullptr == ColMapTexture)
-	{
-		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
-	}
 
-
-	float4 ColorR = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() + 15,
-		-GetTransform().GetWorldPosition().iy() - 5);
-	float4 ColorL = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() - 15,
-		-GetTransform().GetWorldPosition().iy() - 5);
-	float4 ColorUp = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
-		-GetTransform().GetWorldPosition().iy() - 30);
-
-	if (false == ColorUp.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
-	{
-		return true;
-	}
-
-
-	if (false == ColorL.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
-	{
-		return true;
-
-	}
-
-
-	if (false == ColorR.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
-	{
-		return true;
-	}
-
-
-	return false;
+	GeoCoinCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
+		std::bind(&GeoCoin::DeathCoin, this, std::placeholders::_1, std::placeholders::_2)
+	);
+}
+bool GeoCoin::DeathCoin(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	Death();
+	return true;
 }

@@ -177,11 +177,15 @@ void HollowKnigntCore::Start()
 	//Object 府家胶
 	GameEngineTexture::Cut("Geo_coin0000-Sheet.png", 8, 1);
 	GameEngineTexture::Cut("Geo_coin_air000-Sheet.png", 9, 1);
-
-
+	
+	
 	//Effect 府家胶
 	GameEngineTexture::Cut("Hit_crack_simple.png", 3, 1);
 	GameEngineTexture::Cut("Stun_impact_effect.png", 7, 1);
+	GameEngineTexture::Cut("EnemyHitEffects_1.png", 3, 1);
+	GameEngineTexture::Cut("EnemyHitEffects_2.png", 5, 1);
+	GameEngineTexture::Cut("EnemyHitEffects_3.png", 5, 1);
+	GameEngineTexture::Cut("Geo_coinget_01-Sheet.png", 4, 1);
 
 	
 	if (false == GameEngineInput::GetInst()->IsKey("LevelChangeKey"))

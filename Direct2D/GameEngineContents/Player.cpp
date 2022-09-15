@@ -39,8 +39,11 @@ Player::Player()
 	, PlayerLightRenderer(nullptr)
 	, ShakeRight(false)
 	, ShakeTime(0.0f)
-	, Money(0)
+	, PlayerGeoCoin(0)
 	, CameraShake(false)
+	, HitRenderer1(nullptr)
+	, HitRenderer2(nullptr)
+	, CoinEffectRenderer(nullptr)
 {
 	MainPlayer = this;
 }
@@ -92,6 +95,16 @@ void Player::Start()
 		SkillRenderer->SetPivot(PIVOTMODE::BOT);
 	}
 	{
+		HitRenderer1 = CreateComponent<GameEngineTextureRenderer>();
+		HitRenderer1->SetOrder((int)OBJECTORDER::Player);
+		HitRenderer1->SetPivot(PIVOTMODE::BOT);
+	}
+	{
+		HitRenderer2 = CreateComponent<GameEngineTextureRenderer>();
+		HitRenderer2->SetOrder((int)OBJECTORDER::Player);
+		HitRenderer2->SetPivot(PIVOTMODE::BOT);
+	}
+	{
 		StunEffect1Renderer = CreateComponent<GameEngineTextureRenderer>();
 		StunEffect1Renderer->SetOrder((int)OBJECTORDER::Player);
 		StunEffect1Renderer->SetPivot(PIVOTMODE::BOT);
@@ -101,7 +114,11 @@ void Player::Start()
 		StunEffect2Renderer->SetOrder((int)OBJECTORDER::Player);
 		StunEffect2Renderer->SetPivot(PIVOTMODE::BOT);
 	}
-
+	{
+		CoinEffectRenderer = CreateComponent<GameEngineTextureRenderer>();
+		CoinEffectRenderer->SetOrder((int)OBJECTORDER::Player);
+		CoinEffectRenderer->SetPivot(PIVOTMODE::BOT);
+	}
 	{
 		PlayerCol = CreateComponent<GameEngineCollision>();
 		PlayerCol->GetTransform().SetLocalScale({ 66.0f,125.0f,1000.0f });
@@ -175,6 +192,19 @@ void Player::Start()
 		StunEffect2Renderer->CreateFrameAnimationCutTexture("StunEffect",
 			FrameAnimation_DESC("Stun_impact_effect.png", 0, 6, 0.01f, false));
 	}
+	{
+
+		HitRenderer1->CreateFrameAnimationCutTexture("HitEffect",
+			FrameAnimation_DESC("EnemyHitEffects_1.png", 0, 2, 0.08f, false));
+		HitRenderer2->CreateFrameAnimationCutTexture("HitEffect1",
+			FrameAnimation_DESC("EnemyHitEffects_2.png", 0, 4, 0.08f, false));
+		HitRenderer2->CreateFrameAnimationCutTexture("HitEffect2",
+			FrameAnimation_DESC("EnemyHitEffects_3.png", 0, 4, 0.08f, false));
+	}
+	{
+		CoinEffectRenderer->CreateFrameAnimationCutTexture("Effect",
+			FrameAnimation_DESC("Geo_coinget_01-Sheet.png", 0, 3, 0.08f, false));
+	}
 
 	StateManager.CreateStateMember("Idle"
 		, std::bind(&Player::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2)
@@ -225,6 +255,15 @@ void Player::Start()
 		StunEffect2Renderer->ScaleToCutTexture(0);
 		StunEffect1Renderer->Off();
 		StunEffect2Renderer->Off();
+		HitRenderer1->ChangeFrameAnimation("HitEffect");
+		HitRenderer1->ScaleToCutTexture(0);
+		HitRenderer1->Off();
+		HitRenderer2->ChangeFrameAnimation("HitEffect1");
+		HitRenderer2->ScaleToCutTexture(0);
+		HitRenderer2->Off();
+		CoinEffectRenderer->ChangeFrameAnimation("Effect");
+		CoinEffectRenderer->ScaleToCutTexture(0);
+		CoinEffectRenderer->Off();
 	}
 
 
@@ -243,10 +282,29 @@ void Player::Update(float _DeltaTime)
 	Gravity();
 	CameraCheck();
 	MonsterColCheck();
-
-
+	CoinColCheck();
+	
+	EffectOffCheck();
 }
-
+void Player::EffectOffCheck()
+{
+	CoinEffectRenderer->AnimationBindEnd("Effect", [=](const FrameAnimation_DESC& _Info)
+	{
+		CoinEffectRenderer->Off();
+	});
+	HitRenderer1->AnimationBindEnd("HitEffect", [=](const FrameAnimation_DESC& _Info)
+	{
+		HitRenderer1->Off();
+	});
+	HitRenderer2->AnimationBindEnd("HitEffect1", [=](const FrameAnimation_DESC& _Info)
+	{
+		HitRenderer2->Off();
+	});
+	HitRenderer2->AnimationBindEnd("HitEffect2", [=](const FrameAnimation_DESC& _Info)
+	{
+		HitRenderer2->Off();
+	});
+}
 void Player::CameraCheck()
 {
 
@@ -306,13 +364,13 @@ void Player::ShakeCamera()
 	if (ShakeRight == false)
 	{
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetLevel()->GetMainCameraActorTransform().GetLocalPosition()
-			+ float4::RIGHT * 500.0f * GameEngineTime::GetDeltaTime());
+			+ float4::RIGHT * 800.0f * GameEngineTime::GetDeltaTime());
 		ShakeRight = true;
 	}
 	else
 	{
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetLevel()->GetMainCameraActorTransform().GetLocalPosition()
-			+ float4::LEFT * 500.0f * GameEngineTime::GetDeltaTime());
+			+ float4::LEFT * 800.0f * GameEngineTime::GetDeltaTime());
 		ShakeRight = false;
 	}
 }
@@ -373,6 +431,83 @@ void Player::MonsterColCheck()
 		);
 	}
 }
+void Player::CoinColCheck()
+{
+
+	PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Coin, CollisionType::CT_OBB2D,
+		std::bind(&Player::CoinPlus, this, std::placeholders::_1, std::placeholders::_2)
+	);
+}
+bool Player::CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	CoinEffectRenderer->On();
+	if (CurDir == PLAYERDIR::Left)
+	{
+
+		CoinEffectRenderer->CurAnimationReset();
+		CoinEffectRenderer->GetTransform().PixLocalNegativeX();
+	}
+	else
+	{
+		CoinEffectRenderer->CurAnimationReset();
+		CoinEffectRenderer->GetTransform().PixLocalPositiveX();
+	}
+	PlayerGeoCoin += 1;
+	return true;
+}
+bool Player::MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	if (AttackNum == 1)
+	{
+		HitRenderer1->On();
+		HitRenderer1->CurAnimationReset();
+		HitRenderer1->GetTransform().PixLocalNegativeX();
+
+		if (CurDir == PLAYERDIR::Right)
+		{
+			HitRenderer2->On();
+			HitRenderer2->ChangeFrameAnimation("HitEffect1");
+			HitRenderer2->CurAnimationReset();
+			HitRenderer2->ScaleToCutTexture(0);
+			HitRenderer2->GetTransform().PixLocalPositiveX();
+		}
+		else
+		{
+			HitRenderer2->On();
+			HitRenderer2->ChangeFrameAnimation("HitEffect1");
+			HitRenderer2->CurAnimationReset();
+			HitRenderer2->ScaleToCutTexture(0);
+			HitRenderer2->GetTransform().PixLocalNegativeX();
+		}
+	}
+	else if (AttackNum == 2)
+	{
+		HitRenderer1->On();
+		HitRenderer1->CurAnimationReset();
+		HitRenderer1->GetTransform().PixLocalPositiveX();
+
+		if (CurDir == PLAYERDIR::Right)
+		{
+			HitRenderer2->On();
+			HitRenderer2->ChangeFrameAnimation("HitEffect2");
+			HitRenderer2->CurAnimationReset();
+			HitRenderer2->ScaleToCutTexture(0);
+			HitRenderer2->GetTransform().PixLocalPositiveX();
+
+		}
+		else
+		{
+			HitRenderer2->On();
+			HitRenderer2->ChangeFrameAnimation("HitEffect2");
+			HitRenderer2->CurAnimationReset();
+			HitRenderer2->ScaleToCutTexture(0);
+			HitRenderer2->GetTransform().PixLocalNegativeX();
+
+		}
+	}
+
+	return true;
+}
 
 bool Player::MapPixelCheck()
 {
@@ -431,6 +566,8 @@ bool Player::MapPixelJumpCheck()
 
 bool Player::PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	ShakeTime = 0.0f;
+	CameraShake = true;
 	if (PlayerHealth == 0)
 	{
 		//Death
@@ -819,6 +956,14 @@ void Player::AttackStart(const StateInfo& _Info)
 } 
 void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	RightSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
+		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
+	);
+	LeftSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
+		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
+	);
+
+
 	PlayerRenderer->AnimationBindEnd("Attack1", [=](const FrameAnimation_DESC& _Info)
 	{
 		if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft")
@@ -854,6 +999,7 @@ void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 			StateManager.ChangeState("Idle");
 		}
 	});
+
 	if (CurDir == PLAYERDIR::Left)
 	{
 		SkillRenderer->GetTransform().PixLocalPositiveX();

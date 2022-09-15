@@ -12,6 +12,9 @@ TopUI::TopUI()
 	, CurHealth(5)
 	, MoneyUI(nullptr)
 	, AniTime(4.0f)
+	, GeoCoinFont(nullptr)
+	, CurGeoCoin("0")
+	, CurCoin(0)
 {
 	MainTopUI = this;
 }
@@ -40,6 +43,14 @@ void TopUI::Start()
 		MoneyUI->SetFrame(1);
 		MoneyUI->GetTransform().SetLocalPosition({ -590, 300.0f, 1 });
 		MoneyUI->ChangeCamera(CAMERAORDER::UICAMERA);
+	}
+	{
+		GeoCoinFont = CreateComponent<GameEngineFontRenderer>();
+		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR");
+		GeoCoinFont->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+		GeoCoinFont->SetSize(40.0);
+		GeoCoinFont->SetScreenPostion({ 220, 100, 1 });
+		GeoCoinFont->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
 		for (int i = 0; i < 5 ; i++)
@@ -86,6 +97,16 @@ void TopUI::Update(float _DeltaTime)
 {
 	HealthUpdate();
 	EnergyUpdate();
+	CoinUpdate();
+}
+void TopUI::CoinUpdate()
+{
+	if (CurCoin != Player::GetMainPlayer()->PlayerGeoCoin)
+	{
+		CurGeoCoin = std::to_string(Player::GetMainPlayer()->PlayerGeoCoin);
+		CurCoin = Player::GetMainPlayer()->PlayerGeoCoin;
+		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR");
+	}
 }
 void TopUI::EnergyUpdate()
 {

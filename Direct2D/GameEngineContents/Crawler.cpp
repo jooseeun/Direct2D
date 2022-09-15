@@ -262,8 +262,23 @@ void Crawler::DeathStart(const StateInfo& _Info)
 	MonsterRenderer->ChangeFrameAnimation("Death");
 	MonsterRenderer->ScaleToCutTexture(0);
 	MonsterCollision->Off();
+	
 	GeoCoin* Coin = GetLevel()->CreateActor<GeoCoin>();
-	Coin->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition());
+	Coin->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ 10,-6,0 });
+	GeoCoin* Coin1 = GetLevel()->CreateActor<GeoCoin>();
+	Coin1->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ -10,-10,0 });
+	GeoCoin* Coin2 = GetLevel()->CreateActor<GeoCoin>();
+	Coin2->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ 28,-23,0 });
+	GeoCoin* Coin3 = GetLevel()->CreateActor<GeoCoin>();
+	Coin3->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ -20,0,0 });
+	GeoCoin* Coin4 = GetLevel()->CreateActor<GeoCoin>();
+	Coin4->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ -34,0,0 });
+	GeoCoin* Coin5 = GetLevel()->CreateActor<GeoCoin>();
+	Coin5->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ 17,0,0 });
+	GeoCoin* Coin6 = GetLevel()->CreateActor<GeoCoin>();
+	Coin6->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ 40,0,0 });
+
+
 }
 void Crawler::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
