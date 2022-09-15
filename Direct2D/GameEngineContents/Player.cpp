@@ -39,6 +39,7 @@ Player::Player()
 	, PlayerLightRenderer(nullptr)
 	, ShakeRight(false)
 	, ShakeTime(0.0f)
+	, Money(0)
 	, CameraShake(false)
 {
 	MainPlayer = this;
@@ -65,7 +66,7 @@ void Player::Start()
 		GameEngineInput::GetInst()->CreateKey("PlayerJump", 'Z');
 		GameEngineInput::GetInst()->CreateKey("PlayerAttack", 'X');
 	}
-
+	
 	GetTransform().SetLocalScale({ 1, 1, 1 });
 
 	{
@@ -737,6 +738,7 @@ void Player::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 	}
 
 	JumpTime += 1.0f * _DeltaTime;
+
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerJump"))
 	{
 		if (JumpTime > 0.5f)

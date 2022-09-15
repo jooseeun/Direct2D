@@ -31,6 +31,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GeoCoin.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GlobalContentsValue.cpp">
       <SubType>
       </SubType>
@@ -103,6 +107,10 @@
     </ClInclude>
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="GameEngineMyRenderer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GeoCoin.h">
       <SubType>
       </SubType>
     </ClInclude>

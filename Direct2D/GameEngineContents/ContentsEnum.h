@@ -11,6 +11,7 @@ enum class OBJECTORDER
 	Monster,
 	Skill,
 	FrontObject,
+	Coin=992,
 	MoveCol1 = 993,
 	MoveCol2 = 994,
 	MoveCol3 = 995,

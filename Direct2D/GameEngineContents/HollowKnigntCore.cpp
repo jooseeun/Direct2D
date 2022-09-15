@@ -59,6 +59,20 @@ void HollowKnigntCore::Start()
 		Dir.MoveParentToExitsChildDirectory("ContentsResources");
 		Dir.Move("ContentsResources");
 		Dir.Move("Texture");
+		Dir.Move("Object");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExitsChildDirectory("ContentsResources");
+		Dir.Move("ContentsResources");
+		Dir.Move("Texture");
 		Dir.Move("PlayMap");
 
 		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
@@ -159,6 +173,11 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("TopUICoin.png", 3, 1);
 	GameEngineTexture::Cut("HUD_Soulorb_fills_soul_idle0000-Sheet.png", 6, 1);
 	GameEngineTexture::Cut("HUD Cln_soul_orb_glow0000.png", 1, 1);
+
+	//Object 府家胶
+	GameEngineTexture::Cut("Geo_coin0000-Sheet.png", 8, 1);
+	GameEngineTexture::Cut("Geo_coin_air000-Sheet.png", 9, 1);
+
 
 	//Effect 府家胶
 	GameEngineTexture::Cut("Hit_crack_simple.png", 3, 1);

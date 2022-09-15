@@ -20,6 +20,7 @@ public:
 public:
 	int PlayerHealth;
 	int PlayerFullHealth;
+	int Money;
 	float PlayerEnergyGage;
 
 public:

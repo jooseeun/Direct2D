@@ -40,6 +40,9 @@
     <Filter Include="Effect\PostEffect">
       <UniqueIdentifier>{4c398ac4-c9d4-40b1-936e-88d28d6275f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Actor\Object">
+      <UniqueIdentifier>{0f94467f-96ab-4f6a-9ca7-d05d1164050e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -104,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="BlueLight.cpp">
       <Filter>Effect\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="GeoCoin.cpp">
+      <Filter>Contents\Actor\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="BlueLight.h">
       <Filter>Effect\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="GeoCoin.h">
+      <Filter>Contents\Actor\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

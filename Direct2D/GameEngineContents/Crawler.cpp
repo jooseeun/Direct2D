@@ -2,6 +2,7 @@
 #include "PreCompile.h"
 #include "PlayLevelManager.h"
 #include "Player.h"
+#include "GeoCoin.h"
 #include <iostream>
 
 Crawler::Crawler()
@@ -261,6 +262,8 @@ void Crawler::DeathStart(const StateInfo& _Info)
 	MonsterRenderer->ChangeFrameAnimation("Death");
 	MonsterRenderer->ScaleToCutTexture(0);
 	MonsterCollision->Off();
+	GeoCoin* Coin = GetLevel()->CreateActor<GeoCoin>();
+	Coin->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition());
 }
 void Crawler::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
