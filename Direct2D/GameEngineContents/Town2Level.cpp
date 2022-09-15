@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "MapSet.h"
 #include "TopUI.h"
+#include "TownFontUI.h"
+
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
 #include <GameEngineBase/GameEngineInput.h>
@@ -60,6 +62,10 @@ void Town2Level::Start()
 		MapMoveCol->MoveCol2->GetTransform().SetLocalPosition({ 6505,-3065,100 });
 		MapMoveCol->MoveCol2->ChangeOrder(OBJECTORDER::MoveCol2);
 		MapMoveCol->MoveLevel2 = "Town3";
+	}
+
+	{
+		TownFontUI* NewTownFontUI = CreateActor<TownFontUI>(OBJECTORDER::UI);
 	}
 
 }

@@ -117,6 +117,12 @@
     <ClCompile Include="Buzzer.cpp">
       <Filter>Contents\Actor\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="ChageExplanation.cpp">
+      <Filter>Contents\Actor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TownFontUI.cpp">
+      <Filter>Contents\Actor\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -193,6 +199,12 @@
     </ClInclude>
     <ClInclude Include="Buzzer.h">
       <Filter>Contents\Actor\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="ChageExplanation.h">
+      <Filter>Contents\Actor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TownFontUI.h">
+      <Filter>Contents\Actor\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

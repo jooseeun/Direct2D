@@ -4,8 +4,11 @@
 #include "MapSet.h"
 #include "TopUI.h"
 #include "Buzzer.h"
+#include "Crawler.h"
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
+#include "ChageExplanation.h"
+
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
@@ -54,6 +57,14 @@ void Tutorial3Level::Start()
 	{
 		Buzzer* NewBuzzer = CreateActor<Buzzer>(OBJECTORDER::Monster);
 		NewBuzzer->GetTransform().SetLocalPosition({2262, -3326, 0 });
+	}
+	{
+		ChageExplanation* NewObject = CreateActor<ChageExplanation>(OBJECTORDER::BackGroundObject);
+		NewObject->GetTransform().SetLocalPosition({4261, -3217, 50 });
+	}
+	{
+		Crawler* NewCrawler = CreateActor<Crawler>(OBJECTORDER::Monster);
+		NewCrawler->GetTransform().SetLocalPosition({2417 , -1140, 0 });
 	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);

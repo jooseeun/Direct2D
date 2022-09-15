@@ -31,6 +31,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ChageExplanation.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Crawler.cpp">
       <SubType>
       </SubType>
@@ -87,6 +91,10 @@
     </ClCompile>
     <ClCompile Include="Town2Level.cpp" />
     <ClCompile Include="Town3Level.cpp" />
+    <ClCompile Include="TownFontUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Tutorial1Level.cpp">
       <SubType>
       </SubType>
@@ -114,6 +122,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Buzzer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ChageExplanation.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -177,6 +189,10 @@
     </ClInclude>
     <ClInclude Include="Town2Level.h" />
     <ClInclude Include="Town3Level.h" />
+    <ClInclude Include="TownFontUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Tutorial1Level.h">
       <SubType>
       </SubType>
