@@ -114,6 +114,9 @@
     <ClCompile Include="BugGlow.cpp">
       <Filter>Contents\Actor\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Buzzer.cpp">
+      <Filter>Contents\Actor\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -187,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="BugGlow.h">
       <Filter>Contents\Actor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Buzzer.h">
+      <Filter>Contents\Actor\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

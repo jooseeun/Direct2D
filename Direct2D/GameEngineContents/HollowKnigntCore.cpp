@@ -165,6 +165,10 @@ void HollowKnigntCore::Start()
 	///Monster 府家胶
 	GameEngineTexture::Cut("Crawler_walk.png", 4, 1);
 	GameEngineTexture::Cut("Crawler_Death.png", 5, 1);
+	GameEngineTexture::Cut("Buzzer_idle_01-Sheet.png", 5, 1);
+	GameEngineTexture::Cut("Buzzer_fly0000-Sheet.png", 4, 1);
+	GameEngineTexture::Cut("Buzzer_death0000-Sheet.png", 3, 1);
+	GameEngineTexture::Cut("Buzzer_startle_01-Sheet.png", 4, 1);
 
 	//UI 府家胶
 	GameEngineTexture::Cut("EnergyUI.png", 6, 1);

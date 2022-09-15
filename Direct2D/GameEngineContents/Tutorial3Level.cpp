@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "MapSet.h"
 #include "TopUI.h"
+#include "Buzzer.h"
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
 #include <GameEngineBase/GameEngineInput.h>
@@ -50,7 +51,10 @@ void Tutorial3Level::Start()
 
 		MapSize = { 5183, 3947, 100.0f };
 	}
-
+	{
+		Buzzer* NewBuzzer = CreateActor<Buzzer>(OBJECTORDER::Monster);
+		NewBuzzer->GetTransform().SetLocalPosition({2262, -3326, 0 });
+	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });

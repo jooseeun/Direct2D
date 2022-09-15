@@ -27,6 +27,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Buzzer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Crawler.cpp">
       <SubType>
       </SubType>
@@ -106,6 +110,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="BugGlow.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Buzzer.h">
       <SubType>
       </SubType>
     </ClInclude>
