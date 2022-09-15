@@ -177,6 +177,8 @@ void HollowKnigntCore::Start()
 	//Object 府家胶
 	GameEngineTexture::Cut("Geo_coin0000-Sheet.png", 8, 1);
 	GameEngineTexture::Cut("Geo_coin_air000-Sheet.png", 9, 1);
+	GameEngineTexture::Cut("Ambient Life_cave_glow_bug0000-Sheet.png", 4, 1);
+	GameEngineTexture::Cut("Ambient Life_bug_glow0000-Sheet.png", 6, 1);
 	
 	
 	//Effect 府家胶

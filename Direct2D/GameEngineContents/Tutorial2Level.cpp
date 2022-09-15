@@ -5,6 +5,9 @@
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
 #include "TopUI.h"
+#include "Crawler.h"
+#include "BugGlow.h"
+
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
@@ -49,6 +52,30 @@ void Tutorial2Level::Start()
 			"King's-Pass_ColMap_2.png");
 
 		MapSize = { 3888.0f, 2546.0f, 100.0f };
+	}
+	{
+		BugGlow* NewBugGlow = CreateActor<BugGlow>(OBJECTORDER::BackGroundObject);
+		NewBugGlow->GetTransform().SetLocalPosition({ 1651, -1401, 50 });
+	}
+	{
+		BugGlow* NewBugGlow = CreateActor<BugGlow>(OBJECTORDER::BackGroundObject);
+		NewBugGlow->GetTransform().SetLocalPosition({ 2009, -1725, 50 });
+	}
+	{
+		BugGlow* NewBugGlow = CreateActor<BugGlow>(OBJECTORDER::BackGroundObject);
+		NewBugGlow->GetTransform().SetLocalPosition({ 1665, -1993, 50 });
+	}
+	{
+		BugGlow* NewBugGlow = CreateActor<BugGlow>(OBJECTORDER::BackGroundObject);
+		NewBugGlow->GetTransform().SetLocalPosition({ 1325, -1613, 50 });
+	}
+	{
+		BugGlow* NewBugGlow = CreateActor<BugGlow>(OBJECTORDER::BackGroundObject);
+		NewBugGlow->GetTransform().SetLocalPosition({ 1329, -1159, 50 });
+	}
+	{
+		Crawler* NewCrawler = CreateActor<Crawler>(OBJECTORDER::Monster);
+		NewCrawler->GetTransform().SetLocalPosition({ 2193, -2125, 0 });
 	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
