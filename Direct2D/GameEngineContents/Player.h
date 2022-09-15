@@ -49,6 +49,10 @@ protected:
 	void Gravity();
 
 	void MonsterColCheck();
+	void ShakeCamera();
+	bool CameraShake;
+	bool ShakeRight;
+	float ShakeTime;
 	bool PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 	GameEngineTextureRenderer* PlayerRenderer;

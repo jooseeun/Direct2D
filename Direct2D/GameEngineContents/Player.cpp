@@ -1,7 +1,9 @@
 #include "PreCompile.h"
 #include "Player.h"
 #include "PlayLevelManager.h"
+#include "BlueLight.h"
 #include <iostream>
+#include <GameEngineCore/GameEngineBlur.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineDefaultRenderer.h>
@@ -15,7 +17,7 @@
 Player* Player::MainPlayer = nullptr;
 
 Player::Player()
-	: Speed(1000.0f)
+	: Speed(800.0f)
 	, PlayerRenderer(nullptr)
 	, CurDir(PLAYERDIR::Right)
 	, AttackNum(1)
@@ -35,6 +37,9 @@ Player::Player()
 	, StunEffect1Renderer(nullptr)
 	, StunEffect2Renderer(nullptr)
 	, PlayerLightRenderer(nullptr)
+	, ShakeRight(false)
+	, ShakeTime(0.0f)
+	, CameraShake(false)
 {
 	MainPlayer = this;
 }
@@ -46,6 +51,11 @@ Player::~Player()
 
 void Player::Start()
 {
+	GameEngineDevice::GetBackBuffer()->AddEffect<BlueLight>();
+	GetLevel()->GetMainCamera()->GetCameraRenderTarget()->AddEffect<BlueLight>();
+	GameEngineDevice::GetBackBuffer()->AddEffect<GameEngineBlur>();
+	GetLevel()->GetMainCamera()->GetCameraRenderTarget()->AddEffect<GameEngineBlur>();
+
 	if (false == GameEngineInput::GetInst()->IsKey("PlayerLeft"))
 	{
 		GameEngineInput::GetInst()->CreateKey("PlayerLeft", VK_LEFT);
@@ -63,10 +73,11 @@ void Player::Start()
 		PlayerLightRenderer->SetOrder((int)OBJECTORDER::LightEffect);
 		PlayerLightRenderer->SetPivot(PIVOTMODE::CENTER);
 		PlayerLightRenderer->SetTexture("light_effect_v02.png");
-		PlayerLightRenderer->GetTransform().SetLocalScale({ 256.0f * 4.0f,216.0f * 4.0f,100.0f });
+		PlayerLightRenderer->GetTransform().SetLocalScale({ 256.0f * 5.0f,216.0f * 5.0f,100.0f });
 		PlayerLightRenderer->GetTransform().SetLocalPosition({ 0.0f ,50.0f,50.0f });
 		PlayerLightRenderer->GetPipeLine()->SetOutputMergerBlend("AlphaBlend");
-		PlayerLightRenderer->GetPixelData().MulColor.a = 0.4;
+		PlayerLightRenderer->GetPixelData().MulColor.b += 0.05f;
+		PlayerLightRenderer->GetPixelData().MulColor.a = 0.5;
 	}
 	{
 		PlayerRenderer = CreateComponent<GameEngineTextureRenderer>();
@@ -141,7 +152,7 @@ void Player::Start()
 		PlayerRenderer->CreateFrameAnimationCutTexture("Land",
 			FrameAnimation_DESC("Player_land.png", 0, 2, 0.08f, false));
 		PlayerRenderer->CreateFrameAnimationCutTexture("HardLand",
-			FrameAnimation_DESC("Player_land_hard.png", 0, 4, 0.08f, false));
+			FrameAnimation_DESC("Player_land_hard.png", 0, 4, 0.12f, false));
 		PlayerRenderer->CreateFrameAnimationCutTexture("Stun",
 			FrameAnimation_DESC("Player_stun.png", 0, 4, 0.03f, false));
 	}
@@ -275,9 +286,35 @@ void Player::CameraCheck()
 		float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
 		CurCameraPos.y = -static_cast<float>(GetLevel()->GetMainCameraActorTransform().GetLocalPosition().iy() - (GetTransform().GetLocalPosition().iy() + CameraRectY/2 - MapSize.y));
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
+		
+	}
+
+	if(CameraShake==true)
+	{
+		ShakeCamera();
 	}
 }
 
+void Player::ShakeCamera()
+{
+	ShakeTime += 1.0f * GameEngineTime::GetDeltaTime();
+	if (ShakeTime >= 0.5f)
+	{
+		CameraShake = false;
+	}
+	if (ShakeRight == false)
+	{
+		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetLevel()->GetMainCameraActorTransform().GetLocalPosition()
+			+ float4::RIGHT * 500.0f * GameEngineTime::GetDeltaTime());
+		ShakeRight = true;
+	}
+	else
+	{
+		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetLevel()->GetMainCameraActorTransform().GetLocalPosition()
+			+ float4::LEFT * 500.0f * GameEngineTime::GetDeltaTime());
+		ShakeRight = false;
+	}
+}
 void Player::Gravity()
 {
 	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
@@ -320,7 +357,7 @@ void Player::Gravity()
 			StateManager.ChangeState("Fall");
 		}
 		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
-	GetTransform().GetWorldPosition().y - 800.0f * GameEngineTime::GetDeltaTime(),
+	GetTransform().GetWorldPosition().y - 1000.0f * GameEngineTime::GetDeltaTime(),
 	GetTransform().GetWorldPosition().z, });
 	}
 
@@ -593,6 +630,22 @@ void Player::FallStart(const StateInfo& _Info)
 }
 void Player::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	if (true == GameEngineInput::GetInst()->IsDown("PlayerAttack"))
+	{
+		if (true == GameEngineInput::GetInst()->IsPress("PlayerUp"))
+		{
+			StateManager.ChangeState("UpAttack");
+		}
+		else if (true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
+		{
+
+			StateManager.ChangeState("DownAttack");
+		}
+		else
+		{
+			StateManager.ChangeState("Attack");
+		}
+	}
 
 	FallTime += 1.0f * _DeltaTime;
 
@@ -629,6 +682,8 @@ void Player::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 }	
 void Player::HardLandStart(const StateInfo& _Info)
 {
+	ShakeTime = 0.0f;
+	CameraShake = true;
 	PlayerRenderer->ChangeFrameAnimation("HardLand");
 	PlayerRenderer->ScaleToCutTexture(0);
 }
@@ -658,6 +713,23 @@ void Player::JumpStart(const StateInfo& _Info)
 
 void Player::JumpUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	if (true == GameEngineInput::GetInst()->IsDown("PlayerAttack"))
+	{
+		if (true == GameEngineInput::GetInst()->IsPress("PlayerUp"))
+		{
+			StateManager.ChangeState("UpAttack");
+		}
+		else if (true == GameEngineInput::GetInst()->IsPress("PlayerDown"))
+		{
+
+			StateManager.ChangeState("DownAttack");
+		}
+		else
+		{
+			StateManager.ChangeState("Attack");
+		}
+	}
+
 	if (false == GameEngineInput::GetInst()->IsPress("PlayerJump"))
 	{
 		StateManager.ChangeState("Idle");
@@ -992,3 +1064,6 @@ void Player::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 	}
 
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
