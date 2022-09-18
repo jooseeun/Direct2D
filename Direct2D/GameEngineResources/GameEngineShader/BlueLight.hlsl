@@ -24,16 +24,34 @@ Texture2D Tex : register(t0);
 SamplerState Smp : register(s0);
 float4 BlueLight_PS(Output _Input) : SV_Target0
 {
+    
     float4 Color = Tex.Sample(Smp, _Input.Tex.xy);
-    float Total = Color.r + Color.g + Color.b;
-    if (0.0 < Total <2.0f)
+
+    if (Color.r >= 0.5f)
     {
-        Color.b += 0.01f;
+        Color.r = 1 - 2 * (1 - Color.r) * (1 - 0.5f);
+    }
+    else
+    {
+        Color.r = 2 * Color.r * 0.5f;
     }
 
-    if (Color.a <= 0.0f)
+    if (Color.g >= 0.5f)
     {
-        clip(-1);
+        Color.g = 1 - 2 * (1 - Color.g) * (1 - 0.54f);
+    }
+    else
+    {
+        Color.g = 2 * Color.g * 0.54f;
+    }
+
+    if (Color.b >= 0.5f)
+    {
+        Color.b = 1 - 2*(1 - Color.b)*(1 - 0.6f);
+    }
+    else
+    {
+        Color.b = 2 * Color.b * 0.6f;
     }
 
     return Color;
