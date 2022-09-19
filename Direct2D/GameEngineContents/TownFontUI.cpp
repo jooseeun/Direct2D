@@ -8,6 +8,7 @@ TownFontUI::TownFontUI()
 	, Top(nullptr)
 	, Bottom(nullptr)
 	, Time(0.0f)
+	, Alpha(1.0f)
 {
 }
 
@@ -56,8 +57,18 @@ void TownFontUI::Start()
 void TownFontUI::Update(float _DeltaTime)
 {
 	Time += 1.0 * _DeltaTime;
+
 	if (Time > 5.0f)
 	{
-		Death();
+		Top->GetPixelData().MulColor.a -= 0.2f * GameEngineTime::GetDeltaTime();
+		Bottom->GetPixelData().MulColor.a -= 0.2f * GameEngineTime::GetDeltaTime();
+		Alpha-= 0.2f * GameEngineTime::GetDeltaTime();
+		Big->SetColor({ 1.0f, 1.0f, 1.0f, Alpha });
+		Small->SetColor({ 1.0f, 1.0f, 1.0f, Alpha });
+		if (Top->GetPixelData().MulColor.a <= 0.0f)
+		{
+			Top->GetPixelData().MulColor.a = 0.0f;
+			Death();
+		}
 	}
 }

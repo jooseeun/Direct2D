@@ -1,7 +1,6 @@
 #include "PreCompile.h"
 #include "Player.h"
 #include "PlayLevelManager.h"
-#include "BlueLight.h"
 #include <iostream>
 #include <GameEngineCore/GameEngineBlur.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -55,8 +54,7 @@ Player::~Player()
 
 void Player::Start()
 {
-	GameEngineDevice::GetBackBuffer()->AddEffect<BlueLight>();
-	GetLevel()->GetMainCamera()->GetCameraRenderTarget()->AddEffect<BlueLight>();
+
 	GameEngineDevice::GetBackBuffer()->AddEffect<GameEngineBlur>();
 	GetLevel()->GetMainCamera()->GetCameraRenderTarget()->AddEffect<GameEngineBlur>();
 
@@ -81,7 +79,7 @@ void Player::Start()
 		PlayerLightRenderer->GetTransform().SetLocalPosition({ 0.0f ,50.0f,50.0f });
 		PlayerLightRenderer->GetPipeLine()->SetOutputMergerBlend("AlphaBlend");
 		PlayerLightRenderer->GetPixelData().MulColor.b += 0.03f;
-		PlayerLightRenderer->GetPixelData().MulColor.a = 0.5;
+		PlayerLightRenderer->GetPixelData().MulColor.a = 0.6f;
 	}
 	{
 		PlayerRenderer = CreateComponent<GameEngineTextureRenderer>();
@@ -112,7 +110,7 @@ void Player::Start()
 	{
 		StunEffect2Renderer = CreateComponent<GameEngineTextureRenderer>();
 		StunEffect2Renderer->SetOrder((int)OBJECTORDER::Player);
-		StunEffect2Renderer->SetPivot(PIVOTMODE::BOT);
+		StunEffect2Renderer->SetPivot(PIVOTMODE::CENTER);
 	}
 	{
 		CoinEffectRenderer = CreateComponent<GameEngineTextureRenderer>();

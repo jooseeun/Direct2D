@@ -105,7 +105,7 @@
     <ClCompile Include="Town3Level.cpp">
       <Filter>Contents\Level</Filter>
     </ClCompile>
-    <ClCompile Include="BlueLight.cpp">
+    <ClCompile Include="ColorOverlay.cpp">
       <Filter>Effect\PostEffect</Filter>
     </ClCompile>
     <ClCompile Include="GeoCoin.cpp">
@@ -188,7 +188,7 @@
     <ClInclude Include="Town3Level.h">
       <Filter>Contents\Level</Filter>
     </ClInclude>
-    <ClInclude Include="BlueLight.h">
+    <ClInclude Include="ColorOverlay.h">
       <Filter>Effect\PostEffect</Filter>
     </ClInclude>
     <ClInclude Include="GeoCoin.h">

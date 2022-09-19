@@ -28,6 +28,7 @@ public:
 	TopUI& operator=(TopUI&& _Other) noexcept = delete;
 
 
+	void LevelStartUpdate();
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

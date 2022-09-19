@@ -32,11 +32,11 @@ void HollowKnigntCore::Start()
 	}
 	//PostEffect
 	{
-		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("BlueLight");
+		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("ColorOverlay");
 		NewPipe->SetInputAssembler1VertexBuffer("FullRect");
 		NewPipe->SetInputAssembler2IndexBuffer("FullRect");
-		NewPipe->SetVertexShader("BlueLight.hlsl");
-		NewPipe->SetPixelShader("BlueLight.hlsl");
+		NewPipe->SetVertexShader("ColorOverlay.hlsl");
+		NewPipe->SetPixelShader("ColorOverlay.hlsl");
 	}
 
 	///Resource

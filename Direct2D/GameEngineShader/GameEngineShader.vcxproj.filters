@@ -27,7 +27,7 @@
     <FxCompile Include="..\GameEngineResources\GameEngineShader\TextureMask.hlsl">
       <Filter>Contents</Filter>
     </FxCompile>
-    <FxCompile Include="..\GameEngineResources\GameEngineShader\BlueLight.hlsl">
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\ColorOverlay.hlsl">
       <Filter>Contents</Filter>
     </FxCompile>
   </ItemGroup>

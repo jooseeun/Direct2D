@@ -3,18 +3,18 @@
 #include <GameEngineCore/GameEngineRenderSet.h>
 
 // Ό³Έν :
-class BlueLight : public GameEnginePostEffect
+class ColorOverlay : public GameEnginePostEffect
 {
 public:
 	// constrcuter destructer
-	BlueLight();
-	~BlueLight();
+	ColorOverlay();
+	~ColorOverlay();
 
 	// delete Function
-	BlueLight(const BlueLight& _Other) = delete;
-	BlueLight(BlueLight&& _Other) noexcept = delete;
-	BlueLight& operator=(const BlueLight& _Other) = delete;
-	BlueLight& operator=(BlueLight&& _Other) noexcept = delete;
+	ColorOverlay(const ColorOverlay& _Other) = delete;
+	ColorOverlay(ColorOverlay&& _Other) noexcept = delete;
+	ColorOverlay& operator=(const ColorOverlay& _Other) = delete;
+	ColorOverlay& operator=(ColorOverlay&& _Other) noexcept = delete;
 
 	virtual void EffectInit();
 	virtual void Effect(GameEngineRenderTarget* _Render);

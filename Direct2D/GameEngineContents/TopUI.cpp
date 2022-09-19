@@ -33,7 +33,7 @@ void TopUI::Start()
 		EnergyUI->SetTexture("EnergyUI.png");
 		EnergyUI->GetTransform().SetLocalScale({ 257, 164, 1 });
 		EnergyUI->SetFrame(5);
-		EnergyUI->GetTransform().SetLocalPosition({ -650, 350.0f, 1 });
+		EnergyUI->GetTransform().SetLocalPosition({ -780, 420.0f, 1 });
 		EnergyUI->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
@@ -41,15 +41,15 @@ void TopUI::Start()
 		MoneyUI->SetTexture("TopUICoin.png");
 		MoneyUI->ScaleToCutTexture(0);
 		MoneyUI->SetFrame(1);
-		MoneyUI->GetTransform().SetLocalPosition({ -590, 300.0f, 1 });
+		MoneyUI->GetTransform().SetLocalPosition({ -720, 360.0f, 1 });
 		MoneyUI->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
 		GeoCoinFont = CreateComponent<GameEngineFontRenderer>();
 		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR");
 		GeoCoinFont->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
-		GeoCoinFont->SetSize(40.0);
-		GeoCoinFont->SetScreenPostion({ 220, 100, 1 });
+		GeoCoinFont->SetSize(35.0);
+		GeoCoinFont->SetScreenPostion({ 220, 95, 1 });
 		GeoCoinFont->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
@@ -62,7 +62,7 @@ void TopUI::Start()
 				FrameAnimation_DESC("BreakHealthUI.png", 0, 5, 0.1f, false));
 			Health[i]->ChangeFrameAnimation("FullHealth");
 			Health[i]->ScaleToCutTexture(0);
-			Health[i]->GetTransform().SetLocalPosition({ -590.0f + i * 74.0f, 350.0f, 1 });
+			Health[i]->GetTransform().SetLocalPosition({ -720.0f + i * 74.0f, 420.0f, 1 });
 			Health[i]->ChangeCamera(CAMERAORDER::UICAMERA);
 		}
 	}
@@ -72,7 +72,7 @@ void TopUI::Start()
 			EmpthyHealth[i] = CreateComponent<GameEngineUIRenderer>();
 			EmpthyHealth[i]->SetTexture("EmptyHealthUI.png");
 			EmpthyHealth[i]->ScaleToTexture();
-			EmpthyHealth[i]->GetTransform().SetLocalPosition({ -590.0f + i * 74.0f, 350.0f, 1 });
+			EmpthyHealth[i]->GetTransform().SetLocalPosition({ -720.0f + i * 74.0f, 420.0f, 1 });
 			EmpthyHealth[i]->ChangeCamera(CAMERAORDER::UICAMERA);
 			EmpthyHealth[i]->Off();
 		}
@@ -85,7 +85,7 @@ void TopUI::Start()
 		Energy->Option.IsMask = 1;
 		Energy->Option.EnergyGage = 0.0;
 		Energy->ScaleToCutTexture(0);
-		Energy->GetTransform().SetLocalPosition({ -703, 335.0f, 1 });
+		Energy->GetTransform().SetLocalPosition({ -833, 405.0f, 1 });
 		Energy->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 
@@ -101,11 +101,24 @@ void TopUI::Update(float _DeltaTime)
 }
 void TopUI::CoinUpdate()
 {
+
 	if (CurCoin != Player::GetMainPlayer()->PlayerGeoCoin)
 	{
 		CurGeoCoin = std::to_string(Player::GetMainPlayer()->PlayerGeoCoin);
 		CurCoin = Player::GetMainPlayer()->PlayerGeoCoin;
 		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR");
+	}
+}
+
+void TopUI::LevelStartUpdate()
+{
+	{
+		GeoCoinFont = CreateComponent<GameEngineFontRenderer>();
+		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR");
+		GeoCoinFont->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+		GeoCoinFont->SetSize(40.0);
+		GeoCoinFont->SetScreenPostion({ 220, 100, 1 });
+		GeoCoinFont->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 }
 void TopUI::EnergyUpdate()

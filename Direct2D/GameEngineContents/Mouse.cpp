@@ -28,6 +28,7 @@ void Mouse::Start()
 		MouseRenderer->ScaleToTexture();
 		MouseRenderer->GetTransform().SetLocalPosition(GetMouseWorldRePosition(float4{ 1920 * 0.7 , 1080 * 0.7 }));
 		MouseRenderer->SetOrder(10000000);
+		MouseRenderer->SetRenderingOrder(100000);
 	}
 
 	{

@@ -27,5 +27,6 @@ private:
 	GameEngineFontRenderer* Big;
 	GameEngineFontRenderer* Small;
 	float Time;
+	float Alpha;
 };
 

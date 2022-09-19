@@ -28,20 +28,20 @@ void Buzzer::Start()
 	{
 		MonsterRenderer = CreateComponent< GameEngineTextureRenderer>();
 		MonsterRenderer->GetTransform().SetLocalScale({ 86, 136, 10.0f });
-		MonsterRenderer->SetPivot(PIVOTMODE::BOT);
+		MonsterRenderer->SetPivot(PIVOTMODE::CUSTOM);
 	}
 	{
 		MonsterCollision = CreateComponent<GameEngineCollision>();
-		MonsterCollision->GetTransform().SetLocalScale({ 86,136,1000.0f });
+		MonsterCollision->GetTransform().SetLocalScale({ 100,130,1000.0f });
 		MonsterCollision->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
-			float4{ 0,40.0f,0 });
+			float4{ 0,50.0f,0 });
 		MonsterCollision->ChangeOrder((int)(OBJECTORDER::Monster));
 	}
 	{
 		TriggerCollision = CreateComponent<GameEngineCollision>();
 		TriggerCollision->GetTransform().SetLocalScale({ 1300,1300,1000.0f });
 		TriggerCollision->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
-			float4{ 0,40.0f,0 });
+			float4{ 0,50.0f,0 });
 	}
 	{
 		MonsterRenderer->CreateFrameAnimationCutTexture("Idle",
@@ -230,13 +230,11 @@ void Buzzer::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 	if (MovePos.y < 0.0f)
 	{
 		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed * _DeltaTime);
-		MonsterRenderer->GetTransform().PixLocalPositiveX();
 
 	}
 	if (MovePos.y >= 0.0f)
 	{
 		GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed * _DeltaTime);
-		MonsterRenderer->GetTransform().PixLocalNegativeX();
 
 	}
 
@@ -256,11 +254,11 @@ void Buzzer::StartleUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 void Buzzer::BackStart(const StateInfo& _Info)
 {
-	FallTime = 0.3f;
+	FallTime = 0.4f;
 }
 void Buzzer::BackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	if (OnGround == true && FallTime < 0.0f)
+	if (FallTime < 0.0f)
 	{
 		StateManager.ChangeState("Move");
 	}
@@ -271,7 +269,7 @@ void Buzzer::BackUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		FallTime -= 1.0f * _DeltaTime;
 		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
-	GetTransform().GetWorldPosition().y + 100.0f * GameEngineTime::GetDeltaTime(),
+	GetTransform().GetWorldPosition().y + 300.0f * GameEngineTime::GetDeltaTime(),
 	GetTransform().GetWorldPosition().z, });
 
 	}

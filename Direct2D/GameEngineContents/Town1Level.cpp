@@ -37,7 +37,7 @@ void Town1Level::Start()
 
 
 		GetMainCamera()->SetProjectionSize(float4{ 1920 * 0.85 , 1080 * 0.85 });
-		GetUICamera()->SetProjectionSize(float4{ 1920 * 0.85 , 1080 * 0.85 });
+		GetUICamera()->SetProjectionSize(float4{ 1920, 1080 });
 	}
 
 	{
@@ -92,5 +92,6 @@ void Town1Level::LevelStartEvent()
 			TopUI* NewUI = CreateActor<TopUI>(OBJECTORDER::UI);
 		}
 		TopUI::GetMainTopUI()->SetLevelOverOn();
+		TopUI::GetMainTopUI()->LevelStartUpdate();
 	}
 }

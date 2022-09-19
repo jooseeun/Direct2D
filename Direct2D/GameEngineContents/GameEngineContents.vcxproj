@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BlueLight.cpp">
+    <ClCompile Include="ColorOverlay.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -113,7 +113,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BlueLight.h">
+    <ClInclude Include="ColorOverlay.h">
       <SubType>
       </SubType>
     </ClInclude>

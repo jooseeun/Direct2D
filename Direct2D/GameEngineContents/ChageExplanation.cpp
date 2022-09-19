@@ -43,7 +43,7 @@ void ChageExplanation::Update(float _DeltaTime)
 		std::bind(&ChageExplanation::PlusAlpha, this, std::placeholders::_1, std::placeholders::_2)
 	) == false)
 	{
-		LightRenderer->GetPixelData().MulColor.a -= 0.5f * GameEngineTime::GetDeltaTime();
+		LightRenderer->GetPixelData().MulColor.a -= 0.1f * GameEngineTime::GetDeltaTime();
 		if (LightRenderer->GetPixelData().MulColor.a <= 0.0f)
 		{
 			LightRenderer->GetPixelData().MulColor.a = 0.0f;
@@ -57,6 +57,6 @@ void ChageExplanation::Update(float _DeltaTime)
 
 bool ChageExplanation::PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	LightRenderer->GetPixelData().MulColor.a += 0.5f * GameEngineTime::GetDeltaTime();
+	LightRenderer->GetPixelData().MulColor.a += 0.1f * GameEngineTime::GetDeltaTime();
 	return true;
 }

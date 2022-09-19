@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="..\GameEngineResources\GameEngineShader\BlueLight.hlsl" />
+    <FxCompile Include="..\GameEngineResources\GameEngineShader\ColorOverlay.hlsl" />
     <FxCompile Include="..\GameEngineResources\GameEngineShader\Blur.hlsl" />
     <FxCompile Include="..\GameEngineResources\GameEngineShader\Color.hlsl" />
     <FxCompile Include="..\GameEngineResources\GameEngineShader\Debug3D.hlsl" />

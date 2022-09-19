@@ -1,13 +1,13 @@
 #include "PreCompile.h"
-#include "BlueLight.h"
+#include "ColorOverlay.h"
 #include <GameEngineBase/GameEngineWindow.h>
 
-BlueLight::BlueLight()
+ColorOverlay::ColorOverlay()
 	: CopyTarget(nullptr)
 {
 }
 
-BlueLight::~BlueLight()
+ColorOverlay::~ColorOverlay()
 {
 	if (nullptr != CopyTarget)
 	{
@@ -16,17 +16,17 @@ BlueLight::~BlueLight()
 	}
 }
 
-void BlueLight::EffectInit()
+void ColorOverlay::EffectInit()
 {
 	CopyTarget = new GameEngineRenderTarget();
 	CopyTarget->CreateRenderTargetTexture(GameEngineWindow::GetScale(), DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT, float4::ZERO);
 
-	EffectSet.SetPipeLine("BlueLight");
+	EffectSet.SetPipeLine("ColorOverlay");
 
 	// EffetSet
 }
 
-void BlueLight::Effect(GameEngineRenderTarget* _Target)
+void ColorOverlay::Effect(GameEngineRenderTarget* _Target)
 {
 	CopyTarget->Copy(_Target);
 

@@ -2,6 +2,7 @@
 #include "PreCompile.h"
 #include "TitleObject.h"
 #include "Mouse.h"
+#include "ColorOverlay.h"
 
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -16,6 +17,8 @@ IntroLevel::~IntroLevel()
 
 void IntroLevel::Start()
 {
+	GameEngineDevice::GetBackBuffer()->AddEffect<ColorOverlay>();
+	GetMainCamera()->GetCameraRenderTarget()->AddEffect<ColorOverlay>();
 
 	if (false == GameEngineInput::GetInst()->IsKey("FreeCameraOnOff")
 		&& false == GameEngineInput::GetInst()->IsKey("CameraDebug"))
