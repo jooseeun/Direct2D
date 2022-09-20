@@ -101,6 +101,7 @@ void Player::Start()
 		HitRenderer2 = CreateComponent<GameEngineTextureRenderer>();
 		HitRenderer2->SetOrder((int)OBJECTORDER::Player);
 		HitRenderer2->SetPivot(PIVOTMODE::BOT);
+		HitRenderer2->SetPivotToVector({ 0,30,0 })
 	}
 	{
 		StunEffect1Renderer = CreateComponent<GameEngineTextureRenderer>();
