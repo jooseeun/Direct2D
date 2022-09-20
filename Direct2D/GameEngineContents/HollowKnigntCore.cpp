@@ -178,6 +178,8 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("HUD Cln_soul_orb_glow0000.png", 1, 1);
 	GameEngineTexture::Cut("Area Title Cln_fleur_bottom0002-Sheet.png", 20, 1);
 	GameEngineTexture::Cut("Area Title Cln_fleur_top0000-Sheet.png", 22, 1);
+	GameEngineTexture::Cut("Prompts Cln_prompt_appear0000-Sheet.png", 10, 1);
+	GameEngineTexture::Cut("Prompts Cln_prompt_idle0000-Sheet.png", 5, 1);
 
 	//Object ¸®¼Ò½º
 	GameEngineTexture::Cut("Geo_coin0000-Sheet.png", 8, 1);

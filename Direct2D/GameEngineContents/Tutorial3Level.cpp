@@ -52,7 +52,7 @@ void Tutorial3Level::Start()
 			"King's-Pass_FrontObject_3.png",
 			"King's-Pass_ColMap_3.png");
 
-		MapSize = { 5183, 3947, 100.0f };
+		MapSize = { 5183, 3747, 100.0f };
 	}
 	{
 		Buzzer* NewBuzzer = CreateActor<Buzzer>(OBJECTORDER::Monster);

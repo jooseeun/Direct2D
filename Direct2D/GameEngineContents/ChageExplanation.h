@@ -2,6 +2,7 @@
 #include <GameEngineCore/CoreMinimal.h>
 #include "ContentsEnum.h"
 
+class GameEngineFontRenderer;
 class ChageExplanation : public GameEngineActor
 {
 public:
@@ -21,10 +22,12 @@ protected:
 	void End() {}
 private:
 	bool PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other);
-
+	float4 GetWorldRePosition(float4 ReSize);
 	GameEngineTextureRenderer* BackGroundRenderer;
 	GameEngineTextureRenderer* LightRenderer;
+	GameEngineTextureRenderer* PromptRenderer;
+	GameEngineFontRenderer* Font;
 	GameEngineCollision* TriggerCol;
-
+	bool Trigger;
 };
 
