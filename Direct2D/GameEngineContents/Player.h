@@ -60,9 +60,9 @@ protected:
 
 
 
-	bool CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other);
-	bool PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other);
-	bool MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other);
 	GameEngineTextureRenderer* PlayerRenderer;
 	GameEngineTextureRenderer* CoinEffectRenderer;
 	GameEngineTextureRenderer* SkillRenderer;

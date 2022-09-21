@@ -125,22 +125,22 @@ void TitleObject::Update(float _DeltaTime)
 	);
 
 }
-bool TitleObject::CheckStart(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn TitleObject::CheckStart(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	LeftArrow->GetTransform().SetLocalPosition({ 830.0f, -995.0f, 0 });
 	RightArrow->GetTransform().SetLocalPosition({ 1060.0f, -995.0f, 0 });
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
-bool TitleObject::CheckSet(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn TitleObject::CheckSet(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	LeftArrow->GetTransform().SetLocalPosition({ 830.0f, -1095.0f, 0 });
 	RightArrow->GetTransform().SetLocalPosition({ 1060.0f, -1095.0f, 0 });
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
-bool TitleObject::CheckEnd(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn TitleObject::CheckEnd(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	LeftArrow->GetTransform().SetLocalPosition({ 830.0f, -1195.0f, 0 });
 	RightArrow->GetTransform().SetLocalPosition({ 1060.0f, -1195.0f, 0 });
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
 void TitleObject::End() {}

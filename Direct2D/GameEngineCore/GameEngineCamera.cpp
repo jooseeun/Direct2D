@@ -4,7 +4,15 @@
 #include "GameEngineActor.h"
 #include "GameEngineLevel.h"
 #include "GameEngineRenderTarget.h"
+#include "GameEngineVertexBuffer.h"
+#include "GameEngineVertexShader.h"
 #include <GameEngineBase/GameEngineWindow.h>
+
+// 최소 2개이상이 모여야 인스턴싱을 시작하겠다.
+int RenderingInstancing::MinInstancingCount = 2;
+
+// 일단 시작했다면 100개는 할수 있다는 가정하에 이걸 하겠다.
+int RenderingInstancing::StartInstancingCount = 100;
 
 GameEngineCamera::GameEngineCamera() 
 {
@@ -60,6 +68,13 @@ void GameEngineCamera::Render(float _DeltaTime)
 
 	float4 WindowSize = GameEngineWindow::GetInst()->GetScale();
 
+	// 인스턴싱정보를 초기화해요.
+	/*for (const std::pair<GameEngineRenderingPipeLine*, RenderingInstancing>& _Data : InstancingMap)
+	{
+		_Data.second.DataInsert = 0;
+	}*/
+
+
 	// 랜더링 하기 전에
 	for (std::pair<const int, std::list<GameEngineRenderer*>>& Group : AllRenderer_)
 	{
@@ -75,12 +90,18 @@ void GameEngineCamera::Render(float _DeltaTime)
 				continue;
 			}
 
+			Renderer->renderOption.DeltaTime = _DeltaTime;
+			Renderer->renderOption.SumDeltaTime = _DeltaTime;
 			Renderer->GetTransform().SetView(View);
 			Renderer->GetTransform().SetProjection(Projection);
 			Renderer->GetTransform().CalculateWorldViewProjection();
+
+			// 인스턴싱 정보 수집
 			Renderer->Render(ScaleTime);
 		}
 	}
+
+	// 다끝나면 인스턴싱을 랜더링
 }
 
 void GameEngineCamera::SetCameraOrder(CAMERAORDER _Order)
@@ -101,6 +122,41 @@ void GameEngineCamera::Start()
 void GameEngineCamera::PushRenderer(GameEngineRenderer* _Renderer)
 {
 	AllRenderer_[_Renderer->RenderingOrder].push_back(_Renderer);
+}
+
+void GameEngineCamera::PushInstancing(GameEngineRenderingPipeLine* _Pipe, int Count)
+{
+	if (false == _Pipe->GetVertexShader()->IsInstancing())
+	{
+		MsgBoxAssert("인스턴싱이 불가능한 랜더러 입니다.")
+	}
+
+	// Camera->gameenginepipeline
+	InstancingMap[_Pipe].Count += Count;
+
+	if (RenderingInstancing::MinInstancingCount <= InstancingMap[_Pipe].Count
+		&& nullptr == InstancingMap[_Pipe].Buffer)
+	{
+		GameEngineVertexBuffer* Buffer = _Pipe->GetVertexBuffer();
+		InstancingMap[_Pipe].Size = Buffer->GetLayOutDesc()->InstancingSize;
+		InstancingMap[_Pipe].Buffer = GameEngineInstancingBuffer::Create(RenderingInstancing::StartInstancingCount, Buffer->GetLayOutDesc()->InstancingSize);
+		InstancingMap[_Pipe].DataBuffer.resize(RenderingInstancing::StartInstancingCount * InstancingMap[_Pipe].Size);
+	}
+	else if(nullptr != InstancingMap[_Pipe].Buffer
+		&& InstancingMap[_Pipe].Count > InstancingMap[_Pipe].Buffer->GetBufferCount())
+	{
+		//           105                           100
+		GameEngineVertexBuffer* Buffer = _Pipe->GetVertexBuffer();
+		int NextBufferSize = static_cast<int>(InstancingMap[_Pipe].Count * 1.5);
+		InstancingMap[_Pipe].Buffer->BufferCreate(NextBufferSize, Buffer->GetLayOutDesc()->InstancingSize);
+		InstancingMap[_Pipe].DataBuffer.resize(NextBufferSize * InstancingMap[_Pipe].Size);
+	}
+}
+
+void GameEngineCamera::PushInstancingData(GameEngineRenderingPipeLine* _Pipe, void* _DataPtr, int _Size)
+{
+	// int DataOffset = InstancingMap[_Pipe].DataInsert * _Size;
+	// InstancingMap[_Pipe].DataBuffer[DataOffset];
 }
 
 void GameEngineCamera::Release(float _DelataTime)

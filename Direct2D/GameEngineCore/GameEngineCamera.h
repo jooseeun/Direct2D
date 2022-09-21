@@ -2,6 +2,7 @@
 #include "GameEngineTransformComponent.h"
 #include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineBase/GameEngineWindow.h>
+#include "GameEngineInstancingBuffer.h"
 
 enum class CAMERAPROJECTIONMODE
 {
@@ -11,6 +12,25 @@ enum class CAMERAPROJECTIONMODE
 
 class RenderingInstancing
 {
+public:
+	static int MinInstancingCount;
+	static int StartInstancingCount;
+
+public:
+	RenderingInstancing() 
+		: Buffer(nullptr)
+		, Count(0)
+	{
+	}
+
+
+public:
+	int DataInsert;
+	std::vector<char> DataBuffer;
+
+	int Size;
+	int Count;
+	GameEngineInstancingBuffer* Buffer;
 
 };
 
@@ -84,6 +104,10 @@ public:
 		return Size;
 	}
 
+	//                  개수
+	void PushInstancing(GameEngineRenderingPipeLine* _Pipe, int Count);
+	void PushInstancingData(GameEngineRenderingPipeLine* _Pipe, void* _DataPtr, int _Size);
+
 protected:
 	void Start();
 
@@ -93,6 +117,8 @@ private:
 	void Render(float _DeltaTime);
 
 	void PushRenderer(GameEngineRenderer* _Renderer);
+
+
 
 	void Release(float _DelataTime);
 
@@ -104,7 +130,7 @@ private:
 
 	std::map<int, std::list<class GameEngineRenderer*>> AllRenderer_;
 
-	std::map<GameEngineRenderingPipeLine*, RenderingInstancing*> InstancingMap;
+	std::unordered_map<GameEngineRenderingPipeLine*, RenderingInstancing> InstancingMap;
 
 	float4x4 View; // 바라보는것
 	float4x4 Projection;

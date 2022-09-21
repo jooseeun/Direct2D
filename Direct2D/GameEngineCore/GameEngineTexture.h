@@ -70,6 +70,9 @@ public:
 	void VSSetting(int _BindPoint);
 	void PSSetting(int _BindPoint);
 
+	void VSReset(int _BindPoint);
+	void PSReset(int _BindPoint);
+
 	size_t GetCutCount() 
 	{
 		return CutData.size();

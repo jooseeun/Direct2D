@@ -82,12 +82,12 @@ void Buzzer::Start()
 		StateManager.ChangeState("Idle");
 	}
 }
-bool Buzzer::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Buzzer::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	if (Health == 0)
 	{
 		StateManager.ChangeState("Death");
-		return true;
+		return CollisionReturn::Break;
 	}
 	if (StateManager.GetCurStateStateName() == "Move")
 	{
@@ -96,22 +96,24 @@ bool Buzzer::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other
 		StateManager.ChangeState("Back");
 	}
 
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
-bool Buzzer::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Buzzer::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 
 	StateManager.ChangeState("Startle");
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
 
 void Buzzer::Update(float _DeltaTime)
 {
 	if (StateManager.GetCurStateStateName() == "Idle")
 	{
-		TriggerCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
-			std::bind(&Buzzer::CheckTrigger, this, std::placeholders::_1, std::placeholders::_2)
-		);
+		if (TriggerCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
+			std::bind(&Buzzer::CheckTrigger, this, std::placeholders::_1, std::placeholders::_2)) == true)
+		{
+
+		}
 	}
 
 	MonsterCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Skill, CollisionType::CT_OBB2D,

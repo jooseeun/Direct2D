@@ -209,7 +209,7 @@ public:
 	void CreateFrameAnimationFolder(const std::string& _AnimationName, const FrameAnimation_DESC& _Desc);
 
 	void CreateFrameAnimationCutTexture(const std::string& _AnimationName, const FrameAnimation_DESC& _Desc);
-	void ChangeFrameAnimation(const std::string& _AnimationName);
+	void ChangeFrameAnimation(const std::string& _AnimationName, bool _Force = false);
 
 	void ScaleToTexture();
 

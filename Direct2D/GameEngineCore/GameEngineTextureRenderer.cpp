@@ -218,6 +218,12 @@ void GameEngineTextureRenderer::SetPivotToVector(const float4& _Value)
 
 void GameEngineTextureRenderer::SetTexture(GameEngineTexture* _Texture)
 {
+	if (nullptr == _Texture)
+	{
+		MsgBoxAssert("존재하지 않는 텍스처를 사용하려고 했습니다.");
+		return;
+	}
+
 	CurTex = _Texture;
 	ShaderResources.SetTexture("Tex", _Texture);
 }
@@ -311,7 +317,7 @@ void GameEngineTextureRenderer::CreateFrameAnimationCutTexture(const std::string
 	NewAni.FolderTexture = nullptr;
 }
 
-void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _AnimationName)
+void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _AnimationName, bool _Force /*= false*/)
 {
 	std::string Name = GameEngineString::ToUpperReturn(_AnimationName);
 
@@ -321,7 +327,7 @@ void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _Animati
 		return;
 	}
 
-	if (CurAni != &FrameAni[Name])
+	if (CurAni != &FrameAni[Name] || true == _Force)
 	{
 		CurAni = &FrameAni[Name];
 		CurAni->Reset();

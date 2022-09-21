@@ -21,7 +21,7 @@ protected:
 	void Update(float _DeltaTime);
 	void End() {}
 private:
-	bool PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other);
 	float4 GetWorldRePosition(float4 ReSize);
 	GameEngineTextureRenderer* BackGroundRenderer;
 	GameEngineTextureRenderer* LightRenderer;

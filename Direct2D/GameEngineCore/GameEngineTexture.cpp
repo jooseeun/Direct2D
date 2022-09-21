@@ -165,6 +165,19 @@ void GameEngineTexture::PSSetting(int _BindPoint)
 	GameEngineDevice::GetContext()->PSSetShaderResources(_BindPoint, 1, &ShaderResourceView);
 }
 
+void GameEngineTexture::VSReset(int _BindPoint)
+{
+	ID3D11ShaderResourceView* Nullptr = nullptr;
+
+	GameEngineDevice::GetContext()->VSSetShaderResources(_BindPoint, 1, &Nullptr);
+}
+void GameEngineTexture::PSReset(int _BindPoint)
+{
+	ID3D11ShaderResourceView* Nullptr = nullptr;
+
+	GameEngineDevice::GetContext()->PSSetShaderResources(_BindPoint, 1, &Nullptr);
+}
+
 
 void GameEngineTexture::Cut(const std::string& _Name, UINT _X, UINT _Y)
 {
@@ -452,9 +465,9 @@ PixelColor GameEngineTexture::GetPixelToPixelColor(int _x, int _y)
 		int Index = _y * static_cast<int>(Image.GetMetadata().width) + _x;
 		Color = Color + (Index * 4);
 
-		ReturnColor.b = Color[0];
+		ReturnColor.r = Color[0];
 		ReturnColor.g = Color[1];
-		ReturnColor.r = Color[2];
+		ReturnColor.b = Color[2];
 		ReturnColor.a = Color[3];
 		break;
 	}

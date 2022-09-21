@@ -114,7 +114,7 @@ void ChageExplanation::Update(float _DeltaTime)
 	});
 }
 
-bool ChageExplanation::PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn ChageExplanation::PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	LightRenderer->GetPixelData().MulColor.a += 0.2f * GameEngineTime::GetDeltaTime();
 	if (LightRenderer->GetPixelData().MulColor.a >= 1.0f)
@@ -130,6 +130,6 @@ bool ChageExplanation::PlusAlpha(GameEngineCollision* _This, GameEngineCollision
 		Trigger = true;
 	}
 
-	return true;
+	return CollisionReturn::ContinueCheck;
 
 }

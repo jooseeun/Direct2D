@@ -88,8 +88,8 @@ void GeoCoin::DeathCheck()
 		std::bind(&GeoCoin::DeathCoin, this, std::placeholders::_1, std::placeholders::_2)
 	);
 }
-bool GeoCoin::DeathCoin(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn GeoCoin::DeathCoin(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	Death();
-	return true;
+	return CollisionReturn::Break;
 }

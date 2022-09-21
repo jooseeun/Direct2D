@@ -159,6 +159,12 @@
     <ClInclude Include="GameEngineTextureRenderer.h">
       <Filter>Object\Component\Rendering\Content</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineStructuredBuffer.h">
+      <Filter>Resources\ShaderResources</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineInstancingBuffer.h">
+      <Filter>Resources\InputAssembler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
@@ -308,6 +314,12 @@
     </ClCompile>
     <ClCompile Include="GameEngineTextureRenderer.cpp">
       <Filter>Object\Component\Rendering\Content</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineStructuredBuffer.cpp">
+      <Filter>Resources\ShaderResources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineInstancingBuffer.cpp">
+      <Filter>Resources\InputAssembler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

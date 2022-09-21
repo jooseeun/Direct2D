@@ -437,7 +437,7 @@ void Player::CoinColCheck()
 		std::bind(&Player::CoinPlus, this, std::placeholders::_1, std::placeholders::_2)
 	);
 }
-bool Player::CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Player::CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	CoinEffectRenderer->On();
 	if (CurDir == PLAYERDIR::Left)
@@ -452,9 +452,9 @@ bool Player::CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other)
 		CoinEffectRenderer->GetTransform().PixLocalPositiveX();
 	}
 	PlayerGeoCoin += 1;
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
-bool Player::MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Player::MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	if (AttackNum == 1)
 	{
@@ -505,7 +505,7 @@ bool Player::MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other)
 		}
 	}
 
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
 
 bool Player::MapPixelCheck()
@@ -563,17 +563,17 @@ bool Player::MapPixelJumpCheck()
 
 }
 
-bool Player::PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Player::PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	ShakeTime = 0.0f;
 	CameraShake = true;
 	if (PlayerHealth == 0)
 	{
 		//Death
-		return true;
+		return CollisionReturn::ContinueCheck;
 	}
 	StateManager.ChangeState("Stun");
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
 
 

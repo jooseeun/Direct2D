@@ -25,7 +25,7 @@ protected:
 	void Up();
 	void Gravity();
 	void DeathCheck();
-	bool DeathCoin(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn DeathCoin(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 private:
 

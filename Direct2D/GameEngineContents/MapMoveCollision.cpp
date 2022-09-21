@@ -45,23 +45,23 @@ void MapMoveCollision::Update(float _DeltaTime)
 }
 
 
-bool MapMoveCollision::Move1Level(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn MapMoveCollision::Move1Level(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	GEngine::ChangeLevel(MoveLevel1);
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
-bool MapMoveCollision::Move2Level(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn MapMoveCollision::Move2Level(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	GEngine::ChangeLevel(MoveLevel2);
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
-bool MapMoveCollision::Move3Level(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn MapMoveCollision::Move3Level(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	GEngine::ChangeLevel(MoveLevel3);
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
-bool MapMoveCollision::Move4Level(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn MapMoveCollision::Move4Level(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	GEngine::ChangeLevel(MoveLevel4);
-	return true;
+	return CollisionReturn::ContinueCheck;
 }

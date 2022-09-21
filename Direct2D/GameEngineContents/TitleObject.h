@@ -25,9 +25,9 @@ protected:
 	void Update(float _DeltaTime);
 	void End();
 private:
-	bool CheckStart(GameEngineCollision* _This, GameEngineCollision* _Other);
-	bool CheckSet(GameEngineCollision* _This, GameEngineCollision* _Other);
-	bool CheckEnd(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CheckStart(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CheckSet(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CheckEnd(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 	GameEngineCollision* GameStartCol;
 	GameEngineCollision* GameSetCol;

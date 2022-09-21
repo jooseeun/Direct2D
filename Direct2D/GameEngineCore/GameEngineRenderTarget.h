@@ -34,6 +34,25 @@
 
 class GameEnginePostEffect
 {
+private:
+	bool IsUpdate_ = true;
+
+public:
+	bool IsUpdate() 
+	{
+		return IsUpdate_;
+	}
+
+	virtual void On()
+	{
+		IsUpdate_ = true;
+	}
+
+	virtual void Off()
+	{
+		IsUpdate_ = false;
+	}
+
 public:
 	virtual void EffectInit() = 0;
 	virtual void Effect(class GameEngineRenderTarget* _Render) = 0;
@@ -131,11 +150,13 @@ private:
 
 public:
 	template<typename EffectType>
-	void AddEffect() 
+	EffectType* AddEffect()
 	{
-		EffectType* NewEffect = new EffectType();
+		GameEnginePostEffect* NewEffect = new EffectType();
 		NewEffect->EffectInit();
 		Effects.push_back(NewEffect);
+
+		return reinterpret_cast<EffectType*>(NewEffect);
 	}
 };
 

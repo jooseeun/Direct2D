@@ -179,6 +179,7 @@ void GameEngineLevel::Render(float _DelataTime)
 		Cameras[i]->Render(_DelataTime);
 	}
 
+	// 포스트 이펙트 처리.
 	for (size_t i = 0; i < Cameras.size(); i++)
 	{
 		if (nullptr == Cameras[i])

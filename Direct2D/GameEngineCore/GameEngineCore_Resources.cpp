@@ -6,12 +6,14 @@
 #include "GameEngineLevel.h"
 #include "GameEngineVertexs.h"
 #include "GameEngineConstantBuffer.h"
+#include "GameEngineStructuredBuffer.h"
 #include <math.h>
 
 
 // Resources Header
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineIndexBuffer.h"
+#include "GameEngineInstancingBuffer.h"
 #include "GameEngineTexture.h"
 #include "GameEngineFolderTexture.h"
 #include "GameEngineSampler.h"
@@ -37,9 +39,14 @@ void EngineInputLayOut()
 	// float4 Postion5
 	// float4 Postion6
 
-	GameEngineVertex::LayOut.AddInputLayOut("POSITION", DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT); // 16
-	GameEngineVertex::LayOut.AddInputLayOut("TEXCOORD", DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT); // 32
-	GameEngineVertex::LayOut.AddInputLayOut("COLOR", DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT); // 48
+	// 하나가 끝났습니다.
+	GameEngineVertex::LayOut.AddInputLayOut("POSITION", DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT, 0); // 16
+	GameEngineVertex::LayOut.AddInputLayOut("TEXCOORD", DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT, 0); // 32
+	GameEngineVertex::LayOut.AddInputLayOut("COLOR", DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT, 0); // 48
+	GameEngineVertex::LayOut.OffsetReset();
+
+	// 인스턴싱 데이터용을 넣어줍니다.
+	GameEngineVertex::LayOut.AddInputLayOut("ROWINDEX", DXGI_FORMAT::DXGI_FORMAT_R32_UINT, 1, D3D11_INPUT_PER_INSTANCE_DATA, 1); // 48
 }
 
 void EngineSubSetting()
@@ -206,7 +213,14 @@ void EngineRenderingPipeLine()
 		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("TextureAtlas");
 		NewPipe->SetVertexShader("TextureAtlas.hlsl");
 		NewPipe->SetPixelShader("TextureAtlas.hlsl");
+		// NewPipe->InstancingSetting();
 	}
+
+	//{
+	//	GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("TextureAtlas_Inst");
+	//	NewPipe->SetVertexShader("TextureAtlas_Inst.hlsl");
+	//	NewPipe->SetPixelShader("TextureAtlas_Inst.hlsl");
+	//}
 
 	{
 		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("3DDebug");
@@ -240,8 +254,6 @@ void EngineRenderingPipeLine()
 		NewPipe->SetVertexShader("Blur.hlsl");
 		NewPipe->SetPixelShader("Blur.hlsl");
 	}
-
-
 }
 
 void EngineMesh() 
@@ -406,6 +418,8 @@ void GameEngineCore::EngineResourcesDestroy()
 	GameEngineRasterizer::ResourcesDestroy();
 	GameEngineBlend::ResourcesDestroy();
 	GameEngineConstantBuffer::ResourcesDestroy();
+	GameEngineStructuredBuffer::ResourcesDestroy();
+	GameEngineInstancingBuffer::ResourcesDestroy();
 	GameEngineSound::ResourcesDestroy();
 	GameEngineFont::ResourcesDestroy();
 

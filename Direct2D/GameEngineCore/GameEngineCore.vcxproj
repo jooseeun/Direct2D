@@ -96,6 +96,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineInstancingBuffer.h" />
     <ClInclude Include="GameEngineLevel.h">
       <SubType>
       </SubType>
@@ -148,6 +149,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineStructuredBuffer.h" />
     <ClInclude Include="GameEngineTexture.h">
       <SubType>
       </SubType>
@@ -272,6 +274,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineInstancingBuffer.cpp" />
     <ClCompile Include="GameEngineLevel.cpp">
       <SubType>
       </SubType>
@@ -324,6 +327,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineStructuredBuffer.cpp" />
     <ClCompile Include="GameEngineTexture.cpp">
       <SubType>
       </SubType>

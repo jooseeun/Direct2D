@@ -1,7 +1,8 @@
 #include "PreCompile.h"
 #include "GameEngineConstantBuffer.h"
 
-std::map<std::string, std::map<int, GameEngineConstantBuffer*>> GameEngineConstantBuffer::NamedRes;
+// 상수버퍼는 이름이랑 상관없이 int
+std::map<std::string, std::map<int, GameEngineConstantBuffer*>> GameEngineConstantBuffer::ConstantBufferRes;
 
 
 GameEngineConstantBuffer::GameEngineConstantBuffer() 
@@ -22,7 +23,7 @@ GameEngineConstantBuffer::~GameEngineConstantBuffer()
 
 
 
-void GameEngineConstantBuffer::Create(const D3D11_SHADER_BUFFER_DESC& _Desc, ID3D11ShaderReflectionConstantBuffer* _CBufferPtr)
+void GameEngineConstantBuffer::Create(const D3D11_SHADER_BUFFER_DESC& _Desc)
 {
 	ShaderDesc = _Desc;
 

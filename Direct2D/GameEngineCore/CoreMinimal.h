@@ -22,6 +22,8 @@
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineStateManager.h>
+#include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineCore/GameEngineFontRenderer.h>
 
 // GUI
 #include <GameEngineCore/GameEngineGUI.h>

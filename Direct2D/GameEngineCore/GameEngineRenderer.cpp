@@ -11,6 +11,7 @@
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineIndexBuffer.h"
 
+
 GameEngineRenderer::GameEngineRenderer()
 	: CameraOrder(CAMERAORDER::MAINCAMERA)
 	, RenderingOrder(0)
@@ -19,8 +20,8 @@ GameEngineRenderer::GameEngineRenderer()
 
 GameEngineRenderer::~GameEngineRenderer() 
 {
+	int a = 0;
 }
-
 
 void GameEngineRenderer::Start() 
 {
@@ -97,3 +98,5 @@ void GameEngineRenderer::ChangeCamera(CAMERAORDER _Order)
 {
 	GetActor()->GetLevel()->PushRenderer(this, _Order);
 }
+
+

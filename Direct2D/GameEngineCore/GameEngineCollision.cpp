@@ -32,6 +32,7 @@ GameEngineCollisionFunctionInit Inst;
 GameEngineCollision::GameEngineCollision() 
 	: DebugType(CollisionType::CT_SPHERE)
 	, Color(1.0f, 0.0f, 0.0f, 0.5f)
+	, eCollisionMode(CollisionMode::Normal)
 {
 }
 
@@ -59,7 +60,9 @@ void GameEngineCollision::ChangeOrder(int _Order)
 
 bool GameEngineCollision::IsCollision(CollisionType _ThisType, int _GroupOrder
 	, CollisionType _OtherType
-	, std::function<bool(GameEngineCollision* _This, GameEngineCollision* _Other)> _Function /*= nullptr*/)
+	, std::function<CollisionReturn(GameEngineCollision* _This, GameEngineCollision* _Other)> _Update /*= nullptr*/
+	, std::function<CollisionReturn(GameEngineCollision* _This, GameEngineCollision* _Other)> _Enter /*= nullptr*/
+	, std::function<CollisionReturn(GameEngineCollision* _This, GameEngineCollision* _Other)> _Exit /*= nullptr*/)
 {
 	if (false == IsUpdate())
 	{
@@ -85,20 +88,62 @@ bool GameEngineCollision::IsCollision(CollisionType _ThisType, int _GroupOrder
 			continue;
 		}
 
+		// 충돌 체크를 했다.
 		if (true == GameEngineCollision::CollisionFunction[ThisType][OtherType](GetTransform(), Collision->GetTransform()))
 		{
-			if (nullptr != _Function)
+			// 이 충돌체와 충돌했다.
+			if (eCollisionMode == CollisionMode::Ex)
 			{
-				// 넣어줘야 한다를 명시하는 겁니다.
-				if (true == _Function(this, Collision))
+				if (CollisionCheck.end() == CollisionCheck.find(Collision))
 				{
-					return true;
+					// 이 충돌체와는 처음 충돌했다.
+					CollisionCheck.insert(Collision);
+
+					if (nullptr == _Enter && CollisionReturn::Break == _Enter(this, Collision))
+					{
+						return true;
+					}
+
+				}
+				else 
+				{
+					if (nullptr != _Update && CollisionReturn::Break == _Update(this, Collision))
+					{
+						return true;
+					}
 				}
 			}
-			else {
-				return true;
+			else  if (eCollisionMode == CollisionMode::Normal)
+			{
+				if (nullptr != _Update)
+				{
+					// 넣어줘야 한다를 명시하는 겁니다.
+					if (CollisionReturn::Break == _Update(this, Collision))
+					{
+						return true;
+					}
+				}
+				else {
+					return true;
+				}
+				// return true; 이부분 잘못됐어요.
 			}
-			// return true; 이부분 잘못됐어요.
+		}
+		else 
+		{
+			if (eCollisionMode == CollisionMode::Ex)
+			{
+				if (CollisionCheck.end() != CollisionCheck.find(Collision))
+				{
+					if (nullptr != _Exit && CollisionReturn::Break == _Exit(this, Collision))
+					{
+						return false;
+					}
+
+					CollisionCheck.erase(Collision);
+				}
+			}
+
 		}
 	}
 

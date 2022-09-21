@@ -75,12 +75,12 @@ void Crawler::Start()
 		StateManager.ChangeState("Idle");
 	}
 }
-bool Crawler::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Crawler::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	if (Health == 0)
 	{
 		StateManager.ChangeState("Death"); 
-		return true;
+		return CollisionReturn::Break;
 	}
 	if (StateManager.GetCurStateStateName() == "Move")
 	{
@@ -89,13 +89,13 @@ bool Crawler::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Othe
 		StateManager.ChangeState("Back");
 	}
 
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
-bool Crawler::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Crawler::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 
 	StateManager.ChangeState("Move");
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
 
 void Crawler::Update(float _DeltaTime)

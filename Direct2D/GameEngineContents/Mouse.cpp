@@ -76,13 +76,13 @@ void Mouse::CheckClickCollision()
 		std::bind(&Mouse::CheckEnd, this, std::placeholders::_1, std::placeholders::_2)
 	);
 }
-bool Mouse::CheckStart(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Mouse::CheckStart(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	GEngine::ChangeLevel("Tutorial1");
-	return true;
+	return CollisionReturn::ContinueCheck;
 }
-bool Mouse::CheckEnd(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Mouse::CheckEnd(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	exit(0);
-	return true;
+	return CollisionReturn::ContinueCheck;
 }

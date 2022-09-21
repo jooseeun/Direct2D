@@ -20,6 +20,7 @@ public:
 	ShaderType ShaderType;
 	int BindPoint;
 	std::function<void()> SettingFunction;
+	std::function<void()> ResetFunction;
 
 public:
 	ShaderResSetter() 
@@ -65,6 +66,7 @@ class GameEngineTextureSetter : public ShaderResSetter
 
 public:
 	void Setting() const;
+	void Reset() const;
 
 public:
 	GameEngineTexture* Res;
@@ -79,6 +81,17 @@ public:
 public:
 	GameEngineSampler* Res;
 };
+
+class GameEngineStructuredBuffer;
+class GameEngineStructuredBufferSetter : public ShaderResSetter
+{
+public:
+	void Setting() const;
+
+public:
+	GameEngineStructuredBuffer* Res;
+};
+
 
 
 // Ό³Έν :
@@ -122,6 +135,7 @@ private:
 	std::map<std::string, GameEngineConstantBufferSetter> ConstantBufferMap;
 	std::map<std::string, GameEngineTextureSetter> TextureMap;
 	std::map<std::string, GameEngineSamplerSetter> SamplerMap;
+	std::map<std::string, GameEngineStructuredBufferSetter> StructuredBufferMap;
 
 	std::string EntryPoint;
 

@@ -25,10 +25,10 @@ public:
 	std::string MoveLevel3;
 	std::string MoveLevel4;
 	
-	bool Move1Level(GameEngineCollision* _This, GameEngineCollision* _Other);
-	bool Move2Level(GameEngineCollision* _This, GameEngineCollision* _Other);
-	bool Move3Level(GameEngineCollision* _This, GameEngineCollision* _Other);
-	bool Move4Level(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn Move1Level(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn Move2Level(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn Move3Level(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn Move4Level(GameEngineCollision* _This, GameEngineCollision* _Other);
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);

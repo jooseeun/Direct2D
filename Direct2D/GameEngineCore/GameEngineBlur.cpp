@@ -30,7 +30,6 @@ void GameEngineBlur::Effect(GameEngineRenderTarget* _Target)
 {
 	CopyTarget->Copy(_Target);
 
-
 	EffectSet.ShaderResources.SetTexture("Tex", CopyTarget->GetRenderTargetTexture(0));
 	_Target->Clear();
 	_Target->Setting();

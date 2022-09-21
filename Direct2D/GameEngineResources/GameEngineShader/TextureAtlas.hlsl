@@ -13,6 +13,10 @@ struct Input
 {
     float4 Pos : POSITION;
     float4 Tex : TEXCOORD;
+    
+    // 인스턴싱 데이터
+    uint Index : ROWINDEX;
+    // float4x4 WVP : 
 };
 
 struct Output
@@ -67,6 +71,34 @@ Output TextureAtlas_VS(Input _Input)
     return NewOutPut;
 }
 
+
+Output TextureAtlas_VSINST(Input _Input)
+{
+    // -0.5, 0.5,     0.5 0.5
+    // 0.5, 0.5,     0.5 0.5
+    
+    Output NewOutPut = (Output) 0;
+    _Input.Pos += PivotPos;
+    NewOutPut.Pos = mul(_Input.Pos, WorldViewProjection);
+    NewOutPut.PosLocal = _Input.Pos;
+    
+    // 버텍스가 몇번째 버텍스 인지 알수가 없다.
+    // NewOutPut.Tex
+    // 00    10
+    
+    //// 10    11
+    
+    //TextureFrameSize.x -= 0.5f;
+    //TextureFrameSize.y -= 0.5f;
+    //TextureFramePos.x -= 0.5f;
+    //TextureFramePos.y -= 0.5f;
+    
+    NewOutPut.Tex.x = (_Input.Tex.x * TextureFrameSize.x) + TextureFramePos.x;
+    NewOutPut.Tex.y = (_Input.Tex.y * TextureFrameSize.y) + TextureFramePos.y;
+    
+    return NewOutPut;
+}
+
 cbuffer PixelData : register(b0)
 {
     float4 MulColor;
@@ -83,13 +115,17 @@ float4 TextureAtlas_PS(Output _Input) : SV_Target0
         clip(-1);
     }
     
+    if (_Input.Tex.y < Slice.y)
+    {
+        clip(-1);
+    }
+    
     float4 TexColor = Tex.Sample(Smp, _Input.Tex.xy);
     
     if (TexColor.a == 0)
     {
         clip(-1);
     }
-
     
     return (Tex.Sample(Smp, _Input.Tex.xy) * MulColor) + PlusColor;
 }
