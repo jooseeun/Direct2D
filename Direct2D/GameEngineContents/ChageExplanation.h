@@ -23,6 +23,9 @@ protected:
 private:
 	CollisionReturn PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other);
 	float4 GetWorldRePosition(float4 ReSize);
+
+	void StartExplanation();
+
 	GameEngineTextureRenderer* BackGroundRenderer;
 	GameEngineTextureRenderer* LightRenderer;
 	GameEngineTextureRenderer* PromptRenderer;

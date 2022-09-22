@@ -161,6 +161,8 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Player_land.png", 3, 1);
 	GameEngineTexture::Cut("Player_land_hard.png", 5, 1);
 	GameEngineTexture::Cut("Player_stun.png", 5, 1);
+	GameEngineTexture::Cut("Player_Charge.png", 12, 1);
+
 	
 	///Monster ¸®¼Ò½º
 	GameEngineTexture::Cut("Crawler_walk.png", 4, 1);

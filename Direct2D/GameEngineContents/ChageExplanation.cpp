@@ -19,6 +19,12 @@ ChageExplanation::~ChageExplanation()
 
 void ChageExplanation::Start()
 {
+
+	if (false == GameEngineInput::GetInst()->IsKey("Next"))
+	{
+		GameEngineInput::GetInst()->CreateKey("Next", VK_UP);
+	}
+
 	BackGroundRenderer = CreateComponent<GameEngineTextureRenderer>();
 	BackGroundRenderer->SetOrder((int)OBJECTORDER::Player);
 	BackGroundRenderer->SetPivot(PIVOTMODE::BOT);
@@ -65,6 +71,8 @@ void ChageExplanation::Start()
 		FrameAnimation_DESC("Prompts Cln_prompt_appear0000-Sheet.png", aniorder, 0.1f, false));
 	PromptRenderer->Off();
 
+
+
 }
 float4 ChageExplanation::GetWorldRePosition(float4 ReSize)
 {
@@ -102,6 +110,14 @@ void ChageExplanation::Update(float _DeltaTime)
 		Font->SetColor({ 1.0f, 1.0f, 1.0f, LightRenderer->GetPixelData().MulColor.a });
 	}
 
+	if (true == GameEngineInput::GetInst()->IsPress("Next"))
+	{
+		if (TriggerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
+			std::bind(&ChageExplanation::PlusAlpha, this, std::placeholders::_1, std::placeholders::_2)) == true)
+		{
+			StartExplanation();
+		}
+	}
 	TriggerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
 		std::bind(&ChageExplanation::PlusAlpha, this, std::placeholders::_1, std::placeholders::_2)
 	);
@@ -116,7 +132,18 @@ void ChageExplanation::Update(float _DeltaTime)
 		PromptRenderer->Off();
 	});
 }
+void ChageExplanation::StartExplanation()
+{
 
+	GameEngineUIRenderer* LorePrompt = CreateComponent<GameEngineUIRenderer>();
+	LorePrompt->SetOrder((int)OBJECTORDER::Player);
+	LorePrompt->SetPivot(PIVOTMODE::BOT);
+	LorePrompt->SetTexture("HUD Cln_soul_orb_glow0000.png");
+	LorePrompt->ScaleToTexture();
+	LorePrompt->GetTransform().SetLocalPosition({ -780, 420.0f, 1 });
+	LorePrompt->ChangeCamera(CAMERAORDER::UICAMERA);
+	
+}
 CollisionReturn ChageExplanation::PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	LightRenderer->GetPixelData().MulColor.a += 0.2f * GameEngineTime::GetDeltaTime();

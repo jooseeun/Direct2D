@@ -113,6 +113,9 @@ protected:
 	void StunStart(const StateInfo& _Info);
 	void StunUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	void ChargeStart(const StateInfo& _Info);
+	void ChargeUpdate(float _DeltaTime, const StateInfo& _Info);
+
 private:
 	float Speed;
 	float JumpTime;

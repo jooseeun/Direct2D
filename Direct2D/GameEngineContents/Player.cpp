@@ -66,6 +66,7 @@ void Player::Start()
 		GameEngineInput::GetInst()->CreateKey("PlayerDown", VK_DOWN);
 		GameEngineInput::GetInst()->CreateKey("PlayerJump", 'Z');
 		GameEngineInput::GetInst()->CreateKey("PlayerAttack", 'X');
+		GameEngineInput::GetInst()->CreateKey("PlayerCharge", 'A');
 	}
 	
 	GetTransform().SetLocalScale({ 1, 1, 1 });
@@ -172,6 +173,8 @@ void Player::Start()
 			FrameAnimation_DESC("Player_land_hard.png", 0, 4, 0.12f, false));
 		PlayerRenderer->CreateFrameAnimationCutTexture("Stun",
 			FrameAnimation_DESC("Player_stun.png", 0, 4, 0.03f, false));
+		PlayerRenderer->CreateFrameAnimationCutTexture("Charge",
+			FrameAnimation_DESC("Player_Charge.png", 0, 11, 0.1f, false));
 	}
 	{
 		SkillRenderer->CreateFrameAnimationCutTexture("Idle",
@@ -244,6 +247,10 @@ void Player::Start()
 	StateManager.CreateStateMember("Stun"
 		, std::bind(&Player::StunUpdate, this, std::placeholders::_1, std::placeholders::_2)
 		, std::bind(&Player::StunStart, this, std::placeholders::_1)
+	);
+	StateManager.CreateStateMember("Charge"
+		, std::bind(&Player::ChargeUpdate, this, std::placeholders::_1, std::placeholders::_2)
+		, std::bind(&Player::ChargeStart, this, std::placeholders::_1)
 	);
 	StateManager.ChangeState("Fall");
 
@@ -603,7 +610,10 @@ void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 		PlayerRenderer->ChangeFrameAnimation("IdleHigh");
 		PlayerRenderer->ScaleToCutTexture(0);
 	}
-
+	if (true == GameEngineInput::GetInst()->IsPress("PlayerCharge"))
+	{
+		StateManager.ChangeState("Charge");
+	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft") ||
 		true == GameEngineInput::GetInst()->IsPress("PlayerRight"))
@@ -1209,6 +1219,28 @@ void Player::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * 1800.0f *  _DeltaTime);
 	}
+
+}
+
+
+void Player::ChargeStart(const StateInfo& _Info)
+{
+	PlayerRenderer->ChangeFrameAnimation("Charge");
+	PlayerRenderer->ScaleToCutTexture(0);
+}
+
+void Player::ChargeUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+
+	if (false == GameEngineInput::GetInst()->IsPress("PlayerCharge"))
+	{
+		StateManager.ChangeState("Idle");
+	}
+
+	PlayerRenderer->AnimationBindEnd("Charge", [=](const FrameAnimation_DESC& _Info)
+	{
+		StateManager.ChangeState("Idle");
+	});
 
 }
 
