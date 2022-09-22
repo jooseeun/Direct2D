@@ -30,7 +30,7 @@ void BugGlow::Start()
 	LightRenderer->ChangeFrameAnimation("Idle");
 	LightRenderer->ScaleToCutTexture(0);
 	LightRenderer->GetPipeLine()->SetOutputMergerBlend("AlphaBlend");
-	LightRenderer->GetPixelData().MulColor.a = 0.9;
+	LightRenderer->GetPixelData().MulColor.a = 0.9f;
 }
 void BugGlow::Update(float _DeltaTime)
 {
