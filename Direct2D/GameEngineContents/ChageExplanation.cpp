@@ -35,11 +35,12 @@ void ChageExplanation::Start()
 
 	Font = CreateComponent<GameEngineFontRenderer>();
 	Font->SetText("Á¶»ç", "Noto Serif KR");
-	Font->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
-	Font->SetSize(40.0);
+	Font->SetColor({ 1.0f, 1.0f, 1.0f, 0.0f });
+	Font->SetSize(35.0);
 	Font->SetPositionMode(FontPositionMode::WORLD);
-	Font->SetScreenPostion(GetTransform().GetLocalPosition()+ float4{ -5,280,-300 });
+	Font->GetTransform().SetLocalPosition({ -50,420,-300 });
 	Font->ChangeCamera(CAMERAORDER::MAINCAMERA);
+
 
 	PromptRenderer = CreateComponent<GameEngineTextureRenderer>();
 	PromptRenderer->SetOrder((int)OBJECTORDER::FrontObject);
@@ -98,6 +99,7 @@ void ChageExplanation::Update(float _DeltaTime)
 		{
 			LightRenderer->GetPixelData().MulColor.a = 0.0f;
 		}
+		Font->SetColor({ 1.0f, 1.0f, 1.0f, LightRenderer->GetPixelData().MulColor.a });
 	}
 
 	TriggerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
@@ -122,6 +124,7 @@ CollisionReturn ChageExplanation::PlusAlpha(GameEngineCollision* _This, GameEngi
 	{
 		LightRenderer->GetPixelData().MulColor.a = 1.0f;
 	}
+	Font->SetColor({ 1.0f, 1.0f, 1.0f, LightRenderer->GetPixelData().MulColor.a });
 	
 	if (Trigger == false)
 	{
