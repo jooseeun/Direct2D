@@ -171,12 +171,14 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Buzzer_fly0000-Sheet.png", 4, 1);
 	GameEngineTexture::Cut("Buzzer_death0000-Sheet.png", 3, 1);
 	GameEngineTexture::Cut("Buzzer_startle_01-Sheet.png", 4, 1);
+
 	//UI ¸®¼Ò½º
 	GameEngineTexture::Cut("EnergyUI.png", 6, 1);
 	GameEngineTexture::Cut("FullHealthUI.png", 6, 1);
 	GameEngineTexture::Cut("BreakHealthUI.png", 6, 1);
 	GameEngineTexture::Cut("TopUICoin.png", 3, 1);
 	GameEngineTexture::Cut("HUD_Soulorb_fills_soul_idle0000-Sheet.png", 6, 1);
+	GameEngineTexture::Cut("HUD Cln_appear_v020000-Sheet.png", 5, 1);
 	GameEngineTexture::Cut("HUD Cln_soul_orb_glow0000.png", 1, 1);
 	GameEngineTexture::Cut("Area Title Cln_fleur_bottom0002-Sheet.png", 20, 1);
 	GameEngineTexture::Cut("Area Title Cln_fleur_top0000-Sheet.png", 22, 1);

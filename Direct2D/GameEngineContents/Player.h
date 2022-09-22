@@ -120,6 +120,7 @@ private:
 	float Speed;
 	float JumpTime;
 	float FallTime;
+	float ChargeTime;
 	int AttackNum;
 	GameEngineStateManager StateManager;
 };

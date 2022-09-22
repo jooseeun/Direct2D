@@ -58,8 +58,13 @@ void TopUI::Start()
 			Health[i] = CreateComponent<GameEngineUIRenderer>();
 			Health[i]->CreateFrameAnimationCutTexture("FullHealth",
 				FrameAnimation_DESC("FullHealthUI.png", 0, 5, 0.1f, false));
+			Health[i]->CreateFrameAnimationCutTexture("IdleHealth",
+				FrameAnimation_DESC("FullHealthUI.png", 0, 0, 0.1f, false));
 			Health[i]->CreateFrameAnimationCutTexture("BreakHealth",
 				FrameAnimation_DESC("BreakHealthUI.png", 0, 5, 0.1f, false));
+			Health[i]->CreateFrameAnimationCutTexture("FillHealth",
+				FrameAnimation_DESC("HUD Cln_appear_v020000-Sheet.png", 0, 4, 0.1f, false));
+
 			Health[i]->ChangeFrameAnimation("FullHealth");
 			Health[i]->ScaleToCutTexture(0);
 			Health[i]->GetTransform().SetLocalPosition({ -720.0f + i * 74.0f, 420.0f, 1 });
@@ -147,7 +152,7 @@ void TopUI::HealthUpdate()
 	}
 
 	
-	if (CurHealth != Player::GetMainPlayer()->PlayerHealth)
+	if (CurHealth > Player::GetMainPlayer()->PlayerHealth)
 	{
 		for (int i = 0; i < Player::GetMainPlayer()->PlayerHealth; i++)
 		{
@@ -163,12 +168,29 @@ void TopUI::HealthUpdate()
 		CurHealth = Player::GetMainPlayer()->PlayerHealth;
 	}
 
-	for (int i = Player::GetMainPlayer()->PlayerHealth; i < Player::GetMainPlayer()->PlayerFullHealth; i++)
+	if (CurHealth < Player::GetMainPlayer()->PlayerHealth)
 	{
+
+		Health[Player::GetMainPlayer()->PlayerHealth - 1]->On();
+		Health[Player::GetMainPlayer()->PlayerHealth - 1]->ChangeFrameAnimation("FillHealth");
+		Health[Player::GetMainPlayer()->PlayerHealth - 1]->ScaleToCutTexture(0);
+
+		CurHealth = Player::GetMainPlayer()->PlayerHealth;
+	}
+
+	for (int i = Player::GetMainPlayer()->PlayerHealth - 1; i < Player::GetMainPlayer()->PlayerFullHealth; i++)
+	{
+		
 		Health[i]->AnimationBindEnd("BreakHealth", [=](const FrameAnimation_DESC& _Info)
 		{
 			Health[i]->Off();
 			EmpthyHealth[i]->On();
+		});
+		Health[i]->AnimationBindEnd("FillHealth", [=](const FrameAnimation_DESC& _Info)
+		{
+			Health[i]->ChangeFrameAnimation("IdleHealth");
+			Health[i]->ScaleToCutTexture(0);
+			EmpthyHealth[i]->Off();
 		});
 	}
 

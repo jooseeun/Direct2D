@@ -29,9 +29,9 @@ Player::Player()
 	, LeftSkilCol(nullptr)
 	, RightSkilCol(nullptr)
 	, PlayerCol(nullptr)
-	, PlayerHealth(5)
+	, PlayerHealth(3)
 	, PlayerFullHealth(5)
-	, PlayerEnergyGage(0.2f)
+	, PlayerEnergyGage(0.8f)
 	, GlobalTimeScale(1.0f)
 	, StunEffect1Renderer(nullptr)
 	, StunEffect2Renderer(nullptr)
@@ -43,6 +43,7 @@ Player::Player()
 	, HitRenderer1(nullptr)
 	, HitRenderer2(nullptr)
 	, CoinEffectRenderer(nullptr)
+	, ChargeTime(0.0f)
 {
 	MainPlayer = this;
 }
@@ -612,7 +613,10 @@ void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 	}
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerCharge"))
 	{
-		StateManager.ChangeState("Charge");
+		if (PlayerHealth != PlayerFullHealth && PlayerEnergyGage >= 0.3f)
+		{
+			StateManager.ChangeState("Charge");
+		}
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft") ||
@@ -1225,18 +1229,28 @@ void Player::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Player::ChargeStart(const StateInfo& _Info)
 {
+
 	PlayerRenderer->ChangeFrameAnimation("Charge");
 	PlayerRenderer->ScaleToCutTexture(0);
+	ChargeTime = 0.0f;
 }
 
 void Player::ChargeUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-
+	ChargeTime += 1.0f * _DeltaTime;
+	PlayerEnergyGage -= 0.05f * _DeltaTime;
 	if (false == GameEngineInput::GetInst()->IsPress("PlayerCharge"))
 	{
 		StateManager.ChangeState("Idle");
 	}
-
+	if (ChargeTime > 0.89f)
+	{
+		if (PlayerHealth != PlayerFullHealth)
+		{
+			PlayerHealth += 1;
+		}
+		ChargeTime = 0.0f;
+	}
 	PlayerRenderer->AnimationBindEnd("Charge", [=](const FrameAnimation_DESC& _Info)
 	{
 		StateManager.ChangeState("Idle");
