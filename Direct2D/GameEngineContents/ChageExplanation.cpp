@@ -37,7 +37,8 @@ void ChageExplanation::Start()
 	Font->SetText("Á¶»ç", "Noto Serif KR");
 	Font->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 	Font->SetSize(40.0);
-	Font->SetScreenPostion(GetTransform().GetLocalPosition() - GetLevel()->GetMainCamera()->GetTransform().GetLocalPosition());
+	Font->SetPositionMode(FontPositionMode::WORLD);
+	Font->SetScreenPostion(GetTransform().GetLocalPosition()+ float4{ -5,280,-300 });
 	Font->ChangeCamera(CAMERAORDER::MAINCAMERA);
 
 	PromptRenderer = CreateComponent<GameEngineTextureRenderer>();

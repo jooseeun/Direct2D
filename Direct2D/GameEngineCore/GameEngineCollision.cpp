@@ -118,7 +118,7 @@ bool GameEngineCollision::IsCollision(CollisionType _ThisType, int _GroupOrder
 				if (nullptr != _Update)
 				{
 					// 넣어줘야 한다를 명시하는 겁니다.
-					if (CollisionReturn::Break == _Update(this, Collision))
+					if (CollisionReturn::ContinueCheck== _Update(this, Collision))
 					{
 						return true;
 					}
