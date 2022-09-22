@@ -56,7 +56,7 @@ void TownFontUI::Start()
 }
 void TownFontUI::Update(float _DeltaTime)
 {
-	Time += 1.0 * _DeltaTime;
+	Time += 1.0f * _DeltaTime;
 
 	if (Time > 5.0f)
 	{
