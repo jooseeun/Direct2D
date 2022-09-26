@@ -140,7 +140,7 @@ void HollowKnigntCore::Start()
 	}
 
 	GameEngineFont::Load("Noto Serif KR");
-
+	GameEngineFont::Load("Noto Serif KR Black");
 	//player ¸®¼Ò½º
 	GameEngineTexture::Cut("PlayerWalk.png", 8, 1);
 	GameEngineTexture::Cut("PlayerIdleHighHealth.png", 9, 1);

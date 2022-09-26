@@ -45,11 +45,12 @@ void TopUI::Start()
 		MoneyUI->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
+
 		GeoCoinFont = CreateComponent<GameEngineFontRenderer>();
-		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR");
+		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR Black");
 		GeoCoinFont->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
-		GeoCoinFont->SetSize(40.0);
-		GeoCoinFont->SetScreenPostion({ 220, 120, 1 });
+		GeoCoinFont->SetSize(40.0f);
+		GeoCoinFont->SetScreenPostion({ 220, 115, 1 });
 		GeoCoinFont->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
@@ -120,17 +121,17 @@ void TopUI::CoinUpdate()
 	{
 		CurGeoCoin = std::to_string(Player::GetMainPlayer()->PlayerGeoCoin);
 		CurCoin = Player::GetMainPlayer()->PlayerGeoCoin;
-		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR");
+		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR Black");
 	}
 }
 
 void TopUI::LevelStartUpdate()
 {
 	{
-		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR");
+		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR Black");
 		GeoCoinFont->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
-		GeoCoinFont->SetSize(40.0);
-		GeoCoinFont->SetScreenPostion({ 220, 100, 1 });
+		GeoCoinFont->SetSize(40.0f);
+		GeoCoinFont->SetScreenPostion({ 220, 115, 1 });
 		GeoCoinFont->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 }
