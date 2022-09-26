@@ -214,7 +214,7 @@ void Buzzer::MoveStart(const StateInfo& _Info)
 }
 void Buzzer::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	float4 MovePos = Player::GetMainPlayer()->GetTransform().GetLocalPosition() - GetTransform().GetLocalPosition();
+	float4 MovePos = Player::GetMainPlayer()->GetTransform().GetLocalPosition() + float4{0,60,0} - GetTransform().GetLocalPosition();
 	float MoveLen = MovePos.Length();
 	if (MovePos.x < 0.0f)
 	{
