@@ -92,7 +92,6 @@ CollisionReturn Buzzer::CheckDemage(GameEngineCollision* _This, GameEngineCollis
 	if (StateManager.GetCurStateStateName() == "Move")
 	{
 		Health -= 1;
-		Player::GetMainPlayer()->PlayerEnergyGage += 0.05f;
 		StateManager.ChangeState("Back");
 	}
 

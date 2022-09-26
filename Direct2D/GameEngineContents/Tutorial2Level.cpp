@@ -38,8 +38,7 @@ void Tutorial2Level::Start()
 		Camera->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
 		Camera->GetTransform().SetLocalPosition({ 0, 0, 0 });
 
-
-		GetMainCamera()->SetProjectionSize(float4{ 1920 * 0.85 , 1080 * 0.85 });
+		GetMainCamera()->SetProjectionSize(float4{ 1920 * 0.95 , 1080 * 0.95 });
 		GetUICamera()->SetProjectionSize(float4{ 1920, 1080 });
 	}
 

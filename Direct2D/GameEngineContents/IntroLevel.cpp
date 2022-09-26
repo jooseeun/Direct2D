@@ -17,8 +17,6 @@ IntroLevel::~IntroLevel()
 
 void IntroLevel::Start()
 {
-	GameEngineDevice::GetBackBuffer()->AddEffect<ColorOverlay>();
-	GetMainCamera()->GetCameraRenderTarget()->AddEffect<ColorOverlay>();
 
 	if (false == GameEngineInput::GetInst()->IsKey("FreeCameraOnOff")
 		&& false == GameEngineInput::GetInst()->IsKey("CameraDebug"))

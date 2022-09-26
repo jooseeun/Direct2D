@@ -59,7 +59,7 @@ float4 TextureMask_PS(Output _Input) : SV_Target0
     if (1 == IsMask)
     {
         float4 MskColor = Mask.Sample(Smp, _Input.Tex1.xy);
-        if (0.9f > MskColor.a) // 조건 내가 정한다.
+        if (1.0f > MskColor.a) // 조건 내가 정한다.
         {
             clip(-1);
         }
@@ -68,10 +68,7 @@ float4 TextureMask_PS(Output _Input) : SV_Target0
         return RenderColor;
     }
     else {
-        if(_Input.Tex0.x < Slice.x)
-        {
-          clip(-1);
-        }
+
 
         float4 TexColor = Tex.Sample(Smp, _Input.Tex0.xy);
 

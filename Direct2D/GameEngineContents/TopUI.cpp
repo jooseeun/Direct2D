@@ -49,7 +49,7 @@ void TopUI::Start()
 		GeoCoinFont->SetText(CurGeoCoin, "Noto Serif KR");
 		GeoCoinFont->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 		GeoCoinFont->SetSize(40.0);
-		GeoCoinFont->SetScreenPostion({ 220, 95, 1 });
+		GeoCoinFont->SetScreenPostion({ 220, 120, 1 });
 		GeoCoinFont->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
@@ -82,9 +82,10 @@ void TopUI::Start()
 			EmpthyHealth[i]->Off();
 		}
 	}
+
 	{
 		Energy = CreateComponent<GameEngineMyRenderer>();
-		Energy->CreateFrameAnimationCutTexture("IdleEnergy", MyFrameAnimation_DESC("HUD_Soulorb_fills_soul_idle0000-Sheet.png", 0, 5, 0.1f, true));
+		Energy->CreateFrameAnimationCutTexture("IdleEnergy", MyFrameAnimation_DESC("HUD_Soulorb_fills_soul_idle0000-Sheet.png", 0, 5, 0.15f, true));
 		Energy->CreateFrameAnimationCutTexture("FullEnergy", MyFrameAnimation_DESC("HUD Cln_soul_orb_glow0000.png", 0, 0, 0.1f, false));
 		Energy->ChangeMaskFrameAnimation("IdleEnergy", "HUD Cln_soul_orb_shape.png");
 		Energy->renderOption.IsMask = 1;
@@ -94,6 +95,14 @@ void TopUI::Start()
 		Energy->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 
+	{
+		GameEngineMyRenderer* EnergyUIEffect = CreateComponent<GameEngineMyRenderer>();
+		EnergyUIEffect->SetTexture("HUD Cln_soul_orb_darken.png");
+		EnergyUIEffect->ScaleToTexture();
+		EnergyUIEffect->GetTransform().SetLocalPosition({ -833, 405.0f, 1 });
+		EnergyUIEffect->ChangeCamera(CAMERAORDER::UICAMERA);
+
+	}
 
 
 }
@@ -128,7 +137,7 @@ void TopUI::LevelStartUpdate()
 void TopUI::EnergyUpdate()
 {
 	Energy->renderOption.EnergyGage = Player::GetMainPlayer()->PlayerEnergyGage;
-	if (Energy->renderOption.EnergyGage <= 0.0f)
+	if (Player::GetMainPlayer()->PlayerEnergyGage >= 1.0f)
 	{
 		Energy->ChangeMaskFrameAnimation("FullEnergy", "HUD Cln_soul_orb_shape.png");
 		Energy->ScaleToTexture();
@@ -180,7 +189,10 @@ void TopUI::HealthUpdate()
 
 	for (int i = Player::GetMainPlayer()->PlayerHealth - 1; i < Player::GetMainPlayer()->PlayerFullHealth; i++)
 	{
-		
+		if (i < 0)
+		{
+			return;
+		}
 		Health[i]->AnimationBindEnd("BreakHealth", [=](const FrameAnimation_DESC& _Info)
 		{
 			Health[i]->Off();

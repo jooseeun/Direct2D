@@ -42,7 +42,7 @@ static float Gau[5][5] =
 {
     {1, 4, 6, 4, 1},
     { 4, 16, 48, 16, 4 },
-    { 6, 48, 144, 48, 6 },
+    { 6, 48, 600, 48, 6 },
     { 4, 16, 48, 16, 4 },
     { 1, 4, 6, 4, 1 }
 };
@@ -71,7 +71,7 @@ float4 Blur_PS(Output _Input) : SV_Target0
         CurUV.y += PixelUVSize.y;
     }
     
-    Result /= 388+72;
+    Result /= 916;
     
     // Color
     // 지금 이 색깔은?

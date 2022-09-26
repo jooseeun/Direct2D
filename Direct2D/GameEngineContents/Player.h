@@ -46,6 +46,7 @@ protected:
 
 	void CameraCheck();
 	bool MapPixelCheck();
+	bool MapStunPixelCheck();
 	bool MapPixelJumpCheck();
 	void Gravity();
 

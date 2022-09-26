@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Player.h"
 #include "PlayLevelManager.h"
+#include "ColorOverlay.h"
 #include <iostream>
 #include <GameEngineCore/GameEngineBlur.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -31,7 +32,7 @@ Player::Player()
 	, PlayerCol(nullptr)
 	, PlayerHealth(5)
 	, PlayerFullHealth(5)
-	, PlayerEnergyGage(0.15f)
+	, PlayerEnergyGage(0.8)
 	, GlobalTimeScale(1.0f)
 	, StunEffect1Renderer(nullptr)
 	, StunEffect2Renderer(nullptr)
@@ -56,6 +57,8 @@ Player::~Player()
 void Player::Start()
 {
 
+	GameEngineDevice::GetBackBuffer()->AddEffect<ColorOverlay>();
+	GetLevel()->GetMainCamera()->GetCameraRenderTarget()->AddEffect<ColorOverlay>();
 	GameEngineDevice::GetBackBuffer()->AddEffect<GameEngineBlur>();
 	GetLevel()->GetMainCamera()->GetCameraRenderTarget()->AddEffect<GameEngineBlur>();
 
@@ -464,6 +467,12 @@ CollisionReturn Player::CoinPlus(GameEngineCollision* _This, GameEngineCollision
 }
 CollisionReturn Player::MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+
+	PlayerEnergyGage += 0.05f * GameEngineTime::GetDeltaTime();
+	if (PlayerEnergyGage >= 1.0f)
+	{
+		PlayerEnergyGage = 1.0f;
+	}
 	if (AttackNum == 1)
 	{
 		HitRenderer1->On();
@@ -540,6 +549,42 @@ bool Player::MapPixelCheck()
 	}
 
 	if (CurDir == PLAYERDIR::Right)
+	{
+		if (false == ColorR.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+		{
+			return true;
+		}
+	}
+
+
+	return false;
+
+}
+
+bool Player::MapStunPixelCheck()
+{
+	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
+	if (nullptr == ColMapTexture)
+	{
+		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
+	}
+
+
+	float4 ColorR = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() + 34,
+		-GetTransform().GetWorldPosition().iy() - 40);
+	float4 ColorL = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() - 34,
+		-GetTransform().GetWorldPosition().iy() - 40);
+
+
+	if (CurDir == PLAYERDIR::Right)
+	{
+		if (false == ColorL.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+		{
+			return true;
+		}
+	}
+
+	if (CurDir == PLAYERDIR::Left)
 	{
 		if (false == ColorR.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
 		{
@@ -1215,13 +1260,16 @@ void Player::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 		}
 		GameEngineTime::GetInst()->SetGlobalScale(1.0f);
 	}
-	if (CurDir == PLAYERDIR::Left)
+	if (MapStunPixelCheck() == false)
 	{
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * 1800.0f * _DeltaTime);
-	}
-	if (CurDir == PLAYERDIR::Right)
-	{
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * 1800.0f *  _DeltaTime);
+		if (CurDir == PLAYERDIR::Left)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * 1800.0f * _DeltaTime);
+		}
+		if (CurDir == PLAYERDIR::Right)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * 1800.0f * _DeltaTime);
+		}
 	}
 
 }

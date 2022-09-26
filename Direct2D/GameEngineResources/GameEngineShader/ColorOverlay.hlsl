@@ -27,7 +27,7 @@ float4 ColorOverlay_PS(Output _Input) : SV_Target0
     
     float4 Color = Tex.Sample(Smp, _Input.Tex.xy);
 
-    if (Color.r >= 0.5f)
+    if (Color.r >= 0.4f)
     {
         Color.r = 1 - 2 * (1 - Color.r) * (1 - 0.51f);
     }
@@ -36,16 +36,16 @@ float4 ColorOverlay_PS(Output _Input) : SV_Target0
         Color.r = 2 * Color.r * 0.51f;
     }
 
-    if (Color.g >= 0.5f)
+    if (Color.g >= 0.45f)
     {
-        Color.g = 1 - 2 * (1 - Color.g) * (1 - 0.55f);
+        Color.g = 1 - 2 * (1 - Color.g) * (1 - 0.565f);
     }
     else
     {
-        Color.g = 2 * Color.g * 0.55f;
+        Color.g = 2 * Color.g * 0.565f;
     }
 
-    if (Color.b >= 0.5f)
+    if (Color.b >= 0.45f)
     {
         Color.b = 1 - 2*(1 - Color.b)*(1 - 0.58f);
     }
