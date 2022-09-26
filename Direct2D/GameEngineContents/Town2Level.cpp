@@ -4,7 +4,7 @@
 #include "MapSet.h"
 #include "TopUI.h"
 #include "TownFontUI.h"
-
+#include "Elderbug.h"
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
 #include <GameEngineBase/GameEngineInput.h>
@@ -65,6 +65,12 @@ void Town2Level::Start()
 
 	{
 		TownFontUI* NewTownFontUI = CreateActor<TownFontUI>(OBJECTORDER::UI);
+	}
+
+	{
+
+		Elderbug* Elderbug1 = CreateActor<Elderbug>(OBJECTORDER::Player);
+		Elderbug1->GetTransform().SetLocalPosition({ 4241, -3150, 0 });
 	}
 
 }

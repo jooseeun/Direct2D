@@ -132,6 +132,9 @@
     <ClCompile Include="Tur_BlueObject.cpp">
       <Filter>Contents\Actor\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Elderbug.cpp">
+      <Filter>Contents\Actor\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -220,6 +223,9 @@
     </ClInclude>
     <ClInclude Include="Tur_BlueObject.h">
       <Filter>Contents\Actor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Elderbug.h">
+      <Filter>Contents\Actor\NPC</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -32,7 +32,7 @@ Player::Player()
 	, PlayerCol(nullptr)
 	, PlayerHealth(5)
 	, PlayerFullHealth(5)
-	, PlayerEnergyGage(0.8)
+	, PlayerEnergyGage(0.7)
 	, GlobalTimeScale(1.0f)
 	, StunEffect1Renderer(nullptr)
 	, StunEffect2Renderer(nullptr)
@@ -45,6 +45,7 @@ Player::Player()
 	, HitRenderer2(nullptr)
 	, CoinEffectRenderer(nullptr)
 	, ChargeTime(0.0f)
+	, ObjectShakeCamera(false)
 {
 	MainPlayer = this;
 }
@@ -256,7 +257,7 @@ void Player::Start()
 		, std::bind(&Player::ChargeUpdate, this, std::placeholders::_1, std::placeholders::_2)
 		, std::bind(&Player::ChargeStart, this, std::placeholders::_1)
 	);
-	StateManager.ChangeState("Fall");
+	StateManager.ChangeState("Idle");
 
 	{
 		StunEffect1Renderer->ChangeFrameAnimation("StunEffect");
@@ -287,7 +288,12 @@ void Player::Update(float _DeltaTime)
 	{
 		return;
 	}
-
+	if (ObjectShakeCamera == true)
+	{
+		ShakeTime = 0.0f;
+		CameraShake = true;
+		ObjectShakeCamera = false;
+	}
 	StateManager.Update(_DeltaTime);
 	Gravity();
 	CameraCheck();
@@ -367,20 +373,20 @@ void Player::CameraCheck()
 void Player::ShakeCamera()
 {
 	ShakeTime += 1.0f * GameEngineTime::GetDeltaTime();
-	if (ShakeTime >= 0.5f)
+	if (ShakeTime >= 0.6f)
 	{
 		CameraShake = false;
 	}
 	if (ShakeRight == false)
 	{
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetLevel()->GetMainCameraActorTransform().GetLocalPosition()
-			+ float4::RIGHT * 800.0f * GameEngineTime::GetDeltaTime());
+			+ float4::RIGHT * 500.0f * GameEngineTime::GetDeltaTime());
 		ShakeRight = true;
 	}
 	else
 	{
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetLevel()->GetMainCameraActorTransform().GetLocalPosition()
-			+ float4::LEFT * 800.0f * GameEngineTime::GetDeltaTime());
+			+ float4::LEFT * 500.0f * GameEngineTime::GetDeltaTime());
 		ShakeRight = false;
 	}
 }

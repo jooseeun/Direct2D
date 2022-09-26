@@ -138,7 +138,20 @@ void HollowKnigntCore::Start()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExitsChildDirectory("ContentsResources");
+		Dir.Move("ContentsResources");
+		Dir.Move("Texture");
+		Dir.Move("NPC");
 
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
 	GameEngineFont::Load("Noto Serif KR");
 	GameEngineFont::Load("Noto Serif KR Black");
 	//player 府家胶
@@ -203,7 +216,15 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("EnemyHitEffects_3.png", 5, 1);
 	GameEngineTexture::Cut("Geo_coinget_01-Sheet.png", 4, 1);
 
-	
+	//NPC 府家胶
+	GameEngineTexture::Cut("Elderbug_idle_01-Sheet.png", 6, 1);
+	GameEngineTexture::Cut("Elderbug_look_left000-Sheet.png", 6, 1);
+	GameEngineTexture::Cut("Elderbug_reach0000-Sheet.png", 11, 1);
+	GameEngineTexture::Cut("Elderbug_talk_left0000-Sheet.png", 6, 1);
+	GameEngineTexture::Cut("Elderbug_talk_right0000-Sheet.png", 6, 1);
+	GameEngineTexture::Cut("Elderbug_turn000-Sheet.png", 4, 1);
+
+
 	if (false == GameEngineInput::GetInst()->IsKey("LevelChangeKey"))
 	{
 		GameEngineInput::GetInst()->CreateKey("LevelChangeKey", 'P');
@@ -221,7 +242,7 @@ void HollowKnigntCore::Start()
 	CreateLevel<Tutorial2Level>("Tutorial2");
 	CreateLevel<Tutorial3Level>("Tutorial3");
 	CreateLevel<Tutorial4Level>("Tutorial4");
-	ChangeLevel("Tutorial3");
+	ChangeLevel("Intro");
 
 	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 

@@ -1,5 +1,6 @@
 #include "SmallBreakDoor.h"
 #include "PreCompile.h"
+#include "Player.h"
 
 SmallBreakDoor::SmallBreakDoor() 
 	:DoorRenderer(nullptr)
@@ -37,6 +38,7 @@ void SmallBreakDoor::Update(float _DeltaTime)
 
 CollisionReturn SmallBreakDoor::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	Player::GetMainPlayer()->ShakeTimeReset();
 	Death();
 
 	return CollisionReturn::Break;

@@ -42,7 +42,7 @@ void TownFontUI::Start()
 		Big->SetText("흙의 마을", "Noto Serif KR");
 		Big->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 		Big->SetSize(60.0);
-		Big->SetScreenPostion({ 1920*0.7/2 - 130.0f, 1080*0.7/2-220, 1 });
+		Big->SetScreenPostion({ 1920* 0.8 /2 - 130.0f, 1080*0.8/2-220, 1 });
 		Big->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
@@ -50,7 +50,7 @@ void TownFontUI::Start()
 		Small->SetText("사라져가는 땅의 입구", "Noto Serif KR");
 		Small->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 		Small->SetSize(40.0);
-		Small->SetScreenPostion({ 1920 * 0.7 / 2 - 190.0f, 1080 * 0.7 / 2-130, 1 });
+		Small->SetScreenPostion({ 1920 * 0.8 / 2 - 190.0f, 1080 * 0.8 / 2-130, 1 });
 		Small->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 }

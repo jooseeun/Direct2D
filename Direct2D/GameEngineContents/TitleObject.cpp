@@ -70,22 +70,22 @@ void TitleObject::Start()
 	{
 		GameStartFont->SetText("게임시작", "Noto Serif KR");
 		GameStartFont->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
-		GameStartFont->SetSize(24.0f);
-		GameStartFont->SetScreenPostion({ 1920*0.8/2-60, 1080* 0.8 /2 + 50, 1 });
+		GameStartFont->SetSize(25.0f);
+		GameStartFont->SetScreenPostion({ 1920*0.8/2-60, 1080* 0.8 /2 + 60, 1 });
 		GameStartFont->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
 		GameSet->SetText("게임설정", "Noto Serif KR");
 		GameSet->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
-		GameSet->SetSize(24.0f);
-		GameSet->SetScreenPostion({ 1920 * 0.8 / 2 - 60, 1080 * 0.8 / 2 + 120, 1 });
+		GameSet->SetSize(25.0f);
+		GameSet->SetScreenPostion({ 1920 * 0.8 / 2 - 60, 1080 * 0.8 / 2 + 140, 1 });
 		GameSet->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
 		GameExit->SetText("게임종료", "Noto Serif KR");
 		GameExit->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
-		GameExit->SetSize(24.0f);
-		GameExit->SetScreenPostion({ 1920 * 0.8 / 2 - 60, 1080 * 0.8 / 2 + 190, 1 });
+		GameExit->SetSize(25.0f);
+		GameExit->SetScreenPostion({ 1920 * 0.8 / 2 - 60, 1080 * 0.8 / 2 + 220, 1 });
 		GameExit->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 

@@ -38,6 +38,10 @@ public:
 	{
 		MapSize = _MapSize;
 	}
+	inline void ShakeTimeReset()
+	{
+		ObjectShakeCamera = true;
+	}
 
 protected:
 	void Start() override;
@@ -52,10 +56,11 @@ protected:
 
 	void MonsterColCheck();
 	void CoinColCheck();
-	void ShakeCamera();
 	void EffectOffCheck();
 
+	void ShakeCamera();
 	bool CameraShake;
+	bool ObjectShakeCamera;
 	bool ShakeRight;
 	float ShakeTime;
 
