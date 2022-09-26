@@ -190,6 +190,9 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Geo_coin_air000-Sheet.png", 9, 1);
 	GameEngineTexture::Cut("Ambient Life_cave_glow_bug0000-Sheet.png", 4, 1);
 	GameEngineTexture::Cut("Ambient Life_bug_glow0000-Sheet.png", 6, 1);
+	GameEngineTexture::Cut("Health Bugs_health_cocoon_top0000-Sheet.png", 23, 1);
+	GameEngineTexture::Cut("Health Bugs_health_plant_010013-Sheet.png", 5, 1);
+	GameEngineTexture::Cut("Health Bugs_health_plant_020007-Sheet.png", 16, 1);
 	
 	
 	//Effect ¸®¼Ò½º
@@ -218,7 +221,7 @@ void HollowKnigntCore::Start()
 	CreateLevel<Tutorial2Level>("Tutorial2");
 	CreateLevel<Tutorial3Level>("Tutorial3");
 	CreateLevel<Tutorial4Level>("Tutorial4");
-	ChangeLevel("Intro");
+	ChangeLevel("Tutorial3");
 
 	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 

@@ -43,6 +43,9 @@
     <Filter Include="Contents\Actor\Object">
       <UniqueIdentifier>{0f94467f-96ab-4f6a-9ca7-d05d1164050e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Actor\NPC">
+      <UniqueIdentifier>{a56b93f1-0cea-47f0-9f96-8a1f881cacd1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -124,6 +127,9 @@
       <Filter>Contents\Actor\UI</Filter>
     </ClCompile>
     <ClCompile Include="SmallBreakDoor.cpp">
+      <Filter>Contents\Actor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Tur_BlueObject.cpp">
       <Filter>Contents\Actor\Object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -210,6 +216,9 @@
       <Filter>Contents\Actor\UI</Filter>
     </ClInclude>
     <ClInclude Include="SmallBreakDoor.h">
+      <Filter>Contents\Actor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Tur_BlueObject.h">
       <Filter>Contents\Actor\Object</Filter>
     </ClInclude>
   </ItemGroup>

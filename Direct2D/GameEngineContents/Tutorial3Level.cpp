@@ -8,6 +8,8 @@
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
 #include "ChageExplanation.h"
+#include "Tur_BlueObject.h"
+#include "SmallBreakDoor.h"
 
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
@@ -64,6 +66,14 @@ void Tutorial3Level::Start()
 	{
 		Crawler* NewCrawler = CreateActor<Crawler>(OBJECTORDER::Monster);
 		NewCrawler->GetTransform().SetLocalPosition({2417 , -1140, 0 });
+	}
+	{		
+		Tur_BlueObject* Tur_BlueObject1 = CreateActor<Tur_BlueObject>(OBJECTORDER::FrontObject);
+		Tur_BlueObject1->GetTransform().SetLocalPosition({ 643 , -1400, 0 });
+	}
+	{
+		SmallBreakDoor* Door1 = CreateActor<SmallBreakDoor>(OBJECTORDER::FrontObject);
+		Door1->GetTransform().SetLocalPosition({ 3500, -1178, 0 });
 	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);

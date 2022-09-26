@@ -99,6 +99,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Tur_BlueObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Tutorial1Level.cpp">
       <SubType>
       </SubType>
@@ -198,6 +202,10 @@
     <ClInclude Include="Town2Level.h" />
     <ClInclude Include="Town3Level.h" />
     <ClInclude Include="TownFontUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Tur_BlueObject.h">
       <SubType>
       </SubType>
     </ClInclude>
