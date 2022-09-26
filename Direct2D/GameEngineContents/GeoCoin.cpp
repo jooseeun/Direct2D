@@ -77,9 +77,23 @@ void GeoCoin::Up()
 {
 	UpTime -= 1.0f * GameEngineTime::GetDeltaTime();
 
+	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
+	if (nullptr == ColMapTexture)
+	{
+		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
+	}
+	float4 Color = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
+		-GetTransform().GetWorldPosition().iy() +50);
+
+	if (false == Color.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+	{
+
+		return;
+	}
 	GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
 GetTransform().GetWorldPosition().y + 1000.0f * GameEngineTime::GetDeltaTime(),
 GetTransform().GetWorldPosition().z, });
+
 }
 void GeoCoin::DeathCheck()
 {

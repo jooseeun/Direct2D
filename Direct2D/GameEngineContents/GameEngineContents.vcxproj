@@ -77,6 +77,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="PreCompile.cpp" />
+    <ClCompile Include="SmallBreakDoor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleObject.cpp">
       <SubType>
       </SubType>
@@ -175,6 +179,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="SmallBreakDoor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleObject.h">
       <SubType>
       </SubType>

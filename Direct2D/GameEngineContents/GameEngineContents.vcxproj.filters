@@ -123,6 +123,9 @@
     <ClCompile Include="TownFontUI.cpp">
       <Filter>Contents\Actor\UI</Filter>
     </ClCompile>
+    <ClCompile Include="SmallBreakDoor.cpp">
+      <Filter>Contents\Actor\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -205,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="TownFontUI.h">
       <Filter>Contents\Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SmallBreakDoor.h">
+      <Filter>Contents\Actor\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

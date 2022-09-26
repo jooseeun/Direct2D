@@ -60,7 +60,7 @@ protected:
 	float ShakeTime;
 
 
-
+	CollisionReturn DoorCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other);

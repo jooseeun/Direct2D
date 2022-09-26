@@ -1,7 +1,7 @@
 #include "Tutorial1Level.h"
 #include "PreCompile.h"
 #include "MapMoveCollision.h"
-
+#include "SmallBreakDoor.h"
 #include "MapSet.h"
 #include "Player.h"
 #include "Crawler.h"
@@ -63,16 +63,39 @@ void Tutorial1Level::Start()
 
 	{
 		Crawler* NewCrawler = CreateActor<Crawler>(OBJECTORDER::Monster);
-		NewCrawler->GetTransform().SetLocalPosition({ 6109, -4653, 0 });
+		NewCrawler->GetTransform().SetLocalPosition({ 6700, -4653, 0 });
 	}
 
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
-		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });
-		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 6849,-4527,100 });
+		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 200,300,1000.0f });
+		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 7000,-4527,100 });
 		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveLevel1 = "Tutorial2";
 	}
+
+	{
+
+		SmallBreakDoor * Door1 = CreateActor<SmallBreakDoor>(OBJECTORDER::FrontObject);
+		Door1->GetTransform().SetLocalPosition({ 2420, -4660, 0 });
+	}
+	{
+
+		SmallBreakDoor* Door2 = CreateActor<SmallBreakDoor>(OBJECTORDER::FrontObject);
+		Door2->GetTransform().SetLocalPosition({ 3256, -4660, 0 });
+	}
+	{
+
+		SmallBreakDoor* Door3 = CreateActor<SmallBreakDoor>(OBJECTORDER::FrontObject);
+		Door3->GetTransform().SetLocalPosition({ 4076, -4660, 0 });
+	}
+	{
+
+		SmallBreakDoor* Door4 = CreateActor<SmallBreakDoor>(OBJECTORDER::FrontObject);
+		Door4->GetTransform().SetLocalPosition({ 5241, -4660, 0 });
+	}
+
+
 }
 void Tutorial1Level::Update(float _DeltaTime)
 {

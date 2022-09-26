@@ -524,9 +524,28 @@ CollisionReturn Player::MonsterHit(GameEngineCollision* _This, GameEngineCollisi
 
 	return CollisionReturn::ContinueCheck;
 }
+CollisionReturn Player::DoorCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	if (CurDir == PLAYERDIR::Left)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * 100.0f * GameEngineTime::GetDeltaTime());
+	}
+	if (CurDir == PLAYERDIR::Right)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * 100.0f * GameEngineTime::GetDeltaTime());
+	}
+
+	return CollisionReturn::ContinueCheck;
+}
 
 bool Player::MapPixelCheck()
 {
+	if (true == PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::StopObject, CollisionType::CT_OBB2D,
+		std::bind(&Player::DoorCheck, this, std::placeholders::_1, std::placeholders::_2)))
+	{
+		return true;
+	}
+
 	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
 	if (nullptr == ColMapTexture)
 	{
