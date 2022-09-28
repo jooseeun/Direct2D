@@ -217,7 +217,7 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Geo_coinget_01-Sheet.png", 4, 1);
 	GameEngineTexture::Cut("Parasite Balloon Cln_Parasite_Blob_Flyer0012-Sheet.png", 4, 1);
 	GameEngineTexture::Cut("orange_puff_animated.png", 9, 1);
-
+	GameEngineTexture::Cut("nail_terrain_hit_effect.png", 3, 1);
 	//NPC ¸®¼Ò½º
 	GameEngineTexture::Cut("Elderbug_idle_01-Sheet.png", 6, 1);
 	GameEngineTexture::Cut("Elderbug_look_left000-Sheet.png", 6, 1);

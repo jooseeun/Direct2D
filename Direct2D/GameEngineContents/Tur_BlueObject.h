@@ -23,6 +23,13 @@ protected:
 private:
 	GameEngineCollision* BlueObjectCollision;
 	GameEngineTextureRenderer* BlueObjectRenderer;
+
+	GameEngineTextureRenderer* BlueFlower1;
+	GameEngineTextureRenderer* BlueFlower2;
+	GameEngineTextureRenderer* BlueFlower3;
+	GameEngineTextureRenderer* BlueFlower4;
+
+	float AniTime;
 	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
 };
 

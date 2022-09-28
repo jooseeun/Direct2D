@@ -69,6 +69,7 @@ protected:
 	CollisionReturn CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn HitEffectCreate(GameEngineCollision* _This, GameEngineCollision* _Other);
 	GameEngineTextureRenderer* PlayerRenderer;
 	GameEngineTextureRenderer* CoinEffectRenderer;
 	GameEngineTextureRenderer* SkillRenderer;
@@ -85,7 +86,7 @@ protected:
 	float4 Color;
 	float4 MapSize;
 	float GlobalTimeScale;
-
+	float ColReadyTime;
 
 	PLAYERDIR CurDir;
 

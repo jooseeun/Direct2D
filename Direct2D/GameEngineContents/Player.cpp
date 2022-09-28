@@ -203,6 +203,8 @@ void Player::Start()
 
 		HitRenderer1->CreateFrameAnimationCutTexture("HitEffect",
 			FrameAnimation_DESC("EnemyHitEffects_1.png", 0, 2, 0.08f, false));
+		HitRenderer1->CreateFrameAnimationCutTexture("ObjectHitEffect",
+			FrameAnimation_DESC("nail_terrain_hit_effect.png", 1, 2, 0.08f, false));
 		HitRenderer2->CreateFrameAnimationCutTexture("HitEffect1",
 			FrameAnimation_DESC("EnemyHitEffects_2.png", 0, 4, 0.08f, false));
 		HitRenderer2->CreateFrameAnimationCutTexture("HitEffect2",
@@ -288,12 +290,14 @@ void Player::Update(float _DeltaTime)
 	{
 		return;
 	}
+
 	if (ObjectShakeCamera == true)
 	{
 		ShakeTime = 0.0f;
 		CameraShake = true;
 		ObjectShakeCamera = false;
 	}
+
 	StateManager.Update(_DeltaTime);
 	Gravity();
 	CameraCheck();
@@ -309,6 +313,10 @@ void Player::EffectOffCheck()
 		CoinEffectRenderer->Off();
 	});
 	HitRenderer1->AnimationBindEnd("HitEffect", [=](const FrameAnimation_DESC& _Info)
+	{
+		HitRenderer1->Off();
+	});
+	HitRenderer1->AnimationBindEnd("ObjectHitEffect", [=](const FrameAnimation_DESC& _Info)
 	{
 		HitRenderer1->Off();
 	});
@@ -469,8 +477,33 @@ CollisionReturn Player::CoinPlus(GameEngineCollision* _This, GameEngineCollision
 	PlayerGeoCoin += 1;
 	return CollisionReturn::ContinueCheck;
 }
+CollisionReturn Player::HitEffectCreate(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	ColReadyTime = 0.1f;
+	if (CurDir == PLAYERDIR::Right)
+	{
+		HitRenderer1->On();
+		HitRenderer1->GetTransform().SetLocalPosition({ 50,30.0f,0 });
+		HitRenderer1->ChangeFrameAnimation("ObjectHitEffect");
+		HitRenderer1->CurAnimationReset();
+		HitRenderer1->ScaleToCutTexture(0);
+		HitRenderer1->GetTransform().PixLocalPositiveX();
+	}
+	else
+	{
+		HitRenderer1->On();
+		HitRenderer1->GetTransform().SetLocalPosition({ -50,30.0f,0 });
+		HitRenderer1->ChangeFrameAnimation("ObjectHitEffect");
+		HitRenderer1->CurAnimationReset();
+		HitRenderer1->ScaleToCutTexture(0);
+		HitRenderer1->GetTransform().PixLocalNegativeX();
+	}
+
+	return CollisionReturn::ContinueCheck;
+}
 CollisionReturn Player::MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	ColReadyTime = 0.1f;
 
 	PlayerEnergyGage += 0.05f * GameEngineTime::GetDeltaTime();
 	if (PlayerEnergyGage >= 1.0f)
@@ -480,7 +513,9 @@ CollisionReturn Player::MonsterHit(GameEngineCollision* _This, GameEngineCollisi
 	if (AttackNum == 1)
 	{
 		HitRenderer1->On();
+		HitRenderer1->ChangeFrameAnimation("HitEffect");
 		HitRenderer1->CurAnimationReset();
+		HitRenderer1->ScaleToCutTexture(0);
 		HitRenderer1->GetTransform().PixLocalNegativeX();
 
 		if (CurDir == PLAYERDIR::Right)
@@ -502,8 +537,10 @@ CollisionReturn Player::MonsterHit(GameEngineCollision* _This, GameEngineCollisi
 	}
 	else if (AttackNum == 2)
 	{
-		HitRenderer1->On();
+		HitRenderer1->On();		
+		HitRenderer1->ChangeFrameAnimation("HitEffect");
 		HitRenderer1->CurAnimationReset();
+		HitRenderer1->ScaleToCutTexture(0);
 		HitRenderer1->GetTransform().PixLocalPositiveX();
 
 		if (CurDir == PLAYERDIR::Right)
@@ -1038,12 +1075,32 @@ void Player::AttackStart(const StateInfo& _Info)
 } 
 void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	RightSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
-		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
-	);
-	LeftSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
-		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
-	);
+	if (ColReadyTime > 0)
+	{
+		ColReadyTime -= 1.0f * GameEngineTime::GetDeltaTime();
+	}
+	else
+	{
+		RightSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
+			std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
+		);
+		LeftSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
+			std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
+		);
+
+		RightSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::FrontObject, CollisionType::CT_OBB2D,
+			std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
+		);
+		LeftSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::FrontObject, CollisionType::CT_OBB2D,
+			std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
+		);
+		RightSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::StopObject, CollisionType::CT_OBB2D,
+			std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
+		);
+		LeftSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::StopObject, CollisionType::CT_OBB2D,
+			std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
+		);
+	}
 
 
 	PlayerRenderer->AnimationBindEnd("Attack1", [=](const FrameAnimation_DESC& _Info)
