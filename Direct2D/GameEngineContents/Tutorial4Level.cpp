@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "MapSet.h"
 #include "TopUI.h"
+#include "FallenGround.h"
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
 #include <GameEngineBase/GameEngineInput.h>
@@ -47,6 +48,10 @@ void Tutorial4Level::Start()
 			"King's-Pass_ColMap_4.png");
 
 		MapSize = { 6210, 3271, 100.0f };
+	}
+	{
+		FallenGround* fallG = CreateActor<FallenGround>(OBJECTORDER::FrontObject);
+		fallG->GetTransform().SetLocalPosition({ 1645, -1315,  -250});
 	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);

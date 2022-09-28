@@ -46,6 +46,9 @@
     <Filter Include="Contents\Actor\NPC">
       <UniqueIdentifier>{a56b93f1-0cea-47f0-9f96-8a1f881cacd1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Actor\Object\Tutor">
+      <UniqueIdentifier>{89e87881-04bf-4035-acc1-e679efb2e31c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -111,32 +114,35 @@
     <ClCompile Include="ColorOverlay.cpp">
       <Filter>Effect\PostEffect</Filter>
     </ClCompile>
-    <ClCompile Include="GeoCoin.cpp">
-      <Filter>Contents\Actor\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="BugGlow.cpp">
-      <Filter>Contents\Actor\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Buzzer.cpp">
       <Filter>Contents\Actor\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="ChageExplanation.cpp">
-      <Filter>Contents\Actor\Object</Filter>
-    </ClCompile>
     <ClCompile Include="TownFontUI.cpp">
       <Filter>Contents\Actor\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="SmallBreakDoor.cpp">
-      <Filter>Contents\Actor\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Tur_BlueObject.cpp">
-      <Filter>Contents\Actor\Object</Filter>
     </ClCompile>
     <ClCompile Include="Elderbug.cpp">
       <Filter>Contents\Actor\NPC</Filter>
     </ClCompile>
     <ClCompile Include="LorePromptFont.cpp">
       <Filter>Contents\Actor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BugGlow.cpp">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClCompile>
+    <ClCompile Include="ChageExplanation.cpp">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClCompile>
+    <ClCompile Include="FallenGround.cpp">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClCompile>
+    <ClCompile Include="SmallBreakDoor.cpp">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClCompile>
+    <ClCompile Include="Tur_BlueObject.cpp">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClCompile>
+    <ClCompile Include="GeoCoin.cpp">
+      <Filter>Contents\Actor\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -206,32 +212,35 @@
     <ClInclude Include="ColorOverlay.h">
       <Filter>Effect\PostEffect</Filter>
     </ClInclude>
-    <ClInclude Include="GeoCoin.h">
-      <Filter>Contents\Actor\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="BugGlow.h">
-      <Filter>Contents\Actor\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Buzzer.h">
       <Filter>Contents\Actor\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="ChageExplanation.h">
-      <Filter>Contents\Actor\Object</Filter>
-    </ClInclude>
     <ClInclude Include="TownFontUI.h">
       <Filter>Contents\Actor\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="SmallBreakDoor.h">
-      <Filter>Contents\Actor\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Tur_BlueObject.h">
-      <Filter>Contents\Actor\Object</Filter>
     </ClInclude>
     <ClInclude Include="Elderbug.h">
       <Filter>Contents\Actor\NPC</Filter>
     </ClInclude>
     <ClInclude Include="LorePromptFont.h">
       <Filter>Contents\Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BugGlow.h">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClInclude>
+    <ClInclude Include="ChageExplanation.h">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClInclude>
+    <ClInclude Include="FallenGround.h">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClInclude>
+    <ClInclude Include="SmallBreakDoor.h">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClInclude>
+    <ClInclude Include="Tur_BlueObject.h">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClInclude>
+    <ClInclude Include="GeoCoin.h">
+      <Filter>Contents\Actor\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
