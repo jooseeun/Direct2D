@@ -78,7 +78,7 @@ void Tutorial3Level::Start()
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });
-		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 3511,-1154,100 });
+		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 3800,-1154,100 });
 		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveLevel1 = "Tutorial4";
 	}

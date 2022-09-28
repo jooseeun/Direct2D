@@ -135,6 +135,9 @@
     <ClCompile Include="Elderbug.cpp">
       <Filter>Contents\Actor\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="LorePromptFont.cpp">
+      <Filter>Contents\Actor\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -226,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="Elderbug.h">
       <Filter>Contents\Actor\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="LorePromptFont.h">
+      <Filter>Contents\Actor\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

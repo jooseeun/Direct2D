@@ -379,14 +379,12 @@ void Player::ShakeCamera()
 	}
 	if (ShakeRight == false)
 	{
-		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetLevel()->GetMainCameraActorTransform().GetLocalPosition()
-			+ float4::RIGHT * 500.0f * GameEngineTime::GetDeltaTime());
+		GetLevel()->GetMainCameraActorTransform().SetWorldLeftMove(1000.f, GameEngineTime::GetDeltaTime());
 		ShakeRight = true;
 	}
 	else
 	{
-		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetLevel()->GetMainCameraActorTransform().GetLocalPosition()
-			+ float4::LEFT * 500.0f * GameEngineTime::GetDeltaTime());
+		GetLevel()->GetMainCameraActorTransform().SetWorldRightMove(1000.0f, GameEngineTime::GetDeltaTime());
 		ShakeRight = false;
 	}
 }

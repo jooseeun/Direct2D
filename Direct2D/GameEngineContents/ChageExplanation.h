@@ -29,6 +29,9 @@ private:
 	GameEngineTextureRenderer* BackGroundRenderer;
 	GameEngineTextureRenderer* LightRenderer;
 	GameEngineTextureRenderer* PromptRenderer;
+	GameEngineUIRenderer* LorePrompt;
+
+
 	GameEngineFontRenderer* Font;
 	GameEngineCollision* TriggerCol;
 	bool Trigger;

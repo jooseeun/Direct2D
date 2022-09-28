@@ -122,6 +122,12 @@ protected:
 	void ChargeStart(const StateInfo& _Info);
 	void ChargeUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	//void ChargeAttackStart(const StateInfo& _Info);
+	//void ChargeAttackUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	//void ChargeDashStart(const StateInfo& _Info);
+	//void ChargeDashUpdate(float _DeltaTime, const StateInfo& _Info);
+
 private:
 	float Speed;
 	float JumpTime;

@@ -2,6 +2,7 @@
 #include "PreCompile.h"
 #include "PlayLevelManager.h"
 #include "Player.h"
+#include "LorePromptFont.h"
 ChageExplanation::ChageExplanation() 
 	: LightRenderer(nullptr)
 	, BackGroundRenderer(nullptr)
@@ -72,7 +73,6 @@ void ChageExplanation::Start()
 	PromptRenderer->Off();
 
 
-
 }
 float4 ChageExplanation::GetWorldRePosition(float4 ReSize)
 {
@@ -110,14 +110,10 @@ void ChageExplanation::Update(float _DeltaTime)
 		Font->SetColor({ 1.0f, 1.0f, 1.0f, LightRenderer->GetPixelData().MulColor.a });
 	}
 
-	if (true == GameEngineInput::GetInst()->IsPress("Next"))
-	{
-		if (TriggerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
-			std::bind(&ChageExplanation::PlusAlpha, this, std::placeholders::_1, std::placeholders::_2)) == true)
-		{
-			StartExplanation();
-		}
-	}
+	TriggerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
+		std::bind(&ChageExplanation::PlusAlpha, this, std::placeholders::_1, std::placeholders::_2));
+
+
 	TriggerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
 		std::bind(&ChageExplanation::PlusAlpha, this, std::placeholders::_1, std::placeholders::_2)
 	);
@@ -134,19 +130,15 @@ void ChageExplanation::Update(float _DeltaTime)
 }
 void ChageExplanation::StartExplanation()
 {
+	if (LorePromptFont::GetLorePrompt() == nullptr)
+	{
+		LorePromptFont* NewPrompt = GetLevel()->CreateActor<LorePromptFont>();
+	}
 
-	GameEngineUIRenderer* LorePrompt = CreateComponent<GameEngineUIRenderer>();
-	LorePrompt->SetOrder((int)OBJECTORDER::Player);
-	LorePrompt->SetPivot(PIVOTMODE::BOT);
-	LorePrompt->SetTexture("HUD Cln_soul_orb_glow0000.png");
-	LorePrompt->ScaleToTexture();
-	LorePrompt->GetTransform().SetLocalPosition({ -780, 420.0f, 1 });
-	LorePrompt->ChangeCamera(CAMERAORDER::UICAMERA);
-	
 }
 CollisionReturn ChageExplanation::PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	LightRenderer->GetPixelData().MulColor.a += 0.2f * GameEngineTime::GetDeltaTime();
+	LightRenderer->GetPixelData().MulColor.a += 0.4f * GameEngineTime::GetDeltaTime();
 	if (LightRenderer->GetPixelData().MulColor.a >= 1.0f)
 	{
 		LightRenderer->GetPixelData().MulColor.a = 1.0f;
@@ -159,6 +151,10 @@ CollisionReturn ChageExplanation::PlusAlpha(GameEngineCollision* _This, GameEngi
 		PromptRenderer->ChangeFrameAnimation("Appear");
 		PromptRenderer->ScaleToCutTexture(0);
 		Trigger = true;
+	}
+	if (true == GameEngineInput::GetInst()->IsPress("Next"))
+	{
+		StartExplanation();
 	}
 
 	return CollisionReturn::ContinueCheck;
