@@ -14,6 +14,9 @@ Buzzer::Buzzer()
 	, Health(3)
 	, FallTime(0)
 	, OnGround(false)
+	, HPEffect1(nullptr)
+	, HPEffect2(nullptr)
+	, HPEffect3(nullptr)
 {
 }
 
@@ -29,6 +32,38 @@ void Buzzer::Start()
 		MonsterRenderer = CreateComponent< GameEngineTextureRenderer>();
 		MonsterRenderer->GetTransform().SetLocalScale({ 86, 136, 10.0f });
 		MonsterRenderer->SetPivot(PIVOTMODE::CUSTOM);
+	}
+	{
+		HPEffect1 = CreateComponent< GameEngineTextureRenderer>();
+		HPEffect1->SetTexture("hit_orange.png");
+		HPEffect1->GetTransform().SetLocalScale(HPEffect1->GetCurTexture()->GetScale() * 6.0f);
+		HPEffect1->SetPivot(PIVOTMODE::CENTER);
+		HPEffect1->GetPipeLine()->SetOutputMergerBlend("AlphaBlend");
+		HPEffect1->GetPixelData().MulColor.a = 0.0f;
+	}
+	{
+		HPEffect2 = CreateComponent< GameEngineTextureRenderer>();
+		HPEffect2->CreateFrameAnimationCutTexture("Start",
+			FrameAnimation_DESC("Parasite Balloon Cln_Parasite_Blob_Flyer0012-Sheet.png", 0, 3, 0.1f, false));
+		HPEffect2->ChangeFrameAnimation("Start");
+		HPEffect2->SetPivot(PIVOTMODE::CENTER);
+		HPEffect2->GetTransform().SetLocalScale(HPEffect2->GetCurTexture()->GetCutScale(0) * 1.5f);
+		HPEffect2->GetTransform().SetLocalPosition({ 20,50,0 });
+		HPEffect2->Off();
+	}
+	{
+
+		HPEffect3 = CreateComponent< GameEngineTextureRenderer>();
+		HPEffect3->CreateFrameAnimationCutTexture("Start",
+			FrameAnimation_DESC("orange_puff_animated.png", 0, 8, 0.1f, false));
+		HPEffect3->ChangeFrameAnimation("Start");
+		HPEffect3->SetPivot(PIVOTMODE::CENTER);
+		HPEffect3->GetTransform().SetLocalScale(HPEffect3->GetCurTexture()->GetCutScale(0) * 5.0f);
+		HPEffect3->GetPipeLine()->SetOutputMergerBlend("AlphaBlend");
+		HPEffect3->GetPixelData().MulColor.a = 0.0f;
+		HPEffect3->Off();
+
+
 	}
 	{
 		MonsterCollision = CreateComponent<GameEngineCollision>();
@@ -86,22 +121,70 @@ CollisionReturn Buzzer::CheckDemage(GameEngineCollision* _This, GameEngineCollis
 {
 	if (Health == 0)
 	{
+		{
+			HPEffect1->GetPixelData().MulColor.a = 0.8f;
+
+			HPEffect2->On();
+			HPEffect2->CurAnimationReset();
+
+			HPEffect3->On();
+			HPEffect3->CurAnimationReset();
+			HPEffect3->GetPixelData().MulColor.a = 1.0f;
+
+		}
+
 		StateManager.ChangeState("Death");
 		return CollisionReturn::Break;
 	}
 	if (StateManager.GetCurStateStateName() == "Move")
 	{
 		Health -= 1;
+
+		{
+			HPEffect1->GetPixelData().MulColor.a = 0.8f;
+
+			HPEffect2->On();
+			HPEffect2->CurAnimationReset();
+
+		}
+
+
 		StateManager.ChangeState("Back");
 	}
-
-	return CollisionReturn::ContinueCheck;
 }
 CollisionReturn Buzzer::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 
 	StateManager.ChangeState("Startle");
 	return CollisionReturn::ContinueCheck;
+}
+void Buzzer::EffectUpdate()
+{
+	if (HPEffect1->GetPixelData().MulColor.a != 0.0f)
+	{
+		HPEffect1->GetPixelData().MulColor.a -= 0.6f * GameEngineTime::GetDeltaTime();
+		if (HPEffect1->GetPixelData().MulColor.a < 0.0f)
+		{
+			HPEffect1->GetPixelData().MulColor.a = 0.0f;
+		}
+	}
+	if (HPEffect3->GetPixelData().MulColor.a != 0.0f)
+	{
+		HPEffect3->GetPixelData().MulColor.a -= 0.6f * GameEngineTime::GetDeltaTime();
+		if (HPEffect3->GetPixelData().MulColor.a < 0.0f)
+		{
+			HPEffect3->GetPixelData().MulColor.a = 0.0f;
+		}
+	}
+	HPEffect2->AnimationBindEnd("Start", [=](const FrameAnimation_DESC& _Info)
+	{
+		HPEffect2->Off();
+	});
+	HPEffect3->AnimationBindEnd("Start", [=](const FrameAnimation_DESC& _Info)
+	{
+		HPEffect3->Off();
+	});
+
 }
 
 void Buzzer::Update(float _DeltaTime)
@@ -112,7 +195,7 @@ void Buzzer::Update(float _DeltaTime)
 			std::bind(&Buzzer::CheckTrigger, this, std::placeholders::_1, std::placeholders::_2));
 
 	}
-
+	EffectUpdate();
 	MonsterCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Skill, CollisionType::CT_OBB2D,
 		std::bind(&Buzzer::CheckDemage, this, std::placeholders::_1, std::placeholders::_2)
 	);

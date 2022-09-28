@@ -21,6 +21,7 @@ protected:
 	void End() {}
 
 	bool MapPixelCheck();
+	void EffectUpdate();
 	CollisionReturn CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
 
@@ -48,6 +49,10 @@ protected:
 private:
 
 	GameEngineTextureRenderer* MonsterRenderer;
+	GameEngineTextureRenderer* HPEffect1;
+	GameEngineTextureRenderer* HPEffect2;
+	GameEngineTextureRenderer* HPEffect3;
+
 	GameEngineCollision* MonsterCollision;
 	GameEngineCollision* TriggerCollision;
 
