@@ -44,10 +44,14 @@ protected:
 	bool OnGround;
 	int Health;
 private:
-
+	void EffectUpdate();
 	GameEngineTextureRenderer* MonsterRenderer;
+	GameEngineTextureRenderer* HPEffect1;
+	GameEngineTextureRenderer* HPEffect2;
+	GameEngineTextureRenderer* HPEffect3;
 	GameEngineCollision* MonsterCollision;
 	GameEngineCollision* TriggerCollision;
+
 
 	GameEngineStateManager StateManager;
 };

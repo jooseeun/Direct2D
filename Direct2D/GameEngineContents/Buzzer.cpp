@@ -108,11 +108,9 @@ void Buzzer::Update(float _DeltaTime)
 {
 	if (StateManager.GetCurStateStateName() == "Idle")
 	{
-		if (TriggerCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
-			std::bind(&Buzzer::CheckTrigger, this, std::placeholders::_1, std::placeholders::_2)) == true)
-		{
+		TriggerCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
+			std::bind(&Buzzer::CheckTrigger, this, std::placeholders::_1, std::placeholders::_2));
 
-		}
 	}
 
 	MonsterCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Skill, CollisionType::CT_OBB2D,

@@ -552,6 +552,7 @@ bool Player::MapPixelCheck()
 		return true;
 	}
 
+
 	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
 	if (nullptr == ColMapTexture)
 	{
