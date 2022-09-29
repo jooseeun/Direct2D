@@ -332,7 +332,7 @@ void Player::EffectOffCheck()
 void Player::CameraCheck()
 {
 
-	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 500.0f);
+	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 500.0f + float4::UP * 100.0f);
 
 	float CameraRectX = 1920;
 	float CameraRectY = 1080;
@@ -404,18 +404,11 @@ void Player::Gravity()
 		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
 	}
 
-	//float4 CurColor = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
-	//	-GetTransform().GetWorldPosition().iy()-1 );
-	//if (false == CurColor.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
-	//{
-	//	GetTransform().SetWorldUpMove(1.0f, GameEngineTime::GetDeltaTime());
-	//}
-
-
 	float4 Color = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
 		-GetTransform().GetWorldPosition().iy()-1);
 
-	if (false == Color.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+	if (false == Color.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f))|| true == PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Ground, CollisionType::CT_OBB2D,
+		std::bind(&Player::GroundColCheck, this, std::placeholders::_1, std::placeholders::_2)))
 	{
 		if (StateManager.GetCurStateStateName() == "Fall")
 		{
@@ -431,7 +424,8 @@ void Player::Gravity()
 
 		return;
 	}
-	else
+	else if(false == PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Ground, CollisionType::CT_OBB2D,
+		std::bind(&Player::GroundColCheck, this, std::placeholders::_1, std::placeholders::_2)))
 	{
 		if (StateManager.GetCurStateStateName() == "Idle")
 		{
@@ -459,6 +453,11 @@ void Player::CoinColCheck()
 	PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Coin, CollisionType::CT_OBB2D,
 		std::bind(&Player::CoinPlus, this, std::placeholders::_1, std::placeholders::_2)
 	);
+}
+
+CollisionReturn Player::GroundColCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+{
+	return::CollisionReturn::ContinueCheck;
 }
 CollisionReturn Player::CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other)
 {

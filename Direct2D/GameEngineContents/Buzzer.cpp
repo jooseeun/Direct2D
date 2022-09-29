@@ -136,6 +136,7 @@ CollisionReturn Buzzer::CheckDemage(GameEngineCollision* _This, GameEngineCollis
 		StateManager.ChangeState("Death");
 		return CollisionReturn::Break;
 	}
+
 	if (StateManager.GetCurStateStateName() == "Move")
 	{
 		Health -= 1;
@@ -151,6 +152,8 @@ CollisionReturn Buzzer::CheckDemage(GameEngineCollision* _This, GameEngineCollis
 
 		StateManager.ChangeState("Back");
 	}
+
+	return CollisionReturn::ContinueCheck;
 }
 CollisionReturn Buzzer::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
 {

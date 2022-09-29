@@ -21,10 +21,12 @@ protected:
 	void Update(float _DeltaTime);
 	void End() {}
 private:
-	GameEngineCollision* Trigger;
 	GameEngineTextureRenderer* GroundRenderer1;
 	GameEngineTextureRenderer* GroundRenderer2;
 	GameEngineCollision* GroundCol1;
 	GameEngineCollision* GroundCol2;
+	bool Trigger;
+
+	CollisionReturn StartTrigger(GameEngineCollision* _This, GameEngineCollision* _Other);
 };
 

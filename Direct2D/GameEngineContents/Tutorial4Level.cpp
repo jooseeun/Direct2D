@@ -51,7 +51,7 @@ void Tutorial4Level::Start()
 	}
 	{
 		FallenGround* fallG = CreateActor<FallenGround>(OBJECTORDER::FrontObject);
-		fallG->GetTransform().SetLocalPosition({ 1645, -1315,  -250});
+		fallG->GetTransform().SetLocalPosition({ 1645, -1620,  -250});
 	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);

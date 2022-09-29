@@ -70,6 +70,8 @@ protected:
 	CollisionReturn PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn HitEffectCreate(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn GroundColCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+
 	GameEngineTextureRenderer* PlayerRenderer;
 	GameEngineTextureRenderer* CoinEffectRenderer;
 	GameEngineTextureRenderer* SkillRenderer;

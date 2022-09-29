@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngineBase/GameEngineTransform.h>
 #include "GameEngineTransformComponent.h"
-#include <set>
+#include <Set>
 
 enum class CollisionMode
 {
@@ -63,7 +63,7 @@ public:
 		, std::function<CollisionReturn(GameEngineCollision* _This, GameEngineCollision* _Other)> _Enter = nullptr
 		, std::function<CollisionReturn(GameEngineCollision* _This, GameEngineCollision* _Other)> _Update = nullptr
 		, std::function<CollisionReturn(GameEngineCollision* _This, GameEngineCollision* _Other)> _Exit = nullptr
-	) 
+	)
 	{
 		return IsCollision(_ThisType, _GroupOrder, _OtherType, _Update, _Enter, _Exit);
 	}
@@ -73,7 +73,7 @@ public:
 		, std::function<CollisionReturn(GameEngineCollision* _This, GameEngineCollision* _Other)> _Enter = nullptr
 		, std::function<CollisionReturn(GameEngineCollision* _This, GameEngineCollision* _Other)> _Update = nullptr
 		, std::function<CollisionReturn(GameEngineCollision* _This, GameEngineCollision* _Other)> _Exit = nullptr
-	) 
+	)
 	{
 		return IsCollision(_ThisType, _GroupOrder, _OtherType, _Update, _Enter, _Exit);
 	}
@@ -87,7 +87,7 @@ public:
 		, std::function<CollisionReturn(GameEngineCollision* _This, GameEngineCollision* _Other)> _Exit = nullptr
 	);
 
-	void SetDebugSetting(CollisionType _DebugType, float4 _Color) 
+	void SetDebugSetting(CollisionType _DebugType, float4 _Color)
 	{
 		DebugType = _DebugType;
 		Color = _Color;
@@ -107,7 +107,7 @@ public:
 		eCollisionMode = _Mode;
 	}
 
-	void ResetExData() 
+	void ResetExData()
 	{
 		CollisionCheck.clear();
 	}
