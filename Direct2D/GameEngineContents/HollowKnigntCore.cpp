@@ -206,7 +206,8 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Health Bugs_health_cocoon_top0000-Sheet.png", 23, 1);
 	GameEngineTexture::Cut("Health Bugs_health_plant_010013-Sheet.png", 5, 1);
 	GameEngineTexture::Cut("Health Bugs_health_plant_020007-Sheet.png", 16, 1);
-	
+	GameEngineTexture::Cut("Tute Great Door_door_v01-Sheet.png", 3, 1);
+
 	
 	//Effect ¸®¼Ò½º
 	GameEngineTexture::Cut("Hit_crack_simple.png", 3, 1);

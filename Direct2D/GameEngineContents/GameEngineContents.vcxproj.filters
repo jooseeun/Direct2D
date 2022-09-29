@@ -150,6 +150,9 @@
     <ClCompile Include="ThornTrap.cpp">
       <Filter>Contents\Actor\Object\Tutor</Filter>
     </ClCompile>
+    <ClCompile Include="BigBreakDoor.cpp">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -252,6 +255,9 @@
       <Filter>Contents\Actor\Object\Tutor</Filter>
     </ClInclude>
     <ClInclude Include="ThornTrap.h">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClInclude>
+    <ClInclude Include="BigBreakDoor.h">
       <Filter>Contents\Actor\Object\Tutor</Filter>
     </ClInclude>
   </ItemGroup>

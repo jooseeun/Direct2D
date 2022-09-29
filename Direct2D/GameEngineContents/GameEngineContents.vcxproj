@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BigBreakDoor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ColorOverlay.cpp">
       <SubType>
       </SubType>
@@ -141,6 +145,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BigBreakDoor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ColorOverlay.h">
       <SubType>
       </SubType>

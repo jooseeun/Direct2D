@@ -7,6 +7,7 @@
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
 #include "ThornTrap.h"
+#include "BigBreakDoor.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
@@ -55,6 +56,10 @@ void Tutorial4Level::Start()
 		fallG->GetTransform().SetLocalPosition({ 1645, -1620,  -250});
 	}
 	{
+		BigBreakDoor* Door = CreateActor<BigBreakDoor>(OBJECTORDER::FrontObject);
+		Door->GetTransform().SetLocalPosition({ 5597, -1310,  0 });
+	}
+	{
 		for (int i = 0; i < 7; i++)
 		{
 			ThornTrap* ThornTrap_ = CreateActor<ThornTrap>(OBJECTORDER::FrontObject);
@@ -97,7 +102,8 @@ void Tutorial4Level::LevelStartEvent()
 		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 290, -1080, 0 });
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 2420, -2500, 0 });
+		//Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 2420, -2500, 0 });
+		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 4586, -999, 0 });
 		Player::GetMainPlayer()->SetTrapStunPos({ 2420, -2500, 0 });
 		GetMainCameraActorTransform().SetLocalPosition({ 290, -1080, 0 });
 	}
