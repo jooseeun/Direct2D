@@ -109,7 +109,6 @@ void Tutorial3Level::LevelStartEvent()
 		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 4948, -3080, 0 });
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 643, -1400, 0 });
 
 		GetMainCameraActorTransform().SetLocalPosition({ 4948, -3080, 0 });
 	}

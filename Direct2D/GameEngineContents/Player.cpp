@@ -46,6 +46,7 @@ Player::Player()
 	, CoinEffectRenderer(nullptr)
 	, ChargeTime(0.0f)
 	, ObjectShakeCamera(false)
+	, IsTrapStun(false)
 {
 	MainPlayer = this;
 }
@@ -332,7 +333,7 @@ void Player::EffectOffCheck()
 void Player::CameraCheck()
 {
 
-	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 500.0f + float4::UP * 100.0f);
+	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4::BACK * 500.0f + float4::UP*100.0f );
 
 	float CameraRectX = 1920;
 	float CameraRectY = 1080;
@@ -341,7 +342,6 @@ void Player::CameraCheck()
 
 	if (0 >= CurCameraPos.x- CameraRectX/2)
 	{
-		float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
 		CurCameraPos.x = CameraRectX / 2;
 
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
@@ -349,16 +349,14 @@ void Player::CameraCheck()
 
 	else if (MapSize.x <= CurCameraPos.x + CameraRectX / 2)
 	{
-		float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
-		CurCameraPos.x = static_cast<float>(GetLevel()->GetMainCameraActorTransform().GetLocalPosition().ix() - (GetTransform().GetLocalPosition().ix() + CameraRectX/2 - MapSize.x));
+		CurCameraPos.x = static_cast<float>(CurCameraPos.x - (GetTransform().GetLocalPosition().ix() + CameraRectX/2 - MapSize.x));
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
 	}
 
 
 	if (0 <= CurCameraPos.y + CameraRectY / 2)
 	{
-		float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
-		CurCameraPos.y = -CameraRectY / 2;
+		CurCameraPos.y = -CameraRectY / 2 + 100;
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
 	}
 
@@ -366,8 +364,7 @@ void Player::CameraCheck()
 
 	else if (-MapSize.y >= CurCameraPos.y - CameraRectY / 2)
 	{
-		float4 CurCameraPos = GetLevel()->GetMainCameraActorTransform().GetLocalPosition();
-		CurCameraPos.y = -static_cast<float>(GetLevel()->GetMainCameraActorTransform().GetLocalPosition().iy() - (GetTransform().GetLocalPosition().iy() + CameraRectY/2 - MapSize.y));
+		CurCameraPos.y = -static_cast<float>(CurCameraPos.y - (GetTransform().GetLocalPosition().iy() + CameraRectY/2 - MapSize.y + 100));
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
 		
 	}
@@ -380,7 +377,14 @@ void Player::CameraCheck()
 
 void Player::ShakeCamera()
 {
-	ShakeTime += 1.0f * GameEngineTime::GetDeltaTime();
+	if (IsTrapStun == true)
+	{
+		ShakeTime += 1.0f * GameEngineTime::GetDeltaTime()*10.0f;
+	}
+	else
+	{
+		ShakeTime += 1.0f * GameEngineTime::GetDeltaTime();
+	}
 	if (ShakeTime >= 0.6f)
 	{
 		CameraShake = false;
@@ -445,6 +449,11 @@ void Player::MonsterColCheck()
 		PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
 			std::bind(&Player::PlayerStun, this, std::placeholders::_1, std::placeholders::_2)
 		);
+		if (true == PlayerCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::TrapObject, CollisionType::CT_OBB2D,
+			std::bind(&Player::PlayerStun, this, std::placeholders::_1, std::placeholders::_2)))
+		{
+			IsTrapStun = true;
+		}
 	}
 }
 void Player::CoinColCheck()
@@ -678,8 +687,6 @@ bool Player::MapPixelJumpCheck()
 
 CollisionReturn Player::PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	ShakeTime = 0.0f;
-	CameraShake = true;
 	if (PlayerHealth == 0)
 	{
 		//Death
@@ -872,6 +879,12 @@ void Player::MoveToIdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Player::FallStart(const StateInfo& _Info)
 {
+	if (IsTrapStun == true)
+	{
+		GetTransform().SetLocalPosition(TrapStunPos);
+		IsTrapStun = false;
+	}
+
 	PlayerRenderer->ChangeFrameAnimation("Fall");
 	PlayerRenderer->ScaleToCutTexture(0);
 	if (CurDir == PLAYERDIR::Left)
@@ -1290,6 +1303,7 @@ void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Player::StunStart(const StateInfo& _Info)
 {
+	ShakeTimeReset();
 	PlayerRenderer->ChangeFrameAnimation("Stun");
 	PlayerRenderer->ScaleToCutTexture(0);
 	PlayerHealth -= 1;
@@ -1322,6 +1336,7 @@ void Player::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		StateManager.ChangeState("Fall");
 		GameEngineTime::GetInst()->SetGlobalScale(1.0f);
+
 	});
 
 	if (FallTime > 0.0f)

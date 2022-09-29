@@ -19,7 +19,7 @@ public:
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
-	void End() {}
+	void End();
 private:
 	GameEngineTextureRenderer* GroundRenderer1;
 	GameEngineTextureRenderer* GroundRenderer2;

@@ -12,6 +12,7 @@ enum class OBJECTORDER
 	Skill,
 	FrontObject,
 	StopObject,
+	TrapObject,
 	Coin=992,
 	MoveCol1 = 993,
 	MoveCol2 = 994,

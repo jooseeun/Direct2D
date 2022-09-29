@@ -42,7 +42,10 @@ public:
 	{
 		ObjectShakeCamera = true;
 	}
-
+	inline void SetTrapStunPos(float4 _Pos)
+	{
+		TrapStunPos = _Pos;
+	}
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
@@ -64,6 +67,8 @@ protected:
 	bool ShakeRight;
 	float ShakeTime;
 
+	float4 TrapStunPos;
+	bool IsTrapStun;
 
 	CollisionReturn DoorCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other);

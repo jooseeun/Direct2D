@@ -6,6 +6,7 @@
 #include "FallenGround.h"
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
+#include "ThornTrap.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
@@ -54,6 +55,15 @@ void Tutorial4Level::Start()
 		fallG->GetTransform().SetLocalPosition({ 1645, -1620,  -250});
 	}
 	{
+		for (int i = 0; i < 7; i++)
+		{
+			ThornTrap* ThornTrap_ = CreateActor<ThornTrap>(OBJECTORDER::FrontObject);
+			ThornTrap_->GetTransform().SetLocalPosition({ 2711.0f + i * 140, -2926, 0 });
+		}
+		
+
+	}
+	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });
 		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 6009,-1110,100 });
@@ -87,6 +97,8 @@ void Tutorial4Level::LevelStartEvent()
 		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 290, -1080, 0 });
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
+		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 2420, -2500, 0 });
+		Player::GetMainPlayer()->SetTrapStunPos({ 2420, -2500, 0 });
 		GetMainCameraActorTransform().SetLocalPosition({ 290, -1080, 0 });
 	}
 

@@ -14,14 +14,6 @@ FallenGround::FallenGround()
 
 FallenGround::~FallenGround() 
 {
-	for (int i = 0; i < 4; i++)
-	{
-		SmallSmoke* Smoke = GetLevel()->CreateActor<SmallSmoke>();
-		Smoke->GetTransform().SetLocalPosition({ 1200.0f + i*200.0f, -1200,  -250 });
-	}
-
-
-
 }
 
 void FallenGround::Start()
@@ -52,6 +44,14 @@ void FallenGround::Start()
 	GroundCol2->GetTransform().SetLocalPosition({ 0,300,0 });
 	GroundCol2->ChangeOrder((int)(OBJECTORDER::Ground));
 	GroundCol2->SetDebugSetting(CollisionType::CT_AABB, { 1.0,0,0,1 });
+}
+void FallenGround::End()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		SmallSmoke* Smoke = GetLevel()->CreateActor<SmallSmoke>();
+		Smoke->GetTransform().SetLocalPosition({ 1200.0f + i * 200.0f, -1200,  -250 });
+	}
 }
 void FallenGround::Update(float _DeltaTime)
 {

@@ -147,6 +147,9 @@
     <ClCompile Include="SmallSmoke.cpp">
       <Filter>Contents\Actor\Object\Tutor</Filter>
     </ClCompile>
+    <ClCompile Include="ThornTrap.cpp">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -246,6 +249,9 @@
       <Filter>Contents\Actor\Object</Filter>
     </ClInclude>
     <ClInclude Include="SmallSmoke.h">
+      <Filter>Contents\Actor\Object\Tutor</Filter>
+    </ClInclude>
+    <ClInclude Include="ThornTrap.h">
       <Filter>Contents\Actor\Object\Tutor</Filter>
     </ClInclude>
   </ItemGroup>
