@@ -57,7 +57,7 @@ void Tutorial4Level::Start()
 	}
 	{
 		BigBreakDoor* Door = CreateActor<BigBreakDoor>(OBJECTORDER::FrontObject);
-		Door->GetTransform().SetLocalPosition({ 5597, -1310,  0 });
+		Door->GetTransform().SetLocalPosition({ 5605, -1310,  0 });
 	}
 	{
 		for (int i = 0; i < 7; i++)

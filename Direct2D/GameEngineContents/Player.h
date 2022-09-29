@@ -70,6 +70,8 @@ protected:
 	float4 TrapStunPos;
 	bool IsTrapStun;
 
+	bool IsStartEffect;
+
 	CollisionReturn DoorCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn CoinPlus(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other);
@@ -93,7 +95,6 @@ protected:
 	float4 Color;
 	float4 MapSize;
 	float GlobalTimeScale;
-	float ColReadyTime;
 
 	PLAYERDIR CurDir;
 

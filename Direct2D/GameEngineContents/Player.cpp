@@ -487,31 +487,34 @@ CollisionReturn Player::CoinPlus(GameEngineCollision* _This, GameEngineCollision
 }
 CollisionReturn Player::HitEffectCreate(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	ColReadyTime = 0.1f;
-	if (CurDir == PLAYERDIR::Right)
+	if (IsStartEffect == true)
 	{
-		HitRenderer1->On();
-		HitRenderer1->GetTransform().SetLocalPosition({ 50,30.0f,0 });
-		HitRenderer1->ChangeFrameAnimation("ObjectHitEffect");
-		HitRenderer1->CurAnimationReset();
-		HitRenderer1->ScaleToCutTexture(0);
-		HitRenderer1->GetTransform().PixLocalPositiveX();
+		if (CurDir == PLAYERDIR::Right)
+		{
+			HitRenderer1->On();
+			HitRenderer1->GetTransform().SetLocalPosition({ 50,30.0f,0 });
+			HitRenderer1->ChangeFrameAnimation("ObjectHitEffect");
+			HitRenderer1->CurAnimationReset();
+			HitRenderer1->ScaleToCutTexture(0);
+			HitRenderer1->GetTransform().PixLocalPositiveX();
+		}
+		else
+		{
+			HitRenderer1->On();
+			HitRenderer1->GetTransform().SetLocalPosition({ -50,30.0f,0 });
+			HitRenderer1->ChangeFrameAnimation("ObjectHitEffect");
+			HitRenderer1->CurAnimationReset();
+			HitRenderer1->ScaleToCutTexture(0);
+			HitRenderer1->GetTransform().PixLocalNegativeX();
+		}
+		IsStartEffect = false;
 	}
-	else
-	{
-		HitRenderer1->On();
-		HitRenderer1->GetTransform().SetLocalPosition({ -50,30.0f,0 });
-		HitRenderer1->ChangeFrameAnimation("ObjectHitEffect");
-		HitRenderer1->CurAnimationReset();
-		HitRenderer1->ScaleToCutTexture(0);
-		HitRenderer1->GetTransform().PixLocalNegativeX();
-	}
+
 
 	return CollisionReturn::ContinueCheck;
 }
 CollisionReturn Player::MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	ColReadyTime = 0.1f;
 
 	PlayerEnergyGage += 0.05f * GameEngineTime::GetDeltaTime();
 	if (PlayerEnergyGage >= 1.0f)
@@ -1084,35 +1087,31 @@ void Player::AttackStart(const StateInfo& _Info)
 		SkillRenderer->ScaleToCutTexture(0);
 		AttackNum = 1;
 	}
+	IsStartEffect = true;
 } 
 void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	if (ColReadyTime > 0)
-	{
-		ColReadyTime -= 1.0f * GameEngineTime::GetDeltaTime();
-	}
-	else
-	{
-		RightSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
-			std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
-		);
-		LeftSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
-			std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
-		);
 
-		RightSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::FrontObject, CollisionType::CT_OBB2D,
-			std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
-		);
-		LeftSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::FrontObject, CollisionType::CT_OBB2D,
-			std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
-		);
-		RightSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::StopObject, CollisionType::CT_OBB2D,
-			std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
-		);
-		LeftSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::StopObject, CollisionType::CT_OBB2D,
-			std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
-		);
-	}
+	RightSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
+		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
+	);
+	LeftSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Monster, CollisionType::CT_OBB2D,
+		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
+	);
+
+	RightSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::FrontObject, CollisionType::CT_OBB2D,
+		std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
+	);
+	LeftSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::FrontObject, CollisionType::CT_OBB2D,
+		std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
+	);
+	RightSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::StopObject, CollisionType::CT_OBB2D,
+		std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
+	);
+	LeftSkilCol->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::StopObject, CollisionType::CT_OBB2D,
+		std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
+	);
+
 
 
 	PlayerRenderer->AnimationBindEnd("Attack1", [=](const FrameAnimation_DESC& _Info)
@@ -1133,6 +1132,7 @@ void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 			StateManager.ChangeState("Idle");
 		}
 	});
+
 	PlayerRenderer->AnimationBindEnd("Attack2", [=](const FrameAnimation_DESC& _Info)
 	{
 		if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft")
