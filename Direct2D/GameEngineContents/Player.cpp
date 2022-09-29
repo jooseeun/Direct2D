@@ -17,7 +17,7 @@
 Player* Player::MainPlayer = nullptr;
 
 Player::Player()
-	: Speed(800.0f)
+	: Speed(700.0f)
 	, PlayerRenderer(nullptr)
 	, CurDir(PLAYERDIR::Right)
 	, AttackNum(1)
@@ -32,7 +32,7 @@ Player::Player()
 	, PlayerCol(nullptr)
 	, PlayerHealth(5)
 	, PlayerFullHealth(5)
-	, PlayerEnergyGage(0.7)
+	, PlayerEnergyGage(0.1f)
 	, GlobalTimeScale(1.0f)
 	, StunEffect1Renderer(nullptr)
 	, StunEffect2Renderer(nullptr)
@@ -356,7 +356,7 @@ void Player::CameraCheck()
 
 	if (0 <= CurCameraPos.y + CameraRectY / 2)
 	{
-		CurCameraPos.y = -CameraRectY / 2 + 100;
+		CurCameraPos.y = -CameraRectY / 2 - 100;
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
 	}
 
@@ -393,11 +393,13 @@ void Player::ShakeCamera()
 	{
 		GetLevel()->GetMainCameraActorTransform().SetWorldLeftMove(1000.f, GameEngineTime::GetDeltaTime());
 		ShakeRight = true;
+		return;
 	}
 	else
 	{
 		GetLevel()->GetMainCameraActorTransform().SetWorldRightMove(1000.0f, GameEngineTime::GetDeltaTime());
 		ShakeRight = false;
+		return;
 	}
 }
 void Player::Gravity()
