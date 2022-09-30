@@ -153,6 +153,20 @@ void HollowKnigntCore::Start()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExitsChildDirectory("ContentsResources");
+		Dir.Move("ContentsResources");
+		Dir.Move("Texture");
+		Dir.Move("Boss");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
 	GameEngineFont::Load("Noto Serif KR");
 	GameEngineFont::Load("Noto Serif KR Black");
 	//player 府家胶
@@ -197,6 +211,24 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Zombie Basic 5_attack_v020000-Sheet.png", 10, 1);
 	GameEngineTexture::Cut("Zombie Basic 5_walk0000-Sheet.png", 7, 1);
 	GameEngineTexture::Cut("Zombie Basic 5_turn0000-Sheet.png", 2, 1);
+
+	///////////Boss
+	GameEngineTexture::Cut("False Knight_attack_charge0000-Sheet.png", 7, 1);
+	GameEngineTexture::Cut("False Knight_attack0000-Sheet.png", 4, 1);
+	GameEngineTexture::Cut("False Knight_death_fall0000-Sheet.png", 3, 1);
+	GameEngineTexture::Cut("False Knight_death_head0000-Sheet.png", 14, 1);
+	GameEngineTexture::Cut("False Knight_idle0000-Sheet.png", 5, 1);
+	GameEngineTexture::Cut("False Knight_jump_antic0000-Sheet.png", 3, 1);
+	GameEngineTexture::Cut("False Knight_jump_attack0001-Sheet.png", 11, 1);
+	GameEngineTexture::Cut("False Knight_jump0002-Sheet.png", 3, 1);
+	GameEngineTexture::Cut("False Knight_pop_out0000-Sheet.png", 5, 1);
+	GameEngineTexture::Cut("False Knight_roll0026-Sheet.png", 7, 1);
+	GameEngineTexture::Cut("False Knight_staff_leave0025-Sheet.png", 7, 1);
+	GameEngineTexture::Cut("False Knight_staff_leave0046-Sheet.png", 4, 1);
+	GameEngineTexture::Cut("False Knight_stun_crop0000-Sheet.png", 3, 1);
+	GameEngineTexture::Cut("False Knight_stun_damage0000-Sheet.png", 3, 1);
+	GameEngineTexture::Cut("False Knight_stun_head_idle0000-Sheet.png", 5, 1);
+	GameEngineTexture::Cut("False Knight_stun0000-Sheet.png", 9, 1);
 
 	//UI 府家胶
 	GameEngineTexture::Cut("EnergyUI.png", 6, 1);

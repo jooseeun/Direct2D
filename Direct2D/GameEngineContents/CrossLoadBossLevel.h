@@ -4,7 +4,10 @@
 #include "PlayLevelManager.h"
 
 
+class HornZombie;
+class BasicZombie;
 class GameEngineCameraActor;
+class FalseKnight;
 class CrossLoadBossLevel : public PlayLevelManager
 {
 public:
@@ -28,6 +31,9 @@ private:
 
 	GameEngineCameraActor* Camera;
 	float4 MapSize;
-
+	HornZombie* Zombie1;
+	BasicZombie* Zombie2;
+	BasicZombie* Zombie3;
+	FalseKnight* Boss;
 };
 

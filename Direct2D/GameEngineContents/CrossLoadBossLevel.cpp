@@ -7,6 +7,7 @@
 #include "MapMoveCollision.h"
 #include "BasicZombie.h"
 #include "HornZombie.h"
+#include "FalseKnight.h"
 
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
@@ -58,21 +59,26 @@ void CrossLoadBossLevel::Start()
 		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveLevel1 = "Town2";
 	}
+	//{
+	//	Zombie1 = CreateActor<HornZombie>(OBJECTORDER::Monster);
+	//	Zombie1->GetTransform().SetLocalPosition({ 1650, -1390, 0 });
+	//	Zombie1->SetMonsterDir(MonsterDIR::Left);
+	//}
+	//{
+	//	Zombie2 = CreateActor<BasicZombie>(OBJECTORDER::Monster);
+	//	Zombie2->GetTransform().SetLocalPosition({ 1553, -1390, 0 });
+	//	Zombie2->SetMonsterDir(MonsterDIR::Left);
+	//}
+	//{
+	//	Zombie3 = CreateActor<BasicZombie>(OBJECTORDER::Monster);
+	//	Zombie3->GetTransform().SetLocalPosition({ 1800, -1390, 0 });
+	//	Zombie3->SetMonsterDir(MonsterDIR::Right);
+	//}
+	{
+		Boss = CreateActor<FalseKnight>(OBJECTORDER::Monster);
+		Boss->GetTransform().SetLocalPosition({ 2457, -700, 0 });
+	}
 
-	{
-		BasicZombie* Zombie = CreateActor<BasicZombie>(OBJECTORDER::Monster);
-		Zombie->GetTransform().SetLocalPosition({ 1800, -1390, 0 });
-		Zombie->SetMonsterDir(MonsterDIR::Right);
-	}
-	{
-		BasicZombie* Zombie = CreateActor<BasicZombie>(OBJECTORDER::Monster);
-		Zombie->GetTransform().SetLocalPosition({ 1553, -1390, 0 });
-		Zombie->SetMonsterDir(MonsterDIR::Left);
-	}
-	{
-		HornZombie* Zombie = CreateActor<HornZombie>(OBJECTORDER::Monster);
-		Zombie->GetTransform().SetLocalPosition({ 1650, -1390, 0 });
-	}
 }
 void CrossLoadBossLevel::Update(float _DeltaTime)
 {
@@ -84,6 +90,13 @@ void CrossLoadBossLevel::Update(float _DeltaTime)
 	{
 		SetMapONOFF();
 	}
+
+	//if (Zombie1->IsDeath() == true &&
+	//	Zombie2->IsDeath() == true &&
+	//	Zombie3->IsDeath() == true)
+	//{
+
+	//}
 }
 void CrossLoadBossLevel::End()
 {
@@ -96,10 +109,10 @@ void CrossLoadBossLevel::LevelStartEvent()
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
 		}
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 4522, -1434, 0 });
+		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 1553, -1390, 0 });
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
-		GetMainCameraActorTransform().SetLocalPosition({ 4522, -1434, 0 });
+		GetMainCameraActorTransform().SetLocalPosition({ 1553, -1390, 0 });
 	}
 
 	{
