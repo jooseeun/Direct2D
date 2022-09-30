@@ -189,10 +189,14 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Zombie Basic 1_attack0000-Sheet.png", 6, 1);
 	GameEngineTexture::Cut("Zombie Basic 1_death0000-Sheet.png", 9, 1);
 	GameEngineTexture::Cut("Zombie Basic 1_idle0000-Sheet.png", 6, 1);
+	GameEngineTexture::Cut("Zombie Basic 1_walk0000-Sheet.png", 7, 1);
+	GameEngineTexture::Cut("Zombie Basic 1_turn0000-Sheet.png", 2, 1);
 
 	GameEngineTexture::Cut("Zombie Basic 5_idle0000-Sheet.png", 6, 1);
 	GameEngineTexture::Cut("Zombie Basic 5_death0000-Sheet.png", 9, 1);
 	GameEngineTexture::Cut("Zombie Basic 5_attack_v020000-Sheet.png", 10, 1);
+	GameEngineTexture::Cut("Zombie Basic 5_walk0000-Sheet.png", 7, 1);
+	GameEngineTexture::Cut("Zombie Basic 5_turn0000-Sheet.png", 2, 1);
 
 	//UI ¸®¼Ò½º
 	GameEngineTexture::Cut("EnergyUI.png", 6, 1);

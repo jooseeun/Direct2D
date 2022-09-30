@@ -162,6 +162,9 @@
     <ClCompile Include="BasicZombie.cpp">
       <Filter>Contents\Actor\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="HornZombie.cpp">
+      <Filter>Contents\Actor\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -273,6 +276,9 @@
       <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="BasicZombie.h">
+      <Filter>Contents\Actor\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="HornZombie.h">
       <Filter>Contents\Actor\Monster</Filter>
     </ClInclude>
   </ItemGroup>

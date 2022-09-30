@@ -1,11 +1,11 @@
-#include "BasicZombie.h"
+#include "HornZombie.h"
 #include "PreCompile.h"
 #include "PlayLevelManager.h"
 #include "Player.h"
 #include "GeoCoin.h"
 #include <iostream>
 
-BasicZombie::BasicZombie()
+HornZombie::HornZombie()
 	: MonsterRenderer(nullptr)
 	, MonsterCollision(nullptr)
 	, TriggerCollision(nullptr)
@@ -22,11 +22,11 @@ BasicZombie::BasicZombie()
 {
 }
 
-BasicZombie::~BasicZombie()
+HornZombie::~HornZombie()
 {
 }
 
-void BasicZombie::Start()
+void HornZombie::Start()
 {
 	GetTransform().SetLocalScale({ 1, 1, 1 });
 
@@ -82,44 +82,44 @@ void BasicZombie::Start()
 
 	{
 		MonsterRenderer->CreateFrameAnimationCutTexture("Idle",
-			FrameAnimation_DESC("Zombie Basic 1_idle0000-Sheet.png", 0, 5, 0.1f, false));
+			FrameAnimation_DESC("Zombie Basic 5_idle0000-Sheet.png", 0, 5, 0.1f, false));
 		MonsterRenderer->CreateFrameAnimationCutTexture("Move",
-			FrameAnimation_DESC("Zombie Basic 1_walk0000-Sheet.png", 0, 6, 0.1f, true));
+			FrameAnimation_DESC("Zombie Basic 5_walk0000-Sheet.png", 0, 6, 0.1f, true));
 		MonsterRenderer->CreateFrameAnimationCutTexture("Turn",
-			FrameAnimation_DESC("Zombie Basic 1_turn0000-Sheet.png", 0, 1, 0.1f, false));
+			FrameAnimation_DESC("Zombie Basic 5_turn0000-Sheet.png", 0, 1, 0.1f, false));
 		MonsterRenderer->CreateFrameAnimationCutTexture("Attack",
-			FrameAnimation_DESC("Zombie Basic 1_attack0000-Sheet.png", 0, 5, 0.2f, false));
+			FrameAnimation_DESC("Zombie Basic 5_attack_v020000-Sheet.png", 0, 5, 0.2f, false));
 		MonsterRenderer->CreateFrameAnimationCutTexture("Death",
-			FrameAnimation_DESC("Zombie Basic 1_death0000-Sheet.png", 0, 8, 0.1f, false));
+			FrameAnimation_DESC("Zombie Basic 5_death0000-Sheet.png", 0, 8, 0.1f, false));
 	}
 
 
 	{
 		StateManager.CreateStateMember("Idle"
-			, std::bind(&BasicZombie::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2)
-			, std::bind(&BasicZombie::IdleStart, this, std::placeholders::_1)
+			, std::bind(&HornZombie::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2)
+			, std::bind(&HornZombie::IdleStart, this, std::placeholders::_1)
 		);
 		StateManager.CreateStateMember("Move"
-			, std::bind(&BasicZombie::MoveUpdate, this, std::placeholders::_1, std::placeholders::_2)
-			, std::bind(&BasicZombie::MoveStart, this, std::placeholders::_1)
+			, std::bind(&HornZombie::MoveUpdate, this, std::placeholders::_1, std::placeholders::_2)
+			, std::bind(&HornZombie::MoveStart, this, std::placeholders::_1)
 		);
 		StateManager.CreateStateMember("Back"
-			, std::bind(&BasicZombie::BackUpdate, this, std::placeholders::_1, std::placeholders::_2)
-			, std::bind(&BasicZombie::BackStart, this, std::placeholders::_1)
+			, std::bind(&HornZombie::BackUpdate, this, std::placeholders::_1, std::placeholders::_2)
+			, std::bind(&HornZombie::BackStart, this, std::placeholders::_1)
 		);
 		StateManager.CreateStateMember("Death"
-			, std::bind(&BasicZombie::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2)
-			, std::bind(&BasicZombie::DeathStart, this, std::placeholders::_1)
+			, std::bind(&HornZombie::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2)
+			, std::bind(&HornZombie::DeathStart, this, std::placeholders::_1)
 		);
 		StateManager.CreateStateMember("Attack"
-			, std::bind(&BasicZombie::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2)
-			, std::bind(&BasicZombie::AttackStart, this, std::placeholders::_1)
+			, std::bind(&HornZombie::AttackUpdate, this, std::placeholders::_1, std::placeholders::_2)
+			, std::bind(&HornZombie::AttackStart, this, std::placeholders::_1)
 		);
 
 		StateManager.ChangeState("Move");
 	}
 }
-CollisionReturn BasicZombie::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn HornZombie::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	if (Health == 0)
 	{
@@ -156,7 +156,7 @@ CollisionReturn BasicZombie::CheckDemage(GameEngineCollision* _This, GameEngineC
 
 	return CollisionReturn::ContinueCheck;
 }
-CollisionReturn BasicZombie::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn HornZombie::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	if (StopTime <= 0)
 	{
@@ -164,7 +164,7 @@ CollisionReturn BasicZombie::CheckTrigger(GameEngineCollision* _This, GameEngine
 	}
 	return CollisionReturn::ContinueCheck;
 }
-void BasicZombie::EffectUpdate()
+void HornZombie::EffectUpdate()
 {
 	if (HPEffect1->GetPixelData().MulColor.a != 0.0f)
 	{
@@ -192,19 +192,19 @@ void BasicZombie::EffectUpdate()
 	});
 
 }
-void BasicZombie::Update(float _DeltaTime)
+void HornZombie::Update(float _DeltaTime)
 {
 	if (StateManager.GetCurStateStateName() == "Move")
 	{
 		TriggerCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
-			std::bind(&BasicZombie::CheckTrigger, this, std::placeholders::_1, std::placeholders::_2)
+			std::bind(&HornZombie::CheckTrigger, this, std::placeholders::_1, std::placeholders::_2)
 		);
 	}
 
 
 
 	MonsterCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Skill, CollisionType::CT_OBB2D,
-		std::bind(&BasicZombie::CheckDemage, this, std::placeholders::_1, std::placeholders::_2)
+		std::bind(&HornZombie::CheckDemage, this, std::placeholders::_1, std::placeholders::_2)
 	);
 	Gravity();
 	EffectUpdate();
@@ -213,7 +213,7 @@ void BasicZombie::Update(float _DeltaTime)
 
 
 /////////픽셀충돌 중력 함수/////////////////////////////
-void BasicZombie::Gravity()
+void HornZombie::Gravity()
 {
 	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
 	if (nullptr == ColMapTexture)
@@ -238,7 +238,7 @@ void BasicZombie::Gravity()
 
 }
 
-bool BasicZombie::MapPixelCheck()
+bool HornZombie::MapPixelCheck()
 {
 	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
 	if (nullptr == ColMapTexture)
@@ -283,12 +283,12 @@ bool BasicZombie::MapPixelCheck()
 
 ///////////State 함수//////////////////////////////////////////////////////////////////////////////
 
-void BasicZombie::IdleStart(const StateInfo& _Info)
+void HornZombie::IdleStart(const StateInfo& _Info)
 {
 	MonsterRenderer->ChangeFrameAnimation("Idle");
 	MonsterRenderer->ScaleToCutTexture(0);
 }
-void BasicZombie::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
+void HornZombie::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	if (StopTime > 0.0f)
 	{
@@ -296,13 +296,13 @@ void BasicZombie::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 	}
 }
 
-void BasicZombie::MoveStart(const StateInfo& _Info)
+void HornZombie::MoveStart(const StateInfo& _Info)
 {
 	MoveTime = 4.0f;
 	MonsterRenderer->ChangeFrameAnimation("Move");
 	MonsterRenderer->ScaleToCutTexture(0);
 }
-void BasicZombie::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
+void HornZombie::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	MonsterRenderer->AnimationBindEnd("Turn", [=](const FrameAnimation_DESC& _Info)
 	{
@@ -347,12 +347,12 @@ void BasicZombie::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 	}
 }
 
-void BasicZombie::AttackStart(const StateInfo& _Info)
+void HornZombie::AttackStart(const StateInfo& _Info)
 {
 	MonsterRenderer->ChangeFrameAnimation("Attack");
 	MonsterRenderer->ScaleToCutTexture(0);
 }
-void BasicZombie::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
+void HornZombie::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	MonsterRenderer->AnimationBindEnd("Attack", [=](const FrameAnimation_DESC& _Info)
 	{
@@ -376,11 +376,11 @@ void BasicZombie::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	}
 
 }
-void BasicZombie::BackStart(const StateInfo& _Info)
+void HornZombie::BackStart(const StateInfo& _Info)
 {
 	FallTime = 0.3f;
 }
-void BasicZombie::BackUpdate(float _DeltaTime, const StateInfo& _Info)
+void HornZombie::BackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	if (OnGround == true && FallTime < 0.0f)
 	{
@@ -412,7 +412,7 @@ void BasicZombie::BackUpdate(float _DeltaTime, const StateInfo& _Info)
 	}
 }
 
-void BasicZombie::DeathStart(const StateInfo& _Info)
+void HornZombie::DeathStart(const StateInfo& _Info)
 {
 	MonsterRenderer->ChangeFrameAnimation("Death");
 	MonsterRenderer->ScaleToCutTexture(0);
@@ -435,7 +435,7 @@ void BasicZombie::DeathStart(const StateInfo& _Info)
 
 
 }
-void BasicZombie::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
+void HornZombie::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 
 }

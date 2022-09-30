@@ -6,6 +6,7 @@
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
 #include "BasicZombie.h"
+#include "HornZombie.h"
 
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
@@ -59,10 +60,19 @@ void CrossLoadBossLevel::Start()
 	}
 
 	{
-		BasicZombie* Zombie1 = CreateActor<BasicZombie>(OBJECTORDER::Monster);
-		Zombie1->GetTransform().SetLocalPosition({ 1553, -1390, 0 });
+		BasicZombie* Zombie = CreateActor<BasicZombie>(OBJECTORDER::Monster);
+		Zombie->GetTransform().SetLocalPosition({ 1800, -1390, 0 });
+		Zombie->SetMonsterDir(MonsterDIR::Right);
 	}
-
+	{
+		BasicZombie* Zombie = CreateActor<BasicZombie>(OBJECTORDER::Monster);
+		Zombie->GetTransform().SetLocalPosition({ 1553, -1390, 0 });
+		Zombie->SetMonsterDir(MonsterDIR::Left);
+	}
+	{
+		HornZombie* Zombie = CreateActor<HornZombie>(OBJECTORDER::Monster);
+		Zombie->GetTransform().SetLocalPosition({ 1650, -1390, 0 });
+	}
 }
 void CrossLoadBossLevel::Update(float _DeltaTime)
 {

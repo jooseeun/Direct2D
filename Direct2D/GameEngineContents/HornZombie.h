@@ -3,18 +3,18 @@
 #include <GameEngineCore/CoreMinimal.h>
 #include "ContentsEnum.h"
 
-class BasicZombie : public GameEngineActor
+class HornZombie : public GameEngineActor
 {
 public:
 	// constrcuter destructer
-	BasicZombie();
-	~BasicZombie();
+	HornZombie();
+	~HornZombie();
 
 	// delete Function
-	BasicZombie(const BasicZombie& _Other) = delete;
-	BasicZombie(BasicZombie&& _Other) noexcept = delete;
-	BasicZombie& operator=(const BasicZombie& _Other) = delete;
-	BasicZombie& operator=(BasicZombie&& _Other) noexcept = delete;
+	HornZombie(const HornZombie& _Other) = delete;
+	HornZombie(HornZombie&& _Other) noexcept = delete;
+	HornZombie& operator=(const HornZombie& _Other) = delete;
+	HornZombie& operator=(HornZombie&& _Other) noexcept = delete;
 
 	inline void SetMonsterDir(MonsterDIR _CurDir)
 	{
