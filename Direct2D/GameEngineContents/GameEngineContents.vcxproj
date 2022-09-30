@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BasicZombie.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BigBreakDoor.cpp">
       <SubType>
       </SubType>
@@ -40,6 +44,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Crawler.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CrossLoadBossLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -145,6 +153,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasicZombie.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BigBreakDoor.h">
       <SubType>
       </SubType>
@@ -170,6 +182,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="CrossLoadBossLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Elderbug.h">
       <SubType>
       </SubType>

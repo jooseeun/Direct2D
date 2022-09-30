@@ -9,6 +9,7 @@
 #include "Tutorial2Level.h"
 #include "Tutorial3Level.h"
 #include "Tutorial4Level.h"
+#include "CrossLoadBossLevel.h"
 #include <GameEngineCore/GameEngineBlend.h>
 
 #pragma comment(lib, "GameEngineBase.lib")
@@ -185,6 +186,14 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Buzzer_death0000-Sheet.png", 3, 1);
 	GameEngineTexture::Cut("Buzzer_startle_01-Sheet.png", 4, 1);
 
+	GameEngineTexture::Cut("Zombie Basic 1_attack0000-Sheet.png", 6, 1);
+	GameEngineTexture::Cut("Zombie Basic 1_death0000-Sheet.png", 9, 1);
+	GameEngineTexture::Cut("Zombie Basic 1_idle0000-Sheet.png", 6, 1);
+
+	GameEngineTexture::Cut("Zombie Basic 5_idle0000-Sheet.png", 6, 1);
+	GameEngineTexture::Cut("Zombie Basic 5_death0000-Sheet.png", 9, 1);
+	GameEngineTexture::Cut("Zombie Basic 5_attack_v020000-Sheet.png", 10, 1);
+
 	//UI ¸®¼Ò½º
 	GameEngineTexture::Cut("EnergyUI.png", 6, 1);
 	GameEngineTexture::Cut("FullHealthUI.png", 6, 1);
@@ -245,7 +254,8 @@ void HollowKnigntCore::Start()
 	CreateLevel<Tutorial2Level>("Tutorial2");
 	CreateLevel<Tutorial3Level>("Tutorial3");
 	CreateLevel<Tutorial4Level>("Tutorial4");
-	ChangeLevel("Intro");
+	CreateLevel<CrossLoadBossLevel>("CrossLoadBoss");
+	ChangeLevel("CrossLoadBoss");
 
 	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 
