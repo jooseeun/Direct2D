@@ -35,6 +35,9 @@ private:
 	void JumpStart(const StateInfo& _Info);
 	void JumpUpdate(float _DeltaTime, const StateInfo& _Info);
 
+	void BackJumpStart(const StateInfo& _Info);
+	void BackJumpUpdate(float _DeltaTime, const StateInfo& _Info);
+
 	void FallStart(const StateInfo& _Info);
 	void FallUpdate(float _DeltaTime, const StateInfo& _Info);
 

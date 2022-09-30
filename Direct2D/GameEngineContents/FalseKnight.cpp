@@ -51,6 +51,8 @@ void FalseKnight::Start()
 			FrameAnimation_DESC("False Knight_jump_antic0000-Sheet.png", 0, 2, 0.1f, false));
 		MonsterRenderer->CreateFrameAnimationCutTexture("Jump",
 			FrameAnimation_DESC("False Knight_jump0002-Sheet.png", 0, 2, 0.1f, false));
+		MonsterRenderer->CreateFrameAnimationCutTexture("BackJump",
+			FrameAnimation_DESC("False Knight_jump0002-Sheet.png", 0, 2, 0.1f, false));
 	}
 
 
@@ -60,6 +62,10 @@ void FalseKnight::Start()
 			, std::bind(&FalseKnight::IdleStart, this, std::placeholders::_1)
 		);
 		StateManager.CreateStateMember("Jump"
+			, std::bind(&FalseKnight::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2)
+			, std::bind(&FalseKnight::JumpStart, this, std::placeholders::_1)
+		);		
+		StateManager.CreateStateMember("BackJump"
 			, std::bind(&FalseKnight::JumpUpdate, this, std::placeholders::_1, std::placeholders::_2)
 			, std::bind(&FalseKnight::JumpStart, this, std::placeholders::_1)
 		);
@@ -174,7 +180,7 @@ void FalseKnight::IdleStart(const StateInfo& _Info)
 }
 void FalseKnight::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	StateManager.ChangeState("Jump");
+	//StateManager.ChangeState("Jump");
 }
 
 void FalseKnight::JumpStart(const StateInfo& _Info)
@@ -224,7 +230,53 @@ GetTransform().GetWorldPosition().z, });
 		}
 	}
 }
+void FalseKnight::BackJumpStart(const StateInfo& _Info)
+{
+	MonsterRenderer->ChangeFrameAnimation("BackJump");
+	MonsterRenderer->ScaleToCutTexture(0);
+	JumpTime = 1.0f;
+	CheckMonsterDir();
+}
+void FalseKnight::BackJumpUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	JumpTime -= 1.0f * _DeltaTime;
+	if (JumpTime <= 0.0f)
+	{
+		StateManager.ChangeState("Fall");
+	}
+	else if (JumpTime > 0.3f)
+	{
 
+		if (CurDir == MonsterDIR::Right)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalNegativeX();
+
+		}
+		if (CurDir == MonsterDIR::Left)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalPositiveX();
+		}
+		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
+GetTransform().GetWorldPosition().y + 1200 * GameEngineTime::GetDeltaTime(),
+GetTransform().GetWorldPosition().z, });
+	}
+	else
+	{
+		if (CurDir == MonsterDIR::Right)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalNegativeX();
+
+		}
+		if (CurDir == MonsterDIR::Left)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalPositiveX();
+		}
+	}
+}
 void FalseKnight::LandStart(const StateInfo& _Info)
 {
 	MonsterRenderer->ChangeFrameAnimation("Land");
@@ -250,17 +302,35 @@ void FalseKnight::FallStart(const StateInfo& _Info)
 }
 void FalseKnight::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	if (CurDir == MonsterDIR::Left)
+	if (_Info.PrevState == "BackJump")
 	{
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
-		MonsterRenderer->GetTransform().PixLocalNegativeX();
+		if (CurDir == MonsterDIR::Right)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalNegativeX();
 
+		}
+		if (CurDir == MonsterDIR::Left)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalPositiveX();
+		}
 	}
-	if (CurDir == MonsterDIR::Right)
+	else
 	{
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
-		MonsterRenderer->GetTransform().PixLocalPositiveX();
+		if (CurDir == MonsterDIR::Left)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalNegativeX();
+
+		}
+		if (CurDir == MonsterDIR::Right)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalPositiveX();
+		}
 	}
+
 }
 
 void FalseKnight::JumpAttackStart(const StateInfo& _Info)
