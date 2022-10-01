@@ -10,12 +10,15 @@ FalseKnight::FalseKnight()
 	, HPEffect2(nullptr)
 	, HPEffect3(nullptr)
 	, MonsterCollision(nullptr)
+	, LeftSkillCol(nullptr)
+	, RightSkillCol(nullptr)
 	, CurDir(MonsterDIR::Left)
 	, Speed(200.0f)
 	, JumpTime(2.0f)
 	, Health(15)
 	, OnGround(false)
 	, StopTime(0.0f)
+	, SkillTime(0.0f)
 {
 }
 
@@ -36,12 +39,25 @@ void FalseKnight::Start()
 
 	{
 		MonsterCollision = CreateComponent<GameEngineCollision>();
-		MonsterCollision->GetTransform().SetLocalScale({ 330,300,1000.0f });
+		MonsterCollision->GetTransform().SetLocalScale({ 330,290,1000.0f });
 		MonsterCollision->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
-			float4{ 0,110,0 });
+			float4{ 0,160,0 });
 		MonsterCollision->ChangeOrder((int)(OBJECTORDER::Monster));
 	}
-
+	{
+		LeftSkillCol = CreateComponent<GameEngineCollision>();
+		LeftSkillCol->GetTransform().SetLocalScale({ 330,290,1000.0f });
+		LeftSkillCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
+			float4{ -300,0,0 });
+		LeftSkillCol->ChangeOrder((int)(OBJECTORDER::Monster));
+	}
+	{
+		RightSkillCol = CreateComponent<GameEngineCollision>();
+		RightSkillCol->GetTransform().SetLocalScale({ 330,290,1000.0f });
+		RightSkillCol->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
+			float4{ +300,0,0 });
+		RightSkillCol->ChangeOrder((int)(OBJECTORDER::Monster));
+	}
 	{
 		MonsterRenderer->CreateFrameAnimationCutTexture("Idle",
 			FrameAnimation_DESC("False Knight_idle0000-Sheet.png", 0, 4, 0.1f, true));
@@ -53,6 +69,11 @@ void FalseKnight::Start()
 			FrameAnimation_DESC("False Knight_jump0002-Sheet.png", 0, 2, 0.1f, false));
 		MonsterRenderer->CreateFrameAnimationCutTexture("BackJump",
 			FrameAnimation_DESC("False Knight_jump0002-Sheet.png", 0, 2, 0.1f, false));
+
+		MonsterRenderer->CreateFrameAnimationCutTexture("JumpAttack1",
+			FrameAnimation_DESC("False Knight_jump_attack0001-Sheet.png", 0, 4, 0.1f, false));
+		MonsterRenderer->CreateFrameAnimationCutTexture("JumpAttack2",
+			FrameAnimation_DESC("False Knight_jump_attack0001-Sheet.png", 5, 10, 0.15f, false));
 	}
 
 
@@ -181,6 +202,8 @@ void FalseKnight::IdleStart(const StateInfo& _Info)
 void FalseKnight::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	//StateManager.ChangeState("Jump");
+	//StateManager.ChangeState("BackJump");
+	StateManager.ChangeState("JumpAttack");
 }
 
 void FalseKnight::JumpStart(const StateInfo& _Info)
@@ -332,16 +355,6 @@ void FalseKnight::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 	}
 
 }
-
-void FalseKnight::JumpAttackStart(const StateInfo& _Info)
-{
-
-}
-void FalseKnight::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-
-}
-
 void FalseKnight::GroundAttackStart(const StateInfo& _Info)
 {
 
@@ -349,6 +362,81 @@ void FalseKnight::GroundAttackStart(const StateInfo& _Info)
 void FalseKnight::GroundAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 
+}
+
+void FalseKnight::JumpAttackStart(const StateInfo& _Info)
+{
+	MonsterRenderer->ChangeFrameAnimation("JumpAttack1");
+	MonsterRenderer->ScaleToCutTexture(0);
+	CheckMonsterDir();
+	JumpTime = 0.5f;
+}
+void FalseKnight::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	MonsterRenderer->AnimationBindEnd("JumpAttack1", [=](const FrameAnimation_DESC& _Info)
+	{
+		MonsterRenderer->ChangeFrameAnimation("JumpAttack2");
+		SkillTime = 0.3f;
+	});
+	MonsterRenderer->AnimationBindEnd("JumpAttack2", [=](const FrameAnimation_DESC& _Info)
+	{
+		StateManager.ChangeState("Idle");
+	});
+	
+	SkillTime -= 1.0f * _DeltaTime;
+	JumpTime -= 1.0f * _DeltaTime;
+
+	if (SkillTime > 0.0f && SkillTime < 0.15f)
+	{
+		if (CurDir == MonsterDIR::Left)
+		{
+			LeftSkillCol->On();
+		}
+		else
+		{
+			RightSkillCol->On();
+		}
+	}
+	else
+	{
+		LeftSkillCol->Off();
+		RightSkillCol->Off();
+
+	}
+
+	if (JumpTime > 0.0f)
+	{
+
+		if (CurDir == MonsterDIR::Left)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalNegativeX();
+
+		}
+		if (CurDir == MonsterDIR::Right)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalPositiveX();
+		}
+		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
+GetTransform().GetWorldPosition().y + 1200.0f * GameEngineTime::GetDeltaTime(),
+GetTransform().GetWorldPosition().z, });
+	}
+
+	else
+	{
+		if (CurDir == MonsterDIR::Left)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed*0.5f * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalNegativeX();
+
+		}
+		if (CurDir == MonsterDIR::Right)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed* 0.5f * _DeltaTime);
+			MonsterRenderer->GetTransform().PixLocalPositiveX();
+		}
+	}
 }
 
 void FalseKnight::HitAttackStart(const StateInfo& _Info)

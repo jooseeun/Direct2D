@@ -67,8 +67,10 @@ private:
 	float Speed;
 	float JumpTime;
 	float StopTime;
+	float SkillTime;
 	bool OnGround;
 	int Health;
+
 
 	GameEngineStateManager StateManager;
 	GameEngineTextureRenderer* MonsterRenderer;
@@ -76,5 +78,7 @@ private:
 	GameEngineTextureRenderer* HPEffect2;
 	GameEngineTextureRenderer* HPEffect3;
 	GameEngineCollision* MonsterCollision;
+	GameEngineCollision* LeftSkillCol;
+	GameEngineCollision* RightSkillCol;
 };
 
