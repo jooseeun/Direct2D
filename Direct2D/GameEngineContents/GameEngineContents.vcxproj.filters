@@ -168,6 +168,9 @@
     <ClCompile Include="FalseKnight.cpp">
       <Filter>Contents\Actor\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="FalseKnightWaveSkill.cpp">
+      <Filter>Contents\Actor\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -285,6 +288,9 @@
       <Filter>Contents\Actor\Monster</Filter>
     </ClInclude>
     <ClInclude Include="FalseKnight.h">
+      <Filter>Contents\Actor\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="FalseKnightWaveSkill.h">
       <Filter>Contents\Actor\Boss</Filter>
     </ClInclude>
   </ItemGroup>

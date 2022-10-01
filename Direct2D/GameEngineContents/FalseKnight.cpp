@@ -2,6 +2,7 @@
 #include "PlayLevelManager.h"
 #include "Player.h"
 #include "PreCompile.h"
+#include "FalseKnightWaveSkill.h"
 
 FalseKnight::FalseKnight()
 	: StateManager()
@@ -44,6 +45,7 @@ void FalseKnight::Start()
 			float4{ 0,160,0 });
 		MonsterCollision->ChangeOrder((int)(OBJECTORDER::Monster));
 	}
+
 	{
 		LeftSkillCol = CreateComponent<GameEngineCollision>();
 		LeftSkillCol->GetTransform().SetLocalScale({ 330,290,1000.0f });
@@ -74,6 +76,12 @@ void FalseKnight::Start()
 			FrameAnimation_DESC("False Knight_jump_attack0001-Sheet.png", 0, 4, 0.1f, false));
 		MonsterRenderer->CreateFrameAnimationCutTexture("JumpAttack2",
 			FrameAnimation_DESC("False Knight_jump_attack0001-Sheet.png", 5, 10, 0.15f, false));
+
+
+		MonsterRenderer->CreateFrameAnimationCutTexture("GroundAttack1",
+			FrameAnimation_DESC("False Knight_attack0000-Sheet.png", 0, 3, 0.1f, false));
+		MonsterRenderer->CreateFrameAnimationCutTexture("GroundAttack2",
+			FrameAnimation_DESC("False Knight_attack0005-Sheet.png", 0, 7, 0.1f, false));
 	}
 
 
@@ -192,6 +200,21 @@ void FalseKnight::CheckMonsterDir()
 		CurDir = MonsterDIR::Right;
 	}
 }
+
+void FalseKnight::MakeWave()
+{
+	FalseKnightWaveSkill* Skill = GetLevel()->CreateActor<FalseKnightWaveSkill>();
+	CheckMonsterDir();
+	Skill->CurDir = CurDir;
+	if (CurDir == MonsterDIR::Left)
+	{
+		Skill->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ -300,0,0 });
+	}
+	else if (CurDir == MonsterDIR::Right)
+	{
+		Skill->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ 300,0,0 });
+	}
+}
 ///////////////////////State 관련 함수/////////////////////////////////////////////////////
 
 void FalseKnight::IdleStart(const StateInfo& _Info)
@@ -203,7 +226,8 @@ void FalseKnight::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	//StateManager.ChangeState("Jump");
 	//StateManager.ChangeState("BackJump");
-	StateManager.ChangeState("JumpAttack");
+	//StateManager.ChangeState("JumpAttack");
+	StateManager.ChangeState("GroundAttack");
 }
 
 void FalseKnight::JumpStart(const StateInfo& _Info)
@@ -357,11 +381,31 @@ void FalseKnight::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 void FalseKnight::GroundAttackStart(const StateInfo& _Info)
 {
-
+	MonsterRenderer->ChangeFrameAnimation("GroundAttack1");
+	MonsterRenderer->ScaleToCutTexture(0);
+	CheckMonsterDir();
+	IsMakeWave = true;
+	SkillTime = 5.0f;
 }
 void FalseKnight::GroundAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	MonsterRenderer->AnimationBindEnd("GroundAttack1", [=](const FrameAnimation_DESC& _Info)
+	{
+		MonsterRenderer->ChangeFrameAnimation("GroundAttack2");
+		MonsterRenderer->ScaleToCutTexture(0);
+		SkillTime = 0.3f;
+	});
+	MonsterRenderer->AnimationBindEnd("GroundAttack2", [=](const FrameAnimation_DESC& _Info)
+	{
+		StateManager.ChangeState("Idle");
+	});
 
+	SkillTime -= 1.0f * _DeltaTime;
+	if (SkillTime < 0.0f && IsMakeWave==true)
+	{
+		MakeWave();
+		IsMakeWave = false;
+	}
 }
 
 void FalseKnight::JumpAttackStart(const StateInfo& _Info)

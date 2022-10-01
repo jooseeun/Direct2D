@@ -27,6 +27,8 @@ private:
 	bool MapPixelCheck();
 	void CheckMonsterDir();
 
+	void MakeWave();
+
 	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 	void IdleStart(const StateInfo& _Info);
@@ -69,6 +71,7 @@ private:
 	float StopTime;
 	float SkillTime;
 	bool OnGround;
+	bool IsMakeWave;
 	int Health;
 
 

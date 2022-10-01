@@ -38,20 +38,20 @@ float4 ColorOverlay_PS(Output _Input) : SV_Target0
 
     if (Color.g >= 0.45f)
     {
-        Color.g = 1 - 2 * (1 - Color.g) * (1 - 0.565f);
+        Color.g = 1 - 2 * (1 - Color.g) * (1 - 0.53f);
     }
     else
     {
-        Color.g = 2 * Color.g * 0.565f;
+        Color.g = 2 * Color.g * 0.53f;
     }
 
     if (Color.b >= 0.45f)
     {
-        Color.b = 1 - 2*(1 - Color.b)*(1 - 0.58f);
+        Color.b = 1 - 2*(1 - Color.b)*(1 - 0.56f);
     }
     else
     {
-        Color.b = 2 * Color.b * 0.58f;
+        Color.b = 2 * Color.b * 0.56f;
     }
 
     return Color;

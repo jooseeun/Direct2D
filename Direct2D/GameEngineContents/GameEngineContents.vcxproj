@@ -63,6 +63,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FalseKnightWaveSkill.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineMyRenderer.cpp">
       <SubType>
       </SubType>
@@ -203,6 +207,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="FalseKnight.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FalseKnightWaveSkill.h">
       <SubType>
       </SubType>
     </ClInclude>
