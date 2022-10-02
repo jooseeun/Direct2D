@@ -25,5 +25,6 @@ private:
 	GameEngineTextureRenderer* SkillRenderer;
 	GameEngineCollision* SkillCol;
 	float4 WaveScale[16];
+	float Time;
 };
 

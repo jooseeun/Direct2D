@@ -28,6 +28,7 @@ private:
 	void CheckMonsterDir();
 
 	void MakeWave();
+	void DropBall();
 
 	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
 
@@ -73,6 +74,7 @@ private:
 	bool OnGround;
 	bool IsMakeWave;
 	int Health;
+	int SkillNum;
 
 
 	GameEngineStateManager StateManager;

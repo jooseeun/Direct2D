@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "PreCompile.h"
 #include "FalseKnightWaveSkill.h"
+#include "FalseKnightFireBall.h"
 
 FalseKnight::FalseKnight()
 	: StateManager()
@@ -82,6 +83,15 @@ void FalseKnight::Start()
 			FrameAnimation_DESC("False Knight_attack0000-Sheet.png", 0, 3, 0.1f, false));
 		MonsterRenderer->CreateFrameAnimationCutTexture("GroundAttack2",
 			FrameAnimation_DESC("False Knight_attack0005-Sheet.png", 0, 7, 0.1f, false));
+
+		MonsterRenderer->CreateFrameAnimationCutTexture("DropAttack1",
+			FrameAnimation_DESC("False Knight_attack0005-Sheet.png", 0, 4, 0.1f, false));
+		MonsterRenderer->CreateFrameAnimationCutTexture("DropAttack2",
+			FrameAnimation_DESC("False Knight_attack0005-Sheet.png", 0, 4, 0.1f, false));
+
+
+		MonsterRenderer->CreateFrameAnimationCutTexture("HitAttack",
+			FrameAnimation_DESC("False Knight_attack0005-Sheet.png", 0, 7, 0.1f, false));
 	}
 
 
@@ -134,6 +144,8 @@ void FalseKnight::Start()
 	}
 
 	StateManager.ChangeState("Idle");
+	LeftSkillCol->Off();
+	RightSkillCol->Off();
 }
 
 void FalseKnight::Update(float _DeltaTime)
@@ -215,6 +227,23 @@ void FalseKnight::MakeWave()
 		Skill->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ 300,0,0 });
 	}
 }
+
+void FalseKnight::DropBall()
+{
+	
+	FalseKnightFireBall* Skill1 = GetLevel()->CreateActor<FalseKnightFireBall>();
+	Skill1->GetTransform().SetLocalPosition(float4{1726,-536,0});
+	FalseKnightFireBall* Skill2 = GetLevel()->CreateActor<FalseKnightFireBall>();
+	Skill2->GetTransform().SetLocalPosition(float4{ 2200,-700,0 });
+	FalseKnightFireBall* Skill3 = GetLevel()->CreateActor<FalseKnightFireBall>();
+	Skill3->GetTransform().SetLocalPosition(float4{ 2400,-536,0 });
+	FalseKnightFireBall* Skill4 = GetLevel()->CreateActor<FalseKnightFireBall>();
+	Skill4->GetTransform().SetLocalPosition(float4{ 1900 ,-900,0 });
+	FalseKnightFireBall* Skill5 = GetLevel()->CreateActor<FalseKnightFireBall>();
+
+	Skill5->GetTransform().SetLocalPosition(float4{ 2900,-480,0 });
+
+}
 ///////////////////////State 관련 함수/////////////////////////////////////////////////////
 
 void FalseKnight::IdleStart(const StateInfo& _Info)
@@ -227,7 +256,8 @@ void FalseKnight::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 	//StateManager.ChangeState("Jump");
 	//StateManager.ChangeState("BackJump");
 	//StateManager.ChangeState("JumpAttack");
-	StateManager.ChangeState("GroundAttack");
+	//StateManager.ChangeState("GroundAttack");
+	StateManager.ChangeState("HitAttack");
 }
 
 void FalseKnight::JumpStart(const StateInfo& _Info)
@@ -409,7 +439,7 @@ void FalseKnight::GroundAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 
 void FalseKnight::JumpAttackStart(const StateInfo& _Info)
-{
+{ 
 	MonsterRenderer->ChangeFrameAnimation("JumpAttack1");
 	MonsterRenderer->ScaleToCutTexture(0);
 	CheckMonsterDir();
@@ -482,24 +512,93 @@ GetTransform().GetWorldPosition().z, });
 		}
 	}
 }
-
-void FalseKnight::HitAttackStart(const StateInfo& _Info)
-{
-
-}
-void FalseKnight::HitAttackUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-
-}
-
 void FalseKnight::DropAttackStart(const StateInfo& _Info)
 {
-
+	MonsterRenderer->ChangeFrameAnimation("DropAttack1");
+	MonsterRenderer->GetTransform().PixLocalPositiveX(); 
+	MonsterRenderer->ScaleToCutTexture(0);
+	SkillNum = 10;
 }
 void FalseKnight::DropAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	if (SkillNum == 5 || SkillNum == 8)
+	{
+		DropBall();		
+		SkillNum -= 1;
+	}
+
+	MonsterRenderer->AnimationBindEnd("DropAttack1", [=](const FrameAnimation_DESC& _Info)
+	{
+		SkillNum -= 1;
+		MonsterRenderer->ChangeFrameAnimation("DropAttack2");
+		MonsterRenderer->GetTransform().PixLocalNegativeX();
+		LeftSkillCol->On();
+		RightSkillCol->Off();
+	});
+
+	MonsterRenderer->AnimationBindEnd("DropAttack2", [=](const FrameAnimation_DESC& _Info)
+	{
+		SkillNum -= 1;
+		MonsterRenderer->ChangeFrameAnimation("DropAttack1");
+		MonsterRenderer->GetTransform().PixLocalPositiveX();
+		RightSkillCol->On();
+		LeftSkillCol->Off();
+		if (SkillNum < 0)
+		{
+			StateManager.ChangeState("Idle");
+			LeftSkillCol->Off();
+			RightSkillCol->Off();
+
+		}
+	});
 
 }
+void FalseKnight::HitAttackStart(const StateInfo& _Info)
+{
+	CheckMonsterDir();
+	MonsterRenderer->ChangeFrameAnimation("HitAttack");
+	if (CurDir == MonsterDIR::Left)
+	{
+		MonsterRenderer->GetTransform().PixLocalNegativeX();
+	}
+	else
+	{
+		MonsterRenderer->GetTransform().PixLocalPositiveX();
+	}
+	MonsterRenderer->ScaleToCutTexture(0);
+
+	SkillTime = 0.3f;
+}
+void FalseKnight::HitAttackUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	MonsterRenderer->AnimationBindEnd("HitAttack", [=](const FrameAnimation_DESC& _Info)
+	{
+		StateManager.ChangeState("Idle");
+	});
+
+	SkillTime -= 1.0f * _DeltaTime;
+	JumpTime -= 1.0f * _DeltaTime;
+
+	if (SkillTime > 0.0f && SkillTime < 0.2f)
+	{
+		if (CurDir == MonsterDIR::Left)
+		{
+			LeftSkillCol->On();
+		}
+		else
+		{
+			RightSkillCol->On();
+		}
+	}
+	else
+	{
+		LeftSkillCol->Off();
+		RightSkillCol->Off();
+
+	}
+}
+
+
 
 void FalseKnight::StunStart(const StateInfo& _Info)
 {

@@ -231,6 +231,7 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("False Knight_stun0000-Sheet.png", 9, 1);
 	GameEngineTexture::Cut("False Knight_attack0005-Sheet.png", 8, 1);
 	GameEngineTexture::Cut("Boss_WaveSkill_Sheet.png", 16, 1);
+	GameEngineTexture::Cut("barrel_fall0000-Sheet.png", 8, 1);
 	
 	//UI ¸®¼Ò½º
 	GameEngineTexture::Cut("EnergyUI.png", 6, 1);
