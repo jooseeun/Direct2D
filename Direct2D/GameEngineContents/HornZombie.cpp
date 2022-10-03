@@ -19,6 +19,7 @@ HornZombie::HornZombie()
 	, HPEffect3(nullptr)
 	, StopTime(0.0f)
 	, MoveTime(4.0f)
+	, Death_(false)
 {
 }
 
@@ -417,7 +418,7 @@ void HornZombie::DeathStart(const StateInfo& _Info)
 	MonsterRenderer->ChangeFrameAnimation("Death");
 	MonsterRenderer->ScaleToCutTexture(0);
 	MonsterCollision->Off();
-
+	Death_ = true;
 	GeoCoin* Coin = GetLevel()->CreateActor<GeoCoin>();
 	Coin->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ 10,-6,0 });
 	GeoCoin* Coin1 = GetLevel()->CreateActor<GeoCoin>();

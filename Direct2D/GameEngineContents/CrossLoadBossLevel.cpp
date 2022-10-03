@@ -8,14 +8,22 @@
 #include "BasicZombie.h"
 #include "HornZombie.h"
 #include "FalseKnight.h"
+#include "BossRoomDoor.h"
 
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
 
-CrossLoadBossLevel::CrossLoadBossLevel() 
-	:Camera(nullptr),
-	MapSize()
+CrossLoadBossLevel::CrossLoadBossLevel()
+	: Camera(nullptr)
+	, MapSize()
+	, RightDoor(nullptr)
+	, LeftDoor(nullptr)
+	, Zombie1(nullptr)
+	, Zombie2(nullptr)
+	, Zombie3(nullptr)
+	, Boss(nullptr)
+	, IsBoss(false)
 {
 }
 
@@ -59,26 +67,22 @@ void CrossLoadBossLevel::Start()
 		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveLevel1 = "Town2";
 	}
-	//{
-	//	Zombie1 = CreateActor<HornZombie>(OBJECTORDER::Monster);
-	//	Zombie1->GetTransform().SetLocalPosition({ 1650, -1390, 0 });
-	//	Zombie1->SetMonsterDir(MonsterDIR::Left);
-	//}
-	//{
-	//	Zombie2 = CreateActor<BasicZombie>(OBJECTORDER::Monster);
-	//	Zombie2->GetTransform().SetLocalPosition({ 1553, -1390, 0 });
-	//	Zombie2->SetMonsterDir(MonsterDIR::Left);
-	//}
-	//{
-	//	Zombie3 = CreateActor<BasicZombie>(OBJECTORDER::Monster);
-	//	Zombie3->GetTransform().SetLocalPosition({ 1800, -1390, 0 });
-	//	Zombie3->SetMonsterDir(MonsterDIR::Right);
-	//}
 	{
-		Boss = CreateActor<FalseKnight>(OBJECTORDER::Monster);
-		Boss->GetTransform().SetLocalPosition({ 2457, -700, 0 });
-		Boss->GetTransform().SetLocalScale({ 1.2, 1.2, 1.2 });
+		Zombie1 = CreateActor<HornZombie>(OBJECTORDER::Monster);
+		Zombie1->GetTransform().SetLocalPosition({ 1650, -1390, 0 });
+		Zombie1->SetMonsterDir(MonsterDIR::Left);
 	}
+	{
+		Zombie2 = CreateActor<BasicZombie>(OBJECTORDER::Monster);
+		Zombie2->GetTransform().SetLocalPosition({ 1553, -1390, 0 });
+		Zombie2->SetMonsterDir(MonsterDIR::Left);
+	}
+	{
+		Zombie3 = CreateActor<BasicZombie>(OBJECTORDER::Monster);
+		Zombie3->GetTransform().SetLocalPosition({ 1800, -1390, 0 });
+		Zombie3->SetMonsterDir(MonsterDIR::Right);
+	}
+
 
 }
 void CrossLoadBossLevel::Update(float _DeltaTime)
@@ -92,12 +96,32 @@ void CrossLoadBossLevel::Update(float _DeltaTime)
 		SetMapONOFF();
 	}
 
-	//if (Zombie1->IsDeath() == true &&
-	//	Zombie2->IsDeath() == true &&
-	//	Zombie3->IsDeath() == true)
-	//{
+	if (Zombie1->IsDeathReturn() == true &&
+		Zombie2->IsDeathReturn() == true &&
+		Zombie3->IsDeathReturn() == true)
+	{
 
-	//}
+		if (IsBoss == false)
+		{
+			Boss = CreateActor<FalseKnight>(OBJECTORDER::Monster);
+			Boss->GetTransform().SetLocalPosition({ 2457, -700, 0 });
+			Boss->GetTransform().SetLocalScale({ 1.2, 1.2, 1.2 });
+
+			RightDoor = CreateActor<BossRoomDoor>(OBJECTORDER::StopObject);
+			RightDoor->GetTransform().SetLocalPosition({ 3294, -1576, 0 });
+
+			LeftDoor = CreateActor<BossRoomDoor>(OBJECTORDER::StopObject);
+			LeftDoor->GetTransform().SetLocalPosition({ 1138, -1576, 0 });
+
+			IsBoss = true;
+		}
+
+		if (Boss->IsDeathReturn()&&IsBoss == true)
+		{
+			RightDoor->DownAni();
+			LeftDoor->DownAni();
+		}
+	}
 }
 void CrossLoadBossLevel::End()
 {
@@ -110,10 +134,10 @@ void CrossLoadBossLevel::LevelStartEvent()
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
 		}
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 1553, -1390, 0 });
+		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 4498, -1564, 0 });
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
-		GetMainCameraActorTransform().SetLocalPosition({ 1553, -1390, 0 });
+		GetMainCameraActorTransform().SetLocalPosition({ 4498, -1564, 0 });
 	}
 
 	{

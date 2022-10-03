@@ -255,6 +255,8 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Health Bugs_health_plant_010013-Sheet.png", 5, 1);
 	GameEngineTexture::Cut("Health Bugs_health_plant_020007-Sheet.png", 16, 1);
 	GameEngineTexture::Cut("Tute Great Door_door_v01-Sheet.png", 3, 1);
+	GameEngineTexture::Cut("Ruins Lift Cln_ornate_door0000-Sheet.png", 7, 1);
+	GameEngineTexture::Cut("Ruins Lift Cln_ornate_door0001-Sheet.png", 7, 1);
 
 	
 	//Effect ¸®¼Ò½º

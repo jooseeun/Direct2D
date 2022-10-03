@@ -20,6 +20,10 @@ public:
 	{
 		CurDir = _CurDir;
 	}
+	inline bool IsDeathReturn()
+	{
+		return Death_;
+	}
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
@@ -52,6 +56,7 @@ protected:
 	float MoveTime;
 	bool OnGround;
 	int Health;
+	bool Death_;
 private:
 	void EffectUpdate();
 	GameEngineTextureRenderer* MonsterRenderer;

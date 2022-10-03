@@ -15,6 +15,10 @@ public:
 	FalseKnight& operator=(const FalseKnight& _Other) = delete;
 	FalseKnight& operator=(FalseKnight&& _Other) noexcept = delete;
 
+	inline bool IsDeathReturn()
+	{
+		return Death;
+	}
 
 protected:
 	void Start() override;

@@ -8,6 +8,7 @@ class HornZombie;
 class BasicZombie;
 class GameEngineCameraActor;
 class FalseKnight;
+class BossRoomDoor;
 class CrossLoadBossLevel : public PlayLevelManager
 {
 public:
@@ -28,9 +29,12 @@ protected:
 	void LevelStartEvent() override;
 
 private:
+	bool IsBoss;
 
 	GameEngineCameraActor* Camera;
 	float4 MapSize;
+	BossRoomDoor* LeftDoor;
+	BossRoomDoor* RightDoor;
 	HornZombie* Zombie1;
 	BasicZombie* Zombie2;
 	BasicZombie* Zombie3;
