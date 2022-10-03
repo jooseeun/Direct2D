@@ -30,6 +30,7 @@ private:
 	void MakeWave();
 	void DropBall();
 	void EffectUpdate();
+	void KeyCheck();
 
 	void UpdateDamage();
 	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
@@ -80,6 +81,7 @@ private:
 	int SkillNum;
 	int AttackNum;
 	float AttackTime;
+	bool Death;
 
 	GameEngineStateManager StateManager;
 	GameEngineTextureRenderer* MonsterRenderer;

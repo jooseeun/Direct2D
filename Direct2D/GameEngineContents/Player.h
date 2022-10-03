@@ -66,6 +66,8 @@ protected:
 	bool ObjectShakeCamera;
 	bool ShakeRight;
 	float ShakeTime;
+	float StunReadyTime;
+	float SkillTime;
 
 	float4 TrapStunPos;
 	bool IsTrapStun;
