@@ -29,7 +29,9 @@ private:
 
 	void MakeWave();
 	void DropBall();
+	void EffectUpdate();
 
+	void UpdateDamage();
 	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 	void IdleStart(const StateInfo& _Info);
@@ -74,15 +76,19 @@ private:
 	bool OnGround;
 	bool IsMakeWave;
 	int Health;
+	int DeathNum;
 	int SkillNum;
-
+	int AttackNum;
+	float AttackTime;
 
 	GameEngineStateManager StateManager;
 	GameEngineTextureRenderer* MonsterRenderer;
+	GameEngineTextureRenderer* MonsterHeadRenderer;
 	GameEngineTextureRenderer* HPEffect1;
 	GameEngineTextureRenderer* HPEffect2;
 	GameEngineTextureRenderer* HPEffect3;
 	GameEngineCollision* MonsterCollision;
+	GameEngineCollision* MonsterHeadCollision;
 	GameEngineCollision* LeftSkillCol;
 	GameEngineCollision* RightSkillCol;
 };

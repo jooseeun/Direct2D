@@ -77,6 +77,7 @@ void CrossLoadBossLevel::Start()
 	{
 		Boss = CreateActor<FalseKnight>(OBJECTORDER::Monster);
 		Boss->GetTransform().SetLocalPosition({ 2457, -700, 0 });
+		Boss->GetTransform().SetLocalScale({ 1.2, 1.2, 1.2 });
 	}
 
 }
