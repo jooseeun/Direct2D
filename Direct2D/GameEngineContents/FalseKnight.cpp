@@ -296,6 +296,8 @@ CollisionReturn FalseKnight::CheckDemage(GameEngineCollision* _This, GameEngineC
 
 		else
 		{
+			MonsterHeadRenderer->Off();
+			MonsterHeadCollision->Off();
 			StateManager.ChangeState("Idle");
 			Health = 8;
 		}
@@ -394,10 +396,7 @@ void FalseKnight::IdleStart(const StateInfo& _Info)
 void FalseKnight::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	
-	{
-	StateManager.ChangeState("Stun");
-	return;
-	}
+
 	float4 MovePos = Player::GetMainPlayer()->GetTransform().GetLocalPosition() - GetTransform().GetLocalPosition();
 	float MoveLen = MovePos.Length();
 
