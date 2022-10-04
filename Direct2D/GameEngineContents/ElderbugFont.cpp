@@ -11,6 +11,7 @@ ElderbugFont::ElderbugFont()
 	, Font1(nullptr)
 	, Font2(nullptr)
 	, TextNum1(0)
+	, TextNum2(0)
 	, TextTime(0.0f)
 {
 	ElderFont = this;
@@ -52,10 +53,10 @@ void ElderbugFont::Start()
 		DiBottom->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
-		MainText[0] = "왕국이 자신의 욕망을 충족시키기를 바라며 많은 이들이 왔었소.";
-		MainText[1] = "한 때는 신성둥지라고 불렸지. 아마 그곳은 보물과 비밀로 \ 가득찬 위대한 왕국이 있었을 거요.";
-		MainText[2] = "흠. 이제는 괴물과 광기로 가득한 무덤일 뿐이오.";
-		MainText[3] = "결국. 모든것은 사라지는거지.";
+		Text[0] = "왕국이 자신의 욕망을 충족시키기를 바라며 많은 이들이 왔었소.!";
+		Text[1] = "한 때는 신성둥지라고 불렸지. 아마 그곳은 보물과 비밀로 \ 가득찬 위대한 왕국이 있었을 거요.!";
+		Text[2] = "흠. 이제는 괴물과 광기로 가득한 무덤일 뿐이오.!";
+		Text[3] = "결국. 모든것은 사라지는거지.!";
 	}
 	{
 		Font1 = CreateComponent<GameEngineFontRenderer>();
@@ -73,6 +74,9 @@ void ElderbugFont::Start()
 
 	DiBottom->ChangeFrameAnimation("Appear");
 	DiBottom->ScaleToCutTexture(0);
+	TextNum2 = 0.0f;
+
+	MainText = Text[TextNum1];
 }
 void ElderbugFont::Update(float _DeltaTime)
 {
@@ -81,18 +85,26 @@ void ElderbugFont::Update(float _DeltaTime)
 	{
 		TextNum1 += 1;
 		TextTime = 0.0f;
+		TextNum2 = 0;
+		MainText = Text[TextNum1];
 		if (TextNum1 == 4)
 		{
 			Death();
 		}
 	}
 
-	if( TextTime > 1.0f )
+	if( TextTime > 0.1f )
 	{
-		Font1->SetText(MainText[TextNum1], "Noto Serif KR");
+		if (MainText[TextNum2] == '!')
+		{
+			return;
+		}
+		Temp += MainText[TextNum2];
+		Font1->SetText(Temp, "Noto Serif KR");
 		Font1->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 		Font1->SetSize(25.0f);
-		TextTime = -500.0f;
+		TextNum2 += 1;
+		TextTime = 0.0f;
 	}
 
 }

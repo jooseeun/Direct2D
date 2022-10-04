@@ -33,15 +33,13 @@ private:
 	GameEngineTextureRenderer* DiBottom;
 	GameEngineTextureRenderer* DiBack;
 
-	std::string MainText[4];
-	std::string Text1;
-	std::string Text2;
-	std::string Text3;
-	std::string Text4;
-
+	std::string MainText;
+	std::string Temp;
+	std::string Text[4];
 	float TextTime;
+	
 	int TextNum1;
-
+	int TextNum2;
 	GameEngineFontRenderer* Font1;
 	GameEngineFontRenderer* Font2;
 };
