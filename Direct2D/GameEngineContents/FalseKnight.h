@@ -35,7 +35,7 @@ private:
 	void DropBall();
 	void EffectUpdate();
 	void KeyCheck();
-
+	void DemagePixelColor();
 	void UpdateDamage();
 	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
 
@@ -86,6 +86,8 @@ private:
 	int AttackNum;
 	float AttackTime;
 	bool Death;
+
+	float4 OriginalColor;
 
 	GameEngineStateManager StateManager;
 	GameEngineTextureRenderer* MonsterRenderer;

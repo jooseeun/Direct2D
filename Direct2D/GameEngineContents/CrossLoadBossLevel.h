@@ -30,7 +30,7 @@ protected:
 
 private:
 	bool IsBoss;
-
+	bool IsClear;
 	GameEngineCameraActor* Camera;
 	float4 MapSize;
 	BossRoomDoor* LeftDoor;

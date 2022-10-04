@@ -22,7 +22,6 @@ protected:
 	void End() {}
 private:
 	CollisionReturn PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other);
-	float4 GetWorldRePosition(float4 ReSize);
 
 	void StartExplanation();
 

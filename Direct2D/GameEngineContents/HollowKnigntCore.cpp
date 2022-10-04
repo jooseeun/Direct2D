@@ -245,6 +245,8 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Area Title Cln_fleur_top0000-Sheet.png", 22, 1);
 	GameEngineTexture::Cut("Prompts Cln_prompt_appear0000-Sheet.png", 10, 1);
 	GameEngineTexture::Cut("Prompts Cln_prompt_idle0000-Sheet.png", 5, 1);
+	GameEngineTexture::Cut("Dialogue Cln_dialogue_fleur_top0000-Sheet.png", 8, 1);
+	GameEngineTexture::Cut("Dialogue Cln_dialogue_fleur_bottom0000-Sheet.png", 8, 1);
 
 	//Object ¸®¼Ò½º
 	GameEngineTexture::Cut("Geo_coin0000-Sheet.png", 8, 1);
@@ -296,7 +298,7 @@ void HollowKnigntCore::Start()
 	CreateLevel<Tutorial3Level>("Tutorial3");
 	CreateLevel<Tutorial4Level>("Tutorial4");
 	CreateLevel<CrossLoadBossLevel>("CrossLoadBoss");
-	ChangeLevel("CrossLoadBoss");
+	ChangeLevel("Town2");
 
 	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 

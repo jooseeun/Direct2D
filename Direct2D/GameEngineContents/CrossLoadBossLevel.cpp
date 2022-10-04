@@ -24,6 +24,7 @@ CrossLoadBossLevel::CrossLoadBossLevel()
 	, Zombie3(nullptr)
 	, Boss(nullptr)
 	, IsBoss(false)
+	, IsClear(false)
 {
 }
 
@@ -69,7 +70,7 @@ void CrossLoadBossLevel::Start()
 	}
 	{
 		Zombie1 = CreateActor<HornZombie>(OBJECTORDER::Monster);
-		Zombie1->GetTransform().SetLocalPosition({ 1650, -1390, 0 });
+		Zombie1->GetTransform().SetLocalPosition({ 2100, -1390, 0 });
 		Zombie1->SetMonsterDir(MonsterDIR::Left);
 	}
 	{
@@ -95,7 +96,10 @@ void CrossLoadBossLevel::Update(float _DeltaTime)
 	{
 		SetMapONOFF();
 	}
-
+	if (IsClear == true)
+	{
+		return;
+	}
 	if (Zombie1->IsDeathReturn() == true &&
 		Zombie2->IsDeathReturn() == true &&
 		Zombie3->IsDeathReturn() == true)
@@ -108,10 +112,10 @@ void CrossLoadBossLevel::Update(float _DeltaTime)
 			Boss->GetTransform().SetLocalScale({ 1.2, 1.2, 1.2 });
 
 			RightDoor = CreateActor<BossRoomDoor>(OBJECTORDER::StopObject);
-			RightDoor->GetTransform().SetLocalPosition({ 3294, -1576, 0 });
+			RightDoor->GetTransform().SetLocalPosition({ 3294, -1600, 0 });
 
 			LeftDoor = CreateActor<BossRoomDoor>(OBJECTORDER::StopObject);
-			LeftDoor->GetTransform().SetLocalPosition({ 1138, -1576, 0 });
+			LeftDoor->GetTransform().SetLocalPosition({ 1138, -1600, 0 });
 
 			IsBoss = true;
 		}
@@ -120,6 +124,7 @@ void CrossLoadBossLevel::Update(float _DeltaTime)
 		{
 			RightDoor->DownAni();
 			LeftDoor->DownAni();
+			IsClear = true;
 		}
 	}
 }

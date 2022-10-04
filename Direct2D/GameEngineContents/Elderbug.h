@@ -21,10 +21,20 @@ protected:
 	void Update(float _DeltaTime);
 	void End() {}
 private:
+	void StartTalk();
+	
+	CollisionReturn PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other);
+	
+	
 	GameEngineCollision* ElderbugCollision;
 	GameEngineTextureRenderer* ElderbugRenderer;
+	GameEngineTextureRenderer* PromptRenderer;
 
 
-	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
+	GameEngineFontRenderer* Font;
+
+
+	float FontA;
+	bool Trigger;
 };
 

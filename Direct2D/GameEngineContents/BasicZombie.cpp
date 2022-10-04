@@ -357,7 +357,7 @@ void BasicZombie::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	MonsterRenderer->AnimationBindEnd("Attack", [=](const FrameAnimation_DESC& _Info)
 	{
-		StopTime = 1.5f;
+		StopTime = 0.5f;
 		StateManager.ChangeState("Idle");
 
 	});
