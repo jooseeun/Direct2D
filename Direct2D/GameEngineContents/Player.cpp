@@ -48,6 +48,7 @@ Player::Player()
 	, ObjectShakeCamera(false)
 	, IsTrapStun(false)
 	, SkillTime(0.0f)
+	, ChargeEffect1(nullptr)
 {
 	MainPlayer = this;
 }
@@ -120,6 +121,12 @@ void Player::Start()
 		StunEffect2Renderer = CreateComponent<GameEngineTextureRenderer>();
 		StunEffect2Renderer->SetOrder((int)OBJECTORDER::Player);
 		StunEffect2Renderer->SetPivot(PIVOTMODE::CENTER);
+	}
+	{
+		ChargeEffect1 = CreateComponent<GameEngineTextureRenderer>();
+		ChargeEffect1->SetOrder((int)OBJECTORDER::Player);
+		ChargeEffect1->SetPivot(PIVOTMODE::CENTER);
+		ChargeEffect1->SetPivotToVector({ 0,100,0 });
 	}
 	{
 		CoinEffectRenderer = CreateComponent<GameEngineTextureRenderer>();
@@ -200,6 +207,14 @@ void Player::Start()
 			FrameAnimation_DESC("Hit_crack_simple.png", 0, 2, 0.03f, false));
 		StunEffect2Renderer->CreateFrameAnimationCutTexture("StunEffect",
 			FrameAnimation_DESC("Stun_impact_effect.png", 0, 6, 0.01f, false));
+	}
+	{
+		ChargeEffect1->CreateFrameAnimationCutTexture("Charge1",
+			FrameAnimation_DESC("Spell Effects_focus_appear0000-Sheet.png", 0, 6, 0.1f, false));
+		ChargeEffect1->CreateFrameAnimationCutTexture("Charge2",
+			FrameAnimation_DESC("Spell Effects_burst_effect0000-Sheet.png", 0, 7, 0.1f, false));
+
+		ChargeEffect1->Off();
 	}
 	{
 
@@ -330,6 +345,10 @@ void Player::EffectOffCheck()
 	{
 		HitRenderer2->Off();
 	});
+	ChargeEffect1->AnimationBindEnd("Charge2", [=](const FrameAnimation_DESC& _Info)
+		{
+			ChargeEffect1->Off();
+		});
 }
 void Player::CameraCheck()
 {
@@ -521,13 +540,14 @@ CollisionReturn Player::HitEffectCreate(GameEngineCollision* _This, GameEngineCo
 CollisionReturn Player::MonsterHit(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 
-	PlayerEnergyGage += 0.05f * GameEngineTime::GetDeltaTime();
-	if (PlayerEnergyGage >= 1.0f)
-	{
-		PlayerEnergyGage = 1.0f;
-	}
+
 	if (IsStartEffect == true)
 	{
+		PlayerEnergyGage += 0.08f;
+		if (PlayerEnergyGage >= 1.0f)
+		{
+			PlayerEnergyGage = 1.0f;
+		}
 		if (AttackNum == 1)
 		{
 			HitRenderer1->On();
@@ -1386,10 +1406,18 @@ void Player::ChargeStart(const StateInfo& _Info)
 	PlayerRenderer->ChangeFrameAnimation("Charge");
 	PlayerRenderer->ScaleToCutTexture(0);
 	ChargeTime = 0.0f;
+	ChargeEffect1->On();
+	ChargeEffect1->ChangeFrameAnimation("Charge1");
+	ChargeEffect1->ScaleToCutTexture(0);
 }
 
 void Player::ChargeUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	ChargeEffect1->AnimationBindEnd("Charge1", [=](const FrameAnimation_DESC& _Info)
+	{	
+		ChargeEffect1->ChangeFrameAnimation("Charge2");
+		ChargeEffect1->ScaleToCutTexture(0);
+	});
 	ChargeTime += 1.0f * _DeltaTime;
 	PlayerEnergyGage -= 0.05f * _DeltaTime;
 	if (false == GameEngineInput::GetInst()->IsPress("PlayerCharge"))

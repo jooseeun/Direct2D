@@ -86,6 +86,7 @@ protected:
 	GameEngineTextureRenderer* SkillRenderer;
 	GameEngineTextureRenderer* HitRenderer1;
 	GameEngineTextureRenderer* HitRenderer2;
+	GameEngineTextureRenderer* ChargeEffect1;
 
 	GameEngineTextureRenderer* StunEffect1Renderer;
 	GameEngineTextureRenderer* StunEffect2Renderer;

@@ -271,6 +271,8 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("Parasite Balloon Cln_Parasite_Blob_Flyer0012-Sheet.png", 4, 1);
 	GameEngineTexture::Cut("orange_puff_animated.png", 9, 1);
 	GameEngineTexture::Cut("nail_terrain_hit_effect.png", 3, 1);
+	GameEngineTexture::Cut("Spell Effects_focus_appear0000-Sheet.png", 7, 1);
+	GameEngineTexture::Cut("Spell Effects_burst_effect0000-Sheet.png", 8, 1);
 
 	//NPC ¸®¼Ò½º
 	GameEngineTexture::Cut("Elderbug_idle_01-Sheet.png", 6, 1);
@@ -299,7 +301,7 @@ void HollowKnigntCore::Start()
 	CreateLevel<Tutorial3Level>("Tutorial3");
 	CreateLevel<Tutorial4Level>("Tutorial4");
 	CreateLevel<CrossLoadBossLevel>("CrossLoadBoss");
-	ChangeLevel("Town2");
+	ChangeLevel("Intro");
 
 	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 

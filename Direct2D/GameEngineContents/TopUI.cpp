@@ -15,6 +15,7 @@ TopUI::TopUI()
 	, GeoCoinFont(nullptr)
 	, CurGeoCoin("0")
 	, CurCoin(0)
+	, EnergyUIEffect(nullptr)
 {
 	MainTopUI = this;
 }
@@ -97,11 +98,12 @@ void TopUI::Start()
 	}
 
 	{
-		GameEngineMyRenderer* EnergyUIEffect = CreateComponent<GameEngineMyRenderer>();
+		EnergyUIEffect = CreateComponent<GameEngineMyRenderer>();
 		EnergyUIEffect->SetTexture("HUD Cln_soul_orb_darken.png");
 		EnergyUIEffect->ScaleToTexture();
 		EnergyUIEffect->GetTransform().SetLocalPosition({ -833, 405.0f, 1 });
 		EnergyUIEffect->ChangeCamera(CAMERAORDER::UICAMERA);
+		EnergyUIEffect->Off();
 
 	}
 
@@ -110,6 +112,15 @@ void TopUI::Start()
  
 void TopUI::Update(float _DeltaTime)
 {
+	if (Player::GetMainPlayer()->PlayerEnergyGage > 0.6)
+	{
+		EnergyUIEffect->On();
+	}
+	else
+	{
+		EnergyUIEffect->Off();
+	}
+
 	HealthUpdate();
 	EnergyUpdate();
 	CoinUpdate();

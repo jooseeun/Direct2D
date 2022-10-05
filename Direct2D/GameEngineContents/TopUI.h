@@ -40,6 +40,7 @@ private:
 	GameEngineUIRenderer* EmpthyHealth[5];
 	GameEngineFontRenderer* GeoCoinFont;
 	GameEngineMyRenderer* Energy;
+	GameEngineMyRenderer* EnergyUIEffect;
 
 	std::string CurGeoCoin;
 	int CurCoin;
