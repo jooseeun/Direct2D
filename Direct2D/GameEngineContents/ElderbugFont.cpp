@@ -53,15 +53,21 @@ void ElderbugFont::Start()
 		DiBottom->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
-		Text[0] = "왕국이 자신의 욕망을 충족시키기를 바라며 많은 이들이 왔었소.!";
-		Text[1] = "한 때는 신성둥지라고 불렸지. 아마 그곳은 보물과 비밀로 \ 가득찬 위대한 왕국이 있었을 거요.!";
-		Text[2] = "흠. 이제는 괴물과 광기로 가득한 무덤일 뿐이오.!";
-		Text[3] = "결국. 모든것은 사라지는거지.!";
+		Text[0] = "왕국이 자신의 욕망을 충족시키기를 바라며 많은 이들이 왔었소.";
+		Text[1] = "한 때는 신성둥지라고 불렸지 아마 그곳은 보물과.";
+		Text[2] = "비밀로 가득찬 위대한 왕국이 있었을 거요.";
+		Text[3] = "흠 이제는 괴물과 광기로 가득한 무덤일 뿐이오.";
+		Text[4] = "결국 모든것은 사라지는거지.";
 	}
 	{
 		Font1 = CreateComponent<GameEngineFontRenderer>();
 		Font1->SetScreenPostion({ 1920 * 0.8 / 2 - 300, 1080 * 0.8 / 2 - 330, 1 });
 		Font1->ChangeCamera(CAMERAORDER::UICAMERA);
+	}
+	{
+		Font2 = CreateComponent<GameEngineFontRenderer>();
+		Font2->SetScreenPostion({ 1920 * 0.8 / 2 - 300, 1080 * 0.8 / 2 - 290, 1 });
+		Font2->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
 		DiTop->CreateFrameAnimationCutTexture("Appear",
@@ -83,27 +89,69 @@ void ElderbugFont::Update(float _DeltaTime)
 	TextTime += 1.0f * _DeltaTime;
 	if (true == GameEngineInput::GetInst()->IsDown("TextNext"))
 	{
-		TextNum1 += 1;
-		TextTime = 0.0f;
-		TextNum2 = 0;
-		MainText = Text[TextNum1];
+
 		if (TextNum1 == 4)
 		{
 			Death();
 		}
+
+		TextTime = 0.0f;
+		TextNum2 = 0;
+		Temp = "";
+		Temp2 = "";
+		MainText = Text[TextNum1];
+		if (TextNum1 == 1)
+		{
+			TextNum1 += 1;
+			MainText2 = Text[TextNum1];
+			TextNum3 = 0;
+
+			Font2->On();
+		}
+
+		TextNum1 += 1;
 	}
 
 	if( TextTime > 0.1f )
 	{
-		if (MainText[TextNum2] == '!')
+		if (TextNum1 != 2)
 		{
+			Font2->Off();
+		}
+		if (MainText[TextNum2] == '.')
+		{
+			if (TextNum1 == 2)
+			{
+				if (MainText2[TextNum3] == '.')
+				{
+					return;
+				}
+				if (MainText2[TextNum3] != ' ')
+				{
+					Temp2 += MainText2[TextNum3];
+					TextNum3 += 1;
+				}
+				Temp2 += MainText2[TextNum3];
+				TextNum3 += 1;
+				Font2->SetText(Temp2, "Noto Serif KR");
+				Font2->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+				Font2->SetSize(25.0f);
+
+				TextTime = 0.0f;
+			}
 			return;
 		}
+		if (MainText[TextNum2] != ' ')
+		{
+			Temp += MainText[TextNum2];
+			TextNum2 += 1;
+		}
 		Temp += MainText[TextNum2];
+		TextNum2 += 1;
 		Font1->SetText(Temp, "Noto Serif KR");
 		Font1->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 		Font1->SetSize(25.0f);
-		TextNum2 += 1;
+
 		TextTime = 0.0f;
 	}
 

@@ -34,12 +34,15 @@ private:
 	GameEngineTextureRenderer* DiBack;
 
 	std::string MainText;
+	std::string MainText2;
 	std::string Temp;
-	std::string Text[4];
+	std::string Temp2;
+	std::string Text[5];
 	float TextTime;
 	
 	int TextNum1;
 	int TextNum2;
+	int TextNum3;
 	GameEngineFontRenderer* Font1;
 	GameEngineFontRenderer* Font2;
 };
