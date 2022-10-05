@@ -123,12 +123,16 @@ CollisionReturn Elderbug::PlusAlpha(GameEngineCollision* _This, GameEngineCollis
 		PromptRenderer->ScaleToCutTexture(0);
 		Trigger = true;
 	}
-	if (true == GameEngineInput::GetInst()->IsPress("Next"))
+	if (ElderbugFont::GetElderFont() == nullptr)
 	{
-		Font->Off();
-		PromptRenderer->Off();
-		StartTalk();
+		if (true == GameEngineInput::GetInst()->IsPress("Next"))
+		{
+			Font->Off();
+			PromptRenderer->Off();
+			StartTalk();
+		}
 	}
+
 
 	return CollisionReturn::ContinueCheck;
 

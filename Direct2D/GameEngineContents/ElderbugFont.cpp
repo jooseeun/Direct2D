@@ -25,7 +25,7 @@ void ElderbugFont::Start()
 {
 	if (false == GameEngineInput::GetInst()->IsKey("TextNext"))
 	{
-		GameEngineInput::GetInst()->CreateKey("TextNext", VK_SPACE);
+		GameEngineInput::GetInst()->CreateKey("TextNext", VK_UP);
 	}
 	{
 		DiBack = CreateComponent<GameEngineTextureRenderer>();
@@ -90,37 +90,38 @@ void ElderbugFont::Update(float _DeltaTime)
 	if (true == GameEngineInput::GetInst()->IsDown("TextNext"))
 	{
 
-		if (TextNum1 == 4)
+		if (TextNum1 == 5)
 		{
 			Death();
+			return;
 		}
 
-		TextTime = 0.0f;
+		MainText = Text[TextNum1];
 		TextNum2 = 0;
 		Temp = "";
 		Temp2 = "";
-		MainText = Text[TextNum1];
 		if (TextNum1 == 1)
 		{
 			TextNum1 += 1;
 			MainText2 = Text[TextNum1];
 			TextNum3 = 0;
-
 			Font2->On();
+
 		}
 
-		TextNum1 += 1;  
+		TextNum1 += 1;
+
 	}
 
-	if( TextTime > 0.1f )
+	if( TextTime > 0.03f )
 	{
-		if (TextNum1 != 2)
+		if (TextNum1 != 3)
 		{
 			Font2->Off();
 		}
 		if (MainText[TextNum2] == '.')
 		{
-			if (TextNum1 == 2)
+			if (TextNum1 == 3)
 			{
 				if (MainText2[TextNum3] == '.')
 				{
