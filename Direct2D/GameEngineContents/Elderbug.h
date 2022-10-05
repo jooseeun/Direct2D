@@ -22,6 +22,8 @@ protected:
 	void End() {}
 private:
 	void StartTalk();
+	void CheckDir();
+	PLAYERDIR CurDir;
 	
 	CollisionReturn PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other);
 	

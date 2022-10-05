@@ -58,11 +58,11 @@ void TownFontUI::Update(float _DeltaTime)
 {
 	Time += 1.0f * _DeltaTime;
 
-	if (Time > 5.0f)
+	if (Time > 3.0f)
 	{
-		Top->GetPixelData().MulColor.a -= 0.2f * GameEngineTime::GetDeltaTime();
-		Bottom->GetPixelData().MulColor.a -= 0.2f * GameEngineTime::GetDeltaTime();
-		Alpha-= 0.2f * GameEngineTime::GetDeltaTime();
+		Top->GetPixelData().MulColor.a -= 0.3f * GameEngineTime::GetDeltaTime();
+		Bottom->GetPixelData().MulColor.a -= 0.3f * GameEngineTime::GetDeltaTime();
+		Alpha-= 0.3f * GameEngineTime::GetDeltaTime();
 		Big->SetColor({ 1.0f, 1.0f, 1.0f, Alpha });
 		Small->SetColor({ 1.0f, 1.0f, 1.0f, Alpha });
 		if (Top->GetPixelData().MulColor.a <= 0.0f)

@@ -1,6 +1,7 @@
 #include "Elderbug.h"
 #include "ElderbugFont.h"
 #include "PreCompile.h"
+#include "Player.h"
 
 Elderbug::Elderbug() 
 	:ElderbugRenderer(nullptr)
@@ -9,6 +10,7 @@ Elderbug::Elderbug()
 	, Font(nullptr)
 	, Trigger(nullptr)
 	, FontA(0.0f)
+	, CurDir(PLAYERDIR::Right)
 
 {
 
@@ -30,6 +32,12 @@ void Elderbug::Start()
 		ElderbugRenderer->SetPivot(PIVOTMODE::BOT);
 		ElderbugRenderer->CreateFrameAnimationCutTexture("Idle",
 			FrameAnimation_DESC("Elderbug_idle_01-Sheet.png", 0, 5, 0.1f, true));
+		ElderbugRenderer->CreateFrameAnimationCutTexture("LookLeft",
+			FrameAnimation_DESC("Elderbug_look_left000-Sheet.png", 0, 5, 0.1f, true));
+		ElderbugRenderer->CreateFrameAnimationCutTexture("TalkLeft",
+			FrameAnimation_DESC("Elderbug_talk_left0000-Sheet.png", 0, 5, 0.1f, true));
+		ElderbugRenderer->CreateFrameAnimationCutTexture("TalkRight",
+			FrameAnimation_DESC("Elderbug_talk_right0000-Sheet.png", 0, 5, 0.1f, true));
 		ElderbugRenderer->ChangeFrameAnimation("Idle");
 		ElderbugRenderer->ScaleToCutTexture(0);
 	}
@@ -70,13 +78,32 @@ void Elderbug::Start()
 		PromptRenderer->Off();
 	}
 }
+void Elderbug::CheckDir()
+{
+	if (Player::GetMainPlayer() == nullptr)
+	{
+		return;
+	}
+	float4 MovePos = Player::GetMainPlayer()->GetTransform().GetLocalPosition() - GetTransform().GetLocalPosition();
+	float MoveLen = MovePos.Length();
+	if (MovePos.x < 0.0f)
+	{
+		CurDir = PLAYERDIR::Left;
 
+	}
+	if (MovePos.x > 0.0f)
+	{
+		CurDir = PLAYERDIR::Right;
+	}
+}
 void Elderbug::Update(float _DeltaTime)
 {
 	if (ElderbugCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
 		std::bind(&Elderbug::PlusAlpha, this, std::placeholders::_1, std::placeholders::_2)
 	) == false)
 	{
+		ElderbugRenderer->ChangeFrameAnimation("Idle");
+		ElderbugRenderer->ScaleToCutTexture(0);
 		if (Trigger == true)
 		{
 			PromptRenderer->ChangeFrameAnimation("Disappear");
@@ -90,6 +117,17 @@ void Elderbug::Update(float _DeltaTime)
 		}
 
 		Font->SetColor({ 1.0f, 1.0f, 1.0f, FontA });
+	}
+	else
+	{
+		CheckDir();
+		if (CurDir == PLAYERDIR::Left)
+		{
+			ElderbugRenderer->ChangeFrameAnimation("LookLeft");
+			ElderbugRenderer->ScaleToCutTexture(0);
+		}
+
+
 	}
 
 	ElderbugCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
@@ -109,6 +147,8 @@ void Elderbug::Update(float _DeltaTime)
 
 CollisionReturn Elderbug::PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+
+
 	FontA += 0.4f * GameEngineTime::GetDeltaTime();
 	if (FontA >= 1.0f)
 	{
@@ -140,6 +180,17 @@ CollisionReturn Elderbug::PlusAlpha(GameEngineCollision* _This, GameEngineCollis
 
 void Elderbug::StartTalk()
 {
+	CheckDir();
+	if (CurDir == PLAYERDIR::Left)
+	{
+		ElderbugRenderer->ChangeFrameAnimation("TalkLeft");
+		ElderbugRenderer->ScaleToCutTexture(0);
+	}
+	else if (CurDir == PLAYERDIR::Right)
+	{
+		ElderbugRenderer->ChangeFrameAnimation("TalkRight");
+		ElderbugRenderer->ScaleToCutTexture(0);
+	}
 	if (ElderbugFont::GetElderFont() == nullptr)
 	{
 		ElderbugFont* NewFont = GetLevel()->CreateActor<ElderbugFont>();

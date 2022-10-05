@@ -35,7 +35,7 @@ void ElderbugFont::Start()
 		DiBack->SetPivot(PIVOTMODE::BOT);
 		DiBack->GetTransform().SetLocalPosition({ 0, 100, 0 });
 		DiBack->GetPipeLine()->SetOutputMergerBlend("AlphaBlend");
-		DiBack->GetPixelData().MulColor.a = 0.5f;
+		DiBack->GetPixelData().MulColor.a = 0.65f;
 		DiBack->ChangeCamera(CAMERAORDER::UICAMERA);
 	}
 	{
@@ -106,6 +106,7 @@ void ElderbugFont::Update(float _DeltaTime)
 			MainText2 = Text[TextNum1];
 			TextNum3 = 0;
 			Font2->On();
+
 
 		}
 
