@@ -109,7 +109,7 @@ void ElderbugFont::Update(float _DeltaTime)
 			Font2->On();
 		}
 
-		TextNum1 += 1;
+		TextNum1 += 1;  
 	}
 
 	if( TextTime > 0.1f )
