@@ -46,6 +46,14 @@ public:
 	{
 		TrapStunPos = _Pos;
 	}
+	inline void SetCurLevelName(const std::string& _name)
+	{
+		CurLevelName = _name;
+	}
+	inline const std::string& GetCurLevelName()
+	{
+		return CurLevelName;
+	}
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
@@ -68,6 +76,8 @@ protected:
 	float ShakeTime;
 	float StunReadyTime;
 	float SkillTime;
+
+	std::string CurLevelName;
 
 	float4 TrapStunPos;
 	bool IsTrapStun;

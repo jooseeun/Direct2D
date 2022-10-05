@@ -49,6 +49,7 @@ Player::Player()
 	, IsTrapStun(false)
 	, SkillTime(0.0f)
 	, ChargeEffect1(nullptr)
+	, CurLevelName()
 {
 	MainPlayer = this;
 }

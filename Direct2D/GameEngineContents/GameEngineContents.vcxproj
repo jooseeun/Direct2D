@@ -51,6 +51,46 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="CrossLoad1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CrossLoad10.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CrossLoad2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CrossLoad3.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CrossLoad4.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CrossLoad5.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CrossLoad6.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CrossLoad7.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CrossLoad8.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CrossLoad9.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="CrossLoadBossLevel.cpp">
       <SubType>
       </SubType>
@@ -210,6 +250,46 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="CrossLoad1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CrossLoad10.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CrossLoad2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CrossLoad3.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CrossLoad4.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CrossLoad5.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CrossLoad6.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CrossLoad7.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CrossLoad8.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CrossLoad9.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="CrossLoadBossLevel.h">
       <SubType>
       </SubType>

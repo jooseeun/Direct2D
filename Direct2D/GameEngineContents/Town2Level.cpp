@@ -101,6 +101,7 @@ void Town2Level::LevelStartEvent()
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
 		GetMainCameraActorTransform().SetLocalPosition({ 200,-3065,0 });
+		Player::GetMainPlayer()->SetCurLevelName(GetNameConstRef());
 	}
 
 	{

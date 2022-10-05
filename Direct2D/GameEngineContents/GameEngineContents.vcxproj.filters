@@ -52,6 +52,15 @@
     <Filter Include="Contents\Actor\Boss">
       <UniqueIdentifier>{2b8c0037-997e-444b-87a7-1f238fc8ce04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Level\Tur">
+      <UniqueIdentifier>{003cb3ce-98f5-439e-b11c-e072de8bf7b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Level\Town">
+      <UniqueIdentifier>{1dfa4a44-878f-4703-9da9-4272feec1821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Level\CrossLoad">
+      <UniqueIdentifier>{d4e7f22f-493c-461a-b89f-f12b034228c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -61,21 +70,6 @@
       <Filter>Contents</Filter>
     </ClCompile>
     <ClCompile Include="IntroLevel.cpp">
-      <Filter>Contents\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Tutorial1Level.cpp">
-      <Filter>Contents\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Tutorial2Level.cpp">
-      <Filter>Contents\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Tutorial3Level.cpp">
-      <Filter>Contents\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Tutorial4Level.cpp">
-      <Filter>Contents\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Town1Level.cpp">
       <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="PlayLevelManager.cpp">
@@ -107,12 +101,6 @@
     </ClCompile>
     <ClCompile Include="GameEngineMyRenderer.cpp">
       <Filter>Effect\MyRenderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Town2Level.cpp">
-      <Filter>Contents\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Town3Level.cpp">
-      <Filter>Contents\Level</Filter>
     </ClCompile>
     <ClCompile Include="ColorOverlay.cpp">
       <Filter>Effect\PostEffect</Filter>
@@ -180,6 +168,57 @@
     <ClCompile Include="ElderbugFont.cpp">
       <Filter>Contents\Actor\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Tutorial1Level.cpp">
+      <Filter>Contents\Level\Tur</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial2Level.cpp">
+      <Filter>Contents\Level\Tur</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial3Level.cpp">
+      <Filter>Contents\Level\Tur</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial4Level.cpp">
+      <Filter>Contents\Level\Tur</Filter>
+    </ClCompile>
+    <ClCompile Include="Town1Level.cpp">
+      <Filter>Contents\Level\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="Town2Level.cpp">
+      <Filter>Contents\Level\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="Town3Level.cpp">
+      <Filter>Contents\Level\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossLoad1.cpp">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossLoad2.cpp">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossLoad3.cpp">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossLoad4.cpp">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossLoad5.cpp">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossLoad6.cpp">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossLoad8.cpp">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossLoad7.cpp">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossLoad9.cpp">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossLoad10.cpp">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -189,21 +228,6 @@
       <Filter>Contents</Filter>
     </ClInclude>
     <ClInclude Include="IntroLevel.h">
-      <Filter>Contents\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Tutorial1Level.h">
-      <Filter>Contents\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Tutorial2Level.h">
-      <Filter>Contents\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Tutorial3Level.h">
-      <Filter>Contents\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Tutorial4Level.h">
-      <Filter>Contents\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Town1Level.h">
       <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h">
@@ -238,12 +262,6 @@
     </ClInclude>
     <ClInclude Include="GameEngineMyRenderer.h">
       <Filter>Effect\MyRenderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Town2Level.h">
-      <Filter>Contents\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Town3Level.h">
-      <Filter>Contents\Level</Filter>
     </ClInclude>
     <ClInclude Include="ColorOverlay.h">
       <Filter>Effect\PostEffect</Filter>
@@ -310,6 +328,57 @@
     </ClInclude>
     <ClInclude Include="ElderbugFont.h">
       <Filter>Contents\Actor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial1Level.h">
+      <Filter>Contents\Level\Tur</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial2Level.h">
+      <Filter>Contents\Level\Tur</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial3Level.h">
+      <Filter>Contents\Level\Tur</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial4Level.h">
+      <Filter>Contents\Level\Tur</Filter>
+    </ClInclude>
+    <ClInclude Include="Town1Level.h">
+      <Filter>Contents\Level\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="Town2Level.h">
+      <Filter>Contents\Level\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="Town3Level.h">
+      <Filter>Contents\Level\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossLoad1.h">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossLoad2.h">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossLoad3.h">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossLoad4.h">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossLoad5.h">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossLoad6.h">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossLoad8.h">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossLoad7.h">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossLoad9.h">
+      <Filter>Contents\Level\CrossLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossLoad10.h">
+      <Filter>Contents\Level\CrossLoad</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

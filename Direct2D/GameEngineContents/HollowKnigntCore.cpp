@@ -9,6 +9,16 @@
 #include "Tutorial2Level.h"
 #include "Tutorial3Level.h"
 #include "Tutorial4Level.h"
+#include "CrossLoad1.h"
+#include "CrossLoad2.h"
+#include "CrossLoad3.h"
+#include "CrossLoad4.h"
+#include "CrossLoad5.h"
+#include "CrossLoad6.h"
+#include "CrossLoad7.h"
+#include "CrossLoad8.h"
+#include "CrossLoad9.h"
+#include "CrossLoad10.h"
 #include "CrossLoadBossLevel.h"
 #include <GameEngineCore/GameEngineBlend.h>
 
@@ -300,8 +310,18 @@ void HollowKnigntCore::Start()
 	CreateLevel<Tutorial2Level>("Tutorial2");
 	CreateLevel<Tutorial3Level>("Tutorial3");
 	CreateLevel<Tutorial4Level>("Tutorial4");
+	CreateLevel<CrossLoad1>("Cross1");
+	CreateLevel<CrossLoad2>("Cross2");
+	CreateLevel<CrossLoad3>("Cross3");
+	CreateLevel<CrossLoad4>("Cross4");
+	CreateLevel<CrossLoad5>("Cross5");
+	CreateLevel<CrossLoad6>("Cross6");
+	CreateLevel<CrossLoad7>("Cross7");
+	CreateLevel<CrossLoad8>("Cross8");
+	CreateLevel<CrossLoad9>("Cross9");
+	CreateLevel<CrossLoad10>("Cross10");
 	CreateLevel<CrossLoadBossLevel>("CrossLoadBoss");
-	ChangeLevel("Intro");
+	ChangeLevel("Cross6");
 
 	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 

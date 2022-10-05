@@ -66,7 +66,7 @@ void CrossLoadBossLevel::Start()
 		MapMoveCol->MoveCol1->GetTransform().SetLocalScale({ 250,300,1000.0f });
 		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 4831,-1390,100 });
 		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
-		MapMoveCol->MoveLevel1 = "Town2";
+		MapMoveCol->MoveLevel1 = "Cross6";
 	}
 	{
 		Zombie1 = CreateActor<HornZombie>(OBJECTORDER::Monster);
@@ -139,10 +139,11 @@ void CrossLoadBossLevel::LevelStartEvent()
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
 		}
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 4498, -1564, 0 });
+		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 4498, -1190, 0 });
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
 		GetMainCameraActorTransform().SetLocalPosition({ 4498, -1564, 0 });
+		Player::GetMainPlayer()->SetCurLevelName(GetNameConstRef());
 	}
 
 	{
