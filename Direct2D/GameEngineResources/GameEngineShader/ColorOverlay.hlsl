@@ -29,11 +29,11 @@ float4 ColorOverlay_PS(Output _Input) : SV_Target0
 
     if (Color.r >= 0.4f)
     {
-        Color.r = 1 - 2 * (1 - Color.r) * (1 - 0.49f);
+        Color.r = 1 - 2 * (1 - Color.r) * (1 - 0.48f);
     }
     else
     {
-        Color.r = 2 * Color.r * 0.49f;
+        Color.r = 2 * Color.r * 0.48f;
     }
 
     if (Color.g >= 0.45f)
