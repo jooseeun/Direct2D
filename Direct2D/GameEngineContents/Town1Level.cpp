@@ -80,12 +80,21 @@ void Town1Level::LevelStartEvent()
 		if (nullptr == Player::GetMainPlayer())
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
+		}		
+		if (Player::GetMainPlayer()->GetCurLevelName() == "TOWN2")
+		{
+			Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 3400, -2950, 0 });
+			Player::GetMainPlayer()->SetLevelOverOn();
+			Player::GetMainPlayer()->SetMapSize(MapSize);
+			GetMainCameraActorTransform().SetLocalPosition({ 3400, -2950, 0 });
 		}
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 617, -883, 0 });
-		Player::GetMainPlayer()->SetLevelOverOn();
-		Player::GetMainPlayer()->SetMapSize(MapSize);
-		GetMainCameraActorTransform().SetLocalPosition({ 617, -883, 0 });
-
+		else
+		{
+			Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 617, -883, 0 });
+			Player::GetMainPlayer()->SetLevelOverOn();
+			Player::GetMainPlayer()->SetMapSize(MapSize);
+			GetMainCameraActorTransform().SetLocalPosition({ 617, -883, 0 });
+		}
 		Player::GetMainPlayer()->SetCurLevelName(GetNameConstRef());
 	}
 

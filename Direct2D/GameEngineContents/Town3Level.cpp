@@ -54,6 +54,11 @@ void Town3Level::Start()
 		MapMoveCol->MoveCol1->GetTransform().SetLocalPosition({ 10,-3021,100 });
 		MapMoveCol->MoveCol1->ChangeOrder(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveLevel1 = "Town2";
+
+		MapMoveCol->MoveCol2->GetTransform().SetLocalScale({ 150,50,1000.0f });
+		MapMoveCol->MoveCol2->GetTransform().SetLocalPosition({ 1289,-3444,100 });
+		MapMoveCol->MoveCol2->ChangeOrder(OBJECTORDER::MoveCol2);
+		MapMoveCol->MoveLevel2 = "Cross1";
 	}
 }
 void Town3Level::Update(float _DeltaTime)
@@ -79,10 +84,29 @@ void Town3Level::LevelStartEvent()
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
 		}
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 101, -3021, 0 });
-		Player::GetMainPlayer()->SetLevelOverOn();
-		Player::GetMainPlayer()->SetMapSize(MapSize);
-		GetMainCameraActorTransform().SetLocalPosition({ 101, -3021, 0 });
+		if (Player::GetMainPlayer()->GetCurLevelName() == "TOWN2")
+		{
+			Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 101, -2900, 0 });
+			Player::GetMainPlayer()->SetLevelOverOn();
+			Player::GetMainPlayer()->SetMapSize(MapSize);
+			GetMainCameraActorTransform().SetLocalPosition({ 101, -2900, 0 });
+		}
+		else if (Player::GetMainPlayer()->GetCurLevelName() == "CROSS1")
+		{
+			Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 1624, -3022, 0 });
+			Player::GetMainPlayer()->SetLevelOverOn();
+			Player::GetMainPlayer()->SetMapSize(MapSize);
+			GetMainCameraActorTransform().SetLocalPosition({ 1624, -3022, 0 });
+		}
+		else
+		{
+			Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 101, -2900, 0 });
+			Player::GetMainPlayer()->SetLevelOverOn();
+			Player::GetMainPlayer()->SetMapSize(MapSize);
+			GetMainCameraActorTransform().SetLocalPosition({ 101, -2900, 0 });
+		}
+
+
 		Player::GetMainPlayer()->SetCurLevelName(GetNameConstRef());
 	}
 

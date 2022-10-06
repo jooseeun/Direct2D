@@ -97,10 +97,29 @@ void Town2Level::LevelStartEvent()
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
 		}
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 200,-3065,0 });
-		Player::GetMainPlayer()->SetLevelOverOn();
-		Player::GetMainPlayer()->SetMapSize(MapSize);
-		GetMainCameraActorTransform().SetLocalPosition({ 200,-3065,0 });
+
+		if (Player::GetMainPlayer()->GetCurLevelName() == "TOWN1")
+		{
+			Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 200, -2900, 0 });
+			Player::GetMainPlayer()->SetLevelOverOn();
+			Player::GetMainPlayer()->SetMapSize(MapSize);
+			GetMainCameraActorTransform().SetLocalPosition({ 200, -2900, 0 });
+		}
+		else if (Player::GetMainPlayer()->GetCurLevelName() == "TOWN3")
+		{
+			Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 6300, -2900, 0 });
+			Player::GetMainPlayer()->SetLevelOverOn();
+			Player::GetMainPlayer()->SetMapSize(MapSize);
+			GetMainCameraActorTransform().SetLocalPosition({ 6300, -2900, 0 });
+		}
+		else
+		{
+			Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 200, -2900, 0 });
+			Player::GetMainPlayer()->SetLevelOverOn();
+			Player::GetMainPlayer()->SetMapSize(MapSize);
+			GetMainCameraActorTransform().SetLocalPosition({ 200, -2900, 0 });
+		}
+
 		Player::GetMainPlayer()->SetCurLevelName(GetNameConstRef());
 	}
 

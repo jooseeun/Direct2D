@@ -61,6 +61,11 @@ void CrossLoad1::Start()
 		MapMoveCol->MoveCol2->GetTransform().SetLocalPosition({ 0,-1200,100 });
 		MapMoveCol->MoveCol2->ChangeOrder(OBJECTORDER::MoveCol1);
 		MapMoveCol->MoveLevel2 = "Cross10";
+
+		MapMoveCol->MoveCol3->GetTransform().SetLocalScale({ 200,50,1000.0f });
+		MapMoveCol->MoveCol3->GetTransform().SetLocalPosition({ 3470,-600,100 });
+		MapMoveCol->MoveCol3->ChangeOrder(OBJECTORDER::MoveCol1);
+		MapMoveCol->MoveLevel3 = "Town3";
 	}
 }
 void CrossLoad1::Update(float _DeltaTime)
@@ -103,7 +108,7 @@ void CrossLoad1::LevelStartEvent()
 		}
 		else
 		{
-			Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 3469, -342, 0 });
+			Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 3469, -800, 0 });
 			Player::GetMainPlayer()->SetLevelOverOn();
 			Player::GetMainPlayer()->SetMapSize(MapSize);
 			GetMainCameraActorTransform().SetLocalPosition({ 3469, -342, 0 });
