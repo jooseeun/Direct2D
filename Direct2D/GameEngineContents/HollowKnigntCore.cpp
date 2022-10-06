@@ -225,7 +225,7 @@ void HollowKnigntCore::Start()
 
 	GameEngineTexture::Cut("Climber_deathroll_01-Sheet.png", 8, 1);
 	GameEngineTexture::Cut("Climber_walk0000-Sheet.png", 4, 1);
-	GameEngineTexture::Cut("Climber_climber_death_v02000-Sheet.png", 4, 1);
+	GameEngineTexture::Cut("Climber_climber_death_v02000-Sheet.png", 5, 1);
 
 	///////////Boss
 	GameEngineTexture::Cut("False Knight_attack_charge0000-Sheet.png", 7, 1);
