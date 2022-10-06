@@ -57,10 +57,7 @@ void CrossLoad6::Start()
 		Buzzer* Monster = CreateActor<Buzzer>(OBJECTORDER::Monster);
 		Monster->GetTransform().SetLocalPosition({ 1137, -805, 0 });
 	}
-	{
-		Buzzer* Monster = CreateActor<Buzzer>(OBJECTORDER::Monster);
-		Monster->GetTransform().SetLocalPosition({ 945, -3345, 0 });
-	}
+
 	{
 		Crawler* Monster = CreateActor<Crawler>(OBJECTORDER::Monster);
 		Monster->GetTransform().SetLocalPosition({ 865, -1714, 0 });
