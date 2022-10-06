@@ -112,7 +112,7 @@ void CrossLoadBossLevel::Update(float _DeltaTime)
 
 			Boss = CreateActor<FalseKnight>(OBJECTORDER::Monster);
 			Boss->GetTransform().SetLocalPosition({ 2457, -700, 0 });
-			Boss->GetTransform().SetLocalScale({ 1.2, 1.2, 1.2 });
+			Boss->GetTransform().SetLocalScale({ 1.2f, 1.2f, 1.2f });
 
 			RightDoor = CreateActor<BossRoomDoor>(OBJECTORDER::StopObject);
 			RightDoor->GetTransform().SetLocalPosition({ 3294, -1600, 0 });

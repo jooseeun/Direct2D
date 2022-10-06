@@ -112,9 +112,13 @@ void TopUI::Start()
  
 void TopUI::Update(float _DeltaTime)
 {
-	if (Player::GetMainPlayer()->PlayerEnergyGage > 0.6)
+	if (Player::GetMainPlayer()->PlayerEnergyGage > 0.7)
 	{
 		EnergyUIEffect->On();
+	}
+	else if (Player::GetMainPlayer()->PlayerEnergyGage >= 1.0f)
+	{
+		EnergyUIEffect->Off();
 	}
 	else
 	{

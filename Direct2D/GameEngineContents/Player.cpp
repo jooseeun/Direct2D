@@ -1499,7 +1499,7 @@ void Player::ChargeUpdate(float _DeltaTime, const StateInfo& _Info)
 		ChargeEffect1->ScaleToCutTexture(0);
 	});
 	ChargeTime += 1.0f * _DeltaTime;
-	PlayerEnergyGage -= 0.05f * _DeltaTime;
+	PlayerEnergyGage -= 0.1f * _DeltaTime;
 	if (false == GameEngineInput::GetInst()->IsPress("PlayerCharge"))
 	{
 		StateManager.ChangeState("Idle");
