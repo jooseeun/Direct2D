@@ -16,6 +16,7 @@
 
 Player* Player::MainPlayer = nullptr;
 
+GameEngineSoundPlayer Player::MainBGM;
 Player::Player()
 	: Speed(700.0f)
 	, PlayerRenderer(nullptr)
@@ -51,6 +52,7 @@ Player::Player()
 	, ChargeEffect1(nullptr)
 	, CurLevelName()
 	, OneShakeCheck(0.0f)
+	, IsSuperMode(false)
 {
 	MainPlayer = this;
 }
@@ -74,6 +76,7 @@ void Player::Start()
 		GameEngineInput::GetInst()->CreateKey("PlayerJump", 'Z');
 		GameEngineInput::GetInst()->CreateKey("PlayerAttack", 'X');
 		GameEngineInput::GetInst()->CreateKey("PlayerCharge", 'A');
+		GameEngineInput::GetInst()->CreateKey("PlayerSuper", 'C');
 	}
 	
 	GetTransform().SetLocalScale({ 1, 1, 1 });
@@ -302,6 +305,18 @@ void Player::Start()
 
 void Player::Update(float _DeltaTime)
 {
+	if (true == GameEngineInput::GetInst()->IsDown("PlayerSuper"))
+	{
+		if (IsSuperMode == true)
+		{
+			IsSuperMode = false;
+		}
+		else
+		{
+			IsSuperMode = true;
+		}
+	}
+
 	if (true == GetLevel()->GetMainCameraActor()->IsFreeCameraMode())
 	{
 		return;
@@ -469,6 +484,11 @@ void Player::Gravity()
 		{
 			StateManager.ChangeState("Fall");
 		}
+		if (StateManager.GetCurStateStateName() == "Move")
+		{
+			StateManager.ChangeState("Fall");
+		}
+
 		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
 	GetTransform().GetWorldPosition().y - 1000.0f * GameEngineTime::GetDeltaTime(),
 	GetTransform().GetWorldPosition().z, });
@@ -621,11 +641,11 @@ CollisionReturn Player::DoorCheck(GameEngineCollision* _This, GameEngineCollisio
 {
 	if (CurDir == PLAYERDIR::Left)
 	{
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * 100.0f * GameEngineTime::GetDeltaTime());
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * GameEngineTime::GetDeltaTime());
 	}
 	if (CurDir == PLAYERDIR::Right)
 	{
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * 100.0f * GameEngineTime::GetDeltaTime());
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * GameEngineTime::GetDeltaTime());
 	}
 
 	return CollisionReturn::ContinueCheck;
@@ -731,13 +751,21 @@ bool Player::MapPixelJumpCheck()
 
 CollisionReturn Player::PlayerStun(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	if (PlayerHealth == 0)
+	if (IsSuperMode == true)
 	{
-		//Death
 		return CollisionReturn::ContinueCheck;
+
 	}
-	StateManager.ChangeState("Stun");
-	StunReadyTime = 3.0f;
+	else
+	{
+		if (PlayerHealth == 0)
+		{
+			//Death
+			return CollisionReturn::ContinueCheck;
+		}
+		StateManager.ChangeState("Stun");
+		StunReadyTime = 1.5f;
+	}
 	return CollisionReturn::ContinueCheck;
 }
 
@@ -755,6 +783,8 @@ void Player::IdleStart(const StateInfo& _Info)
 }
 void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+
+
 	if (_Info.PrevState == "Fall")
 	{
 		PlayerRenderer->AnimationBindEnd("Land", [=](const FrameAnimation_DESC& _Info)

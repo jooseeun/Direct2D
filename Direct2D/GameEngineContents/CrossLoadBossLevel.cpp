@@ -107,6 +107,9 @@ void CrossLoadBossLevel::Update(float _DeltaTime)
 
 		if (IsBoss == false)
 		{
+			Player::GetMainBGM().Stop();
+			Player::GetMainBGM() = GameEngineSound::SoundPlayControl("False Knight - Boss Battle 1.wav", 3);
+
 			Boss = CreateActor<FalseKnight>(OBJECTORDER::Monster);
 			Boss->GetTransform().SetLocalPosition({ 2457, -700, 0 });
 			Boss->GetTransform().SetLocalScale({ 1.2, 1.2, 1.2 });
@@ -125,6 +128,8 @@ void CrossLoadBossLevel::Update(float _DeltaTime)
 			RightDoor->DownAni();
 			LeftDoor->DownAni();
 			IsClear = true;
+			Player::GetMainBGM().Stop();
+			Player::GetMainBGM() = GameEngineSound::SoundPlayControl("Forgotten Crossroads bass - S19 Crossroads Bass.wav", 1000);
 		}
 	}
 }
@@ -139,10 +144,10 @@ void CrossLoadBossLevel::LevelStartEvent()
 		{
 			Player* NewPlayer = CreateActor<Player>(OBJECTORDER::Player);
 		}
-		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 4498, -1190, 0 });
+		Player::GetMainPlayer()->GetTransform().SetLocalPosition({ 4371, -1555, 0 });
 		Player::GetMainPlayer()->SetLevelOverOn();
 		Player::GetMainPlayer()->SetMapSize(MapSize);
-		GetMainCameraActorTransform().SetLocalPosition({ 4498, -1564, 0 });
+		GetMainCameraActorTransform().SetLocalPosition({ 4371, -1555, 0 });
 		Player::GetMainPlayer()->SetCurLevelName(GetNameConstRef());
 	}
 

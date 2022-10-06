@@ -107,6 +107,8 @@ void CrossLoad1::End()
 
 void CrossLoad1::LevelStartEvent()
 {
+	Player::GetMainBGM().Stop();
+	Player::GetMainBGM() = GameEngineSound::SoundPlayControl("Forgotten Crossroads main - S19 Crossroads Main.wav", 20);
 	{
 		if (nullptr == Player::GetMainPlayer())
 		{

@@ -10,7 +10,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineCore/GameEngineTextureRenderer.h>
-GameEngineSoundPlayer Town2Level::TownBgmPlayer;
+
 Town2Level::Town2Level() :
 	Camera(nullptr),
 	MapSize()
@@ -24,7 +24,6 @@ Town2Level::~Town2Level()
 void Town2Level::Start()
 {
 
-	TownBgmPlayer = GameEngineSound::SoundPlayControl("Dirtmouth 1.wav", 20);
 	if (false == GameEngineInput::GetInst()->IsKey("FreeCameraOnOff")
 		&& false == GameEngineInput::GetInst()->IsKey("CameraDebug"))
 	{
@@ -131,6 +130,8 @@ void Town2Level::LevelStartEvent()
 		TopUI::GetMainTopUI()->SetLevelOverOn();
 		TopUI::GetMainTopUI()->LevelStartUpdate();
 	}
+
+	Player::GetMainBGM() = GameEngineSound::SoundPlayControl("Dirtmouth 1.wav", 20);
 }
 
 void Town2Level::LevelEndEvent()

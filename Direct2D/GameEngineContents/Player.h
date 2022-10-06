@@ -9,20 +9,23 @@ class Player : public GameEngineActor
 {
 private:
 	static Player* MainPlayer;
-
+	static GameEngineSoundPlayer MainBGM;
 public:
 	static Player* GetMainPlayer()
 	{
 		return MainPlayer;
 	}
-
+	static GameEngineSoundPlayer& GetMainBGM()
+	{
+		return MainBGM;
+	}
 //플레이어 정보
 public:
 	int PlayerHealth;
 	int PlayerFullHealth;
 	int PlayerGeoCoin;
 	float PlayerEnergyGage;
-
+	bool IsSuperMode;
 public:
 	// constrcuter destructer
 	Player();

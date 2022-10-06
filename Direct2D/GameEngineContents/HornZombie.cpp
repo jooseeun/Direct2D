@@ -117,7 +117,7 @@ void HornZombie::Start()
 			, std::bind(&HornZombie::AttackStart, this, std::placeholders::_1)
 		);
 
-		StateManager.ChangeState("Move");
+		StateManager.ChangeState("Idle");
 	}
 }
 CollisionReturn HornZombie::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
@@ -295,12 +295,12 @@ void HornZombie::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		StopTime -= 1.0f * _DeltaTime;
 	}
+	StateManager.ChangeState("Move");
 }
 
 void HornZombie::MoveStart(const StateInfo& _Info)
 {
-	SoundPlayer.Stop();
-	SoundPlayer = GameEngineSound::SoundPlayControl("zombie_five_footstep.wav");
+
 
 	MoveTime = 4.0f;
 	MonsterRenderer->ChangeFrameAnimation("Move");
@@ -359,7 +359,9 @@ void HornZombie::AttackStart(const StateInfo& _Info)
 void HornZombie::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	MonsterRenderer->AnimationBindEnd("Attack", [=](const FrameAnimation_DESC& _Info)
-	{
+	{	
+		SoundPlayer.Stop();
+		SoundPlayer = GameEngineSound::SoundPlayControl("zombie_five_footstep.wav");
 		StopTime = 1.5f;
 		StateManager.ChangeState("Move");
 

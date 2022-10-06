@@ -19,7 +19,7 @@ public:
 	{
 		return Death;
 	}
-
+	GameEngineSoundPlayer BossSoundPlayer;
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);

@@ -117,7 +117,7 @@ void BasicZombie::Start()
 			, std::bind(&BasicZombie::AttackStart, this, std::placeholders::_1)
 		);
 
-		StateManager.ChangeState("Move");
+		StateManager.ChangeState("Idle");
 	}
 }
 CollisionReturn BasicZombie::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
@@ -295,6 +295,8 @@ void BasicZombie::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		StopTime -= 1.0f * _DeltaTime;
 	}
+
+	StateManager.ChangeState("Move");
 }
 
 void BasicZombie::MoveStart(const StateInfo& _Info)
@@ -303,8 +305,7 @@ void BasicZombie::MoveStart(const StateInfo& _Info)
 	MonsterRenderer->ChangeFrameAnimation("Move");
 	MonsterRenderer->ScaleToCutTexture(0);	
 
-	SoundPlayer.Stop();
-	SoundPlayer = GameEngineSound::SoundPlayControl("zombie_five_footstep.wav");
+
 }
 void BasicZombie::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -360,6 +361,8 @@ void BasicZombie::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	MonsterRenderer->AnimationBindEnd("Attack", [=](const FrameAnimation_DESC& _Info)
 	{
+		SoundPlayer.Stop();
+		SoundPlayer = GameEngineSound::SoundPlayControl("zombie_five_footstep.wav");
 		StopTime = 0.1;
 		StateManager.ChangeState("Move");
 

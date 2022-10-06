@@ -310,7 +310,7 @@ void FalseKnight::Gravity()
 		}
 		OnGround = false;
 		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
-	GetTransform().GetWorldPosition().y - 800.0f * GameEngineTime::GetDeltaTime(),
+	GetTransform().GetWorldPosition().y - 650.0f * GameEngineTime::GetDeltaTime(),
 	GetTransform().GetWorldPosition().z, });
 	}
 }
@@ -329,6 +329,8 @@ void FalseKnight::UpdateDamage()
 			std::bind(&FalseKnight::CheckDemage, this, std::placeholders::_1, std::placeholders::_2)))
 		{
 
+			BossSoundPlayer.Stop();
+			BossSoundPlayer = GameEngineSound::SoundPlayControl("false_knight_damage_armour.wav");
 			MonsterRenderer->GetPixelData().PlusColor += {1.0,1.0,1.0,1.0};
 
 			
@@ -340,6 +342,10 @@ void FalseKnight::UpdateDamage()
 	{
 		if (StateManager.GetCurStateStateName() == "Stun")
 		{
+
+			BossSoundPlayer.Stop();
+			BossSoundPlayer = GameEngineSound::SoundPlayControl("Fknight_hit_01.wav");
+
 			MonsterHeadRenderer->ChangeFrameAnimation("StunIdle");
 			MonsterHeadRenderer->CurAnimationReset();
 			MonsterHeadRenderer->ScaleToCutTexture(0);
@@ -380,8 +386,10 @@ void FalseKnight::DemagePixelColor()
 
 CollisionReturn FalseKnight::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+
 	AttackTime = 0.5f;
 	Health -= 1;
+
 
 	if (Health <= 0)
 	{
@@ -587,6 +595,8 @@ void FalseKnight::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void FalseKnight::JumpStart(const StateInfo& _Info)
 {
+	BossSoundPlayer.Stop();
+	BossSoundPlayer = GameEngineSound::SoundPlayControl("false_knight_jump.wav");
 	MonsterRenderer->ChangeFrameAnimation("Jump");
 	MonsterRenderer->ScaleToCutTexture(0);
 	JumpTime = 1.3f;
@@ -634,6 +644,8 @@ GetTransform().GetWorldPosition().z, });
 }
 void FalseKnight::BackJumpStart(const StateInfo& _Info)
 {
+	BossSoundPlayer.Stop();
+	BossSoundPlayer = GameEngineSound::SoundPlayControl("false_knight_jump.wav");
 	MonsterRenderer->ChangeFrameAnimation("BackJump");
 	MonsterRenderer->ScaleToCutTexture(0);
 	JumpTime = 1.0f;
@@ -681,6 +693,8 @@ GetTransform().GetWorldPosition().z, });
 }
 void FalseKnight::LandStart(const StateInfo& _Info)
 {
+	BossSoundPlayer.Stop();
+	BossSoundPlayer = GameEngineSound::SoundPlayControl("false_knight_land.wav");
 	MonsterRenderer->ChangeFrameAnimation("Land");
 	MonsterRenderer->ScaleToCutTexture(0);
 }
@@ -773,7 +787,9 @@ void FalseKnight::JumpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	MonsterRenderer->AnimationBindEnd("JumpAttack1", [=](const FrameAnimation_DESC& _Info)
 	{
 		MonsterRenderer->ChangeFrameAnimation("JumpAttack2");
-		SkillTime = 0.3f;
+		SkillTime = 0.3f;	
+		BossSoundPlayer.Stop();
+		BossSoundPlayer = GameEngineSound::SoundPlayControl("false_knight_strike_ground.wav");
 	});
 	MonsterRenderer->AnimationBindEnd("JumpAttack2", [=](const FrameAnimation_DESC& _Info)
 	{
@@ -857,6 +873,10 @@ void FalseKnight::DropAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		MonsterRenderer->GetTransform().PixLocalNegativeX();
 		LeftSkillCol->On();
 		RightSkillCol->Off();
+
+		GameEngineSound::SoundPlayOneShot("false_knight_swing.wav");
+		BossSoundPlayer.Stop();
+		BossSoundPlayer = GameEngineSound::SoundPlayControl("false_knight_strike_ground.wav");
 	});
 
 	MonsterRenderer->AnimationBindEnd("DropAttack2", [=](const FrameAnimation_DESC& _Info)
@@ -866,6 +886,10 @@ void FalseKnight::DropAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 		MonsterRenderer->GetTransform().PixLocalPositiveX();
 		RightSkillCol->On();
 		LeftSkillCol->Off();
+
+		GameEngineSound::SoundPlayOneShot("false_knight_swing.wav");
+		BossSoundPlayer.Stop();
+		BossSoundPlayer = GameEngineSound::SoundPlayControl("false_knight_strike_ground.wav");
 		if (SkillNum < 0)
 		{
 			StateManager.ChangeState("Idle");
@@ -898,7 +922,9 @@ void FalseKnight::HitAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		MonsterRenderer->ChangeFrameAnimation("HitAttack2");
 		MonsterRenderer->ScaleToCutTexture(0);
-		SkillTime = 0.3f;
+		SkillTime = 0.3f;		
+		BossSoundPlayer.Stop();
+		BossSoundPlayer = GameEngineSound::SoundPlayControl("false_knight_strike_ground.wav");
 	});
 	MonsterRenderer->AnimationBindEnd("HitAttack2", [=](const FrameAnimation_DESC& _Info)
 	{
@@ -942,6 +968,8 @@ void FalseKnight::StunStart(const StateInfo& _Info)
 	}
 	MonsterRenderer->ScaleToCutTexture(0);
 	DeathNum -= 1;
+	BossSoundPlayer.Stop();
+	BossSoundPlayer = GameEngineSound::SoundPlayControl("false_knight_damage_armour_final.wav");
 }
 void FalseKnight::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -949,6 +977,9 @@ void FalseKnight::StunUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		MonsterRenderer->ChangeFrameAnimation("PopOut");
 		MonsterRenderer->ScaleToCutTexture(0);
+
+		BossSoundPlayer.Stop();
+		BossSoundPlayer = GameEngineSound::SoundPlayControl("Fknight_flump_01.wav");
 	});
 
 	MonsterRenderer->AnimationBindEnd("PopOut", [=](const FrameAnimation_DESC& _Info)
@@ -1000,6 +1031,8 @@ void FalseKnight::DeathStart(const StateInfo& _Info)
 	MonsterHeadRenderer->ChangeFrameAnimation("Death");
 	MonsterHeadRenderer->ScaleToCutTexture(0);
 
+	BossSoundPlayer.Stop();
+	BossSoundPlayer = GameEngineSound::SoundPlayControl("FKnight_death.wav");
 	if (CurDir == MonsterDIR::Left)
 	{
 		MonsterHeadRenderer->GetTransform().PixLocalNegativeX();
@@ -1033,6 +1066,8 @@ void FalseKnight::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		MonsterHeadCollision->Off();
 		MonsterCollision->Off();
+		BossSoundPlayer.Stop();
+		BossSoundPlayer = GameEngineSound::SoundPlayControl("FKnight_fall_option_02.wav");
 		Death = true;
 	});
 }
