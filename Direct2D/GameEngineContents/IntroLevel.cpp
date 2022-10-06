@@ -39,7 +39,6 @@ void IntroLevel::Start()
 		GetUICamera()->SetProjectionSize(float4{ 1920, 1080 });
 	}
 
-	BgmPlayer = GameEngineSound::SoundPlayControl("Main menu theme - Title.wav");
 
 }
 void IntroLevel::Update(float _DeltaTime)
@@ -53,15 +52,21 @@ void IntroLevel::Update(float _DeltaTime)
 }
 void IntroLevel::End()
 {
-
 }
 
 void IntroLevel::LevelStartEvent()
 {
+
+	BgmPlayer = GameEngineSound::SoundPlayControl("Main menu theme - Title.wav");
 	if (nullptr == Mouse::MainMouse)
 	{
 		Mouse* MainMouse = CreateActor<Mouse>(OBJECTORDER::UI);
 	}
 
 	GetMainCameraActorTransform().SetLocalPosition({ 960.0f, -900.0f, 0.0f });
+}
+
+void IntroLevel::LevelEndEvent()
+{
+	BgmPlayer.Stop();
 }

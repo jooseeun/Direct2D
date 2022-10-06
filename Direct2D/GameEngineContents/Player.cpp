@@ -455,6 +455,8 @@ void Player::Gravity()
 			}
 			PlayerRenderer->ChangeFrameAnimation("Land");
 			PlayerRenderer->ScaleToCutTexture(0);
+			StateSound.Stop();
+			StateSound = GameEngineSound::SoundPlayControl("hero_land_soft.wav");
 			StateManager.ChangeState("Idle");
 		}
 
@@ -808,7 +810,8 @@ void Player::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Player::MoveStart(const StateInfo& _Info)
 {
-
+	StateSound.Stop();
+	StateSound = GameEngineSound::SoundPlayControl("hero_run_footsteps_stone.wav",10000);
 }
 
 void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -830,10 +833,12 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerJump")) // 점프와 동시에 이동할 수 있어야 한다.
 	{
 		StateManager.ChangeState("Jump");
+		StateSound.Stop();
 	}
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerAttack")) // 점프와 동시에 이동할 수 있어야 한다.
 	{
 		StateManager.ChangeState("Attack");
+		StateSound.Stop();
 	}
 
 	if (false == GameEngineInput::GetInst()->IsPress("PlayerLeft") &&
@@ -841,6 +846,7 @@ void Player::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 
 		StateManager.ChangeState("MoveToIdle");
+		StateSound.Stop();
 		return;
 	}
 	
@@ -994,6 +1000,8 @@ void Player::FallUpdate(float _DeltaTime, const StateInfo& _Info)
 }	
 void Player::HardLandStart(const StateInfo& _Info)
 {
+	StateSound.Stop();
+	StateSound = GameEngineSound::SoundPlayControl("hero_land_hard.wav");
 	ShakeTime = 0.0f;
 	CameraShake = true;
 	PlayerRenderer->ChangeFrameAnimation("HardLand");
@@ -1018,6 +1026,8 @@ void Player::HardLandUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 void Player::JumpStart(const StateInfo& _Info)
 {
+	StateSound.Stop();
+	StateSound = GameEngineSound::SoundPlayControl("hero_jump.wav");
 	JumpTime = 0.0f;
 	PlayerRenderer->ChangeFrameAnimation("Jump");
 	PlayerRenderer->ScaleToCutTexture(0);
@@ -1113,6 +1123,8 @@ void Player::AttackStart(const StateInfo& _Info)
 	}
 	if (AttackNum == 1)
 	{
+		StateSound.Stop();
+		StateSound = GameEngineSound::SoundPlayControl("sword_1.wav");
 		PlayerRenderer->ChangeFrameAnimation("Attack1");
 		PlayerRenderer->ScaleToCutTexture(0);
 		SkillRenderer->ChangeFrameAnimation("Attack1");
@@ -1121,6 +1133,8 @@ void Player::AttackStart(const StateInfo& _Info)
 	}
 	else if (AttackNum == 2)
 	{
+		StateSound.Stop();
+		StateSound = GameEngineSound::SoundPlayControl("sword_3.wav");
 		PlayerRenderer->ChangeFrameAnimation("Attack2");
 		PlayerRenderer->ScaleToCutTexture(0);
 		SkillRenderer->ChangeFrameAnimation("Attack2");
@@ -1228,6 +1242,8 @@ void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 void Player::UpAttackStart(const StateInfo& _Info)
 {
+	StateSound.Stop();
+	StateSound = GameEngineSound::SoundPlayControl("sword_2.wav");
 	PlayerRenderer->ChangeFrameAnimation("UpAttack");
 	PlayerRenderer->ScaleToCutTexture(0);	
 	SkillRenderer->ChangeFrameAnimation("UpAttack");
@@ -1284,6 +1300,8 @@ void Player::UpAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Player::DownAttackStart(const StateInfo& _Info)
 {
+	StateSound.Stop();
+	StateSound = GameEngineSound::SoundPlayControl("sword_3.wav");
 	PlayerRenderer->ChangeFrameAnimation("DownAttack");
 	PlayerRenderer->ScaleToCutTexture(0);
 	SkillRenderer->ChangeFrameAnimation("DownAttack");

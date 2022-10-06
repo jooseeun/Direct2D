@@ -17,12 +17,13 @@ public:
 	Town1Level(Town1Level&& _Other) noexcept = delete;
 	Town1Level& operator=(const Town1Level& _Other) = delete;
 	Town1Level& operator=(Town1Level&& _Other) noexcept = delete;
-
+	GameEngineSoundPlayer BgmPlayer;
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;
 	void LevelStartEvent() override;
+	void LevelEndEvent() override;
 
 private:
 

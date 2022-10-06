@@ -133,3 +133,7 @@ void CrossLoad3::LevelStartEvent()
 		TopUI::GetMainTopUI()->LevelStartUpdate();
 	}
 }
+void CrossLoad3::LevelEndEvent()
+{
+
+}

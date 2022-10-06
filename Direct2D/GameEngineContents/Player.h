@@ -54,6 +54,11 @@ public:
 	{
 		return CurLevelName;
 	}
+
+	GameEngineSoundPlayer StateSound;
+	GameEngineSoundPlayer AttackSound;
+
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);

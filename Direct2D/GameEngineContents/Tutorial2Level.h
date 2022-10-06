@@ -16,12 +16,14 @@ public:
 	Tutorial2Level(Tutorial2Level&& _Other) noexcept = delete;
 	Tutorial2Level& operator=(const Tutorial2Level& _Other) = delete;
 	Tutorial2Level& operator=(Tutorial2Level&& _Other) noexcept = delete;
+	GameEngineSoundPlayer BgmPlayer;
 
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void End() override;
 	void LevelStartEvent() override;
+	void LevelEndEvent() override;
 
 private:
 

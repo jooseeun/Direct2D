@@ -106,4 +106,10 @@ void Town1Level::LevelStartEvent()
 		TopUI::GetMainTopUI()->SetLevelOverOn();
 		TopUI::GetMainTopUI()->LevelStartUpdate();
 	}
+
+
+}
+
+void Town1Level::LevelEndEvent()
+{
 }

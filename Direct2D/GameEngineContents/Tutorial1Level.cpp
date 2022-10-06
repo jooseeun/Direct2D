@@ -130,4 +130,10 @@ void Tutorial1Level::LevelStartEvent()
 		TopUI* NewUI = CreateActor<TopUI>(OBJECTORDER::UI);
 	}
 	TopUI::GetMainTopUI()->SetLevelOverOn();
+	BgmPlayer = GameEngineSound::SoundPlayControl("waterways_atmos_loop.wav", 1000);
+}
+
+void Tutorial1Level::LevelEndEvent()
+{
+	BgmPlayer.Stop();
 }

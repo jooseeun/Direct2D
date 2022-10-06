@@ -132,3 +132,7 @@ void Town2Level::LevelStartEvent()
 		TopUI::GetMainTopUI()->LevelStartUpdate();
 	}
 }
+
+void Town2Level::LevelEndEvent()
+{
+}

@@ -17,6 +17,7 @@ public:
 	Tutorial1Level(Tutorial1Level&& _Other) noexcept = delete;
 	Tutorial1Level& operator=(const Tutorial1Level& _Other) = delete;
 	Tutorial1Level& operator=(Tutorial1Level&& _Other) noexcept = delete;
+	GameEngineSoundPlayer BgmPlayer;
 
 protected:
 	void Start() override;
@@ -24,6 +25,7 @@ protected:
 	void End() override;
 	void LevelStartEvent() override;
 
+	void LevelEndEvent() override;
 private:
 
 	GameEngineCameraActor* Camera;

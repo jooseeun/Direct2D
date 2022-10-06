@@ -23,6 +23,7 @@ protected:
 	void End() override;
 	void LevelStartEvent() override;
 
+	void LevelEndEvent() override;
 private:
 
 	GameEngineCameraActor* Camera;

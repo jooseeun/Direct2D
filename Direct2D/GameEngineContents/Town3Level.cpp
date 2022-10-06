@@ -119,3 +119,6 @@ void Town3Level::LevelStartEvent()
 		TopUI::GetMainTopUI()->LevelStartUpdate();
 	}
 }
+void Town3Level::LevelEndEvent()
+{
+}

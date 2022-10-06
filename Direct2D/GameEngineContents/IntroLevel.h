@@ -26,6 +26,7 @@ protected:
 
 private:
 	void LevelStartEvent() override;
+	void LevelEndEvent() override;
 
 	TitleObject* TitleCom;
 	GameEngineCameraActor* Camera;
