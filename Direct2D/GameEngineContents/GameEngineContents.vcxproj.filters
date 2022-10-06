@@ -219,6 +219,9 @@
     <ClCompile Include="CrossLoad10.cpp">
       <Filter>Contents\Level\CrossLoad</Filter>
     </ClCompile>
+    <ClCompile Include="Climber.cpp">
+      <Filter>Contents\Actor\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -379,6 +382,9 @@
     </ClInclude>
     <ClInclude Include="CrossLoad10.h">
       <Filter>Contents\Level\CrossLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="Climber.h">
+      <Filter>Contents\Actor\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
