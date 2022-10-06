@@ -2,60 +2,40 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Debug">
-      <UniqueIdentifier>{0e333bb3-e770-45ad-a5be-c03a79374e05}</UniqueIdentifier>
+      <UniqueIdentifier>{bfbef790-e313-49e8-9096-193fd6a5d2f4}</UniqueIdentifier>
     </Filter>
     <Filter Include="IO">
-      <UniqueIdentifier>{2a2d3c75-1547-4e03-87cc-3d834494f148}</UniqueIdentifier>
+      <UniqueIdentifier>{1af8f908-ed83-4d0b-b7a9-95bc1102a96e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Math">
-      <UniqueIdentifier>{a6a6c49c-425c-48f4-8e2e-2548f233bd96}</UniqueIdentifier>
+      <UniqueIdentifier>{22eb4c60-290a-4ac8-aad5-50713bbf9056}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object">
-      <UniqueIdentifier>{7968e3ae-5552-4c68-9950-a8a12946ee64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="String">
-      <UniqueIdentifier>{8c603710-2a1c-4bca-b6ad-6e3f359bc1ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty">
-      <UniqueIdentifier>{a3a81760-fc54-46e1-8e15-f70e08613640}</UniqueIdentifier>
+      <UniqueIdentifier>{0dc35c84-7f4f-4030-b718-d0b175763a61}</UniqueIdentifier>
     </Filter>
     <Filter Include="WindowsOS">
-      <UniqueIdentifier>{218ad107-2bc7-45c7-b4d9-dbca6b68020b}</UniqueIdentifier>
+      <UniqueIdentifier>{6efdbf21-50aa-48e2-bb08-42d3348a2eab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String">
+      <UniqueIdentifier>{37986fae-e9d4-47ce-a9f2-5ef40e6c278d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{331122df-8ae3-4038-aacf-a14d7726e170}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Sound">
-      <UniqueIdentifier>{2a9c974b-2acd-4f7e-89a1-4563d71129d0}</UniqueIdentifier>
+      <UniqueIdentifier>{86af6b30-6553-442b-b937-277e57b299fb}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Lib">
-      <UniqueIdentifier>{4e160ad7-8fc7-4b13-93cd-ded18a2bdfbc}</UniqueIdentifier>
+      <UniqueIdentifier>{717e7171-bed7-419b-9890-ed59b834d286}</UniqueIdentifier>
     </Filter>
     <Filter Include="PreCompile">
-      <UniqueIdentifier>{52b469f9-8296-4201-8044-40ab2026de6e}</UniqueIdentifier>
+      <UniqueIdentifier>{bd9eb880-afe9-4dca-9caf-46b430f6193d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Enum">
-      <UniqueIdentifier>{3daf6f0c-11b0-40a3-88db-df21f1339b02}</UniqueIdentifier>
+      <UniqueIdentifier>{40c2ed13-cf85-4feb-8fb6-47dd2686b9be}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\bin\fmod.dll">
-      <Filter>ThirdParty\Lib</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\bin\fmodL_vc.lib" />
-    <CopyFileToFolders Include="ThirdParty\bin\fmod_vc.lib" />
-    <CopyFileToFolders Include="ThirdParty\bin\fmodL.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="PreCompile.cpp">
-      <Filter>PreCompile</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineString.cpp">
-      <Filter>String</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineDebugObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineNameObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngineDebug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
@@ -68,46 +48,49 @@
     <ClCompile Include="GameEngineDirectory.cpp">
       <Filter>IO</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineNameObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
     <ClCompile Include="GameEngineRandom.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineTime.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineTransform.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineTransform_Collision.cpp">
       <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineMath.cpp">
       <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineWindow.cpp">
-      <Filter>WindowsOS</Filter>
+    <ClCompile Include="GameEngineTime.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineInput.cpp">
       <Filter>WindowsOS</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineWindow.cpp">
+      <Filter>WindowsOS</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineString.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
     <ClCompile Include="GameEngineSound.cpp">
       <Filter>ThirdParty\Sound</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineTransform.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineDebugObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineTransform_Collision.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>PreCompile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PreCompile.h">
-      <Filter>PreCompile</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineString.h">
-      <Filter>String</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineDebugObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineNameObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngineDebug.h">
       <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineDirectory.h">
+      <Filter>IO</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineFile.h">
       <Filter>IO</Filter>
@@ -115,8 +98,11 @@
     <ClInclude Include="GameEnginePath.h">
       <Filter>IO</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineDirectory.h">
-      <Filter>IO</Filter>
+    <ClInclude Include="GameEngineNameObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineMath.h">
+      <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineRandom.h">
       <Filter>Math</Filter>
@@ -124,20 +110,26 @@
     <ClInclude Include="GameEngineTime.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineTransform.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineMath.h">
-      <Filter>Math</Filter>
+    <ClInclude Include="GameEngineInput.h">
+      <Filter>WindowsOS</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineWindow.h">
       <Filter>WindowsOS</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineInput.h">
-      <Filter>WindowsOS</Filter>
+    <ClInclude Include="GameEngineString.h">
+      <Filter>String</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineSound.h">
       <Filter>ThirdParty\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineTransform.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineDebugObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PreCompile.h">
+      <Filter>PreCompile</Filter>
     </ClInclude>
     <ClInclude Include="magic_enum_fuse.hpp">
       <Filter>Enum</Filter>
@@ -148,5 +140,19 @@
     <ClInclude Include="magic_enum.hpp">
       <Filter>Enum</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\bin\fmod.dll">
+      <Filter>ThirdParty\Lib</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmod_vc.lib">
+      <Filter>ThirdParty\Lib</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmodL.dll">
+      <Filter>ThirdParty\Lib</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmodL_vc.lib">
+      <Filter>ThirdParty\Lib</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

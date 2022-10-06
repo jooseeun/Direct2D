@@ -26,8 +26,8 @@ protected:
 	CollisionReturn CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
 
-	void IdleStart(const StateInfo& _Info);
-	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+	void TrunStart(const StateInfo& _Info);
+	void TrunUpdate(float _DeltaTime, const StateInfo& _Info);
 
 	void MoveStart(const StateInfo& _Info);
 	void MoveUpdate(float _DeltaTime, const StateInfo& _Info);

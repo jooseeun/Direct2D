@@ -89,7 +89,7 @@ void Climber::Start()
 			FrameAnimation_DESC("Climber_deathroll_01-Sheet.png", 6, 7, 0.1f, false));
 
 		MonsterRenderer->CreateFrameAnimationCutTexture("Move",
-			FrameAnimation_DESC("Climber_walk.png", 0, 3, 0.1f, true));
+			FrameAnimation_DESC("Climber_walk0000-Sheet.png", 0, 3, 0.1f, true));
 
 		MonsterRenderer->CreateFrameAnimationCutTexture("Death",
 			FrameAnimation_DESC("Climber_climber_death_v02000-Sheet.png", 0, 5, 0.1f, false));
@@ -97,9 +97,9 @@ void Climber::Start()
 
 
 	{
-		StateManager.CreateStateMember("Idle"
-			, std::bind(&Climber::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2)
-			, std::bind(&Climber::IdleStart, this, std::placeholders::_1)
+		StateManager.CreateStateMember("Trun"
+			, std::bind(&Climber::TrunUpdate, this, std::placeholders::_1, std::placeholders::_2)
+			, std::bind(&Climber::TrunStart, this, std::placeholders::_1)
 		);
 		StateManager.CreateStateMember("Move"
 			, std::bind(&Climber::MoveUpdate, this, std::placeholders::_1, std::placeholders::_2)
@@ -152,12 +152,7 @@ CollisionReturn Climber::CheckDemage(GameEngineCollision* _This, GameEngineColli
 
 	return CollisionReturn::ContinueCheck;
 }
-CollisionReturn Climber::CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
-{
 
-	StateManager.ChangeState("Move");
-	return CollisionReturn::ContinueCheck;
-}
 void Climber::EffectUpdate()
 {
 	if (HPEffect1->GetPixelData().MulColor.a != 0.0f)
@@ -188,14 +183,6 @@ void Climber::EffectUpdate()
 }
 void Climber::Update(float _DeltaTime)
 {
-	if (StateManager.GetCurStateStateName() == "Idle")
-	{
-		TriggerCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Player, CollisionType::CT_OBB2D,
-			std::bind(&Climber::CheckTrigger, this, std::placeholders::_1, std::placeholders::_2)
-		);
-	}
-
-
 
 	MonsterCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Skill, CollisionType::CT_OBB2D,
 		std::bind(&Climber::CheckDemage, this, std::placeholders::_1, std::placeholders::_2)
@@ -244,34 +231,13 @@ bool Climber::MapPixelCheck()
 	}
 
 
-	float4 ColorR = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() + 54,
-		-GetTransform().GetWorldPosition().iy() - 5);
-	float4 ColorL = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() - 54,
-		-GetTransform().GetWorldPosition().iy() - 5);
-	float4 ColorUp = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
-		-GetTransform().GetWorldPosition().iy() - 80);
+	float4 ColorRDown = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() + 54,
+		-GetTransform().GetWorldPosition().iy() - 1);
 
-	if (false == ColorUp.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
+	if (false == ColorRDown.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
 	{
 		return true;
 	}
-
-	if (CurDir == MonsterDIR::Left)
-	{
-		if (false == ColorL.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
-		{
-			return true;
-		}
-	}
-
-	if (CurDir == MonsterDIR::Right)
-	{
-		if (false == ColorR.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
-		{
-			return true;
-		}
-	}
-
 
 	return false;
 
@@ -280,12 +246,11 @@ bool Climber::MapPixelCheck()
 
 ///////////State ÇÔ¼ö//////////////////////////////////////
 
-void Climber::IdleStart(const StateInfo& _Info)
+void Climber::TrunStart(const StateInfo& _Info)
 {
-	MonsterRenderer->ChangeFrameAnimation("Idle");
-	MonsterRenderer->ScaleToCutTexture(0);
+
 }
-void Climber::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
+void Climber::TrunUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 
 }
@@ -297,20 +262,9 @@ void Climber::MoveStart(const StateInfo& _Info)
 }
 void Climber::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	float4 MovePos = Player::GetMainPlayer()->GetTransform().GetLocalPosition() - GetTransform().GetLocalPosition();
-	float MoveLen = MovePos.Length();
-	if (MovePos.x < 0.0f)
-	{
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
-		MonsterRenderer->GetTransform().PixLocalPositiveX();
 
-	}
-	if (MovePos.x >= 0.0f)
-	{
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed * _DeltaTime);
-		MonsterRenderer->GetTransform().PixLocalNegativeX();
-
-	}
+	GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
+	MonsterRenderer->GetTransform().PixLocalPositiveX();
 
 
 }
