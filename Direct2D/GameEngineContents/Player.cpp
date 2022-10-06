@@ -378,7 +378,7 @@ void Player::CameraCheck()
 
 	if (0 <= CurCameraPos.y + CameraRectY / 2)
 	{
-		CurCameraPos.y = -CameraRectY / 2 - 100;
+		CurCameraPos.y = -CameraRectY / 2;
 		GetLevel()->GetMainCameraActorTransform().SetLocalPosition(CurCameraPos);
 	}
 
