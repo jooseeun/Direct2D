@@ -32,6 +32,7 @@ private:
 	GameEngineCollision* GameStartCol;
 	GameEngineCollision* GameSetCol;
 	GameEngineCollision* GameEndCol;
+	int IsNum;
 
 	GameEngineTextureRenderer* BackGround;
 	GameEngineTextureRenderer* TitleLogo;

@@ -78,11 +78,13 @@ void Mouse::CheckClickCollision()
 }
 CollisionReturn Mouse::CheckStart(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	GameEngineSound::SoundPlayOneShot("ui_button_confirm.wav");
 	GEngine::ChangeLevel("Tutorial1");
 	return CollisionReturn::ContinueCheck;
 }
 CollisionReturn Mouse::CheckEnd(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	GameEngineSound::SoundPlayOneShot("ui_button_confirm.wav");
 	exit(0);
 	return CollisionReturn::ContinueCheck;
 }

@@ -10,6 +10,7 @@ TitleObject::TitleObject()
 	, GameSet(nullptr)
 	, GameExit(nullptr)
 	, GameStartCol(nullptr)
+	, IsNum(1)
 {
 }
 
@@ -127,18 +128,33 @@ void TitleObject::Update(float _DeltaTime)
 }
 CollisionReturn TitleObject::CheckStart(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	if (IsNum != 1)
+	{
+		GameEngineSound::SoundPlayOneShot("ui_change_selection.wav");
+		IsNum = 1;
+	}
 	LeftArrow->GetTransform().SetLocalPosition({ 830.0f, -995.0f, 0 });
 	RightArrow->GetTransform().SetLocalPosition({ 1060.0f, -995.0f, 0 });
 	return CollisionReturn::ContinueCheck;
 }
 CollisionReturn TitleObject::CheckSet(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	if (IsNum != 2)
+	{
+		GameEngineSound::SoundPlayOneShot("ui_change_selection.wav");
+		IsNum = 2;
+	}
 	LeftArrow->GetTransform().SetLocalPosition({ 830.0f, -1095.0f, 0 });
 	RightArrow->GetTransform().SetLocalPosition({ 1060.0f, -1095.0f, 0 });
 	return CollisionReturn::ContinueCheck;
 }
 CollisionReturn TitleObject::CheckEnd(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	if (IsNum != 3)
+	{
+		GameEngineSound::SoundPlayOneShot("ui_change_selection.wav");
+		IsNum = 3;
+	}
 	LeftArrow->GetTransform().SetLocalPosition({ 830.0f, -1195.0f, 0 });
 	RightArrow->GetTransform().SetLocalPosition({ 1060.0f, -1195.0f, 0 });
 	return CollisionReturn::ContinueCheck;

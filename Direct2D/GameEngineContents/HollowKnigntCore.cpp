@@ -177,6 +177,20 @@ void HollowKnigntCore::Start()
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
 	}
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExitsChildDirectory("ContentsResources");
+		Dir.Move("ContentsResources");
+		Dir.Move("Texture");
+		Dir.Move("Sound");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineSound::LoadRessource(Shaders[i].GetFullPath());
+		}
+	}
 	GameEngineFont::Load("Noto Serif KR");
 	GameEngineFont::Load("Noto Serif KR Black");
 	//player ¸®¼Ò½º

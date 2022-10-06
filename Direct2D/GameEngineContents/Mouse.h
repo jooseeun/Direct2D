@@ -32,6 +32,8 @@ private:
 	CollisionReturn CheckEnd(GameEngineCollision* _This, GameEngineCollision* _Other);
 	//bool CheckSet(GameEngineCollision* _This, GameEngineCollision* _Other);
 
+
+	GameEngineSoundPlayer SoundPlayer;
 	GameEngineUIRenderer* MouseRenderer;
 	GameEngineCollision* MouseCol;
 };

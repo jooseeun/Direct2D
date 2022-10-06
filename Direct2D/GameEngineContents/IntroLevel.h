@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 // Ό³Έν :
 class GameEngineCameraActor;
@@ -17,6 +18,7 @@ public:
 	IntroLevel& operator=(const IntroLevel& _Other) = delete;
 	IntroLevel& operator=(IntroLevel&& _Other) noexcept = delete;
 
+	GameEngineSoundPlayer BgmPlayer;
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

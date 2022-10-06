@@ -39,7 +39,7 @@ void IntroLevel::Start()
 		GetUICamera()->SetProjectionSize(float4{ 1920, 1080 });
 	}
 
-
+	BgmPlayer = GameEngineSound::SoundPlayControl("Main menu theme - Title.wav");
 
 }
 void IntroLevel::Update(float _DeltaTime)
