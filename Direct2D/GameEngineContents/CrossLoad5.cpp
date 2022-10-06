@@ -5,6 +5,7 @@
 #include "TopUI.h"
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
+#include "Buzzer.h"
 
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
@@ -49,6 +50,10 @@ void CrossLoad5::Start()
 			"Cross5_ColMap.png");
 
 		MapSize = { 2836, 1798, 100.0f };
+	}
+	{
+		Buzzer* Monster = CreateActor<Buzzer>(OBJECTORDER::Monster);
+		Monster->GetTransform().SetLocalPosition({ 1873, -552, 0 });
 	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);

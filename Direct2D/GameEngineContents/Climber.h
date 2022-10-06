@@ -26,8 +26,8 @@ protected:
 	CollisionReturn CheckTrigger(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
 
-	void TrunStart(const StateInfo& _Info);
-	void TrunUpdate(float _DeltaTime, const StateInfo& _Info);
+	void TurnStart(const StateInfo& _Info);
+	void TurnUpdate(float _DeltaTime, const StateInfo& _Info);
 
 	void MoveStart(const StateInfo& _Info);
 	void MoveUpdate(float _DeltaTime, const StateInfo& _Info);
@@ -38,7 +38,11 @@ protected:
 	MonsterDIR CurDir;
 	float Speed;
 	float StopTime;
+	float MoveTime;
 	int Health;
+
+	int TurnNum;
+
 	bool OnGround;
 	bool IsDeath_;
 private:

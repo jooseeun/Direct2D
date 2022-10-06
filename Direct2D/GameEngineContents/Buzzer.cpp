@@ -74,7 +74,7 @@ void Buzzer::Start()
 	}
 	{
 		TriggerCollision = CreateComponent<GameEngineCollision>();
-		TriggerCollision->GetTransform().SetLocalScale({ 1300,1300,1000.0f });
+		TriggerCollision->GetTransform().SetLocalScale({ 800,800,1000.0f });
 		TriggerCollision->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ 0,50.0f,0 });
 	}

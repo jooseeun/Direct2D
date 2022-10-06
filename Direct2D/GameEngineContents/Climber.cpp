@@ -17,6 +17,8 @@ Climber::Climber()
 	, HPEffect2(nullptr)
 	, HPEffect3(nullptr)
 	, IsDeath_(false)
+	, TurnNum(1)
+	, MoveTime(0.0f)
 {
 }
 
@@ -67,43 +69,34 @@ void Climber::Start()
 	}
 	{
 		MonsterCollision = CreateComponent<GameEngineCollision>();
-		MonsterCollision->GetTransform().SetLocalScale({ 108,120,1000.0f });
+		MonsterCollision->GetTransform().SetLocalScale({ 80,80,1000.0f });
 		MonsterCollision->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
 			float4{ 0,40.0f,0 });
 		MonsterCollision->ChangeOrder((int)(OBJECTORDER::Monster));
 	}
-	{
-		TriggerCollision = CreateComponent<GameEngineCollision>();
-		TriggerCollision->GetTransform().SetLocalScale({ 1000,80,1000.0f });
-		TriggerCollision->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() +
-			float4{ 0,40.0f,0 });
-	}
+
 	{
 		MonsterRenderer->CreateFrameAnimationCutTexture("Turn1",
-			FrameAnimation_DESC("Climber_deathroll_01-Sheet.png", 0, 2, 0.1f, false));
-		MonsterRenderer->CreateFrameAnimationCutTexture("Turn2",
-			FrameAnimation_DESC("Climber_deathroll_01-Sheet.png", 2, 4, 0.1f, false));
-		MonsterRenderer->CreateFrameAnimationCutTexture("Turn3",
-			FrameAnimation_DESC("Climber_deathroll_01-Sheet.png", 4, 6, 0.1f, false));
-		MonsterRenderer->CreateFrameAnimationCutTexture("Turn4",
-			FrameAnimation_DESC("Climber_deathroll_01-Sheet.png", 6, 7, 0.1f, false));
+			FrameAnimation_DESC("Climber_deathroll_01-Sheet.png", 0, 1, 0.2f, false));
+
 
 		MonsterRenderer->CreateFrameAnimationCutTexture("Move",
 			FrameAnimation_DESC("Climber_walk0000-Sheet.png", 0, 3, 0.1f, true));
 
 		MonsterRenderer->CreateFrameAnimationCutTexture("Death",
-			FrameAnimation_DESC("Climber_climber_death_v02000-Sheet.png", 0, 5, 0.1f, false));
+			FrameAnimation_DESC("Climber_climber_death_v02000-Sheet.png", 0, 4, 0.1f, false));
 	}
 
 
 	{
-		StateManager.CreateStateMember("Trun"
-			, std::bind(&Climber::TrunUpdate, this, std::placeholders::_1, std::placeholders::_2)
-			, std::bind(&Climber::TrunStart, this, std::placeholders::_1)
-		);
 		StateManager.CreateStateMember("Move"
 			, std::bind(&Climber::MoveUpdate, this, std::placeholders::_1, std::placeholders::_2)
 			, std::bind(&Climber::MoveStart, this, std::placeholders::_1)
+		);
+
+		StateManager.CreateStateMember("Turn"
+			, std::bind(&Climber::TurnUpdate, this, std::placeholders::_1, std::placeholders::_2)
+			, std::bind(&Climber::TurnStart, this, std::placeholders::_1)
 		);
 
 		StateManager.CreateStateMember("Death"
@@ -112,7 +105,7 @@ void Climber::Start()
 		);
 
 
-		StateManager.ChangeState("Idle");
+		StateManager.ChangeState("Move");
 	}
 }
 CollisionReturn Climber::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
@@ -146,8 +139,6 @@ CollisionReturn Climber::CheckDemage(GameEngineCollision* _This, GameEngineColli
 
 		}
 
-
-		StateManager.ChangeState("Back");
 	}
 
 	return CollisionReturn::ContinueCheck;
@@ -222,53 +213,107 @@ void Climber::Gravity()
 
 }
 
-bool Climber::MapPixelCheck()
-{
-	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
-	if (nullptr == ColMapTexture)
-	{
-		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
-	}
-
-
-	float4 ColorRDown = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix() + 54,
-		-GetTransform().GetWorldPosition().iy() - 1);
-
-	if (false == ColorRDown.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
-	{
-		return true;
-	}
-
-	return false;
-
-}
-
 
 ///////////State 함수//////////////////////////////////////
-
-void Climber::TrunStart(const StateInfo& _Info)
-{
-
-}
-void Climber::TrunUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-
-}
 
 void Climber::MoveStart(const StateInfo& _Info)
 {
 	MonsterRenderer->ChangeFrameAnimation("Move");
 	MonsterRenderer->ScaleToCutTexture(0);
+	MoveTime = 0.0f;
 }
 void Climber::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-
-	GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed * _DeltaTime);
-	MonsterRenderer->GetTransform().PixLocalPositiveX();
+	MoveTime += 1.0f * _DeltaTime;
+	if (TurnNum == 1)
+	{
+		if (MoveTime > 2.0f)
+		{
+			StateManager.ChangeState("Turn");
+			return;
+		}
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * 110 * _DeltaTime);
+		MonsterRenderer->GetTransform().SetLocalRotation({ 0,0,0 });
+		MonsterCollision->GetTransform().SetLocalPosition({0,40.0f,0});
+	}
+	else if (TurnNum == 2)
+	{
+		if (MoveTime > 1.0f)
+		{
+			StateManager.ChangeState("Turn");
+			return;
+		}
+		GetTransform().SetWorldMove(GetTransform().GetDownVector() * 30 * _DeltaTime);
+		MonsterRenderer->GetTransform().SetLocalRotation({ 0,0,-90 });
+		MonsterCollision->GetTransform().SetLocalPosition({ 50,0,0 });
+	}
+	else if (TurnNum == 3)
+	{
+		if (MoveTime > 2.0f)
+		{
+			StateManager.ChangeState("Turn");
+			return;
+		}
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * 110 * _DeltaTime);
+		MonsterRenderer->GetTransform().SetLocalRotation({ 0,0,-180 });
+		MonsterCollision->GetTransform().SetLocalPosition({ 0,-40,0 });
+	}
+	else if (TurnNum == 4)
+	{
+		if (MoveTime > 1.0f)
+		{
+			StateManager.ChangeState("Turn");
+			return;
+		}
+		GetTransform().SetWorldMove(GetTransform().GetUpVector() * 30 * _DeltaTime);
+		MonsterRenderer->GetTransform().SetLocalRotation({ 0,0,-270 });
+		MonsterCollision->GetTransform().SetLocalPosition({ -50,0,0 });
+	}
 
 
 }
 
+void Climber::TurnStart(const StateInfo& _Info)
+{
+	TurnNum += 1;
+	if (TurnNum > 4)
+	{
+		TurnNum = 1;
+	}
+
+	MonsterRenderer->ChangeFrameAnimation("Turn1");
+	MonsterRenderer->ScaleToCutTexture(0);
+
+}
+void Climber::TurnUpdate(float _DeltaTime, const StateInfo& _Info)
+{
+	if (TurnNum == 1)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * 10 * _DeltaTime);
+	}
+	else if (TurnNum == 2)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetDownVector() * 10 * _DeltaTime);
+	}
+	else if (TurnNum == 3)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * 10 * _DeltaTime);
+	}
+	else if (TurnNum == 4)
+	{
+		GetTransform().SetWorldMove(GetTransform().GetUpVector() * 10 * _DeltaTime);
+	}
+
+	MonsterRenderer->GetTransform().SetAddWorldRotation({ 0,0,-225.0f*_DeltaTime });
+	MonsterRenderer->AnimationBindEnd("Turn1", [=](const FrameAnimation_DESC& _Info)
+		{
+			StateManager.ChangeState("Move");
+		});
+
+
+
+
+}
 void Climber::DeathStart(const StateInfo& _Info)
 {
 	MonsterRenderer->ChangeFrameAnimation("Death");

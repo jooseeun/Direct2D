@@ -5,6 +5,9 @@
 #include "TopUI.h"
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
+#include "Buzzer.h"
+#include "Crawler.h"
+#include "Climber.h"
 
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
@@ -49,6 +52,22 @@ void CrossLoad6::Start()
 			"Cross6_ColMap.png");
 
 		MapSize = { 1994, 4782, 100.0f };
+	}
+	{
+		Buzzer* Monster = CreateActor<Buzzer>(OBJECTORDER::Monster);
+		Monster->GetTransform().SetLocalPosition({ 1137, -805, 0 });
+	}
+	{
+		Buzzer* Monster = CreateActor<Buzzer>(OBJECTORDER::Monster);
+		Monster->GetTransform().SetLocalPosition({ 945, -3345, 0 });
+	}
+	{
+		Crawler* Monster = CreateActor<Crawler>(OBJECTORDER::Monster);
+		Monster->GetTransform().SetLocalPosition({ 865, -1714, 0 });
+	}
+	{
+		Climber* Monster = CreateActor<Climber>(OBJECTORDER::Monster);
+		Monster->GetTransform().SetLocalPosition({ 819, -755, 0 });
 	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);

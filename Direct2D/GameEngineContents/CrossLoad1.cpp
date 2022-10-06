@@ -7,6 +7,7 @@
 #include "MapMoveCollision.h"
 #include "BasicZombie.h"
 #include "Crawler.h"
+#include "Climber.h"
 
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
@@ -65,6 +66,10 @@ void CrossLoad1::Start()
 	{
 		Crawler* Monster = CreateActor<Crawler>(OBJECTORDER::Monster);
 		Monster->GetTransform().SetLocalPosition({ 551, -1435, 0 });
+	}
+	{
+		Climber* Monster = CreateActor<Climber>(OBJECTORDER::Monster);
+		Monster->GetTransform().SetLocalPosition({ 5045, -940, 0 });
 	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);

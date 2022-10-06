@@ -5,6 +5,8 @@
 #include "TopUI.h"
 #include "PlayLevelManager.h"
 #include "MapMoveCollision.h"
+#include "BasicZombie.h"
+#include "HornZombie.h"
 
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
@@ -49,6 +51,17 @@ void CrossLoad3::Start()
 			"Cross3_ColMap.png");
 
 		MapSize = { 5856, 1080, 100.0f };
+	}
+	{
+		BasicZombie* Monster = CreateActor<BasicZombie>(OBJECTORDER::Monster);
+		Monster->GetTransform().SetLocalPosition({ 2125, -931, 0 });
+		Monster->SetMonsterDir(MonsterDIR::Left);
+	}
+
+	{
+		HornZombie* Monster = CreateActor<HornZombie>(OBJECTORDER::Monster);
+		Monster->GetTransform().SetLocalPosition({ 4276, -929, 0 });
+		Monster->SetMonsterDir(MonsterDIR::Left);
 	}
 	{
 		MapMoveCollision* MapMoveCol = CreateActor<MapMoveCollision>(OBJECTORDER::MoveCol1);
