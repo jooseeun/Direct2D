@@ -321,7 +321,7 @@ void HollowKnigntCore::Start()
 	CreateLevel<CrossLoad9>("Cross9");
 	CreateLevel<CrossLoad10>("Cross10");
 	CreateLevel<CrossLoadBossLevel>("CrossLoadBoss");
-	ChangeLevel("Town3");
+	ChangeLevel("Tutorial1");
 
 	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 

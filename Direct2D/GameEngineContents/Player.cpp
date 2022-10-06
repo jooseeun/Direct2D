@@ -50,6 +50,7 @@ Player::Player()
 	, SkillTime(0.0f)
 	, ChargeEffect1(nullptr)
 	, CurLevelName()
+	, OneShakeCheck(0.0f)
 {
 	MainPlayer = this;
 }
@@ -401,10 +402,12 @@ void Player::ShakeCamera()
 	if (IsTrapStun == true)
 	{
 		ShakeTime += 1.0f * GameEngineTime::GetDeltaTime()*10.0f;
+		OneShakeCheck += 1.0f * GameEngineTime::GetDeltaTime() * 10.0f;
 	}
 	else
 	{
 		ShakeTime += 1.0f * GameEngineTime::GetDeltaTime();
+		OneShakeCheck += 1.0f * GameEngineTime::GetDeltaTime();
 	}
 	if (ShakeTime >= 0.6f)
 	{
@@ -412,14 +415,23 @@ void Player::ShakeCamera()
 	}
 	if (ShakeRight == false)
 	{
-		GetLevel()->GetMainCameraActorTransform().SetWorldLeftMove(1000.f, GameEngineTime::GetDeltaTime());
-		ShakeRight = true;
+		
+		GetLevel()->GetMainCameraActorTransform().SetWorldLeftMove(2000.0f, GameEngineTime::GetDeltaTime());
+		if (OneShakeCheck > 0.03f)
+		{
+			ShakeRight = true;
+			OneShakeCheck = 0.0f;
+		}
 		return;
 	}
 	else
 	{
-		GetLevel()->GetMainCameraActorTransform().SetWorldRightMove(1000.0f, GameEngineTime::GetDeltaTime());
-		ShakeRight = false;
+		GetLevel()->GetMainCameraActorTransform().SetWorldRightMove(2000.0f, GameEngineTime::GetDeltaTime());
+		if (OneShakeCheck > 0.03f)
+		{
+			ShakeRight = false;
+			OneShakeCheck = 0.0f;
+		}
 		return;
 	}
 }

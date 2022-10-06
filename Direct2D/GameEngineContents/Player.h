@@ -74,6 +74,7 @@ protected:
 	bool ObjectShakeCamera;
 	bool ShakeRight;
 	float ShakeTime;
+	float OneShakeCheck;
 	float StunReadyTime;
 	float SkillTime;
 
