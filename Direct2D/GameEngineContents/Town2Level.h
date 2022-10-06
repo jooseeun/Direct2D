@@ -17,6 +17,7 @@ public:
 	Town2Level(Town2Level&& _Other) noexcept = delete;
 	Town2Level& operator=(const Town2Level& _Other) = delete;
 	Town2Level& operator=(Town2Level&& _Other) noexcept = delete;
+	static GameEngineSoundPlayer TownBgmPlayer;
 
 protected:
 	void Start() override;

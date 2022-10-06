@@ -14,7 +14,7 @@ public:
 	BigBreakDoor(BigBreakDoor&& _Other) noexcept = delete;
 	BigBreakDoor& operator=(const BigBreakDoor& _Other) = delete;
 	BigBreakDoor& operator=(BigBreakDoor&& _Other) noexcept = delete;
-
+	GameEngineSoundPlayer SoundPlayer;
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);

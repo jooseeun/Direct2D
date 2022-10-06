@@ -97,9 +97,15 @@ void ElderbugFont::Update(float _DeltaTime)
 		}
 
 		MainText = Text[TextNum1];
+		if (TextNum1 == 1)
+		{
+			GameEngineSound::SoundPlayControl("Elderbug_02.wav");
+		}
+
 		TextNum2 = 0;
 		Temp = "";
 		Temp2 = "";
+
 		if (TextNum1 == 1)
 		{
 			TextNum1 += 1;

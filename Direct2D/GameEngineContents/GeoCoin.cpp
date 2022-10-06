@@ -60,6 +60,7 @@ void GeoCoin::Gravity()
 
 	if (false == Color.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
 	{
+
 		GeoCoinRenderer->ChangeFrameAnimation("Idle");
 		GeoCoinRenderer->ScaleToCutTexture(0);
 		return;
@@ -104,6 +105,8 @@ void GeoCoin::DeathCheck()
 }
 CollisionReturn GeoCoin::DeathCoin(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("geo_small_collect_1.wav");
 	Death();
 	return CollisionReturn::Break;
 }

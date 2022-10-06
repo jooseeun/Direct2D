@@ -32,12 +32,15 @@ void BossRoomDoor::Start()
 	DoorRenderer->ChangeFrameAnimation("Up");
 	DoorRenderer->ScaleToCutTexture(0);
 
+	GameEngineSound::SoundPlayControl("bell_rise.wav");
+
 }
 
 void BossRoomDoor::Update(float _DeltaTime)
 {
 	DoorRenderer->AnimationBindEnd("Down", [=](const FrameAnimation_DESC& _Info)
 	{
+			GameEngineSound::SoundPlayControl("bell_rise.wav");
 		Death();
 	});
 }

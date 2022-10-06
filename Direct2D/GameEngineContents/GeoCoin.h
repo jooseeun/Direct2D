@@ -14,6 +14,7 @@ public:
 	GeoCoin(GeoCoin&& _Other) noexcept = delete;
 	GeoCoin& operator=(const GeoCoin& _Other) = delete;
 	GeoCoin& operator=(GeoCoin&& _Other) noexcept = delete;
+	GameEngineSoundPlayer SoundPlayer;
 
 protected:
 	void Start() override;

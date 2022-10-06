@@ -26,7 +26,8 @@ LorePromptFont::~LorePromptFont()
 
 void LorePromptFont::Start()
 {
-
+	GameEngineSound::SoundPlayOneShot("Lore_Tablet_activate_temp.wav");
+	SoundPlayer = GameEngineSound::SoundPlayControl("Lore_tablet_idle_audio_temp.wav",1000);
 	if (false == GameEngineInput::GetInst()->IsKey("Exit"))
 	{
 		GameEngineInput::GetInst()->CreateKey("Exit", VK_UP);
@@ -140,6 +141,7 @@ void LorePromptFont::Update(float _DeltaTime)
 	}
 	if (true == GameEngineInput::GetInst()->IsDown("Exit"))
 	{
+		SoundPlayer.Stop();
 		Death();
 	}
 }

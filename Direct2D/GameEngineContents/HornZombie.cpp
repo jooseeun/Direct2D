@@ -299,6 +299,9 @@ void HornZombie::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void HornZombie::MoveStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("zombie_five_footstep.wav");
+
 	MoveTime = 4.0f;
 	MonsterRenderer->ChangeFrameAnimation("Move");
 	MonsterRenderer->ScaleToCutTexture(0);
@@ -358,7 +361,7 @@ void HornZombie::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	MonsterRenderer->AnimationBindEnd("Attack", [=](const FrameAnimation_DESC& _Info)
 	{
 		StopTime = 1.5f;
-		StateManager.ChangeState("Idle");
+		StateManager.ChangeState("Move");
 
 	});
 	float4 MovePos = Player::GetMainPlayer()->GetTransform().GetLocalPosition() - GetTransform().GetLocalPosition();
@@ -379,6 +382,8 @@ void HornZombie::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 void HornZombie::BackStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("spikes_arm_3.wav");
 	FallTime = 0.3f;
 }
 void HornZombie::BackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -415,6 +420,10 @@ void HornZombie::BackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void HornZombie::DeathStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("spikes_arm_3.wav");
+	GameEngineSound::SoundPlayOneShot("enemy_death_sword.wav");
+
 	MonsterRenderer->ChangeFrameAnimation("Death");
 	MonsterRenderer->ScaleToCutTexture(0);
 	MonsterCollision->Off();

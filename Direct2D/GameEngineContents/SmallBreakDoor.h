@@ -15,7 +15,7 @@ public:
 	SmallBreakDoor(SmallBreakDoor&& _Other) noexcept = delete;
 	SmallBreakDoor& operator=(const SmallBreakDoor& _Other) = delete;
 	SmallBreakDoor& operator=(SmallBreakDoor&& _Other) noexcept = delete;
-
+	GameEngineSoundPlayer SoundPlayer;
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
@@ -24,7 +24,7 @@ protected:
 private:
 	GameEngineCollision* DoorCollision;
 	GameEngineTextureRenderer* DoorRenderer;
-
+	
 
 	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
 };

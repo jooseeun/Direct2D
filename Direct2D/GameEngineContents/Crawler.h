@@ -15,6 +15,7 @@ public:
 	Crawler& operator=(const Crawler& _Other) = delete;
 	Crawler& operator=(Crawler&& _Other) noexcept = delete;
 
+	GameEngineSoundPlayer SoundPlayer;
 
 protected:
 	void Start() override;

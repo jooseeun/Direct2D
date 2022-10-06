@@ -274,6 +274,7 @@ bool Crawler::MapPixelCheck()
 
 void Crawler::IdleStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
 	MonsterRenderer->ChangeFrameAnimation("Idle");
 	MonsterRenderer->ScaleToCutTexture(0);
 }
@@ -284,6 +285,8 @@ void Crawler::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Crawler::MoveStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("crawler.wav",1000);
 	MonsterRenderer->ChangeFrameAnimation("Move");
 	MonsterRenderer->ScaleToCutTexture(0);
 }
@@ -309,6 +312,8 @@ void Crawler::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Crawler::BackStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("spikes_arm_3.wav");
 	FallTime = 0.3f;
 }
 void Crawler::BackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -345,6 +350,8 @@ void Crawler::BackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Crawler::DeathStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("enemy_death_sword.wav");
 	MonsterRenderer->ChangeFrameAnimation("Death");
 	MonsterRenderer->ScaleToCutTexture(0);
 	MonsterCollision->Off();

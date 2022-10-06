@@ -62,10 +62,13 @@ CollisionReturn BigBreakDoor::CheckDemage(GameEngineCollision* _This, GameEngine
 
 		if (HP == 3)
 		{
+			SoundPlayer.Stop();
+			SoundPlayer = GameEngineSound::SoundPlayControl("break_wall_after_tutorial_area.wav");
 			Death();
 			return CollisionReturn::Break;
 		}
-
+		SoundPlayer.Stop();
+		SoundPlayer = GameEngineSound::SoundPlayControl("cave_in_rock_hit.wav");
 		DoorRenderer->SetTexture("Tute Great Door_door_v01-Sheet.png", HP);
 		DoorRenderer->ScaleToCutTexture(0);
 		DoorRenderer->SetPivot(PIVOTMODE::BOT);

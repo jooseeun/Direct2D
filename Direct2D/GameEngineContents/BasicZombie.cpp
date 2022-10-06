@@ -301,7 +301,10 @@ void BasicZombie::MoveStart(const StateInfo& _Info)
 {
 	MoveTime = 4.0f;
 	MonsterRenderer->ChangeFrameAnimation("Move");
-	MonsterRenderer->ScaleToCutTexture(0);
+	MonsterRenderer->ScaleToCutTexture(0);	
+
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("zombie_five_footstep.wav");
 }
 void BasicZombie::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
@@ -357,8 +360,8 @@ void BasicZombie::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	MonsterRenderer->AnimationBindEnd("Attack", [=](const FrameAnimation_DESC& _Info)
 	{
-		StopTime = 0.5f;
-		StateManager.ChangeState("Idle");
+		StopTime = 0.1;
+		StateManager.ChangeState("Move");
 
 	});
 	float4 MovePos = Player::GetMainPlayer()->GetTransform().GetLocalPosition() - GetTransform().GetLocalPosition();
@@ -379,6 +382,8 @@ void BasicZombie::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 void BasicZombie::BackStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("spikes_arm_3.wav");
 	FallTime = 0.3f;
 }
 void BasicZombie::BackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -415,6 +420,8 @@ void BasicZombie::BackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void BasicZombie::DeathStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("enemy_death_sword.wav");
 	MonsterRenderer->ChangeFrameAnimation("Death");
 	MonsterRenderer->ScaleToCutTexture(0);
 	MonsterCollision->Off();

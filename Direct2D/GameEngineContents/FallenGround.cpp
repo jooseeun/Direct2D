@@ -66,6 +66,7 @@ void FallenGround::Update(float _DeltaTime)
 
 CollisionReturn FallenGround::StartTrigger(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	GameEngineSound::SoundPlayOneShot("break_wall_after_tutorial_area.wav");
 	Trigger = true;
 	Player::GetMainPlayer()->ShakeTimeReset();
 	GroundRenderer1->GetTransform().SetLocalRotation({ 0,0,3 });

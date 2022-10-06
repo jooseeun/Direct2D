@@ -22,7 +22,6 @@ public:
 	ElderbugFont(ElderbugFont&& _Other) noexcept = delete;
 	ElderbugFont& operator=(const ElderbugFont& _Other) = delete;
 	ElderbugFont& operator=(ElderbugFont&& _Other) noexcept = delete;
-
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);

@@ -11,6 +11,7 @@ Elderbug::Elderbug()
 	, Trigger(nullptr)
 	, FontA(0.0f)
 	, CurDir(PLAYERDIR::Right)
+	, IsLook(false)
 
 {
 
@@ -123,6 +124,11 @@ void Elderbug::Update(float _DeltaTime)
 		CheckDir();
 		if (CurDir == PLAYERDIR::Left)
 		{
+			if (IsLook == false)
+			{
+				GameEngineSound::SoundPlayOneShot("Elderbug_first_call.wav");
+				IsLook = true;
+			}
 			ElderbugRenderer->ChangeFrameAnimation("LookLeft");
 			ElderbugRenderer->ScaleToCutTexture(0);
 		}
@@ -180,6 +186,7 @@ CollisionReturn Elderbug::PlusAlpha(GameEngineCollision* _This, GameEngineCollis
 
 void Elderbug::StartTalk()
 {
+	SoundPlayer = GameEngineSound::SoundPlayControl("Elderbug_01.wav");
 	CheckDir();
 	if (CurDir == PLAYERDIR::Left)
 	{

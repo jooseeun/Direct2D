@@ -15,7 +15,7 @@ public:
 	Elderbug(Elderbug&& _Other) noexcept = delete;
 	Elderbug& operator=(const Elderbug& _Other) = delete;
 	Elderbug& operator=(Elderbug&& _Other) noexcept = delete;
-
+	GameEngineSoundPlayer SoundPlayer;
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
@@ -24,6 +24,8 @@ private:
 	void StartTalk();
 	void CheckDir();
 	PLAYERDIR CurDir;
+	
+	bool IsLook;
 	
 	CollisionReturn PlusAlpha(GameEngineCollision* _This, GameEngineCollision* _Other);
 	

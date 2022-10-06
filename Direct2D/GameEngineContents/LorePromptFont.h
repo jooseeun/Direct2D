@@ -23,7 +23,7 @@ public:
 	LorePromptFont(LorePromptFont&& _Other) noexcept = delete;
 	LorePromptFont& operator=(const LorePromptFont& _Other) = delete;
 	LorePromptFont& operator=(LorePromptFont&& _Other) noexcept = delete;
-
+	GameEngineSoundPlayer SoundPlayer;
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);

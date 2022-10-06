@@ -15,6 +15,7 @@ public:
 	Buzzer& operator=(const Buzzer& _Other) = delete;
 	Buzzer& operator=(Buzzer&& _Other) noexcept = delete;
 
+	GameEngineSoundPlayer SoundPlayer;
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);

@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Crawler.h"
 #include "TopUI.h"
+#include "Town2Level.h"
 
 #include "PlayLevelManager.h"
 
@@ -26,7 +27,7 @@ Tutorial1Level::~Tutorial1Level()
 void Tutorial1Level::Start()
 {
 
-
+	Town2Level::TownBgmPlayer.Stop();
 
 	if (false == GameEngineInput::GetInst()->IsKey("FreeCameraOnOff")
 		&& false == GameEngineInput::GetInst()->IsKey("CameraDebug"))

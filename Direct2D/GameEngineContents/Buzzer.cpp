@@ -292,6 +292,8 @@ void Buzzer::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Buzzer::MoveStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("buzzer_fly.wav");
 	MonsterRenderer->ChangeFrameAnimation("Move");
 	MonsterRenderer->ScaleToCutTexture(0);
 }
@@ -327,6 +329,7 @@ void Buzzer::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 void Buzzer::StartleStart(const StateInfo& _Info)
 {
+	GameEngineSound::SoundPlayOneShot("buzzer_startle_01.wav");
 	MonsterRenderer->ChangeFrameAnimation("Startle");
 	MonsterRenderer->ScaleToCutTexture(0);
 }
@@ -339,6 +342,8 @@ void Buzzer::StartleUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 void Buzzer::BackStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("spikes_arm_3.wav");
 	FallTime = 0.4f;
 }
 void Buzzer::BackUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -375,6 +380,8 @@ void Buzzer::BackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Buzzer::DeathStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("enemy_death_sword.wav");
 	MonsterRenderer->ChangeFrameAnimation("Death");
 	MonsterRenderer->ScaleToCutTexture(0);
 	MonsterCollision->Off();

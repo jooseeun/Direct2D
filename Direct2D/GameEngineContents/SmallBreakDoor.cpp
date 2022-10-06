@@ -38,6 +38,8 @@ void SmallBreakDoor::Update(float _DeltaTime)
 
 CollisionReturn SmallBreakDoor::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("breakable_wall_death.wav");
 	Player::GetMainPlayer()->ShakeTimeReset();
 	Death();
 

@@ -130,7 +130,8 @@ CollisionReturn Climber::CheckDemage(GameEngineCollision* _This, GameEngineColli
 	if (StateManager.GetCurStateStateName() == "Move")
 	{
 		Health -= 1;
-
+		SoundPlayer.Stop();
+		SoundPlayer = GameEngineSound::SoundPlayControl("spikes_arm_1.wav");
 		{
 			HPEffect1->GetPixelData().MulColor.a = 0.8f;
 
@@ -316,6 +317,8 @@ void Climber::TurnUpdate(float _DeltaTime, const StateInfo& _Info)
 }
 void Climber::DeathStart(const StateInfo& _Info)
 {
+	SoundPlayer.Stop();
+	SoundPlayer = GameEngineSound::SoundPlayControl("spikes_arm_3.wav");
 	MonsterRenderer->ChangeFrameAnimation("Death");
 	MonsterRenderer->ScaleToCutTexture(0);
 	MonsterCollision->Off();

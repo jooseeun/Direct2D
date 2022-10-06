@@ -1123,8 +1123,8 @@ void Player::AttackStart(const StateInfo& _Info)
 	}
 	if (AttackNum == 1)
 	{
-		StateSound.Stop();
-		StateSound = GameEngineSound::SoundPlayControl("sword_1.wav");
+		AttackSound.Stop();
+		AttackSound = GameEngineSound::SoundPlayControl("sword_1.wav");
 		PlayerRenderer->ChangeFrameAnimation("Attack1");
 		PlayerRenderer->ScaleToCutTexture(0);
 		SkillRenderer->ChangeFrameAnimation("Attack1");
@@ -1133,38 +1133,54 @@ void Player::AttackStart(const StateInfo& _Info)
 	}
 	else if (AttackNum == 2)
 	{
-		StateSound.Stop();
-		StateSound = GameEngineSound::SoundPlayControl("sword_3.wav");
+		AttackSound.Stop();
+		AttackSound = GameEngineSound::SoundPlayControl("sword_3.wav");
 		PlayerRenderer->ChangeFrameAnimation("Attack2");
 		PlayerRenderer->ScaleToCutTexture(0);
 		SkillRenderer->ChangeFrameAnimation("Attack2");
 		SkillRenderer->ScaleToCutTexture(0);
 		AttackNum = 1;
 	}
+
 	IsStartEffect = true;
 } 
 void Player::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 
-	RightSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::Monster, CollisionType::CT_SPHERE,
-		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
-	);
-	LeftSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::Monster, CollisionType::CT_SPHERE,
-		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)
-	);
+	if (true == RightSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::Monster, CollisionType::CT_SPHERE,
+		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)))
+	{
+		AttackSound.Stop();
+	}
+	else if (true == LeftSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::Monster, CollisionType::CT_SPHERE,
+		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)))
+	{
+		AttackSound.Stop();
+	}
 
-	RightSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::FrontObject, CollisionType::CT_SPHERE,
-		std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
-	);
-	LeftSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::FrontObject, CollisionType::CT_SPHERE,
-		std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
-	);
-	RightSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::StopObject, CollisionType::CT_SPHERE,
-		std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
-	);
-	LeftSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::StopObject, CollisionType::CT_SPHERE,
-		std::bind(&Player::HitEffectCreate, this, std::placeholders::_1, std::placeholders::_2)
-	);
+	if (true == RightSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::FrontObject, CollisionType::CT_SPHERE,
+		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)))
+	{
+		ShakeTimeReset();
+		AttackSound.Stop();
+	}
+	else if (true == LeftSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::FrontObject, CollisionType::CT_SPHERE,
+		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)))
+	{
+		ShakeTimeReset();
+		AttackSound.Stop();
+	}
+
+	if (true == RightSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::StopObject, CollisionType::CT_SPHERE,
+		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)))
+	{
+		AttackSound.Stop();
+	}
+	else if (true == LeftSkilCol->IsCollision(CollisionType::CT_SPHERE, OBJECTORDER::StopObject, CollisionType::CT_SPHERE,
+		std::bind(&Player::MonsterHit, this, std::placeholders::_1, std::placeholders::_2)))
+	{
+		AttackSound.Stop();
+	}
 
 
 
@@ -1361,6 +1377,8 @@ void Player::DownAttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Player::StunStart(const StateInfo& _Info)
 {
+	StateSound.Stop();
+	StateSound = GameEngineSound::SoundPlayControl("hero_damage.wav");
 	ShakeTimeReset();
 	PlayerRenderer->ChangeFrameAnimation("Stun");
 	PlayerRenderer->ScaleToCutTexture(0);
@@ -1437,12 +1455,16 @@ void Player::ChargeStart(const StateInfo& _Info)
 	ChargeEffect1->On();
 	ChargeEffect1->ChangeFrameAnimation("Charge1");
 	ChargeEffect1->ScaleToCutTexture(0);
+	StateSound.Stop();
+	StateSound = GameEngineSound::SoundPlayControl("hero_nail_art_charge_initiate.wav");
 }
 
 void Player::ChargeUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	ChargeEffect1->AnimationBindEnd("Charge1", [=](const FrameAnimation_DESC& _Info)
-	{	
+	{
+		StateSound.Stop();
+		StateSound = GameEngineSound::SoundPlayControl("hero_nail_art_charge_complete.wav");
 		ChargeEffect1->ChangeFrameAnimation("Charge2");
 		ChargeEffect1->ScaleToCutTexture(0);
 	});
