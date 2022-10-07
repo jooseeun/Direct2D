@@ -9,6 +9,7 @@ Tur_BlueObject::Tur_BlueObject()
 	, BlueFlower3(nullptr)
 	, BlueFlower4(nullptr)
 	, AniTime(4.0f)
+	, SoundTime(0.2f)
 {
 }
 
@@ -77,6 +78,7 @@ void Tur_BlueObject::Start()
 void Tur_BlueObject::Update(float _DeltaTime)
 {
 	AniTime -= 1.0f * GameEngineTime::GetDeltaTime();
+	SoundTime -= 1.0f * GameEngineTime::GetDeltaTime();
 	if (AniTime < 0.0f)
 	{
 		BlueFlower1->CurAnimationReset();
@@ -85,14 +87,18 @@ void Tur_BlueObject::Update(float _DeltaTime)
 		BlueFlower4->CurAnimationReset();
 		AniTime = 5.0f;
 	}
+	if (SoundTime <= 0.0f)
+	{
+		BlueObjectCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Skill, CollisionType::CT_OBB2D,
+			std::bind(&Tur_BlueObject::CheckDemage, this, std::placeholders::_1, std::placeholders::_2));
+	}
 
-	BlueObjectCollision->IsCollision(CollisionType::CT_OBB2D, OBJECTORDER::Skill, CollisionType::CT_OBB2D,
-		std::bind(&Tur_BlueObject::CheckDemage, this, std::placeholders::_1, std::placeholders::_2)
-	);
 
 }
 
 CollisionReturn Tur_BlueObject::CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
+	GameEngineSound::SoundPlayOneShot("spikes_arm_3.wav");
+	SoundTime = 1.0f;
 	return CollisionReturn::ContinueCheck;
 }
