@@ -112,18 +112,18 @@ void TopUI::Start()
  
 void TopUI::Update(float _DeltaTime)
 {
-	if (Player::GetMainPlayer()->PlayerEnergyGage > 0.7f)
-	{
-		EnergyUIEffect->On();
-	}
-	else if (Player::GetMainPlayer()->PlayerEnergyGage >= 1.0f)
-	{
-		EnergyUIEffect->Off();
-	}
-	else
-	{
-		EnergyUIEffect->Off();
-	}
+	//if (Player::GetMainPlayer()->PlayerEnergyGage > 0.7f)
+	//{
+	//	EnergyUIEffect->On();
+	//}
+	//else if (Player::GetMainPlayer()->PlayerEnergyGage >= 1.0f)
+	//{
+	//	EnergyUIEffect->Off();
+	//}
+	//else
+	//{
+	//	EnergyUIEffect->Off();
+	//}
 
 	HealthUpdate();
 	EnergyUpdate();
