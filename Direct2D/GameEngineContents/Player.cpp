@@ -1504,7 +1504,7 @@ void Player::ChargeUpdate(float _DeltaTime, const StateInfo& _Info)
 	{
 		StateManager.ChangeState("Idle");
 	}
-	if (ChargeTime > 1.2f)
+	if (ChargeTime > 1.1f)
 	{
 		if (PlayerHealth != PlayerFullHealth)
 		{
