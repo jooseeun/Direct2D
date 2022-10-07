@@ -212,7 +212,7 @@ void Player::Start()
 	}
 	{
 		ChargeEffect1->CreateFrameAnimationCutTexture("Charge1",
-			FrameAnimation_DESC("Spell Effects_focus_appear0000-Sheet.png", 0, 6, 0.1f, false));
+			FrameAnimation_DESC("Spell Effects_focus_appear0000-Sheet.png", 0, 6, 0.2f, false));
 		ChargeEffect1->CreateFrameAnimationCutTexture("Charge2",
 			FrameAnimation_DESC("Spell Effects_burst_effect0000-Sheet.png", 0, 7, 0.1f, false));
 
@@ -463,7 +463,7 @@ void Player::Gravity()
 	{
 		if (StateManager.GetCurStateStateName() == "Fall")
 		{
-			if (FallTime > 1.5f)
+			if (FallTime > 1.0f)
 			{
 				StateManager.ChangeState("HardLand");
 				return;
@@ -575,7 +575,7 @@ CollisionReturn Player::MonsterHit(GameEngineCollision* _This, GameEngineCollisi
 
 	if (IsStartEffect == true)
 	{
-		PlayerEnergyGage += 0.08f;
+		PlayerEnergyGage += 0.07f;
 		if (PlayerEnergyGage >= 1.0f)
 		{
 			PlayerEnergyGage = 1.0f;
@@ -1499,12 +1499,12 @@ void Player::ChargeUpdate(float _DeltaTime, const StateInfo& _Info)
 		ChargeEffect1->ScaleToCutTexture(0);
 	});
 	ChargeTime += 1.0f * _DeltaTime;
-	PlayerEnergyGage -= 0.1f * _DeltaTime;
+	PlayerEnergyGage -= 0.15f * _DeltaTime;
 	if (false == GameEngineInput::GetInst()->IsPress("PlayerCharge"))
 	{
 		StateManager.ChangeState("Idle");
 	}
-	if (ChargeTime > 0.89f)
+	if (ChargeTime > 1.2f)
 	{
 		if (PlayerHealth != PlayerFullHealth)
 		{
