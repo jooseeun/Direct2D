@@ -45,7 +45,7 @@ void IntroLevel::Start()
 	{
 		TitleEffect* Effect = CreateActor<TitleEffect>(OBJECTORDER::UI);
 	}
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		TitleParticle* Effect = CreateActor<TitleParticle>(OBJECTORDER::UI);
 	}
