@@ -181,6 +181,7 @@ void Climber::Update(float _DeltaTime)
 	);
 	if (IsDeath_ == true)
 	{
+		MonsterRenderer->GetTransform().SetLocalRotation({ 0,0,0 });
 		Gravity();
 	}
 	EffectUpdate();
@@ -191,26 +192,9 @@ void Climber::Update(float _DeltaTime)
 /////////픽셀충돌 중력 함수/////////////////////////////
 void Climber::Gravity()
 {
-	GameEngineTexture* ColMapTexture = GetLevel<PlayLevelManager>()->GetColMap()->GetCurTexture();
-	if (nullptr == ColMapTexture)
-	{
-		MsgBoxAssert("충돌용 맵이 세팅되지 않았습니다");
-	}
-	float4 Color = ColMapTexture->GetPixelToFloat4(GetTransform().GetWorldPosition().ix(),
-		-GetTransform().GetWorldPosition().iy() - 1);
-
-	if (false == Color.CompareInt4D(float4(1.0f, 1.0f, 1.0f, 0.0f)))
-	{
-		OnGround = true;
-		return;
-	}
-	else
-	{
-		OnGround = false;
-		GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
-	GetTransform().GetWorldPosition().y - 800.0f * GameEngineTime::GetDeltaTime(),
-	GetTransform().GetWorldPosition().z, });
-	}
+	GetTransform().SetLocalPosition({ GetTransform().GetWorldPosition().x,
+		GetTransform().GetWorldPosition().y - 800.0f * GameEngineTime::GetDeltaTime(),
+		GetTransform().GetWorldPosition().z, });
 
 }
 
@@ -322,7 +306,7 @@ void Climber::DeathStart(const StateInfo& _Info)
 	MonsterRenderer->ChangeFrameAnimation("Death");
 	MonsterRenderer->ScaleToCutTexture(0);
 	MonsterCollision->Off();
-
+	IsDeath_ = true;
 	GeoCoin* Coin = GetLevel()->CreateActor<GeoCoin>();
 	Coin->GetTransform().SetLocalPosition(GetTransform().GetLocalPosition() + float4{ 10,-6,0 });
 	GeoCoin* Coin1 = GetLevel()->CreateActor<GeoCoin>();

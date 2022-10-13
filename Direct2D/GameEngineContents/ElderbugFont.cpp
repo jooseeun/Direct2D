@@ -80,7 +80,7 @@ void ElderbugFont::Start()
 
 	DiBottom->ChangeFrameAnimation("Appear");
 	DiBottom->ScaleToCutTexture(0);
-	TextNum2 = 0.0f;
+	TextNum2 = 0;
 
 	MainText = Text[TextNum1];
 }

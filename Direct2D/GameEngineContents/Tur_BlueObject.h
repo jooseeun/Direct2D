@@ -30,6 +30,7 @@ private:
 	GameEngineTextureRenderer* BlueFlower4;
 
 	float AniTime;
+	float SoundTime;
 	CollisionReturn CheckDemage(GameEngineCollision* _This, GameEngineCollision* _Other);
 };
 
