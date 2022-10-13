@@ -302,6 +302,7 @@ void HollowKnigntCore::Start()
 	GameEngineTexture::Cut("nail_terrain_hit_effect.png", 3, 1);
 	GameEngineTexture::Cut("Spell Effects_focus_appear0000-Sheet.png", 7, 1);
 	GameEngineTexture::Cut("Spell Effects_burst_effect0000-Sheet.png", 8, 1);
+	GameEngineTexture::Cut("wispy_smoke_particle_abyss.png", 1, 5);
 
 	//NPC ¸®¼Ò½º
 	GameEngineTexture::Cut("Elderbug_idle_01-Sheet.png", 6, 1);

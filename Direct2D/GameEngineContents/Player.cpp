@@ -64,6 +64,9 @@ Player::~Player()
 
 void Player::Start()
 {
+	GameEngineDevice::GetBackBuffer()->AddEffect<ColorOverlay>();
+	GetLevel()->GetMainCamera()->GetCameraRenderTarget()->AddEffect<ColorOverlay>();
+
 	GameEngineDevice::GetBackBuffer()->AddEffect<GameEngineBlur>();
 	GetLevel()->GetMainCamera()->GetCameraRenderTarget()->AddEffect<GameEngineBlur>();
 

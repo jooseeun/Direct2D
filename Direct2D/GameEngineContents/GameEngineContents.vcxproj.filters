@@ -222,6 +222,9 @@
     <ClCompile Include="Climber.cpp">
       <Filter>Contents\Actor\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="TitleEffect.cpp">
+      <Filter>Contents\Actor\Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -385,6 +388,9 @@
     </ClInclude>
     <ClInclude Include="Climber.h">
       <Filter>Contents\Actor\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleEffect.h">
+      <Filter>Contents\Actor\Title</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

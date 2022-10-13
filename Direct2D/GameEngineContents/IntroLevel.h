@@ -28,6 +28,7 @@ private:
 	void LevelStartEvent() override;
 	void LevelEndEvent() override;
 
+	float Time;
 	TitleObject* TitleCom;
 	GameEngineCameraActor* Camera;
 };

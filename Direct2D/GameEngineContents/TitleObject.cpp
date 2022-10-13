@@ -31,6 +31,7 @@ void TitleObject::Start()
 	GameStartFont = CreateComponent<GameEngineFontRenderer>();
 	GameSet = CreateComponent<GameEngineFontRenderer>();
 	GameExit = CreateComponent<GameEngineFontRenderer>();
+
 	{
 		BackGround->SetTexture("MenuBackGround.png");
 		BackGround->GetTransform().SetLocalScale({

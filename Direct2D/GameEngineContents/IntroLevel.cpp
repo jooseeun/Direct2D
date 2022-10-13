@@ -3,11 +3,13 @@
 #include "TitleObject.h"
 #include "Mouse.h"
 #include "ColorOverlay.h"
-
+#include "TitleEffect.h"
+#include <GameEngineCore/GameEngineBlur.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineBase/GameEngineInput.h>
 
 IntroLevel::IntroLevel() 
+	:Time(0.0f)
 {
 }
 
@@ -17,8 +19,8 @@ IntroLevel::~IntroLevel()
 
 void IntroLevel::Start()
 {
-	GameEngineDevice::GetBackBuffer()->AddEffect<ColorOverlay>();
-	GetMainCamera()->GetCameraRenderTarget()->AddEffect<ColorOverlay>();
+	GameEngineDevice::GetBackBuffer()->AddEffect<GameEngineBlur>();
+	GetMainCamera()->GetCameraRenderTarget()->AddEffect<GameEngineBlur>();
 
 	if (false == GameEngineInput::GetInst()->IsKey("FreeCameraOnOff")
 		&& false == GameEngineInput::GetInst()->IsKey("CameraDebug"))
@@ -38,7 +40,10 @@ void IntroLevel::Start()
 		GetMainCamera()->SetProjectionSize(float4{ 1920 , 1080 });
 		GetUICamera()->SetProjectionSize(float4{ 1920, 1080 });
 	}
-
+	for (int i = 0; i < 6; i++)
+	{
+		TitleEffect* Effect = CreateActor<TitleEffect>(OBJECTORDER::UI);
+	}
 
 }
 void IntroLevel::Update(float _DeltaTime)
@@ -47,6 +52,14 @@ void IntroLevel::Update(float _DeltaTime)
 	if (GameEngineInput::GetInst()->IsDown("FreeCameraOnOff"))
 	{
 		GetMainCameraActor()->FreeCameraModeOnOff();
+	}
+
+	Time += 1.0f * _DeltaTime;
+	if (Time > 1.0f)
+	{
+		TitleEffect* Effect1 = CreateActor<TitleEffect>(OBJECTORDER::UI);
+		TitleEffect* Effect2 = CreateActor<TitleEffect>(OBJECTORDER::UI);
+		Time = 0.0f;
 	}
 
 }
