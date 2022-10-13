@@ -189,6 +189,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TitleParticle.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TopUI.cpp">
       <SubType>
       </SubType>
@@ -396,6 +400,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TitleObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleParticle.h">
       <SubType>
       </SubType>
     </ClInclude>

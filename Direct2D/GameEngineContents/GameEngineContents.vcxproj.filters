@@ -225,6 +225,9 @@
     <ClCompile Include="TitleEffect.cpp">
       <Filter>Contents\Actor\Title</Filter>
     </ClCompile>
+    <ClCompile Include="TitleParticle.cpp">
+      <Filter>Contents\Actor\Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -390,6 +393,9 @@
       <Filter>Contents\Actor\Monster</Filter>
     </ClInclude>
     <ClInclude Include="TitleEffect.h">
+      <Filter>Contents\Actor\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleParticle.h">
       <Filter>Contents\Actor\Title</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,6 +4,7 @@
 #include "Mouse.h"
 #include "ColorOverlay.h"
 #include "TitleEffect.h"
+#include "TitleParticle.h"
 #include <GameEngineCore/GameEngineBlur.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -44,7 +45,10 @@ void IntroLevel::Start()
 	{
 		TitleEffect* Effect = CreateActor<TitleEffect>(OBJECTORDER::UI);
 	}
-
+	for (int i = 0; i < 20; i++)
+	{
+		TitleParticle* Effect = CreateActor<TitleParticle>(OBJECTORDER::UI);
+	}
 }
 void IntroLevel::Update(float _DeltaTime)
 {
@@ -59,6 +63,11 @@ void IntroLevel::Update(float _DeltaTime)
 	{
 		TitleEffect* Effect1 = CreateActor<TitleEffect>(OBJECTORDER::UI);
 		TitleEffect* Effect2 = CreateActor<TitleEffect>(OBJECTORDER::UI);
+
+		for (int i = 0; i < 4; i++)
+		{
+			TitleParticle* Effect = CreateActor<TitleParticle>(OBJECTORDER::UI);
+		}
 		Time = 0.0f;
 	}
 
